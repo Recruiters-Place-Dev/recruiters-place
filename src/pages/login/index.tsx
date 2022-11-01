@@ -36,16 +36,19 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(fakeFunctionLogin)}>
             <h3>Entrar</h3>
-            {/* <Input label="Email" type="text" /> */}
-            {/* <Input label="Senha" type="text" /> */}
-            <input type="text" placeholder="Email" {...register("email")} />
+            <Input label="Email" type="text" register={register} data="email" />
             {
               <p className="errors">
                 {errors.email && <RiErrorWarningFill />}
                 {errors.email?.message}
               </p>
             }
-            <input type="text" placeholder="Senha" {...register("password")} />
+            <Input
+              label="Senha"
+              type="text"
+              register={register}
+              data="password"
+            />
             {
               <p className="errors">
                 {errors.password && <RiErrorWarningFill />}
