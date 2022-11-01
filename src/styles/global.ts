@@ -6,5 +6,6 @@ export const Global = createGlobalStyle`
         padding: 0px;
         list-style: none;
         box-sizing: border-box
+        
     }
 `;
