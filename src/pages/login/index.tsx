@@ -1,17 +1,29 @@
 import Logo from "../../assets/Logoo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
+import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaLogin from "../../validations/loginUser";
+import Input from "../../components/Input";
+
+interface iUserLogin {
+  email: string;
+  password: string;
+}
 
 export const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iUserLogin>({
     resolver: yupResolver(SchemaLogin),
   });
+
+  function fakeFunctionLogin(data: iUserLogin) {
+    console.log(data);
+    return data;
+  }
 
   return (
     <MainLogin>
@@ -22,12 +34,30 @@ export const Login = () => {
           <figure className="boxLogo">
             <img src={Logo} alt="Logo" />
           </figure>
-          <FormLogin>
+          <FormLogin onSubmit={handleSubmit(fakeFunctionLogin)}>
             <h3>Entrar</h3>
-            <input type="text" placeholder="Email" />
-            <input type="text" placeholder="Senha" />
-            <button>Login</button>
-            <p>Não tem uma conta ?</p>
+            <Input label="Email" type="text" register={register} data="email" />
+            {
+              <p className="errors">
+                {errors.email && <RiErrorWarningFill />}
+                {errors.email?.message}
+              </p>
+            }
+            <Input
+              label="Senha"
+              type="text"
+              register={register}
+              data="password"
+            />
+            {
+              <p className="errors">
+                {errors.password && <RiErrorWarningFill />}
+                {errors.password?.message}
+              </p>
+            }
+
+            <button type="submit">Login</button>
+            <span>Não tem uma conta ?</span>
             <button>Register</button>
           </FormLogin>
         </div>

@@ -42,6 +42,8 @@ export const SectionLogin = styled.section`
     border-right: 5px solid;
     border-top-color: var(--color-primary);
     border-right-color: var(--color-primary);
+
+    z-index: 0;
   }
 
   .containerLogin {
@@ -80,6 +82,8 @@ export const FormLogin = styled.form`
 
   width: 100%;
 
+  z-index: 1;
+
   h3 {
     margin: 0 0 15px 0;
 
@@ -95,13 +99,32 @@ export const FormLogin = styled.form`
     border: 1px solid grey;
 
     padding-left: 5px;
-    margin-bottom: 15px;
 
     transition: 0.3s;
 
     &:hover {
       transition: 0.3s;
       border: 1px solid black;
+    }
+  }
+
+  .errors {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+
+    width: 95%;
+
+    color: var(--message-error);
+
+    font-size: 13px;
+    font-family: var(--font-family);
+
+    margin: 3px 0 15px 0;
+
+    svg {
+      position: static;
     }
   }
 
@@ -127,7 +150,7 @@ export const FormLogin = styled.form`
     }
   }
 
-  p {
+  span {
     font-family: var(--font-family);
     font-weight: 300;
     letter-spacing: -0.4px;
@@ -156,7 +179,7 @@ export const BoxSlogan = styled.div`
   border: 1px solid var(--grey-3);
   border-radius: 0.5rem;
 
-  .blockBlue{
+  .blockBlue {
     width: 55%;
     height: 88%;
 
@@ -185,23 +208,20 @@ export const BoxSlogan = styled.div`
     }
 
     .boxLink {
-
       a {
         color: var(--color-primary);
-    
       }
-      
+
       span {
         display: block;
         width: 0%;
         height: 1px;
         background: var(--color-primary);
-        
+
         transition: 0.4s;
-        
       }
 
-      &:hover span{
+      &:hover span {
         width: 88%;
         transition: 0.4s;
       }

@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { type } from "@testing-library/user-event/dist/type";
+import { InputHTMLAttributes, useState } from "react";
+import { UseFormRegister } from "react-hook-form";
 import InputGroup from "./inputGroup";
 
-interface iInputProps {
-  className?: string;
+interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  className?: iClassName;
   type: string;
   label: string;
+  data: string;
+  register: UseFormRegister<any>;
 }
 
-const Input = ({ className, type, label }: iInputProps) => {
-  const [value, setValue] = useState("");
+export type iClassName = "success" | "error" | "done" | undefined;
 
+const Input = ({ className, type, label, register, data }: iInputProps) => {
   return (
-    <InputGroup className={className} inputValue={value}>
-      <input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        type={type}
-      />
+    <InputGroup className={className}>
+      <input type={type} {...register(data)} />
       <label htmlFor="">{label}</label>
     </InputGroup>
   );
