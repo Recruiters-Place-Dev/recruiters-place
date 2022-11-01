@@ -1,6 +1,8 @@
 import Logo from "../../assets/Logoo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import SchemaLogin from "../../validations/loginUser";
 
 export const Login = () => {
   const {
