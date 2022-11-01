@@ -1,14 +1,11 @@
-
-
 import RoutesMain from "./routes";
+import { WebProvider } from "./context/webcontext"
 
 function App() {
   return (
-    <div className="App">
-      {/* <h1>teste</h1> */}
-      {/* <Login/> */}
+    <WebProvider>
       <RoutesMain />
-    </div>
+    </WebProvider>
   );
 }
 
