@@ -1,7 +1,6 @@
-import React from "react";
+import Logo from "../../assets/Logoo.svg"
+// import { FormLogin, MainLogin, SectionLogin } from "./style";
 
-function index() {
-  return <div>index</div>;
-}
+export const Login = () => {
 
-export default index;
+};
