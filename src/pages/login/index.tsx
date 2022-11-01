@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaLogin from "../../validations/loginUser";
 import Input from "../../components/Input";
 
-interface iUserLogin {
+export interface iUserLogin {
   email: string;
   password: string;
 }
