@@ -15,18 +15,18 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
 
   async function onLogin(info: iUserLogin){
+
     const logUser = await Api
-    .post('/sessions', info)
+    .post('/login', info)
     .then((res) => res.data)
     .catch((err => {
-        console.log(err)
+        console.log(err.response.data)
         return false
     }))
-    console.log(logUser);
-    // if(logUser){
-    //     localStorage.setItem("RPlace:Token", logUser.token);
-    //     setTimeout(() => window.location.replace('./home'), 500);
-    // }
+    if(logUser){
+        localStorage.setItem("RPlace:Token", logUser.accessToken);
+        setTimeout(() => window.location.replace('./dashboard'), 500);
+    }
   }
 
   return (

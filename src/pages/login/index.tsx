@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaLogin from "../../validations/loginUser";
 import Input from "../../components/Input";
 import { LinkStyled } from "../../components/buttons/style";
+import { useContext } from "react";
+import { WebContext } from "../../context/webcontext";
 
 export interface iUserLogin {
   email: string;
@@ -13,6 +15,8 @@ export interface iUserLogin {
 }
 
 export const Login = () => {
+  const { onLogin } = useContext(WebContext);
+
   const {
     register,
     handleSubmit,
@@ -20,11 +24,6 @@ export const Login = () => {
   } = useForm<iUserLogin>({
     resolver: yupResolver(SchemaLogin),
   });
-
-  function fakeFunctionLogin(data: iUserLogin) {
-    console.log(data);
-    return data;
-  }
 
   return (
     <MainLogin>
@@ -35,7 +34,7 @@ export const Login = () => {
           <figure className="boxLogo">
             <img src={Logo} alt="Logo" />
           </figure>
-          <FormLogin onSubmit={handleSubmit(fakeFunctionLogin)}>
+          <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
             <Input label="Email" type="text" register={register} data="email" />
             {
@@ -46,7 +45,7 @@ export const Login = () => {
             }
             <Input
               label="Senha"
-              type="text"
+              type="password"
               register={register}
               data="password"
             />
@@ -68,7 +67,7 @@ export const Login = () => {
         <div>
           <h2>Agilize o trabalho com parceiros</h2>
           <div className="boxLink">
-            <a href="">Confira os benefícios ➡</a>
+            <a href="#">Confira os benefícios ➡</a>
             <span></span>
           </div>
         </div>
