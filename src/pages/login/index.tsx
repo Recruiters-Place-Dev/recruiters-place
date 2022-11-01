@@ -5,6 +5,7 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaLogin from "../../validations/loginUser";
 import Input from "../../components/Input";
+import { LinkStyled } from "../../components/buttons/style";
 
 export interface iUserLogin {
   email: string;
@@ -55,7 +56,7 @@ export const Login = () => {
 
             <button type="submit">Login</button>
             <span>Não tem uma conta ?</span>
-            <button>Register</button>
+            <LinkStyled to="/register">Register</LinkStyled>
           </FormLogin>
         </div>
       </SectionLogin>

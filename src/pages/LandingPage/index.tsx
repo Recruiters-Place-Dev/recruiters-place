@@ -1,11 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import Logo from "../LandingPage/assets/RPlace_Clear.svg";
-import PeopleLanding from "./assets/undraw_solution_mindset_re_57bf.svg";
-
+import Logo from "../../assets/RPlace_Clear.svg";
+import PeopleLanding from "../../assets/peoplelanding.svg";
 import {
   MainStyled,
   Container,
-
   BackgroundStyled,
   TextAuth,
   TextBackground,
@@ -14,8 +12,8 @@ import {
   ContainerImg,
   ContainerRedirect,
   Lines,
-  LinkStyled,
 } from "./style";
+import { LinkStyled } from "../../components/buttons/style";
 
 export const LandingPage = () => {
   return (

@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { LandingPage } from "../pages/LandingPage";
+import { Login } from "../pages/login";
+import Register from "../pages/register";
 import { PrivateRoutes } from "./PrivateRoutes";
 
 function RoutesMain() {
@@ -11,9 +13,9 @@ function RoutesMain() {
         <Route path="*" element={<h1>Not Found Page</h1>}></Route>
       </Route>
 
-      <Route path="/landingPage" element={<LandingPage />} />
-      <Route path="/login" element={<h1>Login Page</h1>} />
-      <Route path="/register" element={<h1>Register Page</h1>} />
+      <Route path="/home" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
       <Route path="*" element={<Navigate to="/landingPage" />} />
     </Routes>

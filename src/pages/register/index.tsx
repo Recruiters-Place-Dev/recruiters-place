@@ -1,12 +1,15 @@
 import React from "react";
-import { FormRegister } from "../../components/formregister"
+import { LinkStyled } from "../../components/buttons/style";
+import { ContainerCenter } from "../../components/ContainerCenter/style";
+import { FormRegister } from "../../components/formregister";
 
 function Register() {
   return (
-    <div>
-      Register
+    <ContainerCenter>
+      <h1>Cadastrar</h1>
       <FormRegister />
-    </div>
+      <LinkStyled to="/login">Login</LinkStyled>
+    </ContainerCenter>
   );
 }
 
