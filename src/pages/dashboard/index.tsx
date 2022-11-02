@@ -1,11 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import HeaderDashboard from "../../components/headerDashboard";
 
 function Dashboard() {
   return (
     <>
       <HeaderDashboard />
-      <div>Dashboard</div>
+      <Outlet />
     </>
   );
 }
