@@ -1,7 +1,6 @@
-import React from "react";
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function HeaderDashboard() {
   const navigate = useNavigate();
@@ -14,14 +13,14 @@ function HeaderDashboard() {
   return (
     <>
       <HeaderContainer>
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="Logo" />
         <nav>
           <ul>
             <li>
               <button>Encontrar Devs</button>
             </li>
             <li>
-              <button>Perfil</button>
+              <Link to={"/perfil"}>Perfil</Link>
             </li>
             <li>
               <button onClick={() => handleLogout()}>Sair</button>

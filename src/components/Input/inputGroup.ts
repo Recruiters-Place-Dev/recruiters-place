@@ -1,20 +1,17 @@
 import styled from "styled-components";
-
 interface iInputGroup {
   className: String;
   inputValue: string;
 }
-
 const InputGroup = styled.div<iInputGroup>`
   position: relative;
   width: 100%;
-
   border-radius: 8px;
   background: none;
   padding: 17px 14px;
   font-size: 16px;
   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  
   input {
     width: 100%;
     border: 1px solid
@@ -38,7 +35,6 @@ const InputGroup = styled.div<iInputGroup>`
     font-size: 16px;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-
   label {
     position: absolute;
     left: 16px;
@@ -60,21 +56,13 @@ const InputGroup = styled.div<iInputGroup>`
     padding: ${(props) => (props.inputValue !== "" ? "0 0.2em" : 0)};
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-
   input:focus {
     outline: none;
   }
-
-  input::placeholder{
-    color: transparent;
-  }
-
-  input:focus + label,
-  input:not(:placeholder-shown) + label {
+  input:focus ~ label {
     transform: translateY(-50%) scale(0.8);
     background-color: #fff;
     padding: 0 0.2em;
   }
 `;
-
 export default InputGroup;
