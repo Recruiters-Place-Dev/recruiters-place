@@ -31,7 +31,6 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.get(`/users/${id}`).then((resp) => {
           setUser(resp.data);
-          console.log("oi");
         });
       } catch (error) {
         window.localStorage.clear();
