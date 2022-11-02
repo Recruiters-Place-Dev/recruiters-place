@@ -6,8 +6,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SchemaLogin from "../../validations/loginUser";
 import Input from "../../components/Input";
 import { LinkStyled } from "../../components/buttons/style";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { WebContext } from "../../context/webcontext";
+import { useNavigate } from "react-router-dom";
 
 export interface iUserLogin {
   email: string;
@@ -16,6 +17,13 @@ export interface iUserLogin {
 
 export const Login = () => {
   const { onLogin } = useContext(WebContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("RPlace:Token")) {
+      navigate("/home");
+    }
+  }, []);
 
   const {
     register,
