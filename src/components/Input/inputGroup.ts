@@ -6,11 +6,6 @@ interface iInputGroup {
 const InputGroup = styled.div<iInputGroup>`
   position: relative;
   width: 100%;
-  border-radius: 8px;
-  background: none;
-  padding: 17px 14px;
-  font-size: 16px;
-  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   
   input {
     width: 100%;
