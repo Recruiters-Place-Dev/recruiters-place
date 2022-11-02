@@ -6,11 +6,7 @@ export const RegisterForm = styled.form`
     align-items: center;
     gap: 15px;
 
+    max-width: 400px;
     width: 100%;
     padding: 20px 10px;
-
-    fieldset {
-        width: 100%;
-        padding: 5px;
-    }
 `;
