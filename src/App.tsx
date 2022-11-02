@@ -1,5 +1,5 @@
 import RoutesMain from "./routes";
-import { WebProvider } from "./context/webcontext"
+import { WebProvider } from "./context/webcontext";
 
 function App() {
   return (

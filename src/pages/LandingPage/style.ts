@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainStyled = styled.main`
@@ -56,7 +55,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
     gap: 4rem;
   }
 `;
@@ -73,52 +72,15 @@ export const ContainerImg = styled.div`
       min-width: 400px;
       transform: translateY(-50px);
       left: -6rem;
-      
     }
   }
 `;
 
-export const BackgroundStyled = styled.div`
-  width: 90%;
-  max-width: 800px;
-  min-height: 230px;
-  background: #1da1f2;
-  border-radius: 0px 200px 200px 0px;
+export const ContainerWelcome = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 1rem;
-  padding-right: 0.4rem;
 `;
 
-export const ContainerRedirect = styled.div`
-
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
-  height: 100%;
-  max-height: 700px;
-  img {
-    width: 80%;
-    object-fit: cover;
-  }
-
-  @media (min-width: 988px) {
-   
-    margin: 0;
-   
-
-
-  }
-`;
-
-export const LinkStyled = styled(Link)`
+export const ButtonLogout = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -138,9 +100,44 @@ export const LinkStyled = styled(Link)`
   text-decoration: none;
   transition: 0.4s;
   z-index: 1000;
-  &:hover{
+  &:hover {
     cursor: pointer;
     filter: brightness(1.2);
+  }
+`;
+
+export const BackgroundStyled = styled.div`
+  width: 90%;
+  max-width: 800px;
+  min-height: 230px;
+  background: #1da1f2;
+  border-radius: 0px 200px 200px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem;
+  padding-right: 0.4rem;
+`;
+
+export const ContainerRedirect = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+  height: 100%;
+  max-height: 700px;
+  img {
+    width: 80%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 988px) {
+    margin: 0;
   }
 `;
 
