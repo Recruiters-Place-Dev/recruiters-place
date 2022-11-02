@@ -110,7 +110,12 @@ const InputGroup = styled.div<iInputGroup>`
     outline: none;
   }
 
-  input:focus ~ label {
+  input::placeholder{
+    color: transparent;
+  }
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
     transform: translateY(-50%) scale(0.8);
     background-color: #fff;
     padding: 0 0.2em;

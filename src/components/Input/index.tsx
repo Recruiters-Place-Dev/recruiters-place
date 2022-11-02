@@ -16,7 +16,7 @@ export type iClassName = "success" | "error" | "done" | undefined;
 const Input = ({ className, type, label, register, data }: iInputProps) => {
   return (
     <InputGroup className={className}>
-      <input type={type} {...register(data)} />
+      <input type={type} placeholder="." {...register(data)} />
       <label htmlFor="">{label}</label>
     </InputGroup>
   );
