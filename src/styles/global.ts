@@ -45,8 +45,9 @@ export const Global = createGlobalStyle`
       --black: #000000;
       --white: #ffffff;
 
-      --color-success: #3FE864;
-      --color-fail: #E83F5B;
+      --color-success: #4BAD31;
+      --color-error: #E2142D;
+
       --message-error: #e12525;
 
       --font-family: "Roboto", sans-serif;
