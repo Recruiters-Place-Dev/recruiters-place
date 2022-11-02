@@ -1,4 +1,4 @@
-import Logo from "../../assets/Logoo.svg";
+import Logo from "../../assets/Logo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
