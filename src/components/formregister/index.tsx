@@ -2,19 +2,21 @@ import { RegisterForm } from "./styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Input from "../Input";
 
-interface iUserRegister {
-  nome: string;
+export interface iUserRegister {
+  name: string;
   email: string;
-  escolaridade: string;
-  vaga: string;
+  escolaridade?: string;
+  vaga?: string;
   password: string;
   checkpass: string;
+  recruiter: boolean;
 }
 
 export function FormRegister() {
   const yupSchema = yup.object().shape({
-    nome: yup.string().required("Preencha o campo com seu nome."),
+    name: yup.string().required("Preencha o campo com seu nome."),
     email: yup
       .string()
       .required("Preencha o campo com um email válido")
@@ -38,78 +40,48 @@ export function FormRegister() {
 
   function fakeFunction(info: iUserRegister) {
     console.log(info);
-    return info;
   }
+
+  console.log(errors);
 
   return (
     <RegisterForm onSubmit={handleSubmit(fakeFunction)}>
-      <fieldset>
-        <legend>Nome</legend>
-        <input
+      <div className="InputsContainer">
+        <Input
           type="text"
-          placeholder="Digite seu nome"
-          {...register("nome")}
+          label="Nome"
+          id="name"
+          register={register}
+          errors={errors.name}
+          login={true}
         />
-        <p>{errors.nome?.message}</p>
-      </fieldset>
-
-      <fieldset>
-        <legend>E-mail</legend>
-        <input
-          type="text"
-          placeholder="Digite seu e-mail"
-          {...register("email")}
+        <Input
+          type="email"
+          label="Email"
+          id="email"
+          register={register}
+          errors={errors.email}
         />
-        <p>{errors.email?.message}</p>
-      </fieldset>
-
-      <fieldset>
-        <legend>Escolaridade</legend>
-        <select {...register("escolaridade")}>
-          <option value="Ensino Médio">Ensino Médio</option>
-          <option value="Ensino Técnico">Ensino Técnico</option>
-          <option value="Ensino Superior">Ensino Superior</option>
-          <option value="Pós-Graduação">Pós Graduado</option>
-          <option value="Mestrado">Mestrado</option>
-          <option value="Doutorado">Doutorado</option>
-        </select>
-        <p>{errors.email?.message}</p>
-      </fieldset>
-
-      <fieldset>
-        <legend>Oportunidade de Vaga</legend>
-        <select {...register("vaga")}>
-          <option value="Full-Stack">Full-Stack</option>
-          <option value="Front-end">Front-end</option>
-          <option value="Back-end">Back-end</option>
-          <option value="Developer Mobile">Developer Mobile</option>
-          <option value="Analise de Dados">Analise de Dados</option>
-        </select>
-        <p>{errors.email?.message}</p>
-      </fieldset>
-
-      <fieldset>
-        <legend>Senha</legend>
-        <input
+        <Input
           type="password"
-          placeholder="Digite sua senha"
-          {...register("password")}
+          label="Senha"
+          id="password"
+          register={register}
+          errors={errors.password}
         />
-        <p>{errors.password?.message}</p>
-      </fieldset>
-
-      <fieldset>
-        <legend>Confirmar Senha</legend>
-        <input
+        <Input
           type="password"
-          placeholder="Repita a senha definida acima"
-          {...register("checkpass")}
+          label="Confirmar Senha"
+          id="checkpass"
+          register={register}
+          errors={errors.checkpass}
         />
-        <p>{errors.checkpass?.message}</p>
-      </fieldset>
-
-      <button type="submit">Cadastrar</button>
-      <p>Já possui uma conta?</p>
+      </div>
+      <div className="Recruiter-Opt">
+        <span>Recrutador?</span>
+        <input type="checkbox" id="recruiter" {...register("recruiter")} />
+      </div>
+      <button>Cadastre-se</button>
     </RegisterForm>
   );
 }

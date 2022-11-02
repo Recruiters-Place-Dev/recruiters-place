@@ -1,23 +1,40 @@
-import { type } from "@testing-library/user-event/dist/type";
-import { InputHTMLAttributes, useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { useState } from "react";
+import { Path, UseFormRegister } from "react-hook-form";
 import InputGroup from "./inputGroup";
-
-interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: iClassName;
+ 
+interface iInputProps {
   type: string;
   label: string;
-  data: string;
+  id: Path<any>;
   register: UseFormRegister<any>;
+  errors?: any;
+  login?: boolean
 }
 
-export type iClassName = "success" | "error" | "done" | undefined;
+const Input = ({ type, label, id, register, errors, login }: iInputProps) => {
+  const [value, setValue] = useState("");
 
-const Input = ({ className, type, label, register, data }: iInputProps) => {
+  const { onChange, onBlur, name, ref } = register(id);
+
   return (
-    <InputGroup className={className}>
-      <input type={type} placeholder="." {...register(data)} />
-      <label htmlFor="">{label}</label>
+    <InputGroup
+      className={!errors && value !== "" && login ? "done" : errors ? "error" : !errors && value !== "" ? "sucess" : ""}
+      inputValue={value}
+    >
+      <input
+        autoComplete="off"
+        id={id}
+        value={value}
+        type={type}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e);
+        }}
+        onBlur={onBlur}
+        name={name}
+        ref={ref}
+      />
+      <label>{label}</label>
     </InputGroup>
   );
 };
