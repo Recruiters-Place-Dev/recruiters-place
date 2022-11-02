@@ -44,7 +44,7 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
-            <Input label="Email" type="text" register={register} data="email" />
+            <Input label="Email" type="text" register={register} id="email" />
             {
               <p className="errors">
                 {errors.email && <RiErrorWarningFill />}
@@ -55,7 +55,7 @@ export const Login = () => {
               label="Senha"
               type="password"
               register={register}
-              data="password"
+              id="password"
             />
             {
               <p className="errors">
