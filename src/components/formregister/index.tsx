@@ -42,8 +42,6 @@ export function FormRegister() {
     console.log(info);
   }
 
-  console.log(errors);
-
   return (
     <RegisterForm onSubmit={handleSubmit(fakeFunction)}>
       <div className="InputsContainer">
@@ -53,10 +51,9 @@ export function FormRegister() {
           id="name"
           register={register}
           errors={errors.name}
-          login={true}
         />
         <Input
-          type="email"
+          type="text"
           label="Email"
           id="email"
           register={register}
