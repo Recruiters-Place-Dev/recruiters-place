@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import InputGroup from "./inputGroup";
 import { iUserRegister } from "../formregister/index";
-
+import { iUserLogin } from "../../pages/login"
+ 
 interface iInputProps {
   type: string;
   label: string;
-  id: Path<iUserRegister>;
-  register: UseFormRegister<iUserRegister>;
+  id: Path<iUserRegister | iUserLogin>;
+  register: UseFormRegister<iUserRegister | iUserLogin>;
   errors?: any;
   login?: boolean
 }
