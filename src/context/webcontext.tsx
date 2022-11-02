@@ -48,6 +48,7 @@ export function WebProvider({ children }: iWebProvider) {
     if (logUser) {
       localStorage.setItem("RPlace:Token", logUser.accessToken);
       localStorage.setItem("RPlace:id", logUser.user.id);
+      localStorage.setItem("RPlace:email", logUser.user.email);
       setTimeout(() => navigate("/home"), 500);
     }
   }
