@@ -91,23 +91,6 @@ export const FormLogin = styled.form`
     font-family: var(--font-family);
   }
 
-  input {
-    width: 95%;
-    height: 25px;
-
-    border-radius: 0.25rem;
-    border: 1px solid grey;
-
-    padding-left: 5px;
-
-    transition: 0.3s;
-
-    &:hover {
-      transition: 0.3s;
-      border: 1px solid black;
-    }
-  }
-
   .errors {
     display: flex;
     align-items: center;
