@@ -1,20 +1,17 @@
 import * as yup from "yup";
 
 export const SchemaLogin = yup.object().shape({
-  
-  email: yup
-    .string()
-    .required("Email obrigatório"),
+  email: yup.string().required("Email obrigatório"),
 
-  password: yup
-  .string()
-  .required('Senha é obrigatória')
-})
+  password: yup.string().required("Senha é obrigatória"),
+});
 
 export const SchemaPerfilRech = yup.object().shape({
-  
-  email: yup
+  email: yup.string(),
+  // .required("Email obrigatório")
+  // .email("Email inválido"),
+
+  linkedin: yup
     .string()
-    // .required("Email obrigatório")
-    // .email("Email inválido"),
-})
+    .url("Deve ser uma URL válida")
+});

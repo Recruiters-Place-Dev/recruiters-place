@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Path, UseFormRegister } from "react-hook-form";
+import { ErrorMessage } from "../ParagraphError";
 import InputGroup from "./inputGroup";
  
 interface iInputProps {
@@ -7,11 +8,12 @@ interface iInputProps {
   label: string;
   id: Path<any>;
   register: UseFormRegister<any>;
+  errorMessage?: string;
   errors?: any;
   login?: boolean
 }
 
-const Input = ({ type, label, id, register, errors, login }: iInputProps) => {
+const Input = ({ type, label, id, register, errors, login, errorMessage }: iInputProps) => {
   const [value, setValue] = useState("");
 
   const { onChange, onBlur, name, ref } = register(id);
@@ -35,6 +37,7 @@ const Input = ({ type, label, id, register, errors, login }: iInputProps) => {
         ref={ref}
       />
       <label>{label}</label>
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </InputGroup>
   );
 };

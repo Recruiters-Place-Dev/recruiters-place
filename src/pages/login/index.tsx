@@ -16,7 +16,7 @@ export interface iUserLogin {
 }
 
 export const Login = () => {
-  const { onLogin, user } = useContext(WebContext);
+  const { onLogin } = useContext(WebContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const Login = () => {
       navigate("/home");
     }
   }, []);
-  console.log(user);
+  
   const {
     register,
     handleSubmit,
