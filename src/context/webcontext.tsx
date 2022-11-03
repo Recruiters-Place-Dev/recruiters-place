@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
+import { iEditRech } from "../components/perfilRech";
 
 interface iWebProvider {
   children: ReactNode;
@@ -9,13 +10,14 @@ interface iWebProvider {
 
 interface iWebContext {
   onLogin: (info: iUserLogin) => void;
+  editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,8 +55,14 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  async function editSubmit(info: iEditRech) {
+    const id = localStorage.getItem("RPlace:id");
+
+    const { data } = await Api.patch(`/users/${id}`, info);
+  }
+
   return (
-    <WebContext.Provider value={{ onLogin, setUser }}>
+    <WebContext.Provider value={{ onLogin, editSubmit, setUser }}>
       {children}
     </WebContext.Provider>
   );
