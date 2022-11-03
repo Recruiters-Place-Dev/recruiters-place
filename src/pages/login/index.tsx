@@ -35,7 +35,6 @@ export const Login = () => {
 
   return (
     <MainLogin>
-      <SectionLogin></SectionLogin>
       <SectionLogin>
         <div className="block"></div>
         <div className="containerLogin">
@@ -72,7 +71,7 @@ export const Login = () => {
         </div>
       </SectionLogin>
       <BoxSlogan>
-        <div className="blockBlue"></div>
+        <div className="blockBlue"><h2>Recrutamento em um só lugar!</h2></div>
         <div>
           <h2>Agilize o trabalho com parceiros</h2>
           <div className="boxLink">

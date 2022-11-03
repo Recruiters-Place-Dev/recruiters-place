@@ -8,12 +8,16 @@ export const MainLogin = styled.main`
 
   width: 100%;
   min-height: 100vh;
-
   background: linear-gradient(
     to right,
+    var(--color-secondary) 50%,
+    var(--color-secondary) 50%);
+  @media (min-width: 985px) {
+    background: linear-gradient(
+    to right,
     var(--color-primary) 50%,
-    var(--color-secondary) 50%
-  );
+    var(--color-secondary) 50%);
+  }
 `;
 
 export const SectionLogin = styled.section`
@@ -24,8 +28,13 @@ export const SectionLogin = styled.section`
   align-items: center;
   justify-content: center;
 
-  width: 50%;
+  width: 80%;
   height: 100vh;
+
+  @media (min-width: 985px) {
+    align-items: flex-end;
+  }
+
 
   .block {
     position: absolute;
@@ -52,7 +61,7 @@ export const SectionLogin = styled.section`
     align-items: center;
     justify-content: flex-start;
 
-    min-width: 200px;
+    min-width: 250px;
     max-width: 80%;
     height: 500px;
 
@@ -113,13 +122,14 @@ export const FormLogin = styled.form`
 
   button {
     font-family: var(--font-family);
-    font-weight: 300;
-    font-size: 12px;
+    font-weight: 500;
+    font-size: 16px;
 
-    width: 95%;
-    height: 30px;
+    width: 100%;
+    max-width: 331px;
+    height: 48px;
 
-    border-radius: 0.25rem;
+    border-radius: 8px;
     border: none;
 
     background: var(--color-primary);
@@ -148,14 +158,16 @@ export const FormLogin = styled.form`
 export const BoxSlogan = styled.div`
   position: absolute;
 
-  bottom: 0;
+  bottom: 0.2rem;
 
   display: flex;
   align-items: center;
   justify-content: flex-start;
 
   width: 65%;
-  height: 200px;
+  min-width: 250px;
+  max-width: 600px;
+  height: 180px;
 
   background: var(--color-secondary);
 
@@ -165,7 +177,7 @@ export const BoxSlogan = styled.div`
   .blockBlue {
     width: 55%;
     height: 88%;
-
+    
     background: var(--color-primary);
     border-radius: 0 200px 200px 0;
 
@@ -184,13 +196,19 @@ export const BoxSlogan = styled.div`
 
     h2 {
       font-family: var(--font-family);
-      font-weight: 400;
+      font-weight: 500;
       text-align: center;
-
+      font-size: 16px;
       width: 90%;
+      @media (min-width: 985px) {
+        font-size:21px
+      }
     }
 
     .boxLink {
+      font-family: var(--font-family);
+      font-size: 12px;
+
       a {
         color: var(--color-primary);
       }
@@ -200,7 +218,7 @@ export const BoxSlogan = styled.div`
         width: 0%;
         height: 1px;
         background: var(--color-primary);
-
+    
         transition: 0.4s;
       }
 

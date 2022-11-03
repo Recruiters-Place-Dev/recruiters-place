@@ -53,8 +53,8 @@ export const Container = styled.div`
 
   @media (min-width: 988px) {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
 
     gap: 4rem;
   }
@@ -64,14 +64,14 @@ export const ContainerImg = styled.div`
   display: none;
 
   @media (min-width: 988px) {
-    display: block;
-    position: relative;
+    display: flex;
+    background-color: var(--color-primary);
+    margin:-1rem;
+    padding:100px 50px 40px 150px;
 
     img {
-      position: absolute;
+      width:740px;
       min-width: 400px;
-      transform: translateY(-50px);
-      left: -6rem;
     }
   }
 `;
@@ -117,8 +117,7 @@ export const BackgroundStyled = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 2rem;
-  padding: 1rem;
-  padding-right: 0.4rem;
+  padding: 2rem;
 `;
 
 export const ContainerRedirect = styled.div`
@@ -150,29 +149,48 @@ export const TitleBackground = styled.p`
   color: #14171a;
 `;
 
+export const SloganBackground = styled.p`
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 100%;
+  color: #f5f8fa;
+`;
+
 export const TextBackground = styled.p`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 100%;
   color: #f5f8fa;
 `;
 
 export const TitleLogin = styled.h4`
-  font-family: "Lato";
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 48px;
+  font-size: 42px;
   line-height: 100%;
   color: #14171a;
+`;
+
+export const TitleAuth = styled.p`
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  margin-bottom: -1.8rem;
+  color: #657786;
 `;
 
 export const TextAuth = styled.p`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 100%;
   color: #657786;
 `;
