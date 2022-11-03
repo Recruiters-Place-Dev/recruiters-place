@@ -12,7 +12,7 @@ export const ContainerMain = styled.main`
   flex-direction: column;
 
   width: 1100px;
-  height: 84vh;
+  height: fit-content;
 `;
 
 export const Container = styled.div<iSizeProps>`

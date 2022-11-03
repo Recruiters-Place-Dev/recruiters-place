@@ -14,6 +14,11 @@ function HeaderDashboard() {
     navigate("/");
   }
 
+  function closeFilter() {
+    setFilter(false);
+    navigate("/perfil")
+  }
+
   return (
     <>
       <HeaderContainer>
@@ -31,7 +36,11 @@ function HeaderDashboard() {
                 </button>
               </li>
               <li>
-                <Link to={"/perfil"}>Perfil</Link>
+                <button
+                  onClick={() => closeFilter()}
+                >
+                  Perfil
+                </button>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>
