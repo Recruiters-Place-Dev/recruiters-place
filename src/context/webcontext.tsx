@@ -59,8 +59,10 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         const request = await Api.get(`/users/${id}`);
+        
         setUser(request.data);
       } catch (error) {
+        console.log(error)
         window.localStorage.clear();
       }
     }
@@ -83,9 +85,10 @@ export function WebProvider({ children }: iWebProvider) {
       }, 500);
     }
   }
-
+  
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
+    
     
     if (info.name === "") {
       delete info.name;
@@ -106,8 +109,8 @@ export function WebProvider({ children }: iWebProvider) {
       delete info.linkedin;
     }
 
+    loadUser();
     await Api.patch(`/users/${id}`, info);
-    
     loadUser();
   }
 
