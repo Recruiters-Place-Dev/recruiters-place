@@ -51,7 +51,7 @@ export function FormRegister() {
           type="text"
           label="Nome"
           id="name"
-          register={register}
+          // register={register}
           errors={errors.name}
           login={true}
         />
@@ -59,21 +59,21 @@ export function FormRegister() {
           type="email"
           label="Email"
           id="email"
-          register={register}
+          // register={register}
           errors={errors.email}
         />
         <Input
           type="password"
           label="Senha"
           id="password"
-          register={register}
+          // register={register}
           errors={errors.password}
         />
         <Input
           type="password"
           label="Confirmar Senha"
           id="checkpass"
-          register={register}
+          // register={register}
           errors={errors.checkpass}
         />
       </div>
