@@ -1,15 +1,39 @@
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
+import { WebContext } from "../../context/webcontext";
+import { SchemaPerfilRech } from "../../validations/schemas";
+import Input from "../Input";
 import {
   Container,
   ContainerContent,
   ContainerMain,
   ContainerProfile,
+  FormEditRech,
 } from "./style";
+
+export interface iEditRech {
+  email: string;
+  empresa: string;
+  linkedin: string;
+  localização: string;
+  name: string;
+  password: string;
+}
 
 const PerfilRech = () => {
   const [boxEdit, setBoxEdit] = useState(false);
+  const { editSubmit } = useContext(WebContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iEditRech>({
+    resolver: yupResolver(SchemaPerfilRech),
+  });
 
   return (
     <ContainerMain>
@@ -17,7 +41,6 @@ const PerfilRech = () => {
         <ContainerProfile>
           <figure>
             <BiUserCircle size={85} color="#1DA1F2" />
-            {/* <img src="" alt="" /> */}
           </figure>
           <div>
             <p>Salvador</p>
@@ -38,7 +61,43 @@ const PerfilRech = () => {
       </Container>
       {boxEdit && (
         <Container size="big">
-          <h1>Teste</h1>
+          <FormEditRech onSubmit={handleSubmit(editSubmit)}>
+            <Input id="name" type="text" label="Nome" register={register} />
+            <Input
+              id="localização"
+              type="text"
+              label="Localização"
+              register={register}
+            />
+            <Input
+              id="email"
+              type="text"
+              label="Editar email"
+              register={register}
+            />
+            <Input
+              id="password"
+              type="password"
+              label="Editar senha"
+              register={register}
+            />
+            <Input
+              id="empresa"
+              type="text"
+              label="Empresa"
+              register={register}
+            />
+            <Input
+              id="linkedin"
+              type="text"
+              label="Linkedin"
+              register={register}
+            />
+            <div className="box-btns">
+              <button type="submit">Finalizar</button>
+              <button onClick={() => setBoxEdit(false)} type="button">Cancelar</button>
+            </div>
+          </FormEditRech>
         </Container>
       )}
     </ContainerMain>

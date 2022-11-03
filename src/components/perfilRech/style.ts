@@ -13,6 +13,10 @@ export const ContainerMain = styled.main`
 
   width: 1100px;
   height: fit-content;
+
+  @media (max-width: 950px) {
+    width: 100%;
+  }
 `;
 
 export const Container = styled.div<iSizeProps>`
@@ -20,6 +24,7 @@ export const Container = styled.div<iSizeProps>`
   align-items: center;
 
   width: 800px;
+  max-width: 90%;
 
   margin-top: 2rem;
 
@@ -122,4 +127,45 @@ export const ContainerContent = styled.div`
     font-weight: 300;
     font-size: 16px;
   }
+`;
+
+export const FormEditRech = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  overflow-y: auto;
+
+  width: 100%;
+  height: 90%;
+
+  .box-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 50%;
+    height: 30px;
+  }
+
+  div {
+    width: 45%;
+    min-width: 215px;
+    padding-top: 0.5rem;
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+  }
+
+  /* input:focus ~ label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: #f5f8fa;
+    padding: 0 0.2em;
+  } */
 `;

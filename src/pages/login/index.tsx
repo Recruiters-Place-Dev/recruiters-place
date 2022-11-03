@@ -3,7 +3,7 @@ import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
-import SchemaLogin from "../../validations/loginUser";
+import {SchemaLogin} from "../../validations/schemas";
 import Input from "../../components/Input";
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext, useEffect } from "react";
