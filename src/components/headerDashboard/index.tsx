@@ -40,7 +40,7 @@ function HeaderDashboard() {
           </nav>
         </header>
         {filter && (
-          <>
+          <div>
             <ul>
               <li>Todos</li>
               {ListMock.map((devType) => (
@@ -56,7 +56,7 @@ function HeaderDashboard() {
                   </li>
                 ))}
             </ul>
-          </>
+          </div>
         )}
       </HeaderContainer>
       <Outlet />
