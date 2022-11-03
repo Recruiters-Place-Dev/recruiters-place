@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { Outlet, useNavigate } from "react-router-dom";
-import { ListMock } from "../../mockList/listMock";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ListMock } from "../../mockList/devType";
 
 function HeaderDashboard() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function HeaderDashboard() {
     <>
       <HeaderContainer>
         <header>
-          <img src={Logo} alt="" />
+          <img src={Logo} alt="Logo" />
           <nav>
             <ul>
               <li>
@@ -30,7 +30,7 @@ function HeaderDashboard() {
                 </button>
               </li>
               <li>
-                <button>Perfil</button>
+                <Link to={"/perfil"}>Perfil</Link>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>

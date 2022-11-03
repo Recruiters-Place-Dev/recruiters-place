@@ -1,7 +1,11 @@
-import React from "react";
+import PerfilRech from "../../components/perfilRech";
 
 function Perfil() {
-  return <div>Perfil</div>;
+  return (
+    <div>
+      <PerfilRech />
+    </div>
+  );
 }
 
 export default Perfil;

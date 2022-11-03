@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
-import PeopleLanding from "../../assets/peoplelanding.svg";
+import PeopleLanding  from "../../assets/peoplelanding.png";
 import {
   MainStyled,
   Container,
@@ -8,7 +8,9 @@ import {
   TextAuth,
   TextBackground,
   TitleLogin,
+  TitleAuth,
   TitleBackground,
+  SloganBackground,
   ContainerImg,
   ContainerRedirect,
   Lines,
@@ -42,8 +44,9 @@ export const LandingPage = () => {
               {localStorage.getItem("RPlace:Token") ? (
                 <>
                   <ContainerWelcome>
-                    <h1>Bem vindo:</h1>
-                    <h2>fazer interface do user</h2>
+                    <TitleAuth>
+                      Bem vindo:<br />{localStorage.getItem("RPlace:email")}
+                    </TitleAuth>
                   </ContainerWelcome>
                   <LinkStyled to="/home">Dashboard</LinkStyled>
                   <TextAuth>Deseja entrar em outra conta ?</TextAuth>
@@ -69,6 +72,7 @@ export const LandingPage = () => {
           </Container>
 
           <BackgroundStyled>
+            <SloganBackground>Recrutamento em um só lugar</SloganBackground>
             <TitleBackground>Agilize o trabalho com parceiros</TitleBackground>
             <TextBackground>Confira os beneficios</TextBackground>
           </BackgroundStyled>

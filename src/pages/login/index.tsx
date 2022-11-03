@@ -1,4 +1,4 @@
-import Logo from "../../assets/Logoo.svg";
+import Logo from "../../assets/Logo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
@@ -35,7 +35,6 @@ export const Login = () => {
 
   return (
     <MainLogin>
-      <SectionLogin></SectionLogin>
       <SectionLogin>
         <div className="block"></div>
         <div className="containerLogin">
@@ -44,7 +43,7 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
-            <Input label="Email" type="text" register={register} id="email" />
+            <Input label="Email" type="text" register={register} id="email" login={true} />
             {
               <p className="errors">
                 {errors.email && <RiErrorWarningFill />}
@@ -56,6 +55,7 @@ export const Login = () => {
               type="password"
               register={register}
               id="password"
+              login={true}
             />
             {
               <p className="errors">
@@ -71,7 +71,7 @@ export const Login = () => {
         </div>
       </SectionLogin>
       <BoxSlogan>
-        <div className="blockBlue"></div>
+        <div className="blockBlue"><h2>Recrutamento em um só lugar!</h2></div>
         <div>
           <h2>Agilize o trabalho com parceiros</h2>
           <div className="boxLink">
