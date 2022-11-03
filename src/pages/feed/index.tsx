@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { iWebContext, WebContext } from "../../context/webcontext";
 
 function Feed() {
-  return <div>Feed</div>;
+  const { user } = useContext<iWebContext>(WebContext);
+
+  useEffect(() => {}, []);
+
+  return <div></div>;
 }
 
 export default Feed;

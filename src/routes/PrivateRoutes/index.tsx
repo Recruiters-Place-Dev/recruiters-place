@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-import HeaderDashboard from "../../components/headerDashboard";
 import Dashboard from "../../pages/dashboard";
 
 export const PrivateRoutes = () => {

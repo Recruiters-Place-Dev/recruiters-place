@@ -16,7 +16,7 @@ export interface iUserLogin {
 }
 
 export const Login = () => {
-  const { onLogin } = useContext(WebContext);
+  const { onLogin, user } = useContext(WebContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const Login = () => {
       navigate("/home");
     }
   }, []);
-
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -43,7 +43,13 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
-            <Input label="Email" type="text" register={register} id="email" login={true} />
+            <Input
+              label="Email"
+              type="text"
+              register={register}
+              id="email"
+              login={true}
+            />
             {
               <p className="errors">
                 {errors.email && <RiErrorWarningFill />}
@@ -71,7 +77,9 @@ export const Login = () => {
         </div>
       </SectionLogin>
       <BoxSlogan>
-        <div className="blockBlue"><h2>Recrutamento em um só lugar!</h2></div>
+        <div className="blockBlue">
+          <h2>Recrutamento em um só lugar!</h2>
+        </div>
         <div>
           <h2>Agilize o trabalho com parceiros</h2>
           <div className="boxLink">
