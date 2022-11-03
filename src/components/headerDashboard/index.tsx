@@ -1,6 +1,6 @@
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
