@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
-import PeopleLanding  from "../../assets/peoplelanding.png";
+import PeopleLanding from "../../assets/peoplelanding.png";
 import {
   MainStyled,
   Container,
@@ -19,10 +19,10 @@ import {
 } from "./style";
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext } from "react";
-import { WebContext } from "../../context/webcontext";
+import { iWebContext, WebContext } from "../../context/webcontext";
 
 export const LandingPage = () => {
-  const { setUser } = useContext(WebContext);
+  const { setUser, user } = useContext<iWebContext>(WebContext);
   return (
     <AnimatePresence>
       <motion.div
@@ -45,7 +45,9 @@ export const LandingPage = () => {
                 <>
                   <ContainerWelcome>
                     <TitleAuth>
-                      Bem vindo:<br />{localStorage.getItem("RPlace:email")}
+                      Bem vindo:
+                      <br />
+                      {user?.email}
                     </TitleAuth>
                   </ContainerWelcome>
                   <LinkStyled to="/home">Dashboard</LinkStyled>
