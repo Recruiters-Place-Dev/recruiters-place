@@ -38,14 +38,12 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
-  user2: iUser | undefined;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
-  const [user2, setUser2] = useState<iUser>();
 
   const navigate = useNavigate();
 
@@ -62,7 +60,6 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         const request = await Api.get(`/users/${id}`);
         setUser(request.data);
-        setUser2(request.data);
       } catch (error) {
         window.localStorage.clear();
       }
@@ -80,8 +77,7 @@ export function WebProvider({ children }: iWebProvider) {
       localStorage.setItem("RPlace:Token", logUser.accessToken);
       localStorage.setItem("RPlace:id", logUser.user.id);
 
-      setUser2(logUser.user);
-      setUser(logUser);
+      setUser(logUser.user);
       setTimeout(() => {
         navigate("/home");
       }, 500);
@@ -90,6 +86,26 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
+    const infoFilter = info;
+    if (infoFilter.name === "") {
+      delete infoFilter.name;
+    }
+    if (infoFilter.email === "") {
+      delete infoFilter.email;
+    }
+    if (infoFilter.city === "") {
+      delete infoFilter.city;
+    }
+    if (infoFilter.password === "") {
+      delete infoFilter.password;
+    }
+    if (infoFilter.empresa === "") {
+      delete infoFilter.empresa;
+    }
+    if (infoFilter.linkedin === "") {
+      delete infoFilter.linkedin;
+    }
+    console.log(info);
 
     await Api.patch(`/users/${id}`, info);
 
@@ -97,7 +113,7 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   return (
-    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user, user2 }}>
+    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user }}>
       {children}
     </WebContext.Provider>
   );

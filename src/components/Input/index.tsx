@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Path, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "../ParagraphError";
 import InputGroup from "./inputGroup";
- 
+
 interface iInputProps {
   type: string;
   label: string;
@@ -10,17 +10,33 @@ interface iInputProps {
   register: UseFormRegister<any>;
   errorMessage?: string;
   errors?: any;
-  login?: boolean
+  login?: boolean;
 }
 
-const Input = ({ type, label, id, register, errors, login, errorMessage }: iInputProps) => {
+const Input = ({
+  type,
+  label,
+  id,
+  register,
+  errors,
+  login,
+  errorMessage,
+}: iInputProps) => {
   const [value, setValue] = useState("");
 
   const { onChange, onBlur, name, ref } = register(id);
 
   return (
     <InputGroup
-      className={!errors && value !== "" && login ? "done" : errors ? "error" : !errors && value !== "" ? "sucess" : ""}
+      className={
+        !errors && value !== "" && login
+          ? "done"
+          : errors
+          ? "error"
+          : !errors && value !== ""
+          ? "sucess"
+          : ""
+      }
       inputValue={value}
     >
       <input
