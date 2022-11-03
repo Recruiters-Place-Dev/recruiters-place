@@ -6,7 +6,11 @@ export const HeaderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
   header {
     width: 100%;
     display: flex;
@@ -26,5 +30,10 @@ export const HeaderContainer = styled.div`
   & ul {
     display: flex;
     gap: 20px;
+
+    img {
+      width: 30px;
+      aspect-ratio: 1/1;
+    }
   }
 `;

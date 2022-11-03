@@ -3,6 +3,7 @@ import Logo from "../../assets/RPlace_Clear.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ListMock } from "../../mockList/devType";
+import techList from "../../mockList/devTechs.json";
 
 function HeaderDashboard() {
   const navigate = useNavigate();
@@ -39,12 +40,23 @@ function HeaderDashboard() {
           </nav>
         </header>
         {filter && (
-          <ul>
-            <li>Todos</li>
-            {ListMock.map((devType) => (
-              <li key={devType}>{devType}</li>
-            ))}
-          </ul>
+          <div>
+            <ul>
+              <li>Todos</li>
+              {ListMock.map((devType) => (
+                <li key={devType}>{devType}</li>
+              ))}
+            </ul>
+            <ul>
+              <li>Tecnologias</li>
+              {techList &&
+                techList.map((devTech) => (
+                  <li key={devTech.tech}>
+                    <img src={devTech.dir} alt="devTech.tech"></img>
+                  </li>
+                ))}
+            </ul>
+          </div>
         )}
       </HeaderContainer>
       <Outlet />
@@ -53,3 +65,4 @@ function HeaderDashboard() {
 }
 
 export default HeaderDashboard;
+//
