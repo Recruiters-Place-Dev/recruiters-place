@@ -15,12 +15,12 @@ import {
 } from "./style";
 
 export interface iEditRech {
-  email: string;
-  empresa: string;
-  linkedin: string;
-  localização: string;
-  name: string;
-  password: string;
+  email: string | undefined;
+  empresa: string | undefined;
+  linkedin: string | undefined;
+  city: string | undefined;
+  name: string | undefined;
+  password: string | undefined;
 }
 
 const PerfilRech = () => {

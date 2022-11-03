@@ -90,9 +90,28 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
+    
+    if (info.name === "") {
+      delete info.name;
+    }
+    if (info.email === "") {
+      delete info.email;
+    }
+    if (info.city === "") {
+      delete info.city;
+    }
+    if (info.password === "") {
+      delete info.password;
+    }
+    if (info.empresa === "") {
+      delete info.empresa;
+    }
+    if (info.linkedin === "") {
+      delete info.linkedin;
+    }
 
     await Api.patch(`/users/${id}`, info);
-
+    
     loadUser();
   }
 
