@@ -18,6 +18,10 @@ export const RegisterForm = styled.form`
     span {
       font-size: 20px;
     }
+
+    input {
+        cursor: pointer;
+    }
   }
 
   button {
