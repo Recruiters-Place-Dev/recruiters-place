@@ -16,7 +16,7 @@ function HeaderDashboard() {
 
   function closeFilter() {
     setFilter(false);
-    navigate("/perfil")
+    navigate("/perfil");
   }
 
   return (
@@ -36,11 +36,7 @@ function HeaderDashboard() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => closeFilter()}
-                >
-                  Perfil
-                </button>
+                <button onClick={() => closeFilter()}>Perfil</button>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>
@@ -73,4 +69,3 @@ function HeaderDashboard() {
 }
 
 export default HeaderDashboard;
-//
