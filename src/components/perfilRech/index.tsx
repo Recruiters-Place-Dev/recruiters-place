@@ -25,8 +25,8 @@ export interface iEditRech {
 
 const PerfilRech = () => {
   const [boxEdit, setBoxEdit] = useState(false);
-  const { editSubmit } = useContext(WebContext);
-
+  const { editSubmit, user2 } = useContext(WebContext);
+  
   const {
     register,
     handleSubmit,
@@ -43,14 +43,14 @@ const PerfilRech = () => {
             <BiUserCircle size={85} color="#1DA1F2" />
           </figure>
           <div>
-            <p>Salvador</p>
-            <p>teste@mail.com</p>
+            <p>{user2?.city}</p>
+            <p>{user2?.email}</p>
           </div>
         </ContainerProfile>
         <ContainerContent>
-          <h2>Matheus Moura</h2>
+          <h2>{user2?.name}</h2>
           <p>Tech Recruiter</p>
-          <p>Likedin</p>
+          {user2?.linkedin && <a href={user2?.linkedin}>Linkedin</a>}
         </ContainerContent>
         <SlPencil
           onClick={() => setBoxEdit(!boxEdit)}
@@ -63,12 +63,7 @@ const PerfilRech = () => {
         <Container size="big">
           <FormEditRech onSubmit={handleSubmit(editSubmit)}>
             <Input id="name" type="text" label="Nome" register={register} />
-            <Input
-              id="localização"
-              type="text"
-              label="Localização"
-              register={register}
-            />
+            <Input id="city" type="text" label="Cidade" register={register} />
             <Input
               id="email"
               type="text"
@@ -92,10 +87,13 @@ const PerfilRech = () => {
               type="text"
               label="Linkedin"
               register={register}
+              errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">
               <button type="submit">Finalizar</button>
-              <button onClick={() => setBoxEdit(false)} type="button">Cancelar</button>
+              <button onClick={() => setBoxEdit(false)} type="button">
+                Cancelar
+              </button>
             </div>
           </FormEditRech>
         </Container>

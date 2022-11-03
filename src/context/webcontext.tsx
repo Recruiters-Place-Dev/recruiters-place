@@ -38,12 +38,14 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
+  user2: iUser | undefined;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
+  const [user2, setUser2] = useState<iUser>();
 
   const navigate = useNavigate();
 
@@ -60,6 +62,7 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         const request = await Api.get(`/users/${id}`);
         setUser(request.data);
+        setUser2(request.data);
       } catch (error) {
         window.localStorage.clear();
       }
@@ -76,7 +79,9 @@ export function WebProvider({ children }: iWebProvider) {
     if (logUser) {
       localStorage.setItem("RPlace:Token", logUser.accessToken);
       localStorage.setItem("RPlace:id", logUser.user.id);
-      setUser(logUser.data);
+
+      setUser2(logUser.user);
+      setUser(logUser);
       setTimeout(() => {
         navigate("/home");
       }, 500);
@@ -86,11 +91,13 @@ export function WebProvider({ children }: iWebProvider) {
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
 
-    const { data } = await Api.patch(`/users/${id}`, info);
+    await Api.patch(`/users/${id}`, info);
+
+    loadUser();
   }
 
   return (
-    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user }}>
+    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user, user2 }}>
       {children}
     </WebContext.Provider>
   );

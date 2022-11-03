@@ -94,10 +94,15 @@ export const ContainerProfile = styled.div`
     width: 100%;
     height: 50%;
 
+    word-wrap: break-word;
+
     p {
       font-family: var(--font-family);
       font-weight: 400;
       font-size: 13px;
+      text-align: center;
+
+      width: 100%;
     }
 
     p + p {
@@ -113,19 +118,29 @@ export const ContainerContent = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  width: 65%;
+  width: 57%;
   height: 90%;
+
+  margin-right: 3rem;
 
   h2 {
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
   }
 
   p {
     font-family: var(--font-family);
     font-weight: 300;
     font-size: 16px;
+  }
+
+  a {
+    font-family: var(--font-family);
+    font-weight: 300;
+    font-size: 16px;
+
+    color: var(--grey-1);
   }
 `;
 
