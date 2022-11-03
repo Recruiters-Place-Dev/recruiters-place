@@ -59,7 +59,6 @@ function HeaderDashboard() {
           </div>
         )}
       </HeaderContainer>
-      <Outlet />
     </>
   );
 }
