@@ -43,8 +43,7 @@ export interface iWebContext {
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
-
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<iUser>();
 
   const navigate = useNavigate();
 
@@ -91,9 +90,7 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   return (
-
-    <WebContext.Provider value={{ onLogin, editSubmit, setUser }}>
-
+    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user }}>
       {children}
     </WebContext.Provider>
   );
