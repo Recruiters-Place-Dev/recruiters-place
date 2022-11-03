@@ -86,29 +86,29 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
-    const infoFilter = info;
-    if (infoFilter.name === "") {
-      delete infoFilter.name;
+    
+    if (info.name === "") {
+      delete info.name;
     }
-    if (infoFilter.email === "") {
-      delete infoFilter.email;
+    if (info.email === "") {
+      delete info.email;
     }
-    if (infoFilter.city === "") {
-      delete infoFilter.city;
+    if (info.city === "") {
+      delete info.city;
     }
-    if (infoFilter.password === "") {
-      delete infoFilter.password;
+    if (info.password === "") {
+      delete info.password;
     }
-    if (infoFilter.empresa === "") {
-      delete infoFilter.empresa;
+    if (info.empresa === "") {
+      delete info.empresa;
     }
-    if (infoFilter.linkedin === "") {
-      delete infoFilter.linkedin;
+    if (info.linkedin === "") {
+      delete info.linkedin;
     }
-    console.log(info);
+
 
     await Api.patch(`/users/${id}`, info);
-
+    
     loadUser();
   }
 

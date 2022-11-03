@@ -6,8 +6,11 @@ interface iChildrenError {
   children: ReactNode;
 }
 
-export const ErrorMessage = ({children}: iChildrenError) => {
+export const ErrorMessage = ({ children }: iChildrenError) => {
   return (
-    <ParagraphError><RiErrorWarningFill/>{children}</ParagraphError>
-  )
-}
+    <ParagraphError>
+      {children && <RiErrorWarningFill />}
+      {children}
+    </ParagraphError>
+  );
+};

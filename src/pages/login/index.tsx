@@ -3,12 +3,13 @@ import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {SchemaLogin} from "../../validations/schemas";
+import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext, useEffect } from "react";
 import { WebContext } from "../../context/webcontext";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../../components/ParagraphError";
 
 export interface iUserLogin {
   email: string;
@@ -24,7 +25,7 @@ export const Login = () => {
       navigate("/home");
     }
   }, []);
-  
+
   const {
     register,
     handleSubmit,
@@ -50,12 +51,7 @@ export const Login = () => {
               id="email"
               login={true}
             />
-            {
-              <p className="errors">
-                {errors.email && <RiErrorWarningFill />}
-                {errors.email?.message}
-              </p>
-            }
+            <ErrorMessage>{errors.email?.message}</ErrorMessage>
             <Input
               label="Senha"
               type="password"
@@ -63,12 +59,7 @@ export const Login = () => {
               id="password"
               login={true}
             />
-            {
-              <p className="errors">
-                {errors.password && <RiErrorWarningFill />}
-                {errors.password?.message}
-              </p>
-            }
+            <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
             <button type="submit">Login</button>
             <span>Não tem uma conta ?</span>
