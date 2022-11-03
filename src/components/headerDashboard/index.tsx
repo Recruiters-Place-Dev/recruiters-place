@@ -23,7 +23,7 @@ function HeaderDashboard() {
     <>
       <HeaderContainer>
         <header>
-          <img src={Logo} alt="Logo" />
+          <img onClick={() => navigate("/home")} src={Logo} alt="Logo" />
           <nav>
             <ul>
               <li>

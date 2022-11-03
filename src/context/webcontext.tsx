@@ -106,7 +106,6 @@ export function WebProvider({ children }: iWebProvider) {
       delete info.linkedin;
     }
 
-
     await Api.patch(`/users/${id}`, info);
     
     loadUser();
