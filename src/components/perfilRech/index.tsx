@@ -25,8 +25,8 @@ export interface iEditRech {
 
 const PerfilRech = () => {
   const [boxEdit, setBoxEdit] = useState(false);
-  const { editSubmit, user2 } = useContext(WebContext);
-  
+  const { editSubmit, user } = useContext(WebContext);
+
   const {
     register,
     handleSubmit,
@@ -43,14 +43,14 @@ const PerfilRech = () => {
             <BiUserCircle size={85} color="#1DA1F2" />
           </figure>
           <div>
-            <p>{user2?.city}</p>
-            <p>{user2?.email}</p>
+            <p>{user?.city}</p>
+            <p>{user?.email}</p>
           </div>
         </ContainerProfile>
         <ContainerContent>
-          <h2>{user2?.name}</h2>
+          <h2>{user?.name}</h2>
           <p>Tech Recruiter</p>
-          {user2?.linkedin && <a href={user2?.linkedin}>Linkedin</a>}
+          {user?.linkedin && <a href={user?.linkedin}>Linkedin</a>}
         </ContainerContent>
         <SlPencil
           onClick={() => setBoxEdit(!boxEdit)}

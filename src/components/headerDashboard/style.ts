@@ -6,6 +6,7 @@ export const HeaderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #f5f8fa;
   div {
     display: flex;
     flex-direction: column;
