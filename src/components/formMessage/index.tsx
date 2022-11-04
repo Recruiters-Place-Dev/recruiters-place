@@ -14,8 +14,6 @@ export interface iComent {
 function FormMessage() {
   const {
     onSubmitComent,
-    modalWriteComent,
-    setModalWriteComent,
     user,
     comentId,
     allUsers,

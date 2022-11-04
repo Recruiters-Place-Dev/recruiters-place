@@ -26,6 +26,7 @@ export const ModalComentWriteContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 30px;
+  }
     & div {
      
   }
