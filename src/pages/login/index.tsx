@@ -28,6 +28,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<iUserLogin>({
     resolver: yupResolver(SchemaLogin),
@@ -44,7 +45,7 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
-            <Input label="Email" type="text" register={register} id="email" login={true} />
+            <Input label="Email" type="text" register={register} id="email" login={true} getValues={getValues}/>
             {
               <p className="errors">
                 {errors.email && <RiErrorWarningFill />}
@@ -57,6 +58,7 @@ export const Login = () => {
               register={register}
               id="password"
               login={true}
+              getValues={getValues}
             />
             {
               <p className="errors">
