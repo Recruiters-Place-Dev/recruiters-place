@@ -185,15 +185,15 @@ export const BoxSlogan = styled.div`
       }
     }
 
+    a {
+      color: var(--color-primary);
+    }
     .boxLink {
       font-family: var(--font-family);
       font-size: 12px;
 
-      a {
-        color: var(--color-primary);
-      }
 
-      span {
+      .spanBorder {
         display: block;
         width: 0%;
         height: 1px;
@@ -202,7 +202,7 @@ export const BoxSlogan = styled.div`
         transition: 0.4s;
       }
 
-      &:hover span {
+      &:hover .spanBorder {
         width: 88%;
         transition: 0.4s;
       }

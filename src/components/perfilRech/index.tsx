@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
+import { VoidExpression } from "typescript";
 import { WebContext } from "../../context/webcontext";
 import { SchemaPerfilRech } from "../../validations/schemas";
 import Input from "../Input";
@@ -15,11 +16,11 @@ import {
 } from "./style";
 
 export interface iEditRech {
-  email: string | undefined;
-  empresa: string | undefined;
-  linkedin: string | undefined;
-  city: string | undefined;
-  name: string | undefined;
+  email: string;
+  empresa: string;
+  linkedin: string;
+  city: string;
+  name: string;
   password: string | undefined;
 }
 
@@ -33,6 +34,12 @@ const PerfilRech = () => {
     formState: { errors },
   } = useForm<iEditRech>({
     resolver: yupResolver(SchemaPerfilRech),
+    defaultValues: {
+      name: user?.name,
+      email: user?.email,
+      city: user?.city,
+      linkedin: user?.linkedin,
+    },
   });
 
   return (
