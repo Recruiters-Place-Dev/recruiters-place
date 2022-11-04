@@ -3,6 +3,7 @@ import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
 import { iEditRech } from "../components/perfilRech";
+import { toast } from "react-toastify";
 
 interface iWebProvider {
   children: ReactNode;
@@ -78,9 +79,9 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const request = await Api.get(`/users/${id}`);
+        const { data } = await Api.get(`/users/${id}`);
 
-        setUser(request.data);
+        setUser(data);
       } catch (error) {
         console.log(error);
         window.localStorage.clear();
@@ -103,20 +104,21 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   async function onLogin(info: iUserLogin) {
-    const logUser = await Api.post("/login", info)
-      .then((res) => res.data)
-      .catch((err) => {
-        console.log(err.response.data);
-        return false;
-      });
-    if (logUser) {
-      localStorage.setItem("RPlace:Token", logUser.accessToken);
-      localStorage.setItem("RPlace:id", logUser.user.id);
+    try {
+      const { data } = await Api.post("/login", info);
 
-      setUser(logUser.user);
-      setTimeout(() => {
+      if (data) {
+        localStorage.setItem("RPlace:Token", data.accessToken);
+        localStorage.setItem("RPlace:id", data.user.id);
+
+        setUser(data.user);
         navigate("/home");
-      }, 500);
+      }
+    } catch (error: any) {
+      toast.success("Combinação de email/senha incorreta");
+
+      console.log(error.response.data);
+      return false;
     }
   }
 
@@ -124,19 +126,29 @@ export function WebProvider({ children }: iWebProvider) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
 
-    if (token) {
-      try {
-        Api.defaults.headers.authorization = `Bearer ${token}`;
+    if (info.password === "") {
+      delete info.password;
+    }
 
-        if (info.password === "") {
-          delete info.password;
+    if (
+      user?.name !== info.name ||
+      user?.city !== info.city ||
+      user?.email !== info.email ||
+      info.password ||
+      info.empresa !== ""
+    ) {
+      if (token) {
+        try {
+          Api.defaults.headers.authorization = `Bearer ${token}`;
+
+          await Api.patch(`/users/${id}`, info);
+
+          setUser({ ...user, ...info });
+
+          toast.success("Usuário editado com sucesso");
+        } catch (error) {
+          console.log(error);
         }
-
-        await Api.patch(`/users/${id}`, info);
-
-        setUser({ ...user, ...info });
-      } catch (error) {
-        console.log(error);
       }
     }
   }

@@ -1,7 +1,6 @@
 import Logo from "../../assets/Logo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
-import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
@@ -63,7 +62,6 @@ export const Login = () => {
               getValues={getValues}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
-
             <button type="submit">Login</button>
             <span>Não tem uma conta ?</span>
             <LinkStyled to="/register">Register</LinkStyled>
