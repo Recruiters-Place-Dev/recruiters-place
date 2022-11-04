@@ -10,6 +10,7 @@ interface iWebProvider {
 interface iWebContext {
   onLogin: (info: iUserLogin) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
+  user: any;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -17,6 +18,8 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState();
   const navigate = useNavigate();
+
+  console.log(user)
 
   useEffect(() => {
     loadUser();
@@ -53,7 +56,7 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   return (
-    <WebContext.Provider value={{ onLogin, setUser }}>
+    <WebContext.Provider value={{ user, onLogin, setUser }}>
       {children}
     </WebContext.Provider>
   );

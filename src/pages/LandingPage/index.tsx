@@ -1,6 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
 import PeopleLanding from "../../assets/peoplelanding.svg";
+
+
 import {
   MainStyled,
   Container,
