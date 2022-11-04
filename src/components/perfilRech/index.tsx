@@ -32,6 +32,7 @@ const PerfilRech = () => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<iEditRech>({
     resolver: yupResolver(SchemaPerfilRech),
     defaultValues: {
@@ -69,31 +70,47 @@ const PerfilRech = () => {
       {boxEdit && (
         <Container size="big">
           <FormEditRech onSubmit={handleSubmit(editSubmit)}>
-            <Input id="name" type="text" label="Nome" register={register} />
-            <Input id="city" type="text" label="Cidade" register={register} />
+            <Input
+              id="name"
+              type="text"
+              label="Nome"
+              register={register}
+              getValues={getValues}
+            />
+            <Input
+              id="city"
+              type="text"
+              label="Cidade"
+              register={register}
+              getValues={getValues}
+            />
             <Input
               id="email"
               type="text"
               label="Editar email"
               register={register}
+              getValues={getValues}
             />
             <Input
               id="password"
               type="password"
               label="Editar senha"
               register={register}
+              getValues={getValues}
             />
             <Input
               id="empresa"
               type="text"
               label="Empresa"
               register={register}
+              getValues={getValues}
             />
             <Input
               id="linkedin"
               type="text"
               label="Linkedin"
               register={register}
+              getValues={getValues}
               errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">
