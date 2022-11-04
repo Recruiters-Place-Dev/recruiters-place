@@ -1,35 +1,69 @@
-import React from "react";
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ListMock } from "../../mockList/devType";
+import techList from "../../mockList/devTechs.json";
 
 function HeaderDashboard() {
   const navigate = useNavigate();
+  const [filter, setFilter] = useState(false);
 
   function handleLogout() {
     localStorage.clear();
     navigate("/");
   }
 
+  function closeFilter() {
+    setFilter(false);
+    navigate("/perfil");
+  }
+
   return (
     <>
       <HeaderContainer>
-        <img src={Logo} alt="" />
-        <nav>
-          <ul>
-            <li>
-              <button>Encontrar Devs</button>
-            </li>
-            <li>
-              <button>Perfil</button>
-            </li>
-            <li>
-              <button onClick={() => handleLogout()}>Sair</button>
-            </li>
-          </ul>
-        </nav>
+        <header>
+          <img onClick={() => navigate("/home")} src={Logo} alt="Logo" />
+          <nav>
+            <ul>
+              <li>
+                <button
+                  onClick={() => {
+                    setFilter(!filter);
+                  }}
+                >
+                  Encontrar Devs
+                </button>
+              </li>
+              <li>
+                <button onClick={() => closeFilter()}>Perfil</button>
+              </li>
+              <li>
+                <button onClick={() => handleLogout()}>Sair</button>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        {filter && (
+          <div>
+            <ul>
+              <li>Todos</li>
+              {ListMock.map((devType) => (
+                <li key={devType}>{devType}</li>
+              ))}
+            </ul>
+            <ul>
+              <li>Tecnologias</li>
+              {techList &&
+                techList.map((devTech) => (
+                  <li key={devTech.tech}>
+                    <img src={devTech.dir} alt="devTech.tech"></img>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
       </HeaderContainer>
-      <Outlet />
     </>
   );
 }

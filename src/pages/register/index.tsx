@@ -1,23 +1,33 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import Logo from "../../assets/Logo.svg";
+import sprite from "../../assets/sprite.svg"
 import { LinkStyled } from "../../components/buttons/style";
-import { ContainerCenter } from "../../components/ContainerCenter/style";
 import { FormRegister } from "../../components/formregister";
+import RegisterContainer from "./RegisterContainer";
 
 function Register() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("RPlace:Token")) {
-      navigate("/home");
-    }
-  }, []);
-
   return (
-    <ContainerCenter>
-      <h1>Cadastrar</h1>
-      <FormRegister />
-      <LinkStyled to="/login">Login</LinkStyled>
-    </ContainerCenter>
+    <RegisterContainer>
+      <div className="FormContainer">
+        <img src={Logo} alt="Logo" />
+        <h2>Cadastrar</h2>
+        <FormRegister />
+        <div className="BackToLogin">
+          <span>Já possuí uma conta ?</span>
+          <LinkStyled to={"/login"}>Login</LinkStyled>
+        </div>
+      </div>
+      <div className="ContentContainer"></div>
+      <div className="SquareContent">
+        <img src={sprite} alt="" />
+        <div>
+          <h3>Agiliza o trabalho com parceiros</h3>
+          <a href="#">Confira os benefícios ➡</a>
+        </div>
+      </div>
+      <div className="square"></div>
+      <div className="halfSquare"></div>
+    </RegisterContainer>
   );
 }
 
