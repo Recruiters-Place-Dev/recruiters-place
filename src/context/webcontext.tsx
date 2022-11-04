@@ -89,7 +89,6 @@ export function WebProvider({ children }: iWebProvider) {
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
     
-    
     if (info.name === "") {
       delete info.name;
     }
