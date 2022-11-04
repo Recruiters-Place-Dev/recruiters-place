@@ -8,7 +8,7 @@ interface iWebProvider {
   children: ReactNode;
 }
 
-interface iUser {
+export interface iUser {
   email: string;
   name: string;
   isRecruiter: boolean;
@@ -19,6 +19,7 @@ interface iUser {
   linkedin: string | undefined;
   github: string | undefined;
   portfolio: string | undefined;
+  bio: string | undefined;
   tech: {
     html: boolean;
     css: boolean;
@@ -38,17 +39,23 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
+  allUsers: [] | undefined
+  openModalFeed: () => void
+  modalFeed: boolean
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
+  const [allUsers, setAllUsers] = useState();
+  const [modalFeed, setModalFeed] = useState(false)
 
   const navigate = useNavigate();
 
   useEffect(() => {
     loadUser();
+    getAllUsers()
   }, []);
 
   async function loadUser() {
@@ -64,6 +71,21 @@ export function WebProvider({ children }: iWebProvider) {
       } catch (error) {
         console.log(error)
         window.localStorage.clear();
+      }
+    }
+  }
+  async function getAllUsers() {
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const { data } = await Api.get(`/users/`)
+
+        setAllUsers(data);
+
+      } catch (error) {
+        console.log(error)
       }
     }
   }
@@ -113,8 +135,18 @@ export function WebProvider({ children }: iWebProvider) {
     loadUser();
   }
 
+  function openModalFeed(): void {
+    if (modalFeed) {
+      setModalFeed(false)
+    } else {
+      setModalFeed(true)
+    }
+
+  }
+
+
   return (
-    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user }}>
+    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user, allUsers, openModalFeed, modalFeed}}>
       {children}
     </WebContext.Provider>
   );

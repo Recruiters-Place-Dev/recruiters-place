@@ -21,6 +21,7 @@ export const HeaderContainer = styled.div`
 
     & img {
       height: 60%;
+      cursor: pointer;
     }
 
     & nav ul {
