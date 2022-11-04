@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
-import { VoidExpression } from "typescript";
 import { WebContext } from "../../context/webcontext";
 import { SchemaPerfilRech } from "../../validations/schemas";
 import Input from "../Input";
