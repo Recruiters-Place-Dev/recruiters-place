@@ -3,24 +3,24 @@ import { useForm } from "react-hook-form";
 import { iUser, WebContext } from "../../context/webcontext";
 import { ButtonSendComent, FormContainer } from "./style";
 
+export interface iComent {
+  from: string | undefined;
+  to: string | undefined;
+  idTo: string | undefined;
+  idFrom: string | undefined;
+  coment: string | undefined;
+}
+
 function FormMessage() {
-  const { modalWriteComent, setModalWriteComent, user, comentId, allUsers } =
-    useContext(WebContext);
+  const {
+    onSubmitComent,
+    modalWriteComent,
+    setModalWriteComent,
+    user,
+    comentId,
+    allUsers,
+  } = useContext(WebContext);
   const { register, handleSubmit } = useForm<iComent>({});
-
-  function onSubmitComent(data: iComent) {
-    data.idTo = comentId;
-    data.idFrom = String(user?.id);
-    console.log(data);
-  }
-
-  interface iComent {
-    from: string | undefined;
-    to: string | undefined;
-    idTo: string | undefined;
-    idFrom: string | undefined;
-    coment: string | undefined;
-  }
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmitComent)}>

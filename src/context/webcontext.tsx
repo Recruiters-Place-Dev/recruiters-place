@@ -3,6 +3,7 @@ import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
 import { iEditRech } from "../components/perfilRech";
+import { iComent } from "../components/formMessage";
 
 interface iWebProvider {
   children: ReactNode;
@@ -52,6 +53,7 @@ export interface iWebContext {
   setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
   comentId: string | undefined;
   setComentId: React.Dispatch<React.SetStateAction<any>>;
+  onSubmitComent: (data: iComent) => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -166,6 +168,23 @@ export function WebProvider({ children }: iWebProvider) {
     setModalWriteComent(true);
   }
 
+  async function onSubmitComent(data: iComent) {
+    data.idTo = comentId;
+    data.idFrom = String(user?.id);
+
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/coments`, data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -186,6 +205,7 @@ export function WebProvider({ children }: iWebProvider) {
         setModalWriteComent,
         comentId,
         setComentId,
+        onSubmitComent,
       }}
     >
       {children}
