@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Path, UseFormRegister } from "react-hook-form";
+import { Path, UseFormGetValues, UseFormRegister } from "react-hook-form";
 import InputGroup from "./inputGroup";
  
 interface iInputProps {
@@ -7,14 +7,16 @@ interface iInputProps {
   label: string;
   id: Path<any>;
   register: UseFormRegister<any>;
+  getValues: UseFormGetValues<any>
   errors?: any;
   login?: boolean
 }
 
-const Input = ({ type, label, id, register, errors, login }: iInputProps) => {
-  const [value, setValue] = useState("");
+const Input = ({ type, label, id, register, getValues, errors, login }: iInputProps) => {
 
   const { onChange, onBlur, name, ref } = register(id);
+
+  const [value, setValue] = useState(getValues(id) || "");
 
   return (
     <InputGroup
