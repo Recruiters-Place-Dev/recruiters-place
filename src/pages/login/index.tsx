@@ -29,6 +29,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<iUserLogin>({
     resolver: yupResolver(SchemaLogin),
@@ -49,6 +50,7 @@ export const Login = () => {
               type="text"
               register={register}
               id="email"
+              getValues={getValues}
               login={true}
             />
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
@@ -58,6 +60,7 @@ export const Login = () => {
               register={register}
               id="password"
               login={true}
+              getValues={getValues}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
 

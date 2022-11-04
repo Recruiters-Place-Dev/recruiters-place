@@ -11,16 +11,16 @@ interface iWebProvider {
 export interface iUser {
   email: string;
   name: string;
-  isRecruiter: boolean;
+  isRecruiter?: boolean;
   city: string | undefined;
-  schooling: string | undefined;
-  cargo: string | undefined;
-  isWork: boolean | undefined;
+  schooling?: string | undefined;
+  cargo?: string | undefined;
+  isWork?: boolean | undefined;
   linkedin: string | undefined;
-  github: string | undefined;
-  portfolio: string | undefined;
-  bio: string | undefined;
-  tech: {
+  github?: string | undefined;
+  portfolio?: string | undefined;
+  bio?: string | undefined;
+  tech?: {
     html: boolean;
     css: boolean;
     js: boolean;
@@ -31,7 +31,7 @@ export interface iUser {
     php: boolean;
     c: boolean;
   };
-  id: number;
+  id?: number;
 }
 
 export interface iWebContext {
@@ -122,29 +122,23 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
+    const token = localStorage.getItem("RPlace:Token");
 
-    if (info.name === "") {
-      delete info.name;
-    }
-    if (info.email === "") {
-      delete info.email;
-    }
-    if (info.city === "") {
-      delete info.city;
-    }
-    if (info.password === "") {
-      delete info.password;
-    }
-    if (info.empresa === "") {
-      delete info.empresa;
-    }
-    if (info.linkedin === "") {
-      delete info.linkedin;
-    }
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
 
-    loadUser();
-    await Api.patch(`/users/${id}`, info);
-    loadUser();
+        if (info.password === "") {
+          delete info.password;
+        }
+
+        await Api.patch(`/users/${id}`, info);
+
+        setUser({ ...user, ...info });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   function openModalFeed(): void {
