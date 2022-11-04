@@ -8,6 +8,7 @@ import Input from "../../Input";
 import { iProgressProps } from "../../formregister";
 import { iUserRegister } from "../../formregister";
 import { CheckCircle } from "phosphor-react";
+import devTechs from "../../../mockList/devTechs.json";
 
 interface iModalProps {
   setShow: (show: boolean) => void;
@@ -40,6 +41,8 @@ const ModalRegister = ({
             }
 
             if (progress.phase === 3) setProgress({ phase: 2, nextPhase: 3 });
+
+            if (progress.phase === 4) setProgress({ phase: 3, nextPhase: 4 });
           }}
         >
           Voltar
@@ -174,16 +177,22 @@ const ModalRegister = ({
               setProgress({ phase: 5, nextPhase: null });
             }}
           >
+            <h2>Tecnologias</h2>
             <div className="techslist">
-              <input type="checkbox" id="" {...register("tech.html")}/>
-              <input type="checkbox" id="" {...register("tech.css")}/>
-              <input type="checkbox" id="" {...register("tech.js")}/>
-              <input type="checkbox" id="" {...register("tech.react")}/>
-              <input type="checkbox" id="" {...register("tech.ts")}/>
-              <input type="checkbox" id="" {...register("tech.angular")}/>
-              <input type="checkbox" id="" {...register("tech.vue")}/>
-              <input type="checkbox" id="" {...register("tech.php")}/>
-              <input type="checkbox" id="" {...register("tech.c")}/>
+              {devTechs.map((el) => {
+                return (
+                  <div key={el.tech}>
+                    <label htmlFor={el.tech} className="container">
+                      <input
+                        type="checkbox"
+                        id={el.tech}
+                        {...register(`tech.${el.tech}`)}
+                      />
+                      <span className={`checkmark tech-${el.tech}`}></span>
+                    </label>
+                  </div>
+                );
+              })}
             </div>
             <button type="submit">Finalizar</button>
           </form>
