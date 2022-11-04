@@ -28,6 +28,34 @@ export const HeaderContainer = styled.div`
       display: flex;
       gap: 34px;
     }
+
+    & li{
+
+      button{
+        font-family: var(--font-family);
+        font-size: 18px;
+
+        color: var(--color-primary);
+      }
+
+      .spanBorder {
+        display: block;
+        width: 0%;
+        height: 2px;
+        background: var(--color-primary);
+    
+        transition: 0.4s;
+      }
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+
+      &:hover .spanBorder {
+        width: 100%;
+        transition: 0.4s;
+      }
+    }
   }
   & ul {
     display: flex;

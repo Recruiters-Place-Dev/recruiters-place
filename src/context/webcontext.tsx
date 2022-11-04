@@ -11,16 +11,16 @@ interface iWebProvider {
 export interface iUser {
   email: string;
   name: string;
-  isRecruiter: boolean;
+  isRecruiter?: boolean;
   city: string | undefined;
-  schooling: string | undefined;
-  cargo: string | undefined;
-  isWork: boolean | undefined;
+  schooling?: string | undefined;
+  cargo?: string | undefined;
+  isWork?: boolean | undefined;
   linkedin: string | undefined;
-  github: string | undefined;
-  portfolio: string | undefined;
-  bio: string | undefined;
-  tech: {
+  github?: string | undefined;
+  portfolio?: string | undefined;
+  bio?: string | undefined;
+  tech?: {
     html: boolean;
     css: boolean;
     js: boolean;
@@ -31,7 +31,7 @@ export interface iUser {
     php: boolean;
     c: boolean;
   };
-  id: number;
+  id?: number;
 }
 
 export interface iWebContext {
@@ -39,9 +39,19 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
-  allUsers: [] | undefined
-  openModalFeed: () => void
-  modalFeed: boolean
+  allUsers: [] | undefined;
+  openModalFeed: () => void;
+  modalFeed: boolean;
+  openModalComent: () => void;
+  modalComent: boolean;
+  modalReadComent: boolean;
+  readModalComent: () => void;
+  setModalReadComent: React.Dispatch<React.SetStateAction<boolean>>;
+  modalWriteComent: boolean;
+  writeModalComent: () => void;
+  setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
+  comentId: string | undefined;
+  setComentId: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -49,13 +59,16 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
-  const [modalFeed, setModalFeed] = useState(false)
-
+  const [modalFeed, setModalFeed] = useState(false);
+  const [modalComent, setModalComent] = useState(false);
+  const [modalReadComent, setModalReadComent] = useState(false);
+  const [modalWriteComent, setModalWriteComent] = useState(false);
+  const [comentId, setComentId] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
     loadUser();
-    getAllUsers()
+    getAllUsers();
   }, []);
 
   async function loadUser() {
@@ -66,10 +79,10 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         const request = await Api.get(`/users/${id}`);
-        
+
         setUser(request.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         window.localStorage.clear();
       }
     }
@@ -80,12 +93,11 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const { data } = await Api.get(`/users/`)
+        const { data } = await Api.get(`/users/`);
 
         setAllUsers(data);
-
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
   }
@@ -107,47 +119,75 @@ export function WebProvider({ children }: iWebProvider) {
       }, 500);
     }
   }
-  
+
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
-    
-    
-    if (info.name === "") {
-      delete info.name;
-    }
-    if (info.email === "") {
-      delete info.email;
-    }
-    if (info.city === "") {
-      delete info.city;
-    }
-    if (info.password === "") {
-      delete info.password;
-    }
-    if (info.empresa === "") {
-      delete info.empresa;
-    }
-    if (info.linkedin === "") {
-      delete info.linkedin;
-    }
+    const token = localStorage.getItem("RPlace:Token");
 
-    loadUser();
-    await Api.patch(`/users/${id}`, info);
-    loadUser();
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+
+        if (info.password === "") {
+          delete info.password;
+        }
+
+        await Api.patch(`/users/${id}`, info);
+
+        setUser({ ...user, ...info });
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   function openModalFeed(): void {
     if (modalFeed) {
-      setModalFeed(false)
+      setModalFeed(false);
     } else {
-      setModalFeed(true)
+      setModalFeed(true);
     }
-
   }
 
+  function openModalComent(): void {
+    if (modalComent) {
+      setModalComent(false);
+    } else {
+      setModalComent(true);
+    }
+  }
+
+  function readModalComent(): void {
+    openModalComent();
+    setModalReadComent(true);
+  }
+  function writeModalComent(): void {
+    openModalComent();
+    setModalWriteComent(true);
+  }
 
   return (
-    <WebContext.Provider value={{ onLogin, editSubmit, setUser, user, allUsers, openModalFeed, modalFeed}}>
+    <WebContext.Provider
+      value={{
+        onLogin,
+        editSubmit,
+        setUser,
+        user,
+        allUsers,
+        openModalFeed,
+        modalFeed,
+        openModalComent,
+        modalComent,
+        readModalComent,
+        modalReadComent,
+        setModalReadComent,
+        modalWriteComent,
+        writeModalComent,
+        setModalWriteComent,
+        comentId,
+        setComentId,
+      }}
+    >
       {children}
     </WebContext.Provider>
   );
