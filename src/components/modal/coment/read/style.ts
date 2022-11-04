@@ -23,8 +23,25 @@ export const ModalComentReadContainer = styled.div`
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    padding: 30px 15px;
+
+    gap: 15px;
+  }
+`;
+
+export const ComentContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  overflow-y: auto;
+  li {
+    width: 90%;
+    margin: 10px auto;
+    border: 2px solid #1da1f2;
+    border-radius: 10px;
+
+    display: flex;
+    padding: 10px;
   }
 `;

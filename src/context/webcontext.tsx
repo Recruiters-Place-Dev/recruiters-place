@@ -3,6 +3,8 @@ import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
 import { iEditRech } from "../components/perfilRech";
+import { iComent } from "../components/formMessage";
+import { toast } from "react-toastify";
 
 interface iWebProvider {
   children: ReactNode;
@@ -52,6 +54,8 @@ export interface iWebContext {
   setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
   comentId: string | undefined;
   setComentId: React.Dispatch<React.SetStateAction<any>>;
+  onSubmitComent: (data: iComent) => void;
+  allComents: iComent[] | undefined;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -59,6 +63,7 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
+  const [allComents, setAllComents] = useState();
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
   const [modalReadComent, setModalReadComent] = useState(false);
@@ -69,6 +74,7 @@ export function WebProvider({ children }: iWebProvider) {
   useEffect(() => {
     loadUser();
     getAllUsers();
+    getAllComents();
   }, []);
 
   async function loadUser() {
@@ -78,9 +84,9 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const request = await Api.get(`/users/${id}`);
+        const { data } = await Api.get(`/users/${id}`);
 
-        setUser(request.data);
+        setUser(data);
       } catch (error) {
         console.log(error);
         window.localStorage.clear();
@@ -101,22 +107,37 @@ export function WebProvider({ children }: iWebProvider) {
       }
     }
   }
+  async function getAllComents() {
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const { data } = await Api.get(`/coments`);
+
+        setAllComents(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   async function onLogin(info: iUserLogin) {
-    const logUser = await Api.post("/login", info)
-      .then((res) => res.data)
-      .catch((err) => {
-        console.log(err.response.data);
-        return false;
-      });
-    if (logUser) {
-      localStorage.setItem("RPlace:Token", logUser.accessToken);
-      localStorage.setItem("RPlace:id", logUser.user.id);
+    try {
+      const { data } = await Api.post("/login", info);
 
-      setUser(logUser.user);
-      setTimeout(() => {
+      if (data) {
+        localStorage.setItem("RPlace:Token", data.accessToken);
+        localStorage.setItem("RPlace:id", data.user.id);
+
+        setUser(data.user);
         navigate("/home");
-      }, 500);
+      }
+    } catch (error: any) {
+      toast.success("Combinação de email/senha incorreta");
+
+      console.log(error.response.data);
+      return false;
     }
   }
 
@@ -124,19 +145,29 @@ export function WebProvider({ children }: iWebProvider) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
 
-    if (token) {
-      try {
-        Api.defaults.headers.authorization = `Bearer ${token}`;
+    if (info.password === "") {
+      delete info.password;
+    }
 
-        if (info.password === "") {
-          delete info.password;
+    if (
+      user?.name !== info.name ||
+      user?.city !== info.city ||
+      user?.email !== info.email ||
+      info.password ||
+      info.empresa !== ""
+    ) {
+      if (token) {
+        try {
+          Api.defaults.headers.authorization = `Bearer ${token}`;
+
+          await Api.patch(`/users/${id}`, info);
+
+          setUser({ ...user, ...info });
+
+          toast.success("Usuário editado com sucesso");
+        } catch (error) {
+          console.log(error);
         }
-
-        await Api.patch(`/users/${id}`, info);
-
-        setUser({ ...user, ...info });
-      } catch (error) {
-        console.log(error);
       }
     }
   }
@@ -166,6 +197,23 @@ export function WebProvider({ children }: iWebProvider) {
     setModalWriteComent(true);
   }
 
+  async function onSubmitComent(data: iComent) {
+    data.idTo = comentId;
+    data.idFrom = String(user?.id);
+
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/coments`, data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -186,6 +234,8 @@ export function WebProvider({ children }: iWebProvider) {
         setModalWriteComent,
         comentId,
         setComentId,
+        onSubmitComent,
+        allComents,
       }}
     >
       {children}
