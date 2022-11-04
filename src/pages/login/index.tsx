@@ -3,12 +3,13 @@ import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
-import SchemaLogin from "../../validations/loginUser";
+import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext, useEffect } from "react";
 import { WebContext } from "../../context/webcontext";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../../components/ParagraphError";
 
 export interface iUserLogin {
   email: string;
@@ -36,7 +37,6 @@ export const Login = () => {
 
   return (
     <MainLogin>
-      <SectionLogin></SectionLogin>
       <SectionLogin>
         <div className="block"></div>
         <div className="containerLogin">
@@ -45,13 +45,15 @@ export const Login = () => {
           </figure>
           <FormLogin onSubmit={handleSubmit(onLogin)}>
             <h3>Entrar</h3>
-            <Input label="Email" type="text" register={register} id="email" login={true} getValues={getValues}/>
-            {
-              <p className="errors">
-                {errors.email && <RiErrorWarningFill />}
-                {errors.email?.message}
-              </p>
-            }
+            <Input
+              label="Email"
+              type="text"
+              register={register}
+              id="email"
+              getValues={getValues}
+              login={true}
+            />
+            <ErrorMessage>{errors.email?.message}</ErrorMessage>
             <Input
               label="Senha"
               type="password"
@@ -60,12 +62,7 @@ export const Login = () => {
               login={true}
               getValues={getValues}
             />
-            {
-              <p className="errors">
-                {errors.password && <RiErrorWarningFill />}
-                {errors.password?.message}
-              </p>
-            }
+            <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
             <button type="submit">Login</button>
             <span>Não tem uma conta ?</span>
@@ -74,7 +71,9 @@ export const Login = () => {
         </div>
       </SectionLogin>
       <BoxSlogan>
-        <div className="blockBlue"></div>
+        <div className="blockBlue">
+          <h2>Recrutamento em um só lugar!</h2>
+        </div>
         <div>
           <h2>Agilize o trabalho com parceiros</h2>
           <div className="boxLink">

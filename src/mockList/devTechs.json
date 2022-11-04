@@ -1,0 +1,30 @@
+[
+  {
+    "tech": "angular",
+    "dir": "techs/angular.png"
+  },
+  {
+    "tech": "css",
+    "dir": "techs/css.png"
+  },
+  {
+    "tech": "html",
+    "dir": "techs/html.png"
+  },
+  {
+    "tech": "javascript",
+    "dir": "techs/javascript.png"
+  },
+  {
+    "tech": "react",
+    "dir": "techs/react.png"
+  },
+  {
+    "tech": "sass",
+    "dir": "techs/sass.png"
+  },
+  {
+    "tech": "typescript",
+    "dir": "techs/typescript.png"
+  }
+]

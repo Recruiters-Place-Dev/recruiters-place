@@ -1,7 +1,76 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import FotoPerfil from "../../assets/carbon_user-avatar.svg"
+import ChatImg from "../../assets/ant-design_file-search-outlined.svg"
+import Vermais from "../../assets/bi_chat-dots-fill.svg"
+import { iUser, iWebContext, WebContext } from "../../context/webcontext";
+import { ContainerDeveloper, ContainerFeed, Contato, DeveloperName, DevelopersCargo, DivDevelopersInfo, DivDevelopersLinks, DivDevelopersName, DivDevelopersTech, Figure, Techs } from "./styles";
+
+
+import techList from "../../mockList/devTechs.json";
+import ModalFeed from "../../components/modalFeed";
 
 function Feed() {
-  return <div>Feed</div>;
+  const { allUsers, openModalFeed} = useContext<iWebContext>(WebContext);
+  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null)
+
+  const developers = allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+  useEffect(() => { }, []);
+
+  return <ContainerFeed>
+    {
+      developers?.map((elem: iUser, index: number) => {
+        return (
+          <ContainerDeveloper key={index}>
+            <DivDevelopersInfo>
+              <Figure>
+                <img src={FotoPerfil} alt="Foto de Perfil" />
+              </Figure>
+              <p>{elem?.email}</p>
+              <p>{elem?.city}</p>
+              <p>{elem?.schooling}</p>
+            </DivDevelopersInfo>
+            <DivDevelopersName>
+
+              <DeveloperName>{elem?.name}</DeveloperName>
+
+              <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
+
+              <DivDevelopersLinks>
+                <a href={elem?.linkedin} >Linkedin</a>
+                <a href={elem?.github} >Github</a>
+                <a href={elem?.portfolio} >Portifolio</a>
+              </DivDevelopersLinks>
+
+            </DivDevelopersName>
+
+            <DivDevelopersTech>
+              <Techs>
+                {
+                  techList.map((devTech) => (
+                    <div>
+                      <img src={devTech.dir} alt="devTech.tech" />
+                    </div>
+                  ))
+                }
+              </Techs>
+
+              <Contato>
+                <img src={Vermais} alt="chat" />
+                <img src={ChatImg} alt="chat" id={elem.id + ""} onClick={() => {
+                  openModalFeed()
+                  setModalDeveloper(elem)
+                }} />
+              </Contato>
+              
+            </DivDevelopersTech>
+
+          </ContainerDeveloper>
+        )
+
+      })
+    }
+    <ModalFeed developer={modalDeveloper} />
+  </ContainerFeed>
 }
 
 export default Feed;
