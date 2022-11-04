@@ -24,8 +24,8 @@ export interface iEditRech {
 }
 
 const PerfilRech = () => {
-  const [boxEdit, setBoxEdit] = useState(false);
-  const { editSubmit, user } = useContext(WebContext);
+  const {boxEdit, setBoxEdit} = useContext(WebContext);
+  const { editSubmit, user, inputPassRef } = useContext(WebContext);
 
   const {
     register,
@@ -96,6 +96,7 @@ const PerfilRech = () => {
               label="Editar senha"
               register={register}
               getValues={getValues}
+              // ref={inputPassRef}
             />
             <Input
               id="empresa"

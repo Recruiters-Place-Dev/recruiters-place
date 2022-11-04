@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useRef, useState } from "react";
 import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
@@ -53,6 +53,9 @@ export interface iWebContext {
   setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
   comentId: string | undefined;
   setComentId: React.Dispatch<React.SetStateAction<any>>;
+  boxEdit: boolean;
+  setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  inputPassRef: React.MutableRefObject<undefined>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -65,7 +68,9 @@ export function WebProvider({ children }: iWebProvider) {
   const [modalReadComent, setModalReadComent] = useState(false);
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
+  const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
+  const inputPassRef = useRef()
 
   useEffect(() => {
     loadUser();
@@ -144,12 +149,15 @@ export function WebProvider({ children }: iWebProvider) {
           await Api.patch(`/users/${id}`, info);
 
           setUser({ ...user, ...info });
+          setBoxEdit(false)
 
           toast.success("Usuário editado com sucesso");
         } catch (error) {
           console.log(error);
         }
       }
+    }else{
+      toast.warning("Nenhum campo foi alterado")
     }
   }
 
@@ -198,6 +206,9 @@ export function WebProvider({ children }: iWebProvider) {
         setModalWriteComent,
         comentId,
         setComentId,
+        boxEdit,
+        setBoxEdit,
+        inputPassRef,
       }}
     >
       {children}
