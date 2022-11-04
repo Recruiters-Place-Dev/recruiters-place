@@ -42,6 +42,16 @@ export interface iWebContext {
   allUsers: [] | undefined;
   openModalFeed: () => void;
   modalFeed: boolean;
+  openModalComent: () => void;
+  modalComent: boolean;
+  modalReadComent: boolean;
+  readModalComent: () => void;
+  setModalReadComent: React.Dispatch<React.SetStateAction<boolean>>;
+  modalWriteComent: boolean;
+  writeModalComent: () => void;
+  setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
+  comentId: string | undefined;
+  setComentId: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -50,7 +60,10 @@ export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
   const [modalFeed, setModalFeed] = useState(false);
-
+  const [modalComent, setModalComent] = useState(false);
+  const [modalReadComent, setModalReadComent] = useState(false);
+  const [modalWriteComent, setModalWriteComent] = useState(false);
+  const [comentId, setComentId] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -99,14 +112,14 @@ export function WebProvider({ children }: iWebProvider) {
     if (logUser) {
       localStorage.setItem("RPlace:Token", logUser.accessToken);
       localStorage.setItem("RPlace:id", logUser.user.id);
-      
+
       setUser(logUser.user);
       setTimeout(() => {
         navigate("/home");
       }, 500);
     }
   }
-  
+
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
@@ -114,13 +127,13 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-       
-        if(info.password === ""){
-          delete info.password
+
+        if (info.password === "") {
+          delete info.password;
         }
 
         await Api.patch(`/users/${id}`, info);
-        
+
         setUser({ ...user, ...info });
       } catch (error) {
         console.log(error);
@@ -136,6 +149,23 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function openModalComent(): void {
+    if (modalComent) {
+      setModalComent(false);
+    } else {
+      setModalComent(true);
+    }
+  }
+
+  function readModalComent(): void {
+    openModalComent();
+    setModalReadComent(true);
+  }
+  function writeModalComent(): void {
+    openModalComent();
+    setModalWriteComent(true);
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -146,6 +176,16 @@ export function WebProvider({ children }: iWebProvider) {
         allUsers,
         openModalFeed,
         modalFeed,
+        openModalComent,
+        modalComent,
+        readModalComent,
+        modalReadComent,
+        setModalReadComent,
+        modalWriteComent,
+        writeModalComent,
+        setModalWriteComent,
+        comentId,
+        setComentId,
       }}
     >
       {children}
