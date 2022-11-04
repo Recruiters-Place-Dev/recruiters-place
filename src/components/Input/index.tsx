@@ -8,7 +8,7 @@ interface iInputProps {
   label: string;
   id: Path<any>;
   register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>
+  getValues: UseFormGetValues<any>;
   errorMessage?: string;
   errors?: any;
   login?: boolean;
@@ -18,12 +18,12 @@ const Input = ({
   type,
   label,
   id,
-  register, getValues,
+  register,
+  getValues,
   errors,
   login,
   errorMessage,
 }: iInputProps) => {
-
   const { onChange, onBlur, name, ref } = register(id);
 
   const [value, setValue] = useState(getValues(id) || "");
