@@ -58,6 +58,7 @@ export interface iWebContext {
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
   inputPassRef: React.MutableRefObject<undefined>;
+  allComents: iComent[] | undefined;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -65,6 +66,7 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
+  const [allComents, setAllComents] = useState();
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
   const [modalReadComent, setModalReadComent] = useState(false);
@@ -77,6 +79,7 @@ export function WebProvider({ children }: iWebProvider) {
   useEffect(() => {
     loadUser();
     getAllUsers();
+    getAllComents();
   }, []);
 
   async function loadUser() {
@@ -104,6 +107,20 @@ export function WebProvider({ children }: iWebProvider) {
         const { data } = await Api.get(`/users/`);
 
         setAllUsers(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  async function getAllComents() {
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const { data } = await Api.get(`/coments`);
+
+        setAllComents(data);
       } catch (error) {
         console.log(error);
       }
@@ -229,6 +246,7 @@ export function WebProvider({ children }: iWebProvider) {
         boxEdit,
         setBoxEdit,
         inputPassRef,
+        allComents,
       }}
     >
       {children}
