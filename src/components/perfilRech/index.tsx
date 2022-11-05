@@ -1,10 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
 import { WebContext } from "../../context/webcontext";
 import { SchemaPerfilRech } from "../../validations/schemas";
+import { ButtonStylized } from "../buttons/style";
 import Input from "../Input";
 import {
   Container,
@@ -25,8 +26,8 @@ export interface iEditRech {
 
 const PerfilRech = () => {
   const { boxEdit, setBoxEdit } = useContext(WebContext);
-  const { editSubmit, user, inputPassRef } = useContext(WebContext);
-  console.log(user);
+  const { editSubmit, user } = useContext(WebContext);
+  
   const {
     register,
     handleSubmit,
@@ -56,7 +57,6 @@ const PerfilRech = () => {
         </ContainerProfile>
         <ContainerContent>
           <h2>{user?.name}</h2>
-          <p>Tech Recruiter</p>
           {user?.empresa && <p>{user.empresa}</p>}
           {user?.linkedin && <a href={user?.linkedin}>Linkedin</a>}
         </ContainerContent>
@@ -97,7 +97,6 @@ const PerfilRech = () => {
               label="Editar senha"
               register={register}
               getValues={getValues}
-              // ref={inputPassRef}
             />
             <Input
               id="empresa"
@@ -115,10 +114,10 @@ const PerfilRech = () => {
               errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">
-              <button type="submit">Finalizar</button>
-              <button onClick={() => setBoxEdit(false)} type="button">
+              <ButtonStylized styled="medium" type="submit">Finalizar</ButtonStylized>
+              <ButtonStylized styled="medium" onClick={() => setBoxEdit(false)} type="button">
                 Cancelar
-              </button>
+              </ButtonStylized>
             </div>
           </FormEditRech>
         </Container>
