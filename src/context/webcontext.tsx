@@ -59,7 +59,6 @@ export interface iWebContext {
   onSubmitComent: (data: iComent) => void;
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  inputPassRef: React.MutableRefObject<undefined>;
   allComents: iComent[];
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
   openModalChat: () => void | undefined;
@@ -87,7 +86,6 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
-  const inputPassRef = useRef();
 
   useEffect(() => {
     loadUser();
@@ -309,7 +307,6 @@ export function WebProvider({ children }: iWebProvider) {
         onSubmitComent,
         boxEdit,
         setBoxEdit,
-        inputPassRef,
         allComents,
         openModalChat,
         setModalChat,

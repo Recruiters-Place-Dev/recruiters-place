@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
@@ -26,8 +26,8 @@ export interface iEditRech {
 
 const PerfilRech = () => {
   const { boxEdit, setBoxEdit } = useContext(WebContext);
-  const { editSubmit, user, inputPassRef } = useContext(WebContext);
-  console.log(user);
+  const { editSubmit, user } = useContext(WebContext);
+  
   const {
     register,
     handleSubmit,
@@ -98,7 +98,6 @@ const PerfilRech = () => {
               label="Editar senha"
               register={register}
               getValues={getValues}
-              // ref={inputPassRef}
             />
             <Input
               id="empresa"

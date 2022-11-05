@@ -24,7 +24,7 @@ const Input = ({
   errorMessage,
 }: iInputProps) => {
 
-  const { onChange, onBlur, name, ref } = register(id);
+  const { onChange, onBlur, name, ref} = register(id);
 
   const [value, setValue] = useState(getValues(id) || "");
 
@@ -52,7 +52,7 @@ const Input = ({
         }}
         onBlur={onBlur}
         name={name}
-        ref={ref}
+        // ref={ref}
       />
       <label>{label}</label>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
