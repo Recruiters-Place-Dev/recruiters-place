@@ -25,7 +25,7 @@ import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
-interface iUserDeveloper {
+export interface iUserDeveloper {
   email: string;
   name: string;
   isRecruiter?: boolean;
@@ -37,6 +37,8 @@ interface iUserDeveloper {
   linkedin: string | undefined;
   github?: string | undefined;
   portfolio?: string | undefined;
+  fotoDoPerfil: string | undefined;
+  escolaridade: string | undefined;
   bio?: string | undefined;
   tech: {
     html: boolean;
@@ -63,7 +65,9 @@ function Feed() {
     openModalChat,
     setChatId,
   } = useContext<iWebContext>(WebContext);
-  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
+  const [modalDeveloper, setModalDeveloper] = useState<iUserDeveloper | null>(
+    null
+  );
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false

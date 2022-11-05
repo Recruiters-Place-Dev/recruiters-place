@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
+<<<<<<< HEAD
+  display: flex;
+
+  justify-content: space-around;
+  align-items: center;
+=======
+>>>>>>> developer
   border-bottom: 1px solid #1da1f2;
   display: flex;
   flex-direction: column;

@@ -177,34 +177,4 @@ export const FormEditRech = styled.form`
     width: 50%;
     height: 60px;
   }
-
-  button {
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 16px;
-
-    width: 100%;
-    max-width: 331px;
-    height: 40px;
-
-    border-radius: 8px;
-    border: none;
-
-    background: var(--color-primary);
-    color: white;
-
-    transition: 0.4s;
-
-    &:hover {
-      transition: 0.4s;
-
-      box-shadow: 2px 2px 0 0.5px #13117c;
-      transform: translate(-2px, -2px);
-    }
-
-    &:active {
-      box-shadow: 0 0 0 0, inset 2px 2px 2px 0.5px #13117c;
-      transform: translate(2px, 2px);
-    }
-  }
 `;
