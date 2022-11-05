@@ -76,7 +76,7 @@ function Feed() {
 
                 <img
                   src={Vermais}
-                  alt="chat"
+                  alt="coments"
                   id={elem.id + ""}
                   onClick={(event) => {
                     setComentId((event.target as HTMLImageElement).id);
@@ -85,7 +85,7 @@ function Feed() {
                 />
                 <img
                   src={ChatImg}
-                  alt="chat"
+                  alt="perfil"
                   id={elem.id + ""}
                   onClick={() => {
                     openModalFeed();
