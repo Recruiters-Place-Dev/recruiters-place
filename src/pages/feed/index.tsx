@@ -24,10 +24,18 @@ import ModalComent from "../../components/modal/coment/duality";
 import { ModalComentReadContainer } from "../../components/modal/coment/read/style";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
+import ModalChat from "../../components/modal/chat";
 
 function Feed() {
-  const { allUsers, openModalFeed, openModalComent, setComentId, user } =
-    useContext<iWebContext>(WebContext);
+  const {
+    allUsers,
+    openModalFeed,
+    openModalComent,
+    setComentId,
+    user,
+    openModalChat,
+    setChatId,
+  } = useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const developers = allUsers?.filter(
@@ -71,7 +79,15 @@ function Feed() {
 
               <Contato>
                 {user?.isRecruiter && (
-                  <img src={duoChat} alt="chat" id={elem.id + ""} />
+                  <img
+                    src={duoChat}
+                    alt="chat"
+                    id={elem.id + ""}
+                    onClick={(event) => {
+                      setChatId((event.target as HTMLImageElement).id);
+                      openModalChat();
+                    }}
+                  />
                 )}
 
                 <img
@@ -101,6 +117,7 @@ function Feed() {
       <ModalComent />
       <ReadComent />
       <WriteComent />
+      <ModalChat />
     </ContainerFeed>
   );
 }
