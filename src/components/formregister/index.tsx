@@ -19,17 +19,17 @@ export interface iUserRegister {
   linkedin?: string;
   github?: string;
   portfolio?: string;
-  tech?:{
-		html: boolean,
-		css: boolean,
-		js: boolean,
-		react: boolean,
-		ts: boolean,
-		angular: boolean,
-		vuejs: boolean,
-		php: boolean,
-		c: boolean
-	}
+  tech?: {
+    html: boolean;
+    css: boolean;
+    js: boolean;
+    react: boolean;
+    ts: boolean;
+    angular: boolean;
+    vuejs: boolean;
+    php: boolean;
+    c: boolean;
+  };
 }
 
 export interface iProgressProps {
@@ -39,7 +39,7 @@ export interface iProgressProps {
 
 export function FormRegister() {
   const [show, setShow] = useState<boolean>(false);
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isRecruiter, setIsRecruiter] = useState<boolean>(false);
   const [progress, setProgress] = useState<iProgressProps>({
     phase: 1,
     nextPhase: 2,
@@ -57,10 +57,39 @@ export function FormRegister() {
     checkpass: yup
       .string()
       .oneOf([yup.ref("password")], "Senha não está igual."),
+    isRecruiter: yup.boolean(),
+    skipAbout: yup.boolean(),
+    city: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    schooling: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    vacancy: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    isWork: yup.boolean(),
+    linkedin: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    github: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    portfolio: yup.string().when("isRecruiter", {
+      is: false,
+      then: (schema) => schema.required(),
+    }),
+    techs: yup.object(),
   });
 
   const {
     register,
+    trigger,
     handleSubmit,
     formState: { errors },
     getValues,
@@ -112,21 +141,24 @@ export function FormRegister() {
         <div className="Recruiter-Opt">
           <span>Recrutador?</span>
           <input
-            onClick={() => {
-              setIsSubmit(!isSubmit);
-            }}
             type="checkbox"
             id="recruiter"
             {...register("isRecruiter")}
+            onClick={() => setIsRecruiter(true)}
           />
         </div>
         <button
-          type={isSubmit ? "submit" : "button"}
-          onClick={() => {
-            if (!isSubmit) {
-              const isRecruiter = getValues("isRecruiter");
+          type={isRecruiter ? "submit" : "button"}
+          onClick={async () => {
+            const isRecruiter = getValues("isRecruiter");
 
-              if (!isRecruiter) {
+            if (!isRecruiter) {
+              const valid = await trigger(
+                ["name", "email", "password", "checkpass"],
+                { shouldFocus: true }
+              );
+
+              if (valid) {
                 setShow(true);
                 setProgress({ phase: 2, nextPhase: 3 });
               }
@@ -143,8 +175,10 @@ export function FormRegister() {
           setProgress={setProgress}
           register={register}
           getValues={getValues}
+          trigger={trigger}
           handleSubmit={handleSubmit}
           fn={fakeFunction}
+          errors={errors}
         />
       )}
     </>
