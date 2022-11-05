@@ -121,7 +121,6 @@ export function WebProvider({ children }: iWebProvider) {
 
         const { data } = await Api.get(`/users/`);
 
-
         setAllUsers(data);
       } catch (error) {
         console.log(error);
