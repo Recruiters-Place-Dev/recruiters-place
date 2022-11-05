@@ -7,11 +7,7 @@ export const SchemaLogin = yup.object().shape({
 });
 
 export const SchemaPerfilRech = yup.object().shape({
-  email: yup.string(),
-  // .required("Email obrigatório")
-  // .email("Email inválido"),
+  email: yup.string().email("Email inválido"),
 
-  linkedin: yup
-    .string()
-    .url("Deve ser uma URL válida")
+  linkedin: yup.string().url("Deve ser uma URL válida"),
 });

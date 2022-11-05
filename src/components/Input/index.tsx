@@ -25,7 +25,7 @@ const Input = ({
   errorMessage,
 }: iInputProps) => {
 
-  const { onChange, onBlur, name, ref } = register(id);
+  const { onChange, onBlur, name, ref} = register(id);
 
   const [value, setValue] = useState(getValues(id) || "");
 

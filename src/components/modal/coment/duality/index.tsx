@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { WebContext } from "../../../../context/webcontext";
+import { ButtonStylized } from "../../../buttons/style";
 import { ModalComentContainer } from "./style";
 
 function ModalComent() {
@@ -9,8 +10,8 @@ function ModalComent() {
   return modalComent ? (
     <ModalComentContainer onClick={openModalComent}>
       <div>
-        <button onClick={() => writeModalComent()}>Escrever comentário</button>
-        <button onClick={() => readModalComent()}>Ver comentários</button>
+        <ButtonStylized onClick={() => writeModalComent()}>Escrever comentário</ButtonStylized>
+        <ButtonStylized onClick={() => readModalComent()}>Ver comentários</ButtonStylized>
       </div>
     </ModalComentContainer>
   ) : null;

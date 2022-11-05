@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { iUser, WebContext } from "../../context/webcontext";
-import { ButtonSendComent, FormContainer } from "./style";
+import { ButtonStylized } from "../buttons/style";
+import { FormContainer } from "./style";
 
 export interface iComent {
   from: string | undefined;
@@ -41,7 +42,7 @@ function FormMessage() {
         />
       </div>
       <textarea id="" {...register("coment")}></textarea>
-      <ButtonSendComent type="submit">Enviar</ButtonSendComent>
+      <ButtonStylized styled="align-end" type="submit">Enviar</ButtonStylized>
     </FormContainer>
   );
 }
