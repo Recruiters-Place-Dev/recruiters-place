@@ -27,6 +27,7 @@ import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
 function Feed() {
+
   const {
     allUsers,
     openModalFeed,
@@ -38,16 +39,31 @@ function Feed() {
   } = useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
+
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
   useEffect(() => {}, []);
 
-  return (
-    <ContainerFeed>
-      {developers?.map((elem: iUser, index: number) => {
+
+  return <ContainerFeed>
+    {
+      developers?.map((elem: iUser, index: number) => {
+
+        // Object.entries(elem.tech)
+        const olhatecnologia = Object.entries(elem.tech)
+       const meupau = olhatecnologia.filter((elem)=> {
+        return elem[1] === true
+       })
+
+       const minhasbolas = meupau.map((elem)=> {
+        return techList.find(E=>elem[0] === E.tech) 
+       })
+
+
         return (
-          <ContainerDeveloper key={index}>
+          <ContainerDeveloper initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }} transition={{ duration: 1.5 }} key={index}>
             <DivDevelopersInfo>
               <Figure>
                 <img src={FotoPerfil} alt="Foto de Perfil" />
@@ -70,11 +86,16 @@ function Feed() {
 
             <DivDevelopersTech>
               <Techs>
-                {techList.map((devTech) => (
-                  <div>
-                    <img src={devTech.dir} alt="devTech.tech" />
-                  </div>
-                ))}
+
+                {
+                  
+                  minhasbolas.map((element: any) => {
+                    console.log(element.tech)
+                    return <img src={element.dir} alt={element.tech}/>
+                  })
+                }
+
+
               </Techs>
 
               <Contato>
@@ -109,11 +130,14 @@ function Feed() {
                   }}
                 />
               </Contato>
+              
+
             </DivDevelopersTech>
+             <ModalFeed developer={modalDeveloper} />
           </ContainerDeveloper>
         );
       })}
-      <ModalFeed developer={modalDeveloper} />
+     
       <ModalComent />
       <ReadComent />
       <WriteComent />
