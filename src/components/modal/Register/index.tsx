@@ -139,6 +139,7 @@ const ModalRegister = ({
                 }}
               >
                 Pular etapa
+                <input type="checkbox" id="skipAbout" {...register("skipAbout")} />
               </button>
             </div>
           </form>
@@ -192,6 +193,7 @@ const ModalRegister = ({
                 }}
               >
                 Pular etapa
+                <input type="checkbox" id="skipLinks" {...register("skipLinks")} />
               </button>
             </div>
           </form>
