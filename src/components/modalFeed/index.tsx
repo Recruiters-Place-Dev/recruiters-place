@@ -12,18 +12,18 @@ import {
   ModalFeedContainer,
   Techs,
 } from "./styles";
-import { iUser } from "../../context/webcontext";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
-import techList from "../../mockList/devTechs.json";
-import { iUserDeveloper } from "../../pages/feed";
+import {iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
   developer: iUserDeveloper | null;
+  techs: ({ tech: string; dir: string; } | undefined)[] | null
 }
 
-function ModalFeed({ developer }: iModalFeedProps) {
+function ModalFeed({ developer, techs }: iModalFeedProps) {
   const { modalFeed, openModalFeed, allUsers } =
     useContext<iWebContext>(WebContext);
+
 
   return modalFeed ? (
     <ModalFeedContainer onClick={openModalFeed}>
@@ -57,8 +57,8 @@ function ModalFeed({ developer }: iModalFeedProps) {
           </DivBio>
 
           <Techs>
-            {techList.map((devTech) => (
-              <img src={devTech.dir} alt="devTech.tech" />
+            {techs?.map((devTech) => (
+              <img src={devTech?.dir} alt="devTech.tech" />
             ))}
           </Techs>
         </DivInfo>

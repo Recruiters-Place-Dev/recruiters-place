@@ -7,6 +7,10 @@ import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
 
+import techList from "../mockList/devTechs.json";
+import { iUserDeveloper } from "../pages/feed";
+
+
 export interface iWebProvider {
   children: ReactNode;
 }
@@ -34,7 +38,7 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
-    sass:boolean;
+    sass: boolean;
     node: boolean;
   };
   id?: number;
@@ -74,13 +78,14 @@ export interface iWebContext {
   allChats: iChat[];
   callId: string | undefined;
   setCallId: React.Dispatch<React.SetStateAction<any>>;
+  filteredTechs(elem: iUserDeveloper): ({ tech: string; dir: string; } | undefined)[]
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
-  const [allUsers, setAllUsers] = useState();
+  const [allUsers, setAllUsers] = useState<[]>();
   const [allComents, setAllComents] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
@@ -291,6 +296,28 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function filteredTechs(elem: iUserDeveloper) {
+    // getAllUsers()
+
+    // const developers = allUsers?.filter(
+    //   (elem: iUser) => elem.isRecruiter === false
+    // );
+    // const retorno = developers?.map((elem: iUserDeveloper) => {
+      const separateTechs = Object.entries(elem.tech);
+      const filterTechs = separateTechs.filter((elem) => {
+        return elem[1] === true;
+      });
+
+      const arrFilteredTechs = filterTechs.map((elem) => {
+        return techList.find((E) => elem[0] === E.tech);
+      });
+      return arrFilteredTechs
+    // })
+
+    // return retorno
+
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -326,6 +353,7 @@ export function WebProvider({ children }: iWebProvider) {
         allChats,
         callId,
         setCallId,
+        filteredTechs,
       }}
     >
       {children}
