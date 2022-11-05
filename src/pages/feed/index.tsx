@@ -1,12 +1,8 @@
-import {
-  MouseEventHandler,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { MouseEventHandler, useContext, useEffect, useState } from "react";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import ChatImg from "../../assets/ant-design_file-search-outlined.svg";
 import Vermais from "../../assets/bi_chat-dots-fill.svg";
+import duoChat from "../../assets/chat.png";
 import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   ContainerDeveloper,
@@ -30,7 +26,7 @@ import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 
 function Feed() {
-  const { allUsers, openModalFeed, openModalComent, setComentId } =
+  const { allUsers, openModalFeed, openModalComent, setComentId, user } =
     useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
@@ -74,6 +70,10 @@ function Feed() {
               </Techs>
 
               <Contato>
+                {user?.isRecruiter && (
+                  <img src={duoChat} alt="chat" id={elem.id + ""} />
+                )}
+
                 <img
                   src={Vermais}
                   alt="chat"
