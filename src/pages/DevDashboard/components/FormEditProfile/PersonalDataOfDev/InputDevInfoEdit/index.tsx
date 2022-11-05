@@ -12,7 +12,7 @@ interface iInputProps {
   errors?: any;
   defaultValue?: string;
 }
-export const Input = ({
+export const InputDevInfoEdit = ({
   type,
   label,
   id,

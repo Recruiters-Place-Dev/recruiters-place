@@ -13,3 +13,12 @@ export const TechsBox = styled.div`
   grid-template-rows: 1fr 1fr;
   margin-top: 5rem;
 `;
+
+export const FormStyled = styled.form`
+  height: 500px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+`

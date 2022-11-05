@@ -7,7 +7,7 @@ import schema from "../../../../../validations/editDevTech";
 
 import { WebContext } from "../../../../../context/webcontext";
 
-import { BoxBtns, TechsBox } from "./style";
+import { BoxBtns, TechsBox,FormStyled } from "./style";
 import { iFormEditProfile } from "../types";
 import { Api } from "../../../../../services/api";
 interface iTechOfDev {
@@ -57,7 +57,7 @@ export const TechOfDev = ({ setStep }: iTechOfDev) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <TechsBox>
         <BoxImgCheckbox
           setIsActiveTechs={setIsActiveTechs}
@@ -116,6 +116,6 @@ export const TechOfDev = ({ setStep }: iTechOfDev) => {
         <ButtonStyled onClick={() => setStep(1)}>Voltar</ButtonStyled>
         <ButtonStyled type="submit">Salvar</ButtonStyled>
       </BoxBtns>
-    </form>
+    </FormStyled>
   );
 };

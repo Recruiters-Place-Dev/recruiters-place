@@ -55,7 +55,13 @@ export function WebProvider({ children }: iWebProvider) {
 
   useEffect(() => {
     loadUser();
+
+
+  
   }, []);
+
+
+
 
   async function loadUser() {
     const token = localStorage.getItem("RPlace:Token");
@@ -68,6 +74,7 @@ export function WebProvider({ children }: iWebProvider) {
 
         console.log(loadUser);
         setUser(request.data);
+
       } catch (error) {
         console.log(error);
         window.localStorage.clear();
@@ -90,7 +97,6 @@ export function WebProvider({ children }: iWebProvider) {
 
       if (logUser.user.isRecruiter) {
         navigate("/home");
-        console.log("ok");
       } else {
         navigate("/devDashboard");
       }

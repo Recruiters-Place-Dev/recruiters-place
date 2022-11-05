@@ -29,11 +29,9 @@ const FormStyledVariant = {
     height: auto;
     margin: 0 auto;
     padding: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
+   
+    
   `,
 };
 

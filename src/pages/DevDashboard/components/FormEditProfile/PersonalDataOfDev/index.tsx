@@ -14,21 +14,28 @@ import {
   TitleEditProfile,
   TextAreaBio,
 } from "./style";
+import { InputDevInfoEdit } from "./InputDevInfoEdit";
+import { Api } from "../../../../../services/api";
 
 interface iPersonalDataOfDev {
   setStep: any;
 }
 
 export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
-  const navigate = useNavigate();
-  const { user } = useContext(WebContext);
+  const { user, setUser } = useContext(WebContext);
 
-  const { register, handleSubmit } = useForm({
-   
-  });
+  const { register, handleSubmit } = useForm({});
 
-  const onSubmit = (formData: any) => {
+  const onSubmit = async (formData: any) => {
     console.log(formData);
+
+    try {
+      const { data } = await Api.patch(`/users/${user?.id}`, formData);
+
+      setUser(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -39,44 +46,45 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
         rows={10}
         {...register("bio")}
         placeholder="Bio"
+        defaultValue={user?.bio}
       ></TextAreaBio>
 
       <AllInputBox>
         <div>
-          
-
-          {/* <InputEditProfile
-            type="text"
-            data="name"
-            register={register}
+          <InputDevInfoEdit
+            id="name"
             label="Nome"
-          /> */}
-          <InputEditProfile
+            register={register}
             type="text"
-            data="cargo"
+            defaultValue={user?.name}
+          />
+
+          <InputDevInfoEdit
+            type="text"
+            id="cargo"
             register={register}
             label="Cargo"
             defaultValue={user?.cargo}
           />
 
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="linkedin"
+            id="linkedin"
             register={register}
             label="LinkedIn"
             defaultValue={user?.linkedin}
           />
 
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="portfolio"
+            id="portfolio"
             register={register}
             label="Portifolio"
             defaultValue={user?.portfolio}
           />
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="fotoDoPerfil"
+            id="fotoDoPerfil"
             register={register}
             label="Foto do Perfil"
             defaultValue={user?.fotoDoPerfil}
@@ -84,31 +92,31 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
         </div>
 
         <div>
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="city"
+            id="city"
             register={register}
             label="Localização"
             defaultValue={user?.city}
           />
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="email"
+            id="email"
             register={register}
             label="Email"
             defaultValue={user?.email}
           />
 
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="escolaridade"
+            id="escolaridade"
             register={register}
             label="Escolaridade"
             defaultValue={user?.escolaridade}
           />
-          <InputEditProfile
+          <InputDevInfoEdit
             type="text"
-            data="github"
+            id="github"
             register={register}
             label="GitHub"
             defaultValue={user?.github}
