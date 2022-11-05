@@ -33,13 +33,16 @@ function HeaderDashboard() {
                   }}
                 >
                   Encontrar Devs
+                  <span className="spanBorder"></span>
                 </button>
               </li>
               <li>
                 <button onClick={() => closeFilter()}>Perfil</button>
+                <span className="spanBorder"></span>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>
+                <span className="spanBorder"></span>
               </li>
             </ul>
           </nav>

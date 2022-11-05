@@ -15,24 +15,31 @@ import {
 } from "./style";
 
 export interface iEditRech {
-  email: string | undefined;
-  empresa: string | undefined;
-  linkedin: string | undefined;
-  city: string | undefined;
-  name: string | undefined;
+  email: string;
+  empresa: string;
+  linkedin: string;
+  city: string;
+  name: string;
   password: string | undefined;
 }
 
 const PerfilRech = () => {
-  const [boxEdit, setBoxEdit] = useState(false);
-  const { editSubmit, user } = useContext(WebContext);
-
+  const { boxEdit, setBoxEdit } = useContext(WebContext);
+  const { editSubmit, user, inputPassRef } = useContext(WebContext);
+  console.log(user);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<iEditRech>({
     resolver: yupResolver(SchemaPerfilRech),
+    defaultValues: {
+      name: user?.name,
+      email: user?.email,
+      city: user?.city,
+      linkedin: user?.linkedin,
+    },
   });
 
   return (
@@ -50,6 +57,7 @@ const PerfilRech = () => {
         <ContainerContent>
           <h2>{user?.name}</h2>
           <p>Tech Recruiter</p>
+          {user?.empresa && <p>{user.empresa}</p>}
           {user?.linkedin && <a href={user?.linkedin}>Linkedin</a>}
         </ContainerContent>
         <SlPencil
@@ -62,31 +70,48 @@ const PerfilRech = () => {
       {boxEdit && (
         <Container size="big">
           <FormEditRech onSubmit={handleSubmit(editSubmit)}>
-            <Input id="name" type="text" label="Nome" register={register} />
-            <Input id="city" type="text" label="Cidade" register={register} />
+            <Input
+              id="name"
+              type="text"
+              label="Nome"
+              register={register}
+              getValues={getValues}
+            />
+            <Input
+              id="city"
+              type="text"
+              label="Cidade"
+              register={register}
+              getValues={getValues}
+            />
             <Input
               id="email"
               type="text"
               label="Editar email"
               register={register}
+              getValues={getValues}
             />
             <Input
               id="password"
               type="password"
               label="Editar senha"
               register={register}
+              getValues={getValues}
+              // ref={inputPassRef}
             />
             <Input
               id="empresa"
               type="text"
               label="Empresa"
               register={register}
+              getValues={getValues}
             />
             <Input
               id="linkedin"
               type="text"
               label="Linkedin"
               register={register}
+              getValues={getValues}
               errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">

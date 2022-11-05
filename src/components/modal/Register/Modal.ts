@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-const ModalContainer = styled.div`
+import { iProgressProps } from "../../formregister";
+
+interface iModalContainerProps {
+  progress: iProgressProps;
+}
+
+const ModalContainer = styled.div<iModalContainerProps>`
   position: fixed;
   top: 0;
   right: 0;
@@ -29,6 +35,7 @@ const ModalContainer = styled.div`
     }
 
     .back {
+      display: ${({ progress }) => (progress.phase === 5 ? "none" : "block")};
       position: absolute;
       right: 20px;
       background-color: transparent;
@@ -45,7 +52,7 @@ const ModalContainer = styled.div`
       gap: 2px;
 
       div {
-        width: 132px;
+        width: 98.5px;
         height: 10px;
       }
 
@@ -61,6 +68,7 @@ const ModalContainer = styled.div`
         background-color: #d9d9d9;
       }
     }
+
     form {
       button:first-of-type {
         display: inline-flex;
@@ -102,11 +110,11 @@ const ModalContainer = styled.div`
         line-height: 23px;
 
         padding: 14px 116px 15px;
-
       }
     }
 
-    form.progress-2 {
+    form.progress-2,
+    form.progress-3 {
       max-width: 400px;
       width: 100%;
       max-height: 385px;
@@ -135,6 +143,44 @@ const ModalContainer = styled.div`
           }
         }
       }
+    }
+
+    form.progress-4 {
+      max-width: 400px;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: 3rem;
+
+      .techslist {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+
+        input {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      button:last-of-type {
+        background: #1da1f2;
+      }
+    }
+
+    .RegisterCompleted {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
     }
   }
 `;
