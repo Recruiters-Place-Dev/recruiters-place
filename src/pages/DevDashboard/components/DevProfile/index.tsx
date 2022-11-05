@@ -10,7 +10,7 @@ import {
   TextInfoDev,
   LinkEdit,
   EmptyBio,
-  Bio
+  Bio,
 } from "./style";
 
 import css from "../../assets/css.png";
@@ -36,7 +36,7 @@ export const DevProfile = () => {
         <div>
           <TextInfoDev>{user?.city}</TextInfoDev>
           <TextInfoDev>{user?.email}</TextInfoDev>
-          <TextInfoDev>{user?.escolaridade}</TextInfoDev>
+          <TextInfoDev>{user?.schooling}</TextInfoDev>
         </div>
         <NavLink>
           <a href={user?.linkedin} target="_blank">
@@ -68,7 +68,7 @@ export const DevProfile = () => {
       </BioBox>
 
       <ListTech>
-        {user?.tech.html && (
+        {user?.tech?.html && (
           <li>
             <img src={html} />
           </li>

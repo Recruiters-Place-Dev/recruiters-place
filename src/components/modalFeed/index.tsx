@@ -15,9 +15,10 @@ import {
 import { iUser } from "../../context/webcontext";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import techList from "../../mockList/devTechs.json";
+import { iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
-  developer: iUser | null;
+  developer: iUserDeveloper | null;
 }
 
 function ModalFeed({ developer }: iModalFeedProps) {

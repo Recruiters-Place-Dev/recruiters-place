@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { WebContext } from "../../../../../context/webcontext";
 
-
 import {
   ButtonStyled,
   BoxBtn,
@@ -24,7 +23,6 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
   const { register, handleSubmit } = useForm({});
 
   const onSubmit = async (formData: any) => {
-
     try {
       const { data } = await Api.patch(`/users/${user?.id}`, formData);
 
@@ -108,7 +106,7 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
             id="escolaridade"
             register={register}
             label="Escolaridade"
-            defaultValue={user?.escolaridade}
+            defaultValue={user?.schooling}
           />
           <InputDevInfoEdit
             type="text"
