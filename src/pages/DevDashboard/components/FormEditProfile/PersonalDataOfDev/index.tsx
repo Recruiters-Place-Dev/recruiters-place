@@ -1,11 +1,8 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { WebContext } from "../../../../../context/webcontext";
 
-import { InputEditProfile } from "../BoxInput";
 
-import Input from "../../../../../components/Input";
 import {
   ButtonStyled,
   BoxBtn,
@@ -27,7 +24,6 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
   const { register, handleSubmit } = useForm({});
 
   const onSubmit = async (formData: any) => {
-    console.log(formData);
 
     try {
       const { data } = await Api.patch(`/users/${user?.id}`, formData);

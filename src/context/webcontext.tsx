@@ -36,6 +36,7 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    node: boolean;
   };
   id?: number;
 }
@@ -99,11 +100,7 @@ export function WebProvider({ children }: iWebProvider) {
     getAllUsers();
     getAllComents();
     getAllChats();
-
   }, []);
-
-
-
 
   async function loadUser() {
     const token = localStorage.getItem("RPlace:Token");
@@ -116,7 +113,6 @@ export function WebProvider({ children }: iWebProvider) {
         const { data } = await Api.get(`/users/${id}`);
 
         setUser(data);
-
       } catch (error) {
         console.log(error);
         window.localStorage.clear();
@@ -172,28 +168,23 @@ export function WebProvider({ children }: iWebProvider) {
     try {
       const { data } = await Api.post("/login", info);
 
-
       if (data) {
         localStorage.setItem("RPlace:Token", data.accessToken);
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
-       
 
         if (data.user.isRecruiter) {
           navigate("/home");
         } else {
           navigate("/devDashboard");
         }
-
-
       }
     } catch (error: any) {
       toast.success("Combinação de email/senha incorreta");
 
       console.log(error.response.data);
       return false;
-
     }
   }
 

@@ -1,13 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useEffect, useState } from "react";
-import { useForm, UseFormRegister } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { ButtonStyled } from "../PersonalDataOfDev/style";
 import { BoxImgCheckbox } from "./BoxImgCheckbox";
 import schema from "../../../../../validations/editDevTech";
 
 import { WebContext } from "../../../../../context/webcontext";
 
-import { BoxBtns, TechsBox,FormStyled } from "./style";
+import { BoxBtns, TechsBox, FormStyled } from "./style";
 import { iFormEditProfile } from "../types";
 import { Api } from "../../../../../services/api";
 interface iTechOfDev {
@@ -34,20 +34,19 @@ export const TechOfDev = ({ setStep }: iTechOfDev) => {
   console.log(user);
   const {
     register,
-    formState: { errors },
     handleSubmit,
   } = useForm<iFormEditProfile>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-  
+
+
     try {
-      const { data }: any = await Api.patch("/users/5", {
+      const { data }: any = await Api.patch(`/users/${user?.id}`, {
         tech: { ...isActiveTechs },
       });
-     
+
       if (data) {
         setUser(data);
       }

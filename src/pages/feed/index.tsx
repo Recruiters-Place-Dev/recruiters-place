@@ -64,7 +64,7 @@ function Feed() {
     openModalChat,
     setChatId,
   } = useContext<iWebContext>(WebContext);
-  const [modalDeveloper, setModalDeveloper] = useState<iUserDeveloper | null>(null);
+  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
@@ -73,7 +73,7 @@ function Feed() {
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUserDeveloper, index: number) => {
+      {developers?.map((elem: iUser, index: number) => {
         // Object.entries(elem.tech)
         const olhatecnologia = Object.entries(elem.tech);
         const meupau = olhatecnologia.filter((elem) => {

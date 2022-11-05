@@ -1,6 +1,4 @@
-import { useContext } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { WebContext } from "../../context/webcontext";
+import { Outlet } from "react-router-dom";
 
 import { Header } from "./components/Header";
 
