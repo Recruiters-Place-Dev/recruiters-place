@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PerfilRech from "../../components/perfilRech";
 import { WebContext } from "../../context/webcontext";
-import { DevProfile } from "../DevDashboard/components/DevProfile";
+import { DevProfile } from "../DevDashboard/components";
 
 function Perfil() {
   const { user } = useContext(WebContext);

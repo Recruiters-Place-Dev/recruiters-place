@@ -9,7 +9,6 @@ import {
   ContainerInputSend,
 } from "./style";
 import send from "../../assets/send.png";
-import { Api } from "../../services/api";
 
 interface iSend {
   chat: string | undefined;
