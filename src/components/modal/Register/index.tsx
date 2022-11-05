@@ -3,21 +3,25 @@ import {
   UseFormGetValues,
   UseFormHandleSubmit,
   UseFormRegister,
+  UseFormTrigger,
+  FieldErrors,
 } from "react-hook-form";
 import Input from "../../Input";
 import { iProgressProps } from "../../formregister";
 import { iUserRegister } from "../../formregister";
 import { CheckCircle } from "phosphor-react";
-import devTechs from "../../../mockList/devTechs.json";
+import ModalTechs from "./components/techs";
 
 interface iModalProps {
   setShow: (show: boolean) => void;
   progress: iProgressProps;
   setProgress: (progress: iProgressProps) => void;
   register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>;
+  getValues: UseFormGetValues<iUserRegister>;
+  trigger: UseFormTrigger<iUserRegister>;
   handleSubmit: UseFormHandleSubmit<any>;
   fn: (data: iUserRegister) => void;
+  errors: FieldErrors<iUserRegister>;
 }
 
 const ModalRegister = ({
@@ -26,8 +30,10 @@ const ModalRegister = ({
   setProgress,
   register,
   getValues,
+  trigger,
   handleSubmit,
   fn,
+  errors,
 }: iModalProps) => {
   return (
     <ModalContainer progress={progress}>
@@ -91,9 +97,10 @@ const ModalRegister = ({
             <Input
               type="text"
               label="Local"
-              id="local"
+              id="city"
               register={register}
               getValues={getValues}
+              errors={errors.city}
             />
             <Input
               type="text"
@@ -101,6 +108,7 @@ const ModalRegister = ({
               id="schooling"
               register={register}
               getValues={getValues}
+              errors={errors.schooling}
             />
             <Input
               type="text"
@@ -108,6 +116,7 @@ const ModalRegister = ({
               id="vacancy"
               register={register}
               getValues={getValues}
+              errors={errors.vacancy}
             />
             <div className="controls">
               <div className="working">
@@ -116,13 +125,18 @@ const ModalRegister = ({
               </div>
               <button
                 type="button"
-                onClick={() => setProgress({ phase: 3, nextPhase: 4 })}
+                onClick={async () => {
+                  const valid = await trigger(["city", "schooling", "vacancy"]);
+                  if (valid) setProgress({ phase: 3, nextPhase: 4 });
+                }}
               >
                 Avançar
               </button>
               <button
                 type="button"
-                onClick={() => setProgress({ phase: 3, nextPhase: 4 })}
+                onClick={() => {
+                  setProgress({ phase: 3, nextPhase: 4 })
+                }}
               >
                 Pular etapa
               </button>
@@ -138,6 +152,7 @@ const ModalRegister = ({
               id="linkedin"
               register={register}
               getValues={getValues}
+              errors={errors.linkedin}
             />
             <Input
               type="text"
@@ -145,6 +160,7 @@ const ModalRegister = ({
               id="github"
               register={register}
               getValues={getValues}
+              errors={errors.github}
             />
             <Input
               type="text"
@@ -152,17 +168,28 @@ const ModalRegister = ({
               id="portfolio"
               register={register}
               getValues={getValues}
+              errors={errors.portfolio}
             />
             <div className="controls">
               <button
                 type="button"
-                onClick={() => setProgress({ phase: 4, nextPhase: 5 })}
+                onClick={async () => {
+                  console.log(errors)
+                  const valid = await trigger([
+                    "linkedin",
+                    "github",
+                    "portfolio"
+                  ]);
+                  if (valid) setProgress({ phase: 4, nextPhase: 5 });
+                }}
               >
                 Avançar
               </button>
               <button
                 type="button"
-                onClick={() => setProgress({ phase: 4, nextPhase: 5 })}
+                onClick={() => {
+                  setProgress({ phase: 4, nextPhase: 5 })
+                }}
               >
                 Pular etapa
               </button>
@@ -179,20 +206,7 @@ const ModalRegister = ({
           >
             <h2>Tecnologias</h2>
             <div className="techslist">
-              {devTechs.map((el) => {
-                return (
-                  <div key={el.tech}>
-                    <label htmlFor={el.tech} className="container">
-                      <input
-                        type="checkbox"
-                        id={el.tech}
-                        {...register(`tech.${el.tech}`)}
-                      />
-                      <span className={`checkmark tech-${el.tech}`}></span>
-                    </label>
-                  </div>
-                );
-              })}
+              <ModalTechs register={register} />
             </div>
             <button type="submit">Finalizar</button>
           </form>
