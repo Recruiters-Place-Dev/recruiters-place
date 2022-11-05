@@ -1,38 +1,42 @@
 [
   {
     "tech": "angular",
-    "dir": "techs/angular.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-plain.svg"
   },
   {
     "tech": "css",
-    "dir": "techs/css.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
   },
   {
     "tech": "html",
-    "dir": "techs/html.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
   },
   {
     "tech": "js",
-    "dir": "techs/javascript.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
   },
   {
     "tech": "react",
-    "dir": "techs/react.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
   },
   {
     "tech": "vuejs",
-    "dir": "techs/sass.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
   },
   {
     "tech": "ts",
-    "dir": "techs/typescript.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
   },
   {
     "tech": "php",
-    "dir": "techs/sass.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
   },
   {
     "tech": "c",
-    "dir": "techs/typescript.png"
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-plain.svg"
+  },
+  {
+    "tech": "sass",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg"
   }
 ]

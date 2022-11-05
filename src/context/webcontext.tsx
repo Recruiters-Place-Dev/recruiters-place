@@ -34,6 +34,7 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    sass:boolean;
     node: boolean;
   };
   id?: number;

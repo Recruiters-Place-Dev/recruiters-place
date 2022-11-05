@@ -50,6 +50,7 @@ export interface iUserDeveloper {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    sass: boolean
   };
   id?: number;
 }
@@ -71,7 +72,7 @@ function Feed() {
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return (
     <ContainerFeed>
@@ -117,7 +118,10 @@ function Feed() {
               <Techs>
                 {minhasbolas.map((element: any) => {
                   console.log(element.tech);
-                  return <img src={element.dir} alt={element.tech} />;
+                  return <div>
+                    <img src={element.dir} alt={element.tech} />
+                    <span>{element.tech}</span>
+                  </div>
                 })}
               </Techs>
 
