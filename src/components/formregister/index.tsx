@@ -59,31 +59,59 @@ export function FormRegister() {
       .oneOf([yup.ref("password")], "Senha não está igual."),
     isRecruiter: yup.boolean(),
     skipAbout: yup.boolean(),
-    city: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
-    schooling: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
-    vacancy: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
+    city: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    schooling: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    vacancy: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
     isWork: yup.boolean(),
-    linkedin: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
-    github: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
-    portfolio: yup.string().when("isRecruiter", {
-      is: false,
-      then: (schema) => schema.required(),
-    }),
+    skipLinks: yup.boolean(),
+    linkedin: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipLinks", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    github: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipLinks", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    portfolio: yup.string(),
     techs: yup.object(),
   });
 
