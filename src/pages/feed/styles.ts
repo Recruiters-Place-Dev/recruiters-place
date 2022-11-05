@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from 'framer-motion';
 
 export const ContainerFeed = styled.div`
   max-width: 1050px;
@@ -10,7 +11,7 @@ export const ContainerFeed = styled.div`
   gap: 10px;
 `;
 
-export const ContainerDeveloper = styled.div`
+export const ContainerDeveloper = styled(motion.div)`
   width: 90%;
   margin: 10px auto;
   border: 2px solid #1da1f2;

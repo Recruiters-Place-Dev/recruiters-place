@@ -12,7 +12,7 @@
     "dir": "techs/html.png"
   },
   {
-    "tech": "javascript",
+    "tech": "js",
     "dir": "techs/javascript.png"
   },
   {
@@ -20,11 +20,19 @@
     "dir": "techs/react.png"
   },
   {
-    "tech": "sass",
+    "tech": "vuejs",
     "dir": "techs/sass.png"
   },
   {
-    "tech": "typescript",
+    "tech": "ts",
+    "dir": "techs/typescript.png"
+  },
+  {
+    "tech": "php",
+    "dir": "techs/sass.png"
+  },
+  {
+    "tech": "c",
     "dir": "techs/typescript.png"
   }
 ]
