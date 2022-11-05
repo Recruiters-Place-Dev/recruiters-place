@@ -157,16 +157,6 @@ export const FormEditRech = styled.form`
   width: 100%;
   height: 90%;
 
-  .box-btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-    width: 50%;
-    height: 30px;
-  }
-
   div {
     width: 45%;
     min-width: 215px;
@@ -178,9 +168,43 @@ export const FormEditRech = styled.form`
     height: 40px;
   }
 
-  /* input:focus ~ label {
-    transform: translateY(-50%) scale(0.8);
-    background-color: #f5f8fa;
-    padding: 0 0.2em;
-  } */
+  .box-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    width: 50%;
+    height: 60px;
+  }
+
+  button {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+
+    width: 100%;
+    max-width: 331px;
+    height: 40px;
+
+    border-radius: 8px;
+    border: none;
+
+    background: var(--color-primary);
+    color: white;
+
+    transition: 0.4s;
+
+    &:hover {
+      transition: 0.4s;
+
+      box-shadow: 2px 2px 0 0.5px #13117c;
+      transform: translate(-2px, -2px);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 0, inset 2px 2px 2px 0.5px #13117c;
+      transform: translate(2px, 2px);
+    }
+  }
 `;

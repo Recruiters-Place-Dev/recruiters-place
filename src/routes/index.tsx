@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard";
 import { DevDashboard } from "../pages/DevDashboard";
 import { DevProfile } from "../pages/DevDashboard/components/DevProfile";
 import { FormEditProfile } from "../pages/DevDashboard/components/FormEditProfile";
+import Chat from "../pages/chat";
 import Feed from "../pages/feed";
 import { LandingPage } from "../pages/LandingPage";
 import { Login } from "../pages/login";
@@ -27,6 +28,7 @@ function RoutesMain() {
               <Route index element={<Feed />} />
               <Route path="perfil" element={<PerfilRech />} />
             </Route>
+            <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<Navigate to="/home" />} />
           </>
         ) : (

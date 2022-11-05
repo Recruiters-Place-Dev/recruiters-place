@@ -1,7 +1,6 @@
 import Logo from "../../assets/Logo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
-import { RiErrorWarningFill } from "react-icons/ri";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
@@ -29,6 +28,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<iUserLogin>({
     resolver: yupResolver(SchemaLogin),
@@ -49,6 +49,7 @@ export const Login = () => {
               type="text"
               register={register}
               id="email"
+              getValues={getValues}
               login={true}
             />
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
@@ -58,9 +59,9 @@ export const Login = () => {
               register={register}
               id="password"
               login={true}
+              getValues={getValues}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
-
             <button type="submit">Login</button>
             <span>Não tem uma conta ?</span>
             <LinkStyled to="/register">Register</LinkStyled>

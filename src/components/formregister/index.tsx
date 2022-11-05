@@ -3,27 +3,44 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
-import Modal from "../modal";
+import ModalRegister from "../modal/Register";
 import { useState } from "react";
 
 export interface iUserRegister {
   name: string;
   email: string;
-  local?: string;
+  city?: string;
   schooling?: string;
   vacancy?: string;
   password: string;
   checkpass: string;
-  recruiter: boolean;
+  isRecruiter: boolean;
+  isWork?: boolean;
   linkedin?: string;
   github?: string;
-  cv?: string;
+  portfolio?: string;
+  tech?:{
+		html: boolean,
+		css: boolean,
+		js: boolean,
+		react: boolean,
+		ts: boolean,
+		angular: boolean,
+		vuejs: boolean,
+		php: boolean,
+		c: boolean
+	}
+}
+
+export interface iProgressProps {
+  phase: number;
+  nextPhase: number | null;
 }
 
 export function FormRegister() {
   const [show, setShow] = useState<boolean>(false);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [progress, setProgress] = useState({
+  const [progress, setProgress] = useState<iProgressProps>({
     phase: 1,
     nextPhase: 2,
   });
@@ -64,6 +81,7 @@ export function FormRegister() {
             label="Nome"
             id="name"
             register={register}
+            getValues={getValues}
             errors={errors.name}
           />
           <Input
@@ -71,6 +89,7 @@ export function FormRegister() {
             label="Email"
             id="email"
             register={register}
+            getValues={getValues}
             errors={errors.email}
           />
           <Input
@@ -78,6 +97,7 @@ export function FormRegister() {
             label="Senha"
             id="password"
             register={register}
+            getValues={getValues}
             errors={errors.password}
           />
           <Input
@@ -85,6 +105,7 @@ export function FormRegister() {
             label="Confirmar Senha"
             id="checkpass"
             register={register}
+            getValues={getValues}
             errors={errors.checkpass}
           />
         </div>
@@ -96,14 +117,14 @@ export function FormRegister() {
             }}
             type="checkbox"
             id="recruiter"
-            {...register("recruiter")}
+            {...register("isRecruiter")}
           />
         </div>
         <button
           type={isSubmit ? "submit" : "button"}
           onClick={() => {
             if (!isSubmit) {
-              const isRecruiter = getValues("recruiter");
+              const isRecruiter = getValues("isRecruiter");
 
               if (!isRecruiter) {
                 setShow(true);
@@ -116,11 +137,14 @@ export function FormRegister() {
         </button>
       </RegisterForm>
       {show && (
-        <Modal
+        <ModalRegister
           setShow={setShow}
           progress={progress}
           setProgress={setProgress}
           register={register}
+          getValues={getValues}
+          handleSubmit={handleSubmit}
+          fn={fakeFunction}
         />
       )}
     </>
