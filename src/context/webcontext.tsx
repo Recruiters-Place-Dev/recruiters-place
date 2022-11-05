@@ -69,6 +69,8 @@ export interface iWebContext {
   setChatId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitChat: (data: iChat) => void;
   allChats: iChat[];
+  callId: string | undefined;
+  setCallId: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -85,6 +87,7 @@ export function WebProvider({ children }: iWebProvider) {
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
   const [chatId, setChatId] = useState();
+  const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
   const inputPassRef = useRef();
@@ -318,6 +321,8 @@ export function WebProvider({ children }: iWebProvider) {
         setChatId,
         onSubmitChat,
         allChats,
+        callId,
+        setCallId,
       }}
     >
       {children}
