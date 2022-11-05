@@ -24,9 +24,9 @@ export interface iEditRech {
 }
 
 const PerfilRech = () => {
-  const {boxEdit, setBoxEdit} = useContext(WebContext);
+  const { boxEdit, setBoxEdit } = useContext(WebContext);
   const { editSubmit, user, inputPassRef } = useContext(WebContext);
-
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -57,6 +57,7 @@ const PerfilRech = () => {
         <ContainerContent>
           <h2>{user?.name}</h2>
           <p>Tech Recruiter</p>
+          {user?.empresa && <p>{user.empresa}</p>}
           {user?.linkedin && <a href={user?.linkedin}>Linkedin</a>}
         </ContainerContent>
         <SlPencil

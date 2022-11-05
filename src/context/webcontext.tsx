@@ -17,6 +17,7 @@ export interface iUser {
   city: string | undefined;
   schooling?: string | undefined;
   cargo?: string | undefined;
+  empresa: string | undefined;
   isWork?: boolean | undefined;
   linkedin: string | undefined;
   github?: string | undefined;
@@ -209,7 +210,6 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   async function onSubmitComent(data: iComent) {
-
     data.idTo = comentId;
     data.idFrom = String(user?.id);
 
@@ -221,8 +221,8 @@ export function WebProvider({ children }: iWebProvider) {
         await Api.post(`/coments`, data);
 
         setAllComents([...allComents, data]);
-        setModalWriteComent(false)
-        // readModalComent()
+        setModalWriteComent(false);
+        toast.success("Comentário enviado.");
       } catch (error) {
         console.log(error);
       }
