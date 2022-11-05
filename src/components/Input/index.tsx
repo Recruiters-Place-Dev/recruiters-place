@@ -52,7 +52,7 @@ const Input = ({
         }}
         onBlur={onBlur}
         name={name}
-        // ref={ref}
+        ref={ref}
       />
       <label>{label}</label>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}

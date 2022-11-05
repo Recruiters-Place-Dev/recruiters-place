@@ -57,7 +57,6 @@ const PerfilRech = () => {
         </ContainerProfile>
         <ContainerContent>
           <h2>{user?.name}</h2>
-          <p>Tech Recruiter</p>
           {user?.empresa && <p>{user.empresa}</p>}
           {user?.linkedin && <a href={user?.linkedin}>Linkedin</a>}
         </ContainerContent>
