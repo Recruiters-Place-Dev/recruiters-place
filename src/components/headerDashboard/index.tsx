@@ -16,7 +16,7 @@ function HeaderDashboard() {
 
   function closeFilter() {
     setFilter(false);
-    navigate("/perfil");
+    navigate("perfil");
   }
 
   return (
@@ -30,6 +30,7 @@ function HeaderDashboard() {
                 <button
                   onClick={() => {
                     setFilter(!filter);
+                    navigate("/home")
                   }}
                 >
                   Encontrar Devs

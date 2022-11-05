@@ -1,6 +1,7 @@
-import { Navigate } from "react-router-dom";
-import Dashboard from "../../pages/dashboard";
+import { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { WebContext } from "../../context/webcontext";
 
 export const PrivateRoutes = () => {
-  return true ? <Dashboard /> : <Navigate to="/landingPage" replace />;
+  return true ? <Outlet /> : <Navigate to="/landingPage" replace />;
 };

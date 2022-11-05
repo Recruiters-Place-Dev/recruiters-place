@@ -4,7 +4,7 @@ import { WebContext } from "../../context/webcontext";
 
 function Perfil() {
   const { user } = useContext(WebContext);
-  return <div>{user?.isRecruiter ? <PerfilRech /> : <h3>Perfil Dev</h3>}</div>;
+  return <PerfilRech />;
 }
 
 export default Perfil;
