@@ -7,7 +7,7 @@ import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
 
-interface iWebProvider {
+export interface iWebProvider {
   children: ReactNode;
 }
 

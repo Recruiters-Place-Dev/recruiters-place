@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { iUser, WebContext } from "../../context/webcontext";
-import { ButtonSendChat, FormChatContainer } from "./style";
+import { ButtonStylized } from "../buttons/style";
+import { FormChatContainer } from "./style";
 
 export interface iChat {
   from: string | undefined;
@@ -38,7 +39,7 @@ function FormChat() {
         />
       </div>
       <textarea id="" {...register("chat")}></textarea>
-      <ButtonSendChat type="submit">Enviar</ButtonSendChat>
+      <ButtonStylized type="submit">Enviar</ButtonStylized>
     </FormChatContainer>
   );
 }
