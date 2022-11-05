@@ -160,6 +160,19 @@ const ModalContainer = styled.div<iModalContainerProps>`
             font-size: 20px;
           }
         }
+
+        button:last-of-type {
+          position: relative;
+
+          input {
+            cursor: pointer;
+            position: absolute;
+            width: 100%;
+            height: 22px;
+            left: 0;
+            opacity: 0;
+          }
+        }
       }
     }
 
