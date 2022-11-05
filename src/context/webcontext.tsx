@@ -118,7 +118,9 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
+
         const { data } = await Api.get(`/users/`);
+
 
         setAllUsers(data);
       } catch (error) {
