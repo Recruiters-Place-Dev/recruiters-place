@@ -23,10 +23,8 @@ export interface iUser {
   linkedin: string | undefined;
   github?: string | undefined;
   portfolio?: string | undefined;
-  fotoDoPerfil: string | undefined;
-  escolaridade: string | undefined;
   bio?: string | undefined;
-  tech: {
+  tech?: {
     html: boolean;
     css: boolean;
     js: boolean;
@@ -39,6 +37,7 @@ export interface iUser {
     node: boolean;
   };
   id?: number;
+  fotoDoPerfil?: string;
 }
 
 export interface iWebContext {
@@ -62,6 +61,7 @@ export interface iWebContext {
   onSubmitComent: (data: iComent) => void;
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  inputPassRef: React.MutableRefObject<undefined>;
   allComents: iComent[];
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
   openModalChat: () => void | undefined;
@@ -71,6 +71,8 @@ export interface iWebContext {
   setChatId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitChat: (data: iChat) => void;
   allChats: iChat[];
+  callId: string | undefined;
+  setCallId: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -87,14 +89,13 @@ export function WebProvider({ children }: iWebProvider) {
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
   const [chatId, setChatId] = useState();
+  const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
-
-  console.log(user);
+  const inputPassRef = useRef();
 
   useEffect(() => {
     loadUser();
-
     getAllUsers();
     getAllComents();
     getAllChats();
@@ -107,7 +108,6 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-
         const { data } = await Api.get(`/users/${id}`);
 
         setUser(data);
@@ -171,12 +171,7 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
-
-        if (data.user.isRecruiter) {
-          navigate("/home");
-        } else {
-          navigate("/devDashboard");
-        }
+        navigate("/home");
       }
     } catch (error: any) {
       toast.success("Combinação de email/senha incorreta");
@@ -207,7 +202,7 @@ export function WebProvider({ children }: iWebProvider) {
 
           await Api.patch(`/users/${id}`, info);
 
-          // setUser({ ...user, ...info });
+          setUser({ ...user, ...info });
           setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");
@@ -319,6 +314,7 @@ export function WebProvider({ children }: iWebProvider) {
         onSubmitComent,
         boxEdit,
         setBoxEdit,
+        inputPassRef,
         allComents,
         openModalChat,
         setModalChat,
@@ -327,6 +323,8 @@ export function WebProvider({ children }: iWebProvider) {
         setChatId,
         onSubmitChat,
         allChats,
+        callId,
+        setCallId,
       }}
     >
       {children}

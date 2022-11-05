@@ -25,7 +25,7 @@ import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
-interface iUserDeveloper {
+export interface iUserDeveloper {
   email: string;
   name: string;
   isRecruiter?: boolean;
@@ -64,7 +64,9 @@ function Feed() {
     openModalChat,
     setChatId,
   } = useContext<iWebContext>(WebContext);
-  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
+  const [modalDeveloper, setModalDeveloper] = useState<iUserDeveloper | null>(
+    null
+  );
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
@@ -73,7 +75,7 @@ function Feed() {
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUser, index: number) => {
+      {developers?.map((elem: iUserDeveloper, index: number) => {
         // Object.entries(elem.tech)
         const olhatecnologia = Object.entries(elem.tech);
         const meupau = olhatecnologia.filter((elem) => {

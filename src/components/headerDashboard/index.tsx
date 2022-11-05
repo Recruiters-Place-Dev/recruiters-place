@@ -14,9 +14,13 @@ function HeaderDashboard() {
     navigate("/");
   }
 
-  function closeFilter() {
+  function goToPerfil() {
     setFilter(false);
     navigate("perfil");
+  }
+  function goToChat() {
+    setFilter(false);
+    navigate("chat");
   }
 
   return (
@@ -27,19 +31,22 @@ function HeaderDashboard() {
           <nav>
             <ul>
               <li>
+                <button onClick={() => goToPerfil()}>Perfil</button>
+                <span className="spanBorder"></span>
+              </li>
+              <li>
+                <button onClick={() => goToChat()}>Mensagens</button>
+                <span className="spanBorder"></span>
+              </li>
+              <li>
                 <button
                   onClick={() => {
                     setFilter(!filter);
-                    navigate("/home")
                   }}
                 >
                   Encontrar Devs
                   <span className="spanBorder"></span>
                 </button>
-              </li>
-              <li>
-                <button onClick={() => closeFilter()}>Perfil</button>
-                <span className="spanBorder"></span>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>
