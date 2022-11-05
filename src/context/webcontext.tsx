@@ -23,8 +23,10 @@ export interface iUser {
   linkedin: string | undefined;
   github?: string | undefined;
   portfolio?: string | undefined;
+  fotoDoPerfil: string | undefined;
+  escolaridade: string | undefined;
   bio?: string | undefined;
-  tech?: {
+  tech: {
     html: boolean;
     css: boolean;
     js: boolean;
@@ -34,6 +36,7 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    node: boolean;
   };
   id?: number;
 }
@@ -92,8 +95,11 @@ export function WebProvider({ children }: iWebProvider) {
   const navigate = useNavigate();
   const inputPassRef = useRef();
 
+  console.log(user);
+
   useEffect(() => {
     loadUser();
+
     getAllUsers();
     getAllComents();
     getAllChats();
@@ -106,6 +112,7 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
+
         const { data } = await Api.get(`/users/${id}`);
 
         setUser(data);
@@ -169,7 +176,12 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
-        navigate("/home");
+
+        if (data.user.isRecruiter) {
+          navigate("/home");
+        } else {
+          navigate("/devDashboard");
+        }
       }
     } catch (error: any) {
       toast.success("Combinação de email/senha incorreta");
@@ -200,7 +212,7 @@ export function WebProvider({ children }: iWebProvider) {
 
           await Api.patch(`/users/${id}`, info);
 
-          setUser({ ...user, ...info });
+          // setUser({ ...user, ...info });
           setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");

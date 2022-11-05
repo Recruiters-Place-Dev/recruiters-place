@@ -37,6 +37,8 @@ interface iUserDeveloper {
   linkedin: string | undefined;
   github?: string | undefined;
   portfolio?: string | undefined;
+  fotoDoPerfil: string | undefined;
+  escolaridade: string | undefined;
   bio?: string | undefined;
   tech: {
     html: boolean;
@@ -71,7 +73,7 @@ function Feed() {
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUserDeveloper, index: number) => {
+      {developers?.map((elem: iUser, index: number) => {
         // Object.entries(elem.tech)
         const olhatecnologia = Object.entries(elem.tech);
         const meupau = olhatecnologia.filter((elem) => {
