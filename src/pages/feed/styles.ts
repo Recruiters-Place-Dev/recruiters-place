@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export const ContainerFeed = styled.div`
   max-width: 1050px;
@@ -77,12 +77,33 @@ export const Techs = styled.div`
   display: flex;
   gap: 5px;
   & div {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
     & img {
       min-width: 35px;
       min-height: 35px;
       aspect-ratio: 1/1;
+    }
+    & span {
+      display: none;
+    }
+  }
+  & div:hover {
+    position: relative;
+    & img {
+      transform: scale(1.1);
+    }
+    & span {
+      width: 80px;
+      text-align: center;
+      display: block;
+      position: absolute;
+      top: -25px;
+      background-color: #14171a;
+      color: var(--white);
+      font-size: 18px;
+      font-family: "Roboto";
+      border-radius: 20px
     }
   }
 `;
