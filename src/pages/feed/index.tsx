@@ -1,12 +1,8 @@
-import {
-  MouseEventHandler,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { useContext, useEffect, useState } from "react";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import ChatImg from "../../assets/ant-design_file-search-outlined.svg";
 import Vermais from "../../assets/bi_chat-dots-fill.svg";
+import duoChat from "../../assets/chat.png";
 import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   ContainerDeveloper,
@@ -25,13 +21,47 @@ import {
 import techList from "../../mockList/devTechs.json";
 import ModalFeed from "../../components/modalFeed";
 import ModalComent from "../../components/modal/coment/duality";
-import { ModalComentReadContainer } from "../../components/modal/coment/read/style";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
+import ModalChat from "../../components/modal/chat";
+
+interface iUserDeveloper {
+  email: string;
+  name: string;
+  isRecruiter?: boolean;
+  city: string | undefined;
+  schooling?: string | undefined;
+  cargo?: string | undefined;
+  empresa: string | undefined;
+  isWork?: boolean | undefined;
+  linkedin: string | undefined;
+  github?: string | undefined;
+  portfolio?: string | undefined;
+  bio?: string | undefined;
+  tech: {
+    html: boolean;
+    css: boolean;
+    js: boolean;
+    react: boolean;
+    ts: boolean;
+    angular: boolean;
+    vuejs: boolean;
+    php: boolean;
+    c: boolean;
+  };
+  id?: number;
+}
 
 function Feed() {
-  const { allUsers, openModalFeed, openModalComent, setComentId } =
-    useContext<iWebContext>(WebContext);
+  const {
+    allUsers,
+    openModalFeed,
+    openModalComent,
+    setComentId,
+    user,
+    openModalChat,
+    setChatId,
+  } = useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const developers = allUsers?.filter(
@@ -41,9 +71,24 @@ function Feed() {
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUser, index: number) => {
+      {developers?.map((elem: iUserDeveloper, index: number) => {
+        // Object.entries(elem.tech)
+        const olhatecnologia = Object.entries(elem.tech);
+        const meupau = olhatecnologia.filter((elem) => {
+          return elem[1] === true;
+        });
+
+        const minhasbolas = meupau.map((elem) => {
+          return techList.find((E) => elem[0] === E.tech);
+        });
+
         return (
-          <ContainerDeveloper key={index}>
+          <ContainerDeveloper
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            key={index}
+          >
             <DivDevelopersInfo>
               <Figure>
                 <img src={FotoPerfil} alt="Foto de Perfil" />
@@ -66,17 +111,28 @@ function Feed() {
 
             <DivDevelopersTech>
               <Techs>
-                {techList.map((devTech) => (
-                  <div>
-                    <img src={devTech.dir} alt="devTech.tech" />
-                  </div>
-                ))}
+                {minhasbolas.map((element: any) => {
+                  console.log(element.tech);
+                  return <img src={element.dir} alt={element.tech} />;
+                })}
               </Techs>
 
               <Contato>
+                {user?.isRecruiter && (
+                  <img
+                    src={duoChat}
+                    alt="chat"
+                    id={elem.id + ""}
+                    onClick={(event) => {
+                      setChatId((event.target as HTMLImageElement).id);
+                      openModalChat();
+                    }}
+                  />
+                )}
+
                 <img
                   src={Vermais}
-                  alt="chat"
+                  alt="coments"
                   id={elem.id + ""}
                   onClick={(event) => {
                     setComentId((event.target as HTMLImageElement).id);
@@ -85,7 +141,7 @@ function Feed() {
                 />
                 <img
                   src={ChatImg}
-                  alt="chat"
+                  alt="perfil"
                   id={elem.id + ""}
                   onClick={() => {
                     openModalFeed();
@@ -94,13 +150,15 @@ function Feed() {
                 />
               </Contato>
             </DivDevelopersTech>
+            <ModalFeed developer={modalDeveloper} />
           </ContainerDeveloper>
         );
       })}
-      <ModalFeed developer={modalDeveloper} />
+
       <ModalComent />
       <ReadComent />
       <WriteComent />
+      <ModalChat />
     </ContainerFeed>
   );
 }

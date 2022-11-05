@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from 'framer-motion';
 
 export const ContainerFeed = styled.div`
   max-width: 1050px;
@@ -10,7 +11,7 @@ export const ContainerFeed = styled.div`
   gap: 10px;
 `;
 
-export const ContainerDeveloper = styled.div`
+export const ContainerDeveloper = styled(motion.div)`
   width: 90%;
   margin: 10px auto;
   border: 2px solid #1da1f2;
@@ -75,14 +76,14 @@ export const Techs = styled.div`
   height: 30%;
   display: flex;
   gap: 5px;
-  & div{
+  & div {
     width: 10px;
     height: 10px;
     & img {
-    min-width: 35px;
-    min-height: 35px;
-    aspect-ratio: 1/1;
-  }
+      min-width: 35px;
+      min-height: 35px;
+      aspect-ratio: 1/1;
+    }
   }
 `;
 export const Contato = styled.div`
@@ -93,5 +94,10 @@ export const Contato = styled.div`
 
   & img {
     cursor: pointer;
+    width: 40px;
+  }
+  svg {
+    cursor: pointer;
+    color: blue;
   }
 `;

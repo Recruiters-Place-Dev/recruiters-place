@@ -1,10 +1,11 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useRef, useState } from "react";
 import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
 import { iEditRech } from "../components/perfilRech";
 import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
+import { iChat } from "../components/formChat";
 
 interface iWebProvider {
   children: ReactNode;
@@ -17,6 +18,7 @@ export interface iUser {
   city: string | undefined;
   schooling?: string | undefined;
   cargo?: string | undefined;
+  empresa: string | undefined;
   isWork?: boolean | undefined;
   linkedin: string | undefined;
   github?: string | undefined;
@@ -55,7 +57,18 @@ export interface iWebContext {
   comentId: string | undefined;
   setComentId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitComent: (data: iComent) => void;
-  allComents: iComent[] | undefined;
+  boxEdit: boolean;
+  setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  inputPassRef: React.MutableRefObject<undefined>;
+  allComents: iComent[];
+  setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
+  openModalChat: () => void | undefined;
+  setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
+  modalChat: boolean;
+  chatId: string | undefined;
+  setChatId: React.Dispatch<React.SetStateAction<any>>;
+  onSubmitChat: (data: iChat) => void;
+  allChats: iChat[];
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -63,18 +76,24 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
-  const [allComents, setAllComents] = useState();
+  const [allComents, setAllComents] = useState<iComent[]>([]);
+  const [allChats, setAllChats] = useState<iChat[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
+  const [modalChat, setModalChat] = useState(false);
   const [modalReadComent, setModalReadComent] = useState(false);
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
+  const [chatId, setChatId] = useState();
+  const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
+  const inputPassRef = useRef();
 
   useEffect(() => {
     loadUser();
     getAllUsers();
     getAllComents();
+    getAllChats();
   }, []);
 
   async function loadUser() {
@@ -99,6 +118,7 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
+
         const { data } = await Api.get(`/users/`);
 
         setAllUsers(data);
@@ -107,6 +127,7 @@ export function WebProvider({ children }: iWebProvider) {
       }
     }
   }
+
   async function getAllComents() {
     const token = localStorage.getItem("RPlace:Token");
 
@@ -116,6 +137,20 @@ export function WebProvider({ children }: iWebProvider) {
         const { data } = await Api.get(`/coments`);
 
         setAllComents(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  async function getAllChats() {
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const { data } = await Api.get(`/chat`);
+
+        setAllChats(data);
       } catch (error) {
         console.log(error);
       }
@@ -163,12 +198,15 @@ export function WebProvider({ children }: iWebProvider) {
           await Api.patch(`/users/${id}`, info);
 
           setUser({ ...user, ...info });
+          setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");
         } catch (error) {
           console.log(error);
         }
       }
+    } else {
+      toast.warning("Nenhum campo foi alterado");
     }
   }
 
@@ -188,10 +226,19 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function openModalChat(): void {
+    if (modalChat) {
+      setModalChat(false);
+    } else {
+      setModalChat(true);
+    }
+  }
+
   function readModalComent(): void {
     openModalComent();
     setModalReadComent(true);
   }
+
   function writeModalComent(): void {
     openModalComent();
     setModalWriteComent(true);
@@ -207,7 +254,31 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.post(`/coments`, data);
-        console.log(data);
+
+        setAllComents([...allComents, data]);
+        setModalWriteComent(false);
+        toast.success("Comentário enviado.");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async function onSubmitChat(data: iChat) {
+    data.idTo = chatId;
+    data.idFrom = String(user?.id);
+    data.isRead = false;
+
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/chat`, data);
+
+        setAllChats([...allChats, data]);
+        setModalChat(false);
+        toast.success("Mensagem enviada.");
       } catch (error) {
         console.log(error);
       }
@@ -226,6 +297,7 @@ export function WebProvider({ children }: iWebProvider) {
         modalFeed,
         openModalComent,
         modalComent,
+        setModalComent,
         readModalComent,
         modalReadComent,
         setModalReadComent,
@@ -235,7 +307,17 @@ export function WebProvider({ children }: iWebProvider) {
         comentId,
         setComentId,
         onSubmitComent,
+        boxEdit,
+        setBoxEdit,
+        inputPassRef,
         allComents,
+        openModalChat,
+        setModalChat,
+        modalChat,
+        chatId,
+        setChatId,
+        onSubmitChat,
+        allChats,
       }}
     >
       {children}

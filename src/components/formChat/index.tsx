@@ -1,27 +1,24 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { iUser, WebContext } from "../../context/webcontext";
-import { ButtonSendComent, FormContainer } from "./style";
+import { ButtonSendChat, FormChatContainer } from "./style";
 
-export interface iComent {
+export interface iChat {
   from: string | undefined;
   to: string | undefined;
   idTo: string | undefined;
   idFrom: string | undefined;
-  coment: string | undefined;
+  chat: string | undefined;
+  isRead: boolean | undefined;
 }
 
-function FormMessage() {
-  const {
-    onSubmitComent,
-    user,
-    comentId,
-    allUsers,
-  } = useContext(WebContext);
-  const { register, handleSubmit } = useForm<iComent>({});
+function FormChat() {
+  const { user, chatId, allUsers, onSubmitChat } = useContext(WebContext);
+
+  const { register, handleSubmit } = useForm<iChat>({});
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmitComent)}>
+    <FormChatContainer onSubmit={handleSubmit(onSubmitChat)}>
       <div>
         <h3>De: </h3>
         <input type="text" value={user?.name} {...register("from")} />
@@ -31,7 +28,7 @@ function FormMessage() {
         <input
           type="text"
           value={allUsers?.reduce((acc, act: iUser) => {
-            if (act.id === Number(comentId)) {
+            if (act.id === Number(chatId)) {
               return acc + act.name;
             } else {
               return acc + "";
@@ -40,10 +37,10 @@ function FormMessage() {
           {...register("to")}
         />
       </div>
-      <textarea id="" {...register("coment")}></textarea>
-      <ButtonSendComent type="submit">Enviar</ButtonSendComent>
-    </FormContainer>
+      <textarea id="" {...register("chat")}></textarea>
+      <ButtonSendChat type="submit">Enviar</ButtonSendChat>
+    </FormChatContainer>
   );
 }
 
-export default FormMessage;
+export default FormChat;
