@@ -9,13 +9,16 @@ import close from "../../../../assets/close.png";
 import FormMessage from "../../../formMessage";
 
 function WriteComent() {
-  const { modalWriteComent, setModalWriteComent } = useContext(WebContext);
+  const { modalWriteComent, setModalComent, setModalWriteComent } = useContext(WebContext);
 
   return modalWriteComent ? (
     <ModalComentWriteContainer>
       <div>
         <ModalComentWriteContainerButton
-          onClick={() => setModalWriteComent(!modalWriteComent)}
+          onClick={() => {
+            setModalWriteComent(!modalWriteComent);
+            setModalComent(true)
+          }}
         >
           <img src={close} alt="" />
         </ModalComentWriteContainerButton>

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useRef, useState } from "react";
 import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
@@ -55,7 +55,11 @@ export interface iWebContext {
   comentId: string | undefined;
   setComentId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitComent: (data: iComent) => void;
-  allComents: iComent[] | undefined;
+  boxEdit: boolean;
+  setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  inputPassRef: React.MutableRefObject<undefined>;
+  allComents: iComent[];
+  setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -63,13 +67,15 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState();
-  const [allComents, setAllComents] = useState();
+  const [allComents, setAllComents] = useState<iComent[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
   const [modalReadComent, setModalReadComent] = useState(false);
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
+  const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
+  const inputPassRef = useRef();
 
   useEffect(() => {
     loadUser();
@@ -107,6 +113,7 @@ export function WebProvider({ children }: iWebProvider) {
       }
     }
   }
+
   async function getAllComents() {
     const token = localStorage.getItem("RPlace:Token");
 
@@ -163,12 +170,15 @@ export function WebProvider({ children }: iWebProvider) {
           await Api.patch(`/users/${id}`, info);
 
           setUser({ ...user, ...info });
+          setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");
         } catch (error) {
           console.log(error);
         }
       }
+    } else {
+      toast.warning("Nenhum campo foi alterado");
     }
   }
 
@@ -192,12 +202,14 @@ export function WebProvider({ children }: iWebProvider) {
     openModalComent();
     setModalReadComent(true);
   }
+
   function writeModalComent(): void {
     openModalComent();
     setModalWriteComent(true);
   }
 
   async function onSubmitComent(data: iComent) {
+
     data.idTo = comentId;
     data.idFrom = String(user?.id);
 
@@ -207,7 +219,10 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.post(`/coments`, data);
-        console.log(data);
+
+        setAllComents([...allComents, data]);
+        setModalWriteComent(false)
+        // readModalComent()
       } catch (error) {
         console.log(error);
       }
@@ -226,6 +241,7 @@ export function WebProvider({ children }: iWebProvider) {
         modalFeed,
         openModalComent,
         modalComent,
+        setModalComent,
         readModalComent,
         modalReadComent,
         setModalReadComent,
@@ -235,6 +251,9 @@ export function WebProvider({ children }: iWebProvider) {
         comentId,
         setComentId,
         onSubmitComent,
+        boxEdit,
+        setBoxEdit,
+        inputPassRef,
         allComents,
       }}
     >

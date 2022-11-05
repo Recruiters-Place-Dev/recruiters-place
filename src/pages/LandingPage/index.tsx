@@ -67,7 +67,7 @@ export const LandingPage = () => {
 
                   <LinkStyled to="/login">Login</LinkStyled>
                   <TextAuth>Caso não tenha uma conta</TextAuth>
-                  <LinkStyled to="/register">Cadastro</LinkStyled>
+                  <LinkStyled to="/register">Register</LinkStyled>
                 </>
               )}
             </ContainerRedirect>

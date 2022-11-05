@@ -6,15 +6,17 @@ import close from "../../../../assets/close.png";
 import { ModalComentWriteContainerButton } from "../write/style";
 
 function ReadComent() {
-  const { modalReadComent, setModalReadComent, allComents, comentId, user } =
+  const { modalReadComent, setModalComent, setModalReadComent, allComents, comentId, user } =
     useContext(WebContext);
 
-  console.log(allComents);
   return modalReadComent ? (
     <ModalComentReadContainer>
       <div>
         <ModalComentWriteContainerButton
-          onClick={() => setModalReadComent(!modalReadComent)}
+          onClick={() => {
+            setModalReadComent(!modalReadComent);
+            setModalComent(true)
+          }}
         >
           <img src={close} alt="" />
         </ModalComentWriteContainerButton>
