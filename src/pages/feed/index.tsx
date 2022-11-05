@@ -48,6 +48,7 @@ interface iUserDeveloper {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    sass: boolean
   };
   id?: number;
 }
