@@ -17,6 +17,8 @@ function RoutesMain() {
       <Route path="/register" element={<Register />} />
 
       <Route element={<PrivateRoutes />}>
+
+
         <Route path="/home" element={<Feed />} />
         <Route path="/perfil" element={<Perfil />} />
 

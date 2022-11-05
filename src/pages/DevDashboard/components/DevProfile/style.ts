@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
-
 export const SectionProfile = styled.section`
   width: 60%;
   background: #f5f8fa;
@@ -25,7 +23,7 @@ export const LinkEdit = styled(Link)`
   top: 2rem;
   right: 2rem;
   cursor: pointer;
-`
+`;
 
 export const ListTech = styled.ul`
   display: flex;
@@ -57,25 +55,25 @@ export const NavLink = styled.nav`
 export const BioBox = styled.div`
   grid-row: 2/3;
   grid-template-columns: 2/3;
+`;
 
-  p {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 28px;
-    display: flex;
-    align-items: center;
-    color: #14171a;
-    text-align: justify;
-  }
+export const Bio = styled.p`
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: #14171a;
+  text-align: justify;
 `;
 
 export const DevInfoBox = styled.div`
   grid-column: 1/1;
   grid-row: 1/3;
 
-  div{
+  div {
     margin-top: 1rem;
     margin-bottom: 2rem;
     margin-right: 1rem;
@@ -121,4 +119,15 @@ export const TextInfoDev = styled.p`
   display: flex;
   align-items: center;
   color: #14171a;
+`;
+
+export const EmptyBio = styled.p`
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: #e95814;
 `;

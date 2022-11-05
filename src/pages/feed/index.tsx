@@ -6,7 +6,7 @@ function Feed() {
 
   useEffect(() => {}, []);
 
-  return <div></div>;
+  return <div>Feed</div>;
 }
 
 export default Feed;

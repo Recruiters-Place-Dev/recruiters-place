@@ -1,24 +1,63 @@
-import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext, useEffect, useState } from "react";
+import { useForm, UseFormRegister } from "react-hook-form";
 import { ButtonStyled } from "../PersonalDataOfDev/style";
 import { BoxImgCheckbox } from "./BoxImgCheckbox";
+import schema from "../../../../../validations/editDevTech";
+
+import { WebContext } from "../../../../../context/webcontext";
 
 import { BoxBtns, TechsBox } from "./style";
+import { iFormEditProfile } from "../types";
+import { Api } from "../../../../../services/api";
 interface iTechOfDev {
   setStep: any;
-  register: UseFormRegister<any>;
-  setIsActiveTechs: any;
-  isActiveTechs: any;
 }
-export const TechOfDev = ({
-  setStep,
-  register,
-  setIsActiveTechs,
-  isActiveTechs,
-}: iTechOfDev) => {
+export const TechOfDev = ({ setStep }: iTechOfDev) => {
+  const { user, setUser } = useContext(WebContext);
+
+  const [isActiveTechs, setIsActiveTechs] = useState<any>({
+    html: false,
+    css: false,
+    js: false,
+    react: false,
+    ts: false,
+    angular: false,
+    node: false,
+    vue: false,
+  });
+
+  useEffect(() => {
+    setIsActiveTechs(user?.tech);
+  }, []);
+
+  console.log(user);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<iFormEditProfile>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (data: any) => {
+    console.log(data);
+  
+    try {
+      const { data }: any = await Api.patch("/users/5", {
+        tech: { ...isActiveTechs },
+      });
+     
+      if (data) {
+        setUser(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <TechsBox>
         <BoxImgCheckbox
           setIsActiveTechs={setIsActiveTechs}
@@ -67,16 +106,16 @@ export const TechOfDev = ({
         />
         <BoxImgCheckbox
           setIsActiveTechs={setIsActiveTechs}
-          id="vue"
+          id="vuejs"
           register={register}
-          isActive={isActiveTechs.vue}
+          isActive={isActiveTechs.vuejs}
         />
       </TechsBox>
 
       <BoxBtns>
         <ButtonStyled onClick={() => setStep(1)}>Voltar</ButtonStyled>
-        <ButtonStyled type="submit">Salver Alterações</ButtonStyled>
+        <ButtonStyled type="submit">Salvar</ButtonStyled>
       </BoxBtns>
-    </>
+    </form>
   );
 };

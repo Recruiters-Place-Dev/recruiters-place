@@ -37,9 +37,7 @@ export const BoxInput = styled.div`
     padding: 0 0.2em;
   }
 
-  input:valid ~ label {
-    color: red;
-  }
+ 
   input {
     border: 1px solid #14171a;
     color: #14171a;
@@ -50,34 +48,3 @@ export const BoxInput = styled.div`
   }
 `;
 
-// .input-box input {
-//   width: 100%;
-//   padding: 10px 0;
-//   font-size: 20px;
-//   margin-bottom: 30px;
-//   border: none;
-//   color: var(--text-color);
-//   border-bottom: 1px solid var(--text-color);
-//   outline: none;
-//   background: transparent;
-
-// }
-
-// .input-box label {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   padding: 10px 0;
-//   font-size: 20px;
-//   pointer-events: none;
-//   transition: 0.5s;
-// }
-
-// .input-box input:focus ~ label,
-// .input-box input:valid ~ label {
-//   top: -30px;
-//   left: 0;
-//   color: #03e9f4;
-//   font-size: 18px;
-//   font-weight: 700;
-// }

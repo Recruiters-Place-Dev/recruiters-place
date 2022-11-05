@@ -9,6 +9,8 @@ import {
   TextWork,
   TextInfoDev,
   LinkEdit,
+  EmptyBio,
+  Bio
 } from "./style";
 
 import css from "../../assets/css.png";
@@ -20,58 +22,64 @@ import react from "../../assets/react.svg";
 import ts from "../../assets/ts.svg";
 import node from "../../assets/node.png";
 import angular from "../../assets/angular.svg";
-import vue from "../../assets/vue.png";
+import vuejs from "../../assets/vue.png";
 import { useContext } from "react";
 import { WebContext } from "../../../../context/webcontext";
 
 export const DevProfile = () => {
   const { user } = useContext(WebContext);
 
-  console.log(user)
-
   return (
     <SectionProfile>
       <DevInfoBox>
-        <img src={avatar} alt="img" />
+        <img src={user?.fotoDoPerfil || avatar} alt="img" />
         <div>
-          <TextInfoDev>Mateus Leme</TextInfoDev>
-          <TextInfoDev>leomartins2001@gmai.com</TextInfoDev>
-          <TextInfoDev>Ensino medio completo</TextInfoDev>
+          <TextInfoDev>{user?.city}</TextInfoDev>
+          <TextInfoDev>{user?.email}</TextInfoDev>
+          <TextInfoDev>{user?.escolaridade}</TextInfoDev>
         </div>
         <NavLink>
-          <a>LinkedIn</a>
-          <a>Portifolio</a>
-          <a>GitHub</a>
+          <a href={user?.linkedin} target="_blank">
+            LinkedIn
+          </a>
+          <a href={user?.portfolio} target="_blank">
+            Portifolio
+          </a>
+          <a href={user?.github} target="_blank">
+            GitHub
+          </a>
         </NavLink>
       </DevInfoBox>
 
       <NameAndWordBox>
-        <TitleName>Lucas Iury Costa Schmidt</TitleName>
+        <TitleName>{user?.name}</TitleName>
 
-        <TextWork>Desenvolvedor Front End</TextWork>
+        <TextWork>{user?.cargo}</TextWork>
       </NameAndWordBox>
 
       <BioBox>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
-          veniam ratione quos. Totam autem officiis quibusdam culpa neque,
-          voluptatem quae dignissimos expedita voluptates optio debitis dolor
-          earum amet reprehenderit odit. Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Quia ratione
-        </p>
+        {user?.bio ? (
+          <Bio>{user?.bio}</Bio>
+        ) : (
+          <EmptyBio>
+            Você não possui uma bio, por favor atualize seu perfil.
+          </EmptyBio>
+        )}
       </BioBox>
 
       <ListTech>
-        {user?.tech?.html && (
+        {user?.tech.html && (
           <li>
             <img src={html} />
           </li>
         )}
+
         {user?.tech?.css && (
           <li>
             <img src={css} />
           </li>
         )}
+
         {user?.tech?.js && (
           <li>
             <img src={js} />
@@ -97,9 +105,9 @@ export const DevProfile = () => {
             <img src={angular} />
           </li>
         )}
-        {user?.tech?.vue && (
+        {user?.tech?.vuejs && (
           <li>
-            <img src={vue} />
+            <img src={vuejs} />
           </li>
         )}
       </ListTech>

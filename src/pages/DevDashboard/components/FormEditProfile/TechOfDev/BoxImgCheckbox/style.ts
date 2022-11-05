@@ -7,7 +7,7 @@ import react from "../../../../assets/react.svg";
 import ts from "../../../../assets/ts.svg";
 import node from "../../../../assets/node.png";
 import angular from "../../../../assets/angular.svg";
-import vue from "../../../../assets/vue.png";
+import vuejs from "../../../../assets/vue.png";
 
 interface iCheckbox {
   id: string;
@@ -48,8 +48,8 @@ export const ImgStyled = styled.img.attrs(({ id }) => {
       return { src: angular };
     case "ts":
       return { src: ts };
-    case "vue":
-      return { src: vue };
+    case "vuejs":
+      return { src: vuejs };
   }
 })<iImgStyled>`
   color: red;

@@ -19,6 +19,9 @@ interface iUser {
   linkedin: string | undefined;
   github: string | undefined;
   portfolio: string | undefined;
+  fotoDoPerfil: string | undefined;
+  escolaridade: string | undefined;
+  bio: string | undefined;
   tech: {
     html: boolean;
     css: boolean;
@@ -29,6 +32,7 @@ interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    node: boolean;
   };
   id: number;
 }
@@ -47,7 +51,7 @@ export function WebProvider({ children }: iWebProvider) {
 
   const navigate = useNavigate();
 
-  console.log(user)
+  console.log(user);
 
   useEffect(() => {
     loadUser();
@@ -61,10 +65,11 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         const request = await Api.get(`/users/${id}`);
-        
+
+        console.log(loadUser);
         setUser(request.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         window.localStorage.clear();
       }
     }
@@ -82,16 +87,22 @@ export function WebProvider({ children }: iWebProvider) {
       localStorage.setItem("RPlace:id", logUser.user.id);
 
       setUser(logUser.user);
-      setTimeout(() => {
+
+      if (logUser.user.isRecruiter) {
         navigate("/home");
-      }, 500);
+        console.log("ok");
+      } else {
+        navigate("/devDashboard");
+      }
+      // setTimeout(() => {
+
+      // }, 500);
     }
   }
-  
+
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
-    
-    
+
     if (info.name === "") {
       delete info.name;
     }

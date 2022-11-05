@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Path, UseFormRegister } from "react-hook-form";
-import { ErrorMessage } from "../ParagraphError";
+import { FormProvider, Path, UseFormRegister } from "react-hook-form";
+import { ErrorMessage } from "../../../../../../components/ParagraphError";
 import InputGroup from "./inputGroup";
 
 interface iInputProps {
@@ -10,27 +10,24 @@ interface iInputProps {
   register: UseFormRegister<any>;
   errorMessage?: string;
   errors?: any;
-  login?: boolean;
-  default?: string;
+  defaultValue?: string;
 }
-
-const Input = ({
+export const Input = ({
   type,
   label,
   id,
   register,
   errors,
-  login,
   errorMessage,
+  defaultValue,
 }: iInputProps) => {
-  const [value, setValue] = useState("");
-
+ 
+  const [value, setValue] = useState(defaultValue ? defaultValue : "");
   const { onChange, onBlur, name, ref } = register(id);
-
   return (
     <InputGroup
       className={
-        !errors && value !== "" && login
+        !errors && value !== ""
           ? "done"
           : errors
           ? "error"
@@ -42,9 +39,8 @@ const Input = ({
     >
       <input
         autoComplete="off"
-
         id={id}
-        value={value}
+        defaultValue={value}
         type={type}
         onChange={(e) => {
           setValue(e.target.value);
@@ -59,5 +55,3 @@ const Input = ({
     </InputGroup>
   );
 };
-
-export default Input;

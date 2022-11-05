@@ -66,7 +66,7 @@ export const AllInputBox = styled.div`
   margin-bottom: 3rem;
   margin-top: 1rem;
 
-  div{
+  div {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -74,6 +74,14 @@ export const AllInputBox = styled.div`
 `;
 
 export const TitleEditProfile = styled.h4`
-    text-align: center;
-    font-size: 1.6rem;
-`
+  text-align: center;
+  font-size: 1.6rem;
+`;
+
+export const TextAreaBio = styled.textarea`
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem;
+  max-height: 150px;
+`;

@@ -7,13 +7,13 @@ interface iInputEditProfile {
     | "name"
     | "email"
     | "city"
-    | "responsibility"
+    | "cargo"
     | "linkedin"
     | "github"
     | "portfolio"
-    | "profilePicture"
-    | "location"
-    | "schooling";
+    | "fotoDoPerfil"
+    | "city"
+    | "escolaridade";
   label:
     | "Nome"
     | "Cargo"
@@ -26,6 +26,7 @@ interface iInputEditProfile {
     | "Localização"
     | "Escolaridade";
   register: UseFormRegister<any>;
+  defaultValue?: string;
 }
 
 export const InputEditProfile = ({
@@ -33,12 +34,17 @@ export const InputEditProfile = ({
   data,
   label,
   register,
+  defaultValue,
 }: iInputEditProfile) => {
   return (
     <BoxInput>
-      <input type={type} {...register(data)} />
+      <input
+        type={type}
+        {...register(data)}
+        defaultValue={defaultValue}
+        required
+      />
       <label>{label}</label>
     </BoxInput>
   );
 };
-

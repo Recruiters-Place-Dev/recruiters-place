@@ -37,6 +37,6 @@ const FormStyledVariant = {
   `,
 };
 
-export const FormStyled = styled.form<iFormStyled>`
+export const BoxForm = styled.div<iFormStyled>`
   ${({ step }) => FormStyledVariant[step]}
 `;

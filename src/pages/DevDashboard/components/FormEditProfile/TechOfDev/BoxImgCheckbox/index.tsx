@@ -4,7 +4,7 @@ import { BoxStyled, Checkbox, ImgStyled, LabelImg } from "./style";
 interface iBoxImgCheckbox {
   id: string;
   register: any;
-  isActive: boolean;
+  isActive?: boolean;
   setIsActiveTechs: any;
 }
 
@@ -13,11 +13,7 @@ export const BoxImgCheckbox = ({
   register,
   isActive,
   setIsActiveTechs,
-
 }: iBoxImgCheckbox) => {
-
-
-
   useEffect(() => {
     setIsActiveTechs((old: any) => {
       return { ...old, html: false };
@@ -30,13 +26,12 @@ export const BoxImgCheckbox = ({
         id={id}
         type="checkbox"
         {...register(id)}
-        checked={isActive}
+        defaultChecked={isActive}
       />
 
       <LabelImg
         htmlFor={id}
         onClick={() => {
-
           setIsActiveTechs((old: any) => {
             return { ...old, [`${id}`]: !old[`${id}`] };
           });
