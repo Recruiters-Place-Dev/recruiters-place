@@ -68,6 +68,7 @@ export interface iWebContext {
   chatId: string | undefined;
   setChatId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitChat: (data: iChat) => void;
+  allChats: iChat[];
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -92,6 +93,7 @@ export function WebProvider({ children }: iWebProvider) {
     loadUser();
     getAllUsers();
     getAllComents();
+    getAllChats();
   }, []);
 
   async function loadUser() {
@@ -119,7 +121,6 @@ export function WebProvider({ children }: iWebProvider) {
 
         const { data } = await Api.get(`/users/`);
 
-
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -136,6 +137,20 @@ export function WebProvider({ children }: iWebProvider) {
         const { data } = await Api.get(`/coments`);
 
         setAllComents(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  async function getAllChats() {
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        const { data } = await Api.get(`/chat`);
+
+        setAllChats(data);
       } catch (error) {
         console.log(error);
       }
@@ -302,6 +317,7 @@ export function WebProvider({ children }: iWebProvider) {
         chatId,
         setChatId,
         onSubmitChat,
+        allChats,
       }}
     >
       {children}

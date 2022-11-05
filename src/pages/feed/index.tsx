@@ -1,4 +1,4 @@
-import { MouseEventHandler, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import ChatImg from "../../assets/ant-design_file-search-outlined.svg";
 import Vermais from "../../assets/bi_chat-dots-fill.svg";
@@ -21,13 +21,38 @@ import {
 import techList from "../../mockList/devTechs.json";
 import ModalFeed from "../../components/modalFeed";
 import ModalComent from "../../components/modal/coment/duality";
-import { ModalComentReadContainer } from "../../components/modal/coment/read/style";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
-function Feed() {
+interface iUserDeveloper {
+  email: string;
+  name: string;
+  isRecruiter?: boolean;
+  city: string | undefined;
+  schooling?: string | undefined;
+  cargo?: string | undefined;
+  empresa: string | undefined;
+  isWork?: boolean | undefined;
+  linkedin: string | undefined;
+  github?: string | undefined;
+  portfolio?: string | undefined;
+  bio?: string | undefined;
+  tech: {
+    html: boolean;
+    css: boolean;
+    js: boolean;
+    react: boolean;
+    ts: boolean;
+    angular: boolean;
+    vuejs: boolean;
+    php: boolean;
+    c: boolean;
+  };
+  id?: number;
+}
 
+function Feed() {
   const {
     allUsers,
     openModalFeed,
@@ -39,31 +64,31 @@ function Feed() {
   } = useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
-
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
   useEffect(() => {}, []);
 
-
-  return <ContainerFeed>
-    {
-      developers?.map((elem: iUser, index: number) => {
-
+  return (
+    <ContainerFeed>
+      {developers?.map((elem: iUserDeveloper, index: number) => {
         // Object.entries(elem.tech)
-        const olhatecnologia = Object.entries(elem.tech)
-       const meupau = olhatecnologia.filter((elem)=> {
-        return elem[1] === true
-       })
+        const olhatecnologia = Object.entries(elem.tech);
+        const meupau = olhatecnologia.filter((elem) => {
+          return elem[1] === true;
+        });
 
-       const minhasbolas = meupau.map((elem)=> {
-        return techList.find(E=>elem[0] === E.tech) 
-       })
-
+        const minhasbolas = meupau.map((elem) => {
+          return techList.find((E) => elem[0] === E.tech);
+        });
 
         return (
-          <ContainerDeveloper initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }} transition={{ duration: 1.5 }} key={index}>
+          <ContainerDeveloper
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            key={index}
+          >
             <DivDevelopersInfo>
               <Figure>
                 <img src={FotoPerfil} alt="Foto de Perfil" />
@@ -86,16 +111,10 @@ function Feed() {
 
             <DivDevelopersTech>
               <Techs>
-
-                {
-                  
-                  minhasbolas.map((element: any) => {
-                    console.log(element.tech)
-                    return <img src={element.dir} alt={element.tech}/>
-                  })
-                }
-
-
+                {minhasbolas.map((element: any) => {
+                  console.log(element.tech);
+                  return <img src={element.dir} alt={element.tech} />;
+                })}
               </Techs>
 
               <Contato>
@@ -130,14 +149,12 @@ function Feed() {
                   }}
                 />
               </Contato>
-              
-
             </DivDevelopersTech>
-             <ModalFeed developer={modalDeveloper} />
+            <ModalFeed developer={modalDeveloper} />
           </ContainerDeveloper>
         );
       })}
-     
+
       <ModalComent />
       <ReadComent />
       <WriteComent />
