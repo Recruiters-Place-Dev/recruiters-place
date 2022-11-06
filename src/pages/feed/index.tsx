@@ -76,7 +76,6 @@ function Feed() {
   useEffect(() => {
     getAllUsers();
   }, []);
-  console.log("oi");
 
   return (
     <ContainerFeed>
