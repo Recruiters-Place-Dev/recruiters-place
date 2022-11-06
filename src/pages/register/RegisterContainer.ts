@@ -22,12 +22,6 @@ const RegisterContainer = styled.div`
     justify-content: center;
     grid-area: fc;
     z-index: 2;
-
-    h2 {
-      margin-bottom: 39px;
-      font-weight: 500;
-      font-size: 30px;
-    }
   }
 
   .ContentContainer {

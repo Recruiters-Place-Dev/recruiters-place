@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../../assets/Logo.svg";
 import sprite from "../../assets/sprite.svg"
 import { LinkStyled } from "../../components/buttons/style";

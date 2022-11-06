@@ -7,6 +7,7 @@ import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
 import { iSend } from "../pages/chat";
+import { iUserRegister } from "../components/formregister";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -44,6 +45,7 @@ export interface iUser {
 
 export interface iWebContext {
   onLogin: (info: iUserLogin) => void;
+  onRegister: (data: iUserRegister) => void;
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
@@ -185,6 +187,34 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  async function onRegister(data: iUserRegister) {
+    const { isRecruiter } = data;
+
+    if (!isRecruiter) {
+      const devData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        city: data.city === "" ? null : data.city,
+        schooling: data.schooling === "" ? null : data.schooling,
+        vacancy: data.vacancy === "" ? null : data.vacancy,
+        isWork: data.isWork,
+        linkedin: data.linkedin === "" ? null : data.linkedin,
+        github: data.github === "" ? null : data.github,
+        portfolio: data.portfolio === "" ? null : data.portfolio,
+        tech: data.tech,
+      };
+
+      try {
+        const response = await Api.post("/users", devData);
+
+        console.log(response);
+      } catch (error) {
+        // toastify de erro
+      }
+    }
+  }
+
   async function editSubmit(info: iEditRech) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
@@ -319,6 +349,7 @@ export function WebProvider({ children }: iWebProvider) {
     <WebContext.Provider
       value={{
         onLogin,
+        onRegister,
         editSubmit,
         setUser,
         user,
