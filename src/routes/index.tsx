@@ -10,6 +10,8 @@ import { Login } from "../pages/login";
 import Register from "../pages/register";
 import { PrivateRoutes } from "./PrivateRoutes";
 import Perfil from "../pages/perfil";
+import { PersonalDataOfDev } from "../pages/DevDashboard/components/FormEditProfile/PersonalDataOfDev";
+import { FormEditProfile } from "../pages/DevDashboard/components/FormEditProfile";
 
 function RoutesMain() {
   const { user } = useContext(WebContext);
@@ -22,6 +24,12 @@ function RoutesMain() {
         <Route path="/home" element={<Feed />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/chat" element={<Chat />} />
+        <Route
+          path="/perfil/editProfile"
+          element={
+            user?.isRecruiter ? <Navigate to="/home" /> : <FormEditProfile />
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>

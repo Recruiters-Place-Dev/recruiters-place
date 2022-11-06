@@ -119,7 +119,7 @@ export const PersonalDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
       </AllInputBox>
 
       <BoxBtn>
-        <LinkStyled to="/devDashboard">Voltar</LinkStyled>
+        <LinkStyled to="/perfil">Voltar</LinkStyled>
         <ButtonStyled type="submit">Salvar</ButtonStyled>
         <ButtonStyled type="button" onClick={() => setStep(2)}>
           Proximo

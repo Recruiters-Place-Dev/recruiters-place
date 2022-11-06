@@ -16,7 +16,7 @@ import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import {iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
-  developer: iUserDeveloper | null;
+  developer: iUser | null;
   techs: ({ tech: string; dir: string; } | undefined)[] | null
 }
 

@@ -42,16 +42,17 @@ export interface iUserDeveloper {
   escolaridade: string | undefined;
   bio?: string | undefined;
   tech: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-    sass: boolean
+    html?: boolean;
+    css?: boolean;
+    js?: boolean;
+    react?: boolean;
+    ts?: boolean;
+    angular?: boolean;
+    vuejs?: boolean;
+    php?: boolean;
+    c?: boolean;
+    sass?: boolean;
+    node?: boolean;
   };
   id?: number;
 }
@@ -76,21 +77,24 @@ function Feed() {
     setChatId,
     filteredTechs
   } = useContext<iWebContext>(WebContext);
-  const [modalDeveloper, setModalDeveloper] = useState<iUserDeveloper | null>(
-    null
-  );
+
+
   const [techsDeveloper, setTechsDeveloper] = useState<({ tech: string; dir: string; } | undefined)[] | null>(
     null
   );
+  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
+
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <ContainerFeed>
+
       {developers?.map((elem: iUserDeveloper, index: number) => {
+
 
         return (
           <ContainerDeveloper
@@ -121,12 +125,14 @@ function Feed() {
 
             <DivDevelopersTech>
               <Techs>
+
                 {filteredTechs(elem)?.map((value) => {
 
                   return <div>
                     <img src={value?.dir} alt={value?.tech}/>
                     <Tag>{value?.tech}</Tag>
                   </div>
+
                 })}
               </Techs>
 
