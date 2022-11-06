@@ -6,6 +6,7 @@ import { iEditRech } from "../components/perfilRech";
 import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
+import { iSend } from "../pages/chat";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -34,7 +35,7 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
-    sass:boolean;
+    sass: boolean;
     node: boolean;
   };
   id?: number;
@@ -74,12 +75,14 @@ export interface iWebContext {
   allChats: iChat[];
   callId: string | undefined;
   setCallId: React.Dispatch<React.SetStateAction<any>>;
+  onSubmitSendChat: (data: iSend) => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
+
   const [allUsers, setAllUsers] = useState();
   const [allComents, setAllComents] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
@@ -291,6 +294,27 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  async function onSubmitSendChat(data: iSend) {
+    data.idTo = callId;
+    const findTo = allChats.find((element) => element.idTo === callId);
+    data.idFrom = String(user?.id);
+    data.from = user?.name;
+    data.to = findTo?.to;
+    data.isRead = false;
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/chat`, data);
+
+        setAllChats([...allChats, data]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -326,6 +350,7 @@ export function WebProvider({ children }: iWebProvider) {
         allChats,
         callId,
         setCallId,
+        onSubmitSendChat,
       }}
     >
       {children}

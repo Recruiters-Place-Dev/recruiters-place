@@ -9,8 +9,9 @@ import {
   ContainerInputSend,
 } from "./style";
 import send from "../../assets/send.png";
+import { Api } from "../../services/api";
 
-interface iSend {
+export interface iSend {
   chat: string | undefined;
   from: string | undefined;
   idFrom: string | undefined;
@@ -20,7 +21,8 @@ interface iSend {
 }
 
 function Chat() {
-  const { allChats, user, setCallId, callId } = useContext(WebContext);
+  const { allChats, user, setCallId, callId, onSubmitSendChat } =
+    useContext(WebContext);
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
 
@@ -47,14 +49,6 @@ function Chat() {
         (elem) => elem.idFrom === e.idFrom && elem.idTo === e.idTo
       )
   );
-
-  function onSubmitSendChat(data: iSend): void {
-    data.idFrom = String(user?.id);
-    data.from = user?.name;
-    data.idTo = callId;
-    // data.to =
-    console.log(data);
-  }
 
   return (
     <ContainerChat>
