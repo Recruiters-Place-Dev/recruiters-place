@@ -4,7 +4,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
 import ModalRegister from "../modal/Register";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { WebContext } from "../../context/webcontext";
 
 export interface iUserRegister {
   name: string;
@@ -38,6 +39,8 @@ export interface iProgressProps {
 }
 
 export function FormRegister() {
+  const { onRegister } = useContext(WebContext);
+
   const [show, setShow] = useState<boolean>(false);
   const [isRecruiter, setIsRecruiter] = useState<boolean>(false);
   const [progress, setProgress] = useState<iProgressProps>({
@@ -125,13 +128,9 @@ export function FormRegister() {
     resolver: yupResolver(yupSchema),
   });
 
-  function fakeFunction(info: iUserRegister) {
-    console.log(info);
-  }
-
   return (
     <>
-      <RegisterForm onSubmit={handleSubmit(fakeFunction)}>
+      <RegisterForm onSubmit={handleSubmit(onRegister)}>
         <div className="InputsContainer">
           <Input
             type="text"
@@ -205,7 +204,7 @@ export function FormRegister() {
           getValues={getValues}
           trigger={trigger}
           handleSubmit={handleSubmit}
-          fn={fakeFunction}
+          fn={onRegister}
           errors={errors}
         />
       )}
