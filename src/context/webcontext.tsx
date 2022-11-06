@@ -27,17 +27,17 @@ export interface iUser {
   portfolio?: string | undefined;
   bio?: string | undefined;
   tech?: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-    sass: boolean;
-    node: boolean;
+    html?: boolean | undefined;
+    css?: boolean | undefined;
+    js?: boolean | undefined;
+    react?: boolean | undefined;
+    ts?: boolean | undefined;
+    angular?: boolean | undefined;
+    vuejs?: boolean | undefined;
+    php?: boolean | undefined;
+    c?: boolean | undefined;
+    sass?: boolean | undefined;
+    node?: boolean | undefined;
   };
   id?: number;
   fotoDoPerfil?: string;

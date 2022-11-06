@@ -38,5 +38,9 @@
   {
     "tech": "sass",
     "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg"
+  },
+  {
+    "tech": "node",
+    "dir": "/techs/node.png"
   }
 ]
