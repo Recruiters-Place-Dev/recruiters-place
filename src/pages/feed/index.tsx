@@ -41,16 +41,17 @@ export interface iUserDeveloper {
   escolaridade: string | undefined;
   bio?: string | undefined;
   tech: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-    sass: boolean
+    html?: boolean;
+    css?: boolean;
+    js?: boolean;
+    react?: boolean;
+    ts?: boolean;
+    angular?: boolean;
+    vuejs?: boolean;
+    php?: boolean;
+    c?: boolean;
+    sass?: boolean;
+    node?: boolean;
   };
   id?: number;
 }
@@ -72,13 +73,13 @@ function Feed() {
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <ContainerFeed>
       {developers?.map((elem: iUserDeveloper, index: number) => {
         // Object.entries(elem.tech)
-        const olhatecnologia = Object.entries(elem.tech);
+        const olhatecnologia = Object.entries(elem?.tech);
         const meupau = olhatecnologia.filter((elem) => {
           return elem[1] === true;
         });
@@ -118,10 +119,12 @@ function Feed() {
               <Techs>
                 {minhasbolas.map((element: any) => {
                   console.log(element.tech);
-                  return <div>
-                    <img src={element.dir} alt={element.tech} />
-                    <span>{element.tech}</span>
-                  </div>
+                  return (
+                    <div>
+                      <img src={element.dir} alt={element.tech} />
+                      <span>{element.tech}</span>
+                    </div>
+                  );
                 })}
               </Techs>
 
