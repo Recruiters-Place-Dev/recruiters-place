@@ -15,44 +15,53 @@ import {
   DivDevelopersName,
   DivDevelopersTech,
   Figure,
+  Tag,
   Techs,
 } from "./styles";
-
-import techList from "../../mockList/devTechs.json";
 import ModalFeed from "../../components/modalFeed";
 import ModalComent from "../../components/modal/coment/duality";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
-export interface iUserDeveloper {
-  email: string;
-  name: string;
-  isRecruiter?: boolean;
-  city: string | undefined;
-  schooling?: string | undefined;
-  cargo?: string | undefined;
-  empresa: string | undefined;
-  isWork?: boolean | undefined;
-  linkedin: string | undefined;
-  github?: string | undefined;
-  portfolio?: string | undefined;
-  fotoDoPerfil: string | undefined;
-  escolaridade: string | undefined;
-  bio?: string | undefined;
-  tech: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-    sass: boolean
-  };
-  id?: number;
+// export interface iUserDeveloper {
+//   email: string;
+//   name: string;
+//   isRecruiter?: boolean;
+//   city: string | undefined;
+//   schooling?: string | undefined;
+//   cargo?: string | undefined;
+//   empresa: string | undefined;
+//   isWork?: boolean | undefined;
+//   linkedin: string | undefined;
+//   github?: string | undefined;
+//   portfolio?: string | undefined;
+//   fotoDoPerfil: string | undefined;
+//   escolaridade: string | undefined;
+//   bio?: string | undefined;
+//   tech: {
+//     html?: boolean;
+//     css?: boolean;
+//     js?: boolean;
+//     react?: boolean;
+//     ts?: boolean;
+//     angular?: boolean;
+//     vuejs?: boolean;
+//     php?: boolean;
+//     c?: boolean;
+//     sass?: boolean;
+//     node?: boolean;
+//   };
+//   id?: number;
+// }
+
+export interface iTech {
+  tech: string;
+  dir: string;
+}
+
+export interface iTechs {
+  techs: iTech;
 }
 
 function Feed() {
@@ -64,29 +73,26 @@ function Feed() {
     user,
     openModalChat,
     setChatId,
+    getAllUsers,
+    filteredTechs,
   } = useContext<iWebContext>(WebContext);
-  const [modalDeveloper, setModalDeveloper] = useState<iUserDeveloper | null>(
-    null
-  );
+
+  const [techsDeveloper, setTechsDeveloper] = useState<
+    ({ tech: string; dir: string } | undefined)[] | null
+  >(null);
+  const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
-  useEffect(() => { }, []);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUserDeveloper, index: number) => {
-        // Object.entries(elem.tech)
-        const olhatecnologia = Object.entries(elem.tech);
-        const meupau = olhatecnologia.filter((elem) => {
-          return elem[1] === true;
-        });
-
-        const minhasbolas = meupau.map((elem) => {
-          return techList.find((E) => elem[0] === E.tech);
-        });
-
+      {developers?.map((elem: iUser, index: number) => {
         return (
           <ContainerDeveloper
             initial={{ opacity: 0 }}
@@ -116,12 +122,13 @@ function Feed() {
 
             <DivDevelopersTech>
               <Techs>
-                {minhasbolas.map((element: any) => {
-                  console.log(element.tech);
-                  return <div>
-                    <img src={element.dir} alt={element.tech} />
-                    <span>{element.tech}</span>
-                  </div>
+                {filteredTechs(elem)?.map((value) => {
+                  return (
+                    <div>
+                      <img src={value?.dir} alt={value?.tech} />
+                      <Tag>{value?.tech}</Tag>
+                    </div>
+                  );
                 })}
               </Techs>
 
@@ -154,11 +161,12 @@ function Feed() {
                   onClick={() => {
                     openModalFeed();
                     setModalDeveloper(elem);
+                    setTechsDeveloper(filteredTechs(elem));
                   }}
                 />
               </Contato>
             </DivDevelopersTech>
-            <ModalFeed developer={modalDeveloper} />
+            <ModalFeed developer={modalDeveloper} techs={techsDeveloper} />
           </ContainerDeveloper>
         );
       })}

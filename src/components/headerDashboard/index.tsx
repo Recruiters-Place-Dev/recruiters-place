@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
+import { LogOffModal } from "../../components/logoff"
 
 function HeaderDashboard() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
+  const [logOff, setLogOff] = useState(false);
 
   function handleLogout() {
-    localStorage.clear();
-    navigate("/");
+    setLogOff(true);
   }
 
   function goToPerfil() {
@@ -26,6 +27,7 @@ function HeaderDashboard() {
   return (
     <>
       <HeaderContainer>
+        {logOff ? <LogOffModal/> : ''}
         <header>
           <img onClick={() => navigate("/home")} src={Logo} alt="Logo" />
           <nav>

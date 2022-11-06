@@ -6,6 +6,9 @@ import { iEditRech } from "../components/perfilRech";
 import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
+import { iSend } from "../pages/chat";
+import { iUserRegister } from "../components/formregister";
+import techList from "../mockList/devTechs.json";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -25,17 +28,17 @@ export interface iUser {
   portfolio?: string | undefined;
   bio?: string | undefined;
   tech?: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-    sass:boolean;
-    node: boolean;
+    html?: boolean | undefined;
+    css?: boolean | undefined;
+    js?: boolean | undefined;
+    react?: boolean | undefined;
+    ts?: boolean | undefined;
+    angular?: boolean | undefined;
+    vuejs?: boolean | undefined;
+    php?: boolean | undefined;
+    c?: boolean | undefined;
+    sass?: boolean | undefined;
+    node?: boolean | undefined;
   };
   id?: number;
   fotoDoPerfil?: string;
@@ -43,10 +46,11 @@ export interface iUser {
 
 export interface iWebContext {
   onLogin: (info: iUserLogin) => void;
+  onRegister: (data: iUserRegister) => void;
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
-  allUsers: [] | undefined;
+  allUsers: iUser[] | undefined;
   openModalFeed: () => void;
   modalFeed: boolean;
   openModalComent: () => void;
@@ -74,6 +78,9 @@ export interface iWebContext {
   allChats: iChat[];
   callId: string | undefined;
   setCallId: React.Dispatch<React.SetStateAction<any>>;
+  filteredTechs(elem: iUser): ({ tech: string; dir: string } | undefined)[];
+  onSubmitSendChat: (data: iSend) => void;
+  getAllUsers: () => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -126,7 +133,6 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
 
         const { data } = await Api.get(`/users/`);
-
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -179,6 +185,34 @@ export function WebProvider({ children }: iWebProvider) {
 
       console.log(error.response.data);
       return false;
+    }
+  }
+
+  async function onRegister(data: iUserRegister) {
+    const { isRecruiter } = data;
+
+    if (!isRecruiter) {
+      const devData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        city: data.city === "" ? null : data.city,
+        schooling: data.schooling === "" ? null : data.schooling,
+        vacancy: data.vacancy === "" ? null : data.vacancy,
+        isWork: data.isWork,
+        linkedin: data.linkedin === "" ? null : data.linkedin,
+        github: data.github === "" ? null : data.github,
+        portfolio: data.portfolio === "" ? null : data.portfolio,
+        tech: data.tech,
+      };
+
+      try {
+        const response = await Api.post("/users", devData);
+
+        console.log(response);
+      } catch (error) {
+        // toastify de erro
+      }
     }
   }
 
@@ -291,10 +325,53 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function filteredTechs(elem: iUser) {
+    // getAllUsers()
+
+    // const developers = allUsers?.filter(
+    //   (elem: iUser) => elem.isRecruiter === false
+    // );
+    // const retorno = developers?.map((elem: iUserDeveloper) => {
+    const separateTechs = Object.entries<boolean>(
+      elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+    );
+    const filterTechs = separateTechs.filter((elem) => {
+      return elem[1] === true;
+    });
+
+    const arrFilteredTechs = filterTechs.map((elem) => {
+      return techList.find((E) => elem[0] === E.tech);
+    });
+    return arrFilteredTechs;
+    // })
+  }
+
+  async function onSubmitSendChat(data: iSend) {
+    data.idTo = callId;
+    const findTo = allChats.find((element) => element.idTo === callId);
+    data.idFrom = String(user?.id);
+    data.from = user?.name;
+    data.to = findTo?.to;
+    data.isRead = false;
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/chat`, data);
+
+        setAllChats([...allChats, data]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <WebContext.Provider
       value={{
         onLogin,
+        onRegister,
         editSubmit,
         setUser,
         user,
@@ -326,6 +403,9 @@ export function WebProvider({ children }: iWebProvider) {
         allChats,
         callId,
         setCallId,
+        filteredTechs,
+        onSubmitSendChat,
+        getAllUsers,
       }}
     >
       {children}

@@ -13,18 +13,18 @@ import {
   Bio,
 } from "./style";
 
-import css from "../../assets/css.png";
-import html from "../../assets/html.svg";
-import avatar from "../../assets/avatar.svg";
-import js from "../../assets/js.svg";
-import pen from "../../assets/pen.svg";
-import react from "../../assets/react.svg";
-import ts from "../../assets/ts.svg";
-import node from "../../assets/node.png";
-import angular from "../../assets/angular.svg";
-import vuejs from "../../assets/vue.png";
+import css from "../assets/css.png";
+import html from "../assets/html.svg";
+import avatar from "../assets/avatar.svg";
+import js from "../assets/js.svg";
+import pen from "../assets/pen.svg";
+import react from "../assets/react.svg";
+import ts from "../assets/ts.svg";
+import node from "../assets/node.png";
+import angular from "../assets/angular.svg";
+import vuejs from "../assets/vue.png";
 import { useContext } from "react";
-import { WebContext } from "../../../../context/webcontext";
+import { WebContext } from "../../../context/webcontext";
 
 export const DevProfile = () => {
   const { user } = useContext(WebContext);
