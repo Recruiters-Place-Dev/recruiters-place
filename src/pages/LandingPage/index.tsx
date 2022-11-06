@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
 
-import PeopleLanding from "../../assets/peoplelanding.png";
+import homemLandinPage from "../../assets/imgAnimated/homemLandinPage.svg";
+import mulherLandingPage from "../../assets/imgAnimated/mulherLandingPage.svg"
 
 import {
   MainStyled,
@@ -25,6 +26,7 @@ import { iWebContext, WebContext } from "../../context/webcontext";
 
 export const LandingPage = () => {
   const { setUser, user } = useContext<iWebContext>(WebContext);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -34,11 +36,17 @@ export const LandingPage = () => {
         transition={{ duration: 0.6 }}
       >
         <MainStyled>
-          <Lines></Lines>
+          {/* <Lines degrau="20" top="40" right="-20"></Lines>
+          
+          <Lines degrau="-50" top="500" right="-120"></Lines> */}
+
+
 
           <Container>
+
             <ContainerImg>
-              <img src={PeopleLanding} alt="People" />
+            <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
+            <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage"/>
             </ContainerImg>
 
             <ContainerRedirect>
@@ -73,7 +81,9 @@ export const LandingPage = () => {
                 </>
               )}
             </ContainerRedirect>
+
           </Container>
+
 
           <BackgroundStyled>
             <SloganBackground>Recrutamento em um só lugar</SloganBackground>
