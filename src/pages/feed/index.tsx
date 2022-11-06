@@ -25,7 +25,7 @@ import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 
-interface iUserDeveloper {
+export interface iUserDeveloper {
   email: string;
   name: string;
   isRecruiter?: boolean;
@@ -41,15 +41,17 @@ interface iUserDeveloper {
   escolaridade: string | undefined;
   bio?: string | undefined;
   tech: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
+    html?: boolean;
+    css?: boolean;
+    js?: boolean;
+    react?: boolean;
+    ts?: boolean;
+    angular?: boolean;
+    vuejs?: boolean;
+    php?: boolean;
+    c?: boolean;
+    sass?: boolean;
+    node?: boolean;
   };
   id?: number;
 }
@@ -75,7 +77,9 @@ function Feed() {
     <ContainerFeed>
       {developers?.map((elem: iUser, index: number) => {
         // Object.entries(elem.tech)
-        const olhatecnologia = Object.entries(elem.tech);
+        const olhatecnologia = Object.entries<boolean>(
+          elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+        );
         const meupau = olhatecnologia.filter((elem) => {
           return elem[1] === true;
         });
@@ -115,7 +119,12 @@ function Feed() {
               <Techs>
                 {minhasbolas.map((element: any) => {
                   console.log(element.tech);
-                  return <img src={element.dir} alt={element.tech} />;
+                  return (
+                    <div>
+                      <img src={element.dir} alt={element.tech} />
+                      <span>{element.tech}</span>
+                    </div>
+                  );
                 })}
               </Techs>
 

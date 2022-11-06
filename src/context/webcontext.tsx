@@ -6,6 +6,7 @@ import { iEditRech } from "../components/perfilRech";
 import { iComent } from "../components/formMessage";
 import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
+import { iSend } from "../pages/chat";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -23,10 +24,8 @@ export interface iUser {
   linkedin: string | undefined;
   github?: string | undefined;
   portfolio?: string | undefined;
-  fotoDoPerfil: string | undefined;
-  escolaridade: string | undefined;
   bio?: string | undefined;
-  tech: {
+  tech?: {
     html: boolean;
     css: boolean;
     js: boolean;
@@ -36,9 +35,11 @@ export interface iUser {
     vuejs: boolean;
     php: boolean;
     c: boolean;
+    sass: boolean;
     node: boolean;
   };
   id?: number;
+  fotoDoPerfil?: string;
 }
 
 export interface iWebContext {
@@ -46,7 +47,7 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
-  allUsers: [] | undefined;
+  allUsers: iUser[] | undefined;
   openModalFeed: () => void;
   modalFeed: boolean;
   openModalComent: () => void;
@@ -62,6 +63,7 @@ export interface iWebContext {
   onSubmitComent: (data: iComent) => void;
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  inputPassRef: React.MutableRefObject<undefined>;
   allComents: iComent[];
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
   openModalChat: () => void | undefined;
@@ -71,12 +73,16 @@ export interface iWebContext {
   setChatId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitChat: (data: iChat) => void;
   allChats: iChat[];
+  callId: string | undefined;
+  setCallId: React.Dispatch<React.SetStateAction<any>>;
+  onSubmitSendChat: (data: iSend) => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
+
   const [allUsers, setAllUsers] = useState();
   const [allComents, setAllComents] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
@@ -87,14 +93,13 @@ export function WebProvider({ children }: iWebProvider) {
   const [modalWriteComent, setModalWriteComent] = useState(false);
   const [comentId, setComentId] = useState();
   const [chatId, setChatId] = useState();
+  const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
   const navigate = useNavigate();
-
-  console.log(user);
+  const inputPassRef = useRef();
 
   useEffect(() => {
     loadUser();
-
     getAllUsers();
     getAllComents();
     getAllChats();
@@ -107,7 +112,6 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-
         const { data } = await Api.get(`/users/${id}`);
 
         setUser(data);
@@ -171,12 +175,7 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
-
-        if (data.user.isRecruiter) {
-          navigate("/home");
-        } else {
-          navigate("/devDashboard");
-        }
+        navigate("/home");
       }
     } catch (error: any) {
       toast.success("Combinação de email/senha incorreta");
@@ -207,7 +206,7 @@ export function WebProvider({ children }: iWebProvider) {
 
           await Api.patch(`/users/${id}`, info);
 
-          // setUser({ ...user, ...info });
+          setUser({ ...user, ...info });
           setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");
@@ -295,6 +294,27 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  async function onSubmitSendChat(data: iSend) {
+    data.idTo = callId;
+    const findTo = allChats.find((element) => element.idTo === callId);
+    data.idFrom = String(user?.id);
+    data.from = user?.name;
+    data.to = findTo?.to;
+    data.isRead = false;
+    const token = localStorage.getItem("RPlace:Token");
+
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.post(`/chat`, data);
+
+        setAllChats([...allChats, data]);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -319,6 +339,7 @@ export function WebProvider({ children }: iWebProvider) {
         onSubmitComent,
         boxEdit,
         setBoxEdit,
+        inputPassRef,
         allComents,
         openModalChat,
         setModalChat,
@@ -327,6 +348,9 @@ export function WebProvider({ children }: iWebProvider) {
         setChatId,
         onSubmitChat,
         allChats,
+        callId,
+        setCallId,
+        onSubmitSendChat,
       }}
     >
       {children}

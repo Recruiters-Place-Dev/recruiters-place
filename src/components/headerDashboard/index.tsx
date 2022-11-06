@@ -4,42 +4,51 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
+import { LogOffModal } from "../../components/logoff"
 
 function HeaderDashboard() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
+  const [logOff, setLogOff] = useState(false);
 
   function handleLogout() {
-    localStorage.clear();
-    navigate("/");
+    setLogOff(true);
   }
 
-  function closeFilter() {
+  function goToPerfil() {
     setFilter(false);
     navigate("perfil");
+  }
+  function goToChat() {
+    setFilter(false);
+    navigate("chat");
   }
 
   return (
     <>
       <HeaderContainer>
+        {logOff ? <LogOffModal/> : ''}
         <header>
           <img onClick={() => navigate("/home")} src={Logo} alt="Logo" />
           <nav>
             <ul>
               <li>
+                <button onClick={() => goToPerfil()}>Perfil</button>
+                <span className="spanBorder"></span>
+              </li>
+              <li>
+                <button onClick={() => goToChat()}>Mensagens</button>
+                <span className="spanBorder"></span>
+              </li>
+              <li>
                 <button
                   onClick={() => {
                     setFilter(!filter);
-                    navigate("/home")
                   }}
                 >
                   Encontrar Devs
                   <span className="spanBorder"></span>
                 </button>
-              </li>
-              <li>
-                <button onClick={() => closeFilter()}>Perfil</button>
-                <span className="spanBorder"></span>
               </li>
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>

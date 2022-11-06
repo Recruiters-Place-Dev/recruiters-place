@@ -16,6 +16,7 @@ export const SectionProfile = styled.section`
   gap: 1rem;
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 4fr 1fr;
+  margin: 2rem auto;
 `;
 
 export const LinkEdit = styled(Link)`
