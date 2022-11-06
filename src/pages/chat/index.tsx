@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { WebContext } from "../../context/webcontext";
+import { iUser, WebContext } from "../../context/webcontext";
 import {
   ContainerChat,
   ContainerChatAll,
@@ -9,7 +9,8 @@ import {
   ContainerInputSend,
 } from "./style";
 import send from "../../assets/send.png";
-import { Api } from "../../services/api";
+import FotoPerfil from "../../assets/carbon_user-avatar.svg";
+import avatarTech from "../../assets/avatarTech.png";
 
 export interface iSend {
   chat: string | undefined;
@@ -21,7 +22,7 @@ export interface iSend {
 }
 
 function Chat() {
-  const { allChats, user, setCallId, callId, onSubmitSendChat } =
+  const { allChats, user, setCallId, callId, onSubmitSendChat, allUsers } =
     useContext(WebContext);
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
@@ -49,13 +50,15 @@ function Chat() {
         (elem) => elem.idFrom === e.idFrom && elem.idTo === e.idTo
       )
   );
-
+  const developer = allUsers?.find((element) => String(element.id) === callId);
+  console.log(developer);
   return (
     <ContainerChat>
       <ul>
         {user?.isRecruiter
           ? filterUserMsgFromMeNoRepeat.map((chat) => (
               <li>
+                <img src={avatarTech} alt="" />
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
                   {chat.to}
                 </h1>
@@ -66,6 +69,7 @@ function Chat() {
                 chat.idTo === String(myId) && (
                   <li>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
+                      <img src={FotoPerfil} alt="" />
                       {chat.from}
                     </h1>
                   </li>
@@ -90,7 +94,7 @@ function Chat() {
                       myId === elemento.idFrom ? "alignRigth" : "alignLeft"
                     }
                   >
-                    <h1>{elemento.chat}</h1>
+                    <h2>{elemento.chat}</h2>
                   </div>
                 )
             )
@@ -100,7 +104,15 @@ function Chat() {
         </ContainerChatCall>
       </ContainerChatAll>
 
-      <ContainerChatPerfil>Perfil recrutador</ContainerChatPerfil>
+      <ContainerChatPerfil>
+        {callId && (
+          <img src={developer?.isRecruiter ? avatarTech : FotoPerfil} alt="" />
+        )}
+        <h3>{developer?.name}</h3>
+        <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}</p>
+        {developer?.empresa && <p>{developer.empresa}</p>}
+        <p>{developer?.linkedin}</p>
+      </ContainerChatPerfil>
     </ContainerChat>
   );
 }
