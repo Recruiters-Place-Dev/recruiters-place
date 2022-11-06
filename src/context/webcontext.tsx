@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { iChat } from "../components/formChat";
 import { iSend } from "../pages/chat";
 import { iUserRegister } from "../components/formregister";
+import techList from "../mockList/devTechs.json";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -77,6 +78,7 @@ export interface iWebContext {
   allChats: iChat[];
   callId: string | undefined;
   setCallId: React.Dispatch<React.SetStateAction<any>>;
+  filteredTechs(elem: iUser): ({ tech: string; dir: string } | undefined)[];
   onSubmitSendChat: (data: iSend) => void;
   getAllUsers: () => void;
 }
@@ -85,7 +87,6 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
-
   const [allUsers, setAllUsers] = useState();
   const [allComents, setAllComents] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
@@ -324,6 +325,27 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function filteredTechs(elem: iUser) {
+    // getAllUsers()
+
+    // const developers = allUsers?.filter(
+    //   (elem: iUser) => elem.isRecruiter === false
+    // );
+    // const retorno = developers?.map((elem: iUserDeveloper) => {
+    const separateTechs = Object.entries<boolean>(
+      elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+    );
+    const filterTechs = separateTechs.filter((elem) => {
+      return elem[1] === true;
+    });
+
+    const arrFilteredTechs = filterTechs.map((elem) => {
+      return techList.find((E) => elem[0] === E.tech);
+    });
+    return arrFilteredTechs;
+    // })
+  }
+
   async function onSubmitSendChat(data: iSend) {
     data.idTo = callId;
     const findTo = allChats.find((element) => element.idTo === callId);
@@ -381,6 +403,7 @@ export function WebProvider({ children }: iWebProvider) {
         allChats,
         callId,
         setCallId,
+        filteredTechs,
         onSubmitSendChat,
         getAllUsers,
       }}

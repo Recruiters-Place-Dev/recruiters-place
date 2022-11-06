@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-
 import { WebContext } from "../context/webcontext";
-
 import Chat from "../pages/chat";
 import Feed from "../pages/feed";
 import { LandingPage } from "../pages/LandingPage";
@@ -10,7 +8,6 @@ import { Login } from "../pages/login";
 import Register from "../pages/register";
 import { PrivateRoutes } from "./PrivateRoutes";
 import Perfil from "../pages/perfil";
-import { PersonalDataOfDev } from "../pages/DevDashboard/components/FormEditProfile/PersonalDataOfDev";
 import { FormEditProfile } from "../pages/DevDashboard/components/FormEditProfile";
 import ContactUs from "../pages/contact";
 
