@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { iUser, WebContext } from "../../context/webcontext";
+import { WebContext } from "../../context/webcontext";
 import {
   ContainerChat,
   ContainerChatAll,
