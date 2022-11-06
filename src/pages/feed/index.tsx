@@ -118,7 +118,6 @@ function Feed() {
             <DivDevelopersTech>
               <Techs>
                 {minhasbolas.map((element: any) => {
-                  console.log(element.tech);
                   return (
                     <div>
                       <img src={element.dir} alt={element.tech} />
