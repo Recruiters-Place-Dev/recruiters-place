@@ -3,6 +3,7 @@ import Logo from "../../assets/RPlace_Clear.svg";
 
 import homemLandinPage from "../../assets/imgAnimated/homemLandinPage.svg";
 import mulherLandingPage from "../../assets/imgAnimated/mulherLandingPage.svg"
+import setas from "../../assets/imgAnimated/setas.svg"
 
 import {
   MainStyled,
@@ -45,8 +46,20 @@ export const LandingPage = () => {
           <Container>
 
             <ContainerImg>
-            <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
-            <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage"/>
+              <div>
+                <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
+
+                <div className="animatedArea">
+                  
+                <img src={setas} alt="setas" className="setas" />
+
+                </div>
+                
+
+
+                <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage" />
+              </div>
+
             </ContainerImg>
 
             <ContainerRedirect>

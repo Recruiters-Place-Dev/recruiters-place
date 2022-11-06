@@ -63,8 +63,31 @@ export const ContainerImg = styled.div`
   align-items: center;
   justify-content: center;
 
-  .homemLandinPage {
-    width: 80px;
+  div {
+
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+.animatedArea{
+  width: 80px;
+  height:  120px;
+  position: relative;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+  .homemLandinPage,
+  .mulherLandingPage {
+    width: 90px;
+    height:  190px;
+    border: 1px solid red;
+  }
+
+  .setas {
+    width: 50px;
   }
   @media (min-width: 1024px) {
     display: flex;
