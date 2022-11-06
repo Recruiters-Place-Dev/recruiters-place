@@ -18,7 +18,7 @@ import techList from "../../mockList/devTechs.json";
 import { iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
-  developer: iUserDeveloper | null;
+  developer: iUser | null;
 }
 
 function ModalFeed({ developer }: iModalFeedProps) {

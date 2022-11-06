@@ -13,11 +13,17 @@ export const ContainerChat = styled.div`
     }
   }
   h1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     cursor: pointer;
     padding: 5px;
     border-radius: 5px;
     &:hover {
       background: #ccc;
+    }
+    img {
+      width: 50px;
     }
   }
 `;
@@ -35,6 +41,9 @@ export const ContainerChatCall = styled.div`
   gap: 15px;
   height: max-content;
   overflow-y: auto;
+  h2 {
+    padding: 5px;
+  }
   & > .alignRigth {
     width: fit-content;
     align-self: end;
@@ -56,7 +65,13 @@ export const ContainerChatCall = styled.div`
 `;
 
 export const ContainerChatPerfil = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 25%;
+  img {
+    width: 100px;
+  }
 `;
 
 export const ContainerInputSend = styled.form`

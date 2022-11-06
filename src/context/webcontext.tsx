@@ -47,7 +47,7 @@ export interface iWebContext {
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
-  allUsers: [] | undefined;
+  allUsers: iUser[] | undefined;
   openModalFeed: () => void;
   modalFeed: boolean;
   openModalComent: () => void;
