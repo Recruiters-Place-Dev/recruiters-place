@@ -65,13 +65,18 @@ function Feed() {
     user,
     openModalChat,
     setChatId,
+    getAllUsers,
   } = useContext<iWebContext>(WebContext);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const developers = allUsers?.filter(
     (elem: iUser) => elem.isRecruiter === false
   );
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+  console.log("oi");
 
   return (
     <ContainerFeed>

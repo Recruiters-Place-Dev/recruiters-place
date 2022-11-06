@@ -78,6 +78,7 @@ export interface iWebContext {
   callId: string | undefined;
   setCallId: React.Dispatch<React.SetStateAction<any>>;
   onSubmitSendChat: (data: iSend) => void;
+  getAllUsers: () => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -131,7 +132,6 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
 
         const { data } = await Api.get(`/users/`);
-
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -382,6 +382,7 @@ export function WebProvider({ children }: iWebProvider) {
         callId,
         setCallId,
         onSubmitSendChat,
+        getAllUsers,
       }}
     >
       {children}
