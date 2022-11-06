@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { iWebContext, WebContext } from "../../context/webcontext";
+import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   DeveloperName,
   DevelopersCargo,
@@ -13,17 +13,15 @@ import {
   Techs,
 } from "./styles";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
-import {iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
   developer: iUser | null;
-  techs: ({ tech: string; dir: string; } | undefined)[] | null
+  techs: ({ tech: string; dir: string } | undefined)[] | null;
 }
 
 function ModalFeed({ developer, techs }: iModalFeedProps) {
   const { modalFeed, openModalFeed, allUsers } =
     useContext<iWebContext>(WebContext);
-
 
   return modalFeed ? (
     <ModalFeedContainer onClick={openModalFeed}>
