@@ -22,8 +22,15 @@ export interface iSend {
 }
 
 function Chat() {
-  const { allChats, user, setCallId, callId, onSubmitSendChat, allUsers } =
-    useContext(WebContext);
+  const {
+    allChats,
+    user,
+    setCallId,
+    callId,
+    onSubmitSendChat,
+    allUsers,
+    getAllUsers,
+  } = useContext(WebContext);
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
 
@@ -51,6 +58,10 @@ function Chat() {
       )
   );
   const developer = allUsers?.find((element) => String(element.id) === callId);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   return (
     <ContainerChat>
