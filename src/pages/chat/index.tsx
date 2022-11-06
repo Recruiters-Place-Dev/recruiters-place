@@ -58,8 +58,8 @@ function Chat() {
         {user?.isRecruiter
           ? filterUserMsgFromMeNoRepeat.map((chat) => (
               <li>
-                <img src={avatarTech} alt="" />
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
+                  <img src={FotoPerfil} alt="" />
                   {chat.to}
                 </h1>
               </li>
@@ -69,7 +69,7 @@ function Chat() {
                 chat.idTo === String(myId) && (
                   <li>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
-                      <img src={FotoPerfil} alt="" />
+                      <img src={avatarTech} alt="" />
                       {chat.from}
                     </h1>
                   </li>
