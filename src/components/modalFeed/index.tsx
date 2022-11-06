@@ -57,8 +57,8 @@ function ModalFeed({ developer }: iModalFeedProps) {
           </DivBio>
 
           <Techs>
-            {techList.map((devTech) => (
-              <img src={devTech.dir} alt="devTech.tech" />
+            {techList.map((devTech, index) => (
+              <img key={index} src={devTech.dir} alt="devTech.tech" />
             ))}
           </Techs>
         </DivInfo>

@@ -51,13 +51,13 @@ function Chat() {
       )
   );
   const developer = allUsers?.find((element) => String(element.id) === callId);
-  console.log(developer);
+
   return (
     <ContainerChat>
       <ul>
         {user?.isRecruiter
           ? filterUserMsgFromMeNoRepeat.map((chat) => (
-              <li>
+              <li key={chat.idTo}>
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
                   <img src={FotoPerfil} alt="" />
                   {chat.to}
@@ -67,7 +67,7 @@ function Chat() {
           : filterUsersMsgToMeNoRepeat.map(
               (chat) =>
                 chat.idTo === String(myId) && (
-                  <li>
+                  <li key={chat.idFrom}>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
                       <img src={avatarTech} alt="" />
                       {chat.from}
@@ -86,10 +86,11 @@ function Chat() {
         <ContainerChatCall>
           {callId ? (
             allChats.map(
-              (elemento) =>
+              (elemento, index) =>
                 ((elemento.idTo === callId && elemento.idFrom === myId) ||
                   (elemento.idFrom === callId && elemento.idTo === myId)) && (
                   <div
+                    key={index}
                     className={
                       myId === elemento.idFrom ? "alignRigth" : "alignLeft"
                     }

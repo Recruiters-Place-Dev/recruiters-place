@@ -119,7 +119,7 @@ function Feed() {
               <Techs>
                 {minhasbolas.map((element: any) => {
                   return (
-                    <div>
+                    <div key={element.tech}>
                       <img src={element.dir} alt={element.tech} />
                       <span>{element.tech}</span>
                     </div>
