@@ -26,6 +26,13 @@ function HeaderDashboard() {
     setFilter(false);
     navigate("chat");
   }
+
+  function reset() {
+    navigate("/home");
+    setFilterDevelopers(
+      allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+    );
+  }
   function teste(event: string) {
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem) => {
@@ -49,7 +56,7 @@ function HeaderDashboard() {
       <HeaderContainer>
         {logOff ? <LogOffModal /> : ""}
         <header>
-          <img onClick={() => navigate("/home")} src={Logo} alt="Logo" />
+          <img onClick={() => reset()} src={Logo} alt="Logo" />
           <nav>
             <ul>
               <li>
