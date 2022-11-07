@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import devTechs from "../../../mockList/devTechs.json";
 
 import { iProgressProps } from "../../formregister";
@@ -6,6 +6,16 @@ import { iProgressProps } from "../../formregister";
 interface iModalContainerProps {
   progress: iProgressProps;
 }
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const ModalContainer = styled.div<iModalContainerProps>`
   position: fixed;
@@ -71,6 +81,10 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
       .notCompleted {
         background-color: #d9d9d9;
+      }
+
+      .error{
+        background-color: var(--color-error);
       }
     }
 
@@ -299,6 +313,15 @@ const ModalContainer = styled.div<iModalContainerProps>`
       align-items: center;
       justify-content: center;
       gap: 30px;
+
+      form button:last-of-type {
+        background-color: #1da1f2;
+        padding: 14px 90px 15px;
+      }
+
+      .loading svg{
+        animation: ${rotate} 2s linear infinite;
+      }
     }
   }
 `;
