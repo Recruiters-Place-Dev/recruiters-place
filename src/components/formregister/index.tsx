@@ -64,12 +64,12 @@ export function FormRegister() {
       }
     } else {
       setShow(true);
-        setProgress({ phase: 5, nextPhase: null });
+      setProgress({ phase: 5, nextPhase: null });
     }
   };
 
   const setRecruiterTrue = () => {
-    setIsRecruiter(true)
+    setIsRecruiter(true);
   };
 
   // validations
@@ -157,9 +157,19 @@ export function FormRegister() {
     resolver: yupResolver(yupSchema),
   });
 
+  const forceOpenModal = (e: any) => {
+    if (e.key === "Enter") {
+      handleSubmit(onRegister)();
+      registerUser()
+    }
+  };
+
   return (
     <>
-      <RegisterForm onSubmit={handleSubmit(onRegister)}>
+      <RegisterForm
+        onKeyDown={(e) => forceOpenModal(e)}
+        onSubmit={handleSubmit(onRegister)}
+      >
         <div className="InputsContainer">
           <Input
             type="text"
