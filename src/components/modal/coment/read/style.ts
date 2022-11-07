@@ -35,6 +35,9 @@ export const ComentContainer = styled.ul`
   gap: 15px;
   width: 100%;
   overflow-y: auto;
+  div img {
+    width: 80px;
+  }
   .float {
     position: absolute;
     right: 15px;
@@ -53,5 +56,6 @@ export const ComentContainer = styled.ul`
 
     display: flex;
     padding: 10px;
+    gap: 20px;
   }
 `;
