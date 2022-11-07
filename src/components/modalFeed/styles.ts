@@ -83,19 +83,27 @@ export const DivPersonalInfo = styled.div`
 
 export const DivInfo = styled.div`
   width: 60%;
-  height: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 `;
 
 export const DivBio = styled.div`
+  width: 100%;
+  height: 660px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
   color: #14171a;
   font-size: 20px;
   font-family: "Roboto";
 
   p {
     font-weight: 400;
+    width: 100%;
+    height: 200px;
+    word-break: break-all;
   }
 `;
 
@@ -105,9 +113,11 @@ export const Techs = styled.div`
   display: flex;
   gap: 5px;
   justify-self: flex-end;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 
-  img{
-    width: 70%;
-    height: 70%;
+  img {
+    width: 70px;
+    height: 70px;
   }
 `;

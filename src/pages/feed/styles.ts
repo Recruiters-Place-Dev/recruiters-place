@@ -84,26 +84,14 @@ export const Techs = styled.div`
       min-height: 35px;
       aspect-ratio: 1/1;
     }
-    & span {
-      display: none;
-    }
   }
   & div:hover {
     position: relative;
     & img {
       transform: scale(1.1);
     }
-    & span {
-      width: 80px;
-      text-align: center;
-      display: block;
-      position: absolute;
-      top: -25px;
-      background-color: #14171a;
-      color: var(--white);
-      font-size: 18px;
-      font-family: "Roboto";
-      border-radius: 20px
+    span {
+      opacity: 1;
     }
   }
 `;
@@ -121,4 +109,20 @@ export const Contato = styled.div`
     cursor: pointer;
     color: blue;
   }
+`;
+
+export const Tag = styled.span`
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: -30px;
+  background-color: #14171a;
+  color: var(--white);
+  font-size: 16px;
+  font-family: "Roboto";
+  border-radius: 20px;
+  transition: 1s ease-in-out;
 `;

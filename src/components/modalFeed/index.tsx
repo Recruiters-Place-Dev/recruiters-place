@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { iWebContext, WebContext } from "../../context/webcontext";
+import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   DeveloperName,
   DevelopersCargo,
@@ -12,18 +12,15 @@ import {
   ModalFeedContainer,
   Techs,
 } from "./styles";
-import { iUser } from "../../context/webcontext";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
-import techList from "../../mockList/devTechs.json";
-import { iUserDeveloper } from "../../pages/feed";
 
 interface iModalFeedProps {
   developer: iUser | null;
+  techs: ({ tech: string; dir: string } | undefined)[] | null;
 }
 
-function ModalFeed({ developer }: iModalFeedProps) {
-  const { modalFeed, openModalFeed, allUsers } =
-    useContext<iWebContext>(WebContext);
+function ModalFeed({ developer, techs }: iModalFeedProps) {
+  const { modalFeed, openModalFeed } = useContext<iWebContext>(WebContext);
 
   return modalFeed ? (
     <ModalFeedContainer onClick={openModalFeed}>
@@ -57,8 +54,8 @@ function ModalFeed({ developer }: iModalFeedProps) {
           </DivBio>
 
           <Techs>
-            {techList.map((devTech) => (
-              <img src={devTech.dir} alt="devTech.tech" />
+            {techs?.map((devTech) => (
+              <img src={devTech?.dir} alt="devTech.tech" />
             ))}
           </Techs>
         </DivInfo>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { iUser, WebContext } from "../../context/webcontext";
+import { WebContext } from "../../context/webcontext";
 import {
   ContainerChat,
   ContainerChatAll,
@@ -22,8 +22,15 @@ export interface iSend {
 }
 
 function Chat() {
-  const { allChats, user, setCallId, callId, onSubmitSendChat, allUsers } =
-    useContext(WebContext);
+  const {
+    allChats,
+    user,
+    setCallId,
+    callId,
+    onSubmitSendChat,
+    allUsers,
+    getAllUsers,
+  } = useContext(WebContext);
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
 
@@ -51,15 +58,19 @@ function Chat() {
       )
   );
   const developer = allUsers?.find((element) => String(element.id) === callId);
-  console.log(developer);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
   return (
     <ContainerChat>
       <ul>
         {user?.isRecruiter
           ? filterUserMsgFromMeNoRepeat.map((chat) => (
-              <li>
-                <img src={avatarTech} alt="" />
+              <li key={chat.idTo}>
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
+                  <img src={FotoPerfil} alt="" />
                   {chat.to}
                 </h1>
               </li>
@@ -67,9 +78,9 @@ function Chat() {
           : filterUsersMsgToMeNoRepeat.map(
               (chat) =>
                 chat.idTo === String(myId) && (
-                  <li>
+                  <li key={chat.idFrom}>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
-                      <img src={FotoPerfil} alt="" />
+                      <img src={avatarTech} alt="" />
                       {chat.from}
                     </h1>
                   </li>
@@ -86,10 +97,11 @@ function Chat() {
         <ContainerChatCall>
           {callId ? (
             allChats.map(
-              (elemento) =>
+              (elemento, index) =>
                 ((elemento.idTo === callId && elemento.idFrom === myId) ||
                   (elemento.idFrom === callId && elemento.idTo === myId)) && (
                   <div
+                    key={index}
                     className={
                       myId === elemento.idFrom ? "alignRigth" : "alignLeft"
                     }
