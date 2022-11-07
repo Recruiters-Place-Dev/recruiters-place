@@ -3,46 +3,47 @@ import { Path, UseFormGetValues, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "../ParagraphError";
 import InputGroup from "./inputGroup";
 
-interface iInputProps {
-  type: string;
-  label: string;
-  id: Path<any>;
-  register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>;
+export interface iInputProps {
+  default?: string;
   errorMessage?: string;
   errors?: any;
+  getValues: UseFormGetValues<any>;
+  id: Path<any>;
+  label: string;
   login?: boolean;
-  default?: string;
   name?: string;
+  register: UseFormRegister<any>;
+  type: string;
 }
 
 const Input = ({
-  type,
-  label,
-  id,
-  register,
-  getValues,
-  errors,
-  login,
   errorMessage,
+  errors,
+  getValues,
+  id,
+  label,
+  login,
+  register,
+  type,
 }: iInputProps) => {
+  // Destructuring the register
   const { onChange, onBlur, name, ref } = register(id);
 
+  // States
   const [value, setValue] = useState(getValues(id) || "");
 
+  // Validations
+  const className =
+    !errors && value !== "" && login
+      ? "done"
+      : errors
+      ? "error"
+      : !errors && value !== ""
+      ? "sucess"
+      : "";
+
   return (
-    <InputGroup
-      className={
-        !errors && value !== "" && login
-          ? "done"
-          : errors
-          ? "error"
-          : !errors && value !== ""
-          ? "sucess"
-          : ""
-      }
-      inputValue={value}
-    >
+    <InputGroup className={className} inputValue={value}>
       <input
         autoComplete="off"
         id={id}
@@ -57,7 +58,7 @@ const Input = ({
         ref={ref}
       />
       <label>{label}</label>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {errorMessage ? <ErrorMessage>{errorMessage}</ErrorMessage> : null}
     </InputGroup>
   );
 };
