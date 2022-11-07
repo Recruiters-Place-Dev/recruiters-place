@@ -21,10 +21,10 @@ interface iModalFeedProps {
 }
 
 function ModalFeed({ developer, techs }: iModalFeedProps) {
-  const { modalFeed, openModalFeed } = useContext<iWebContext>(WebContext);
+  const { modalFeed, setModalFeed } = useContext<iWebContext>(WebContext);
 
   return modalFeed ? (
-    <ModalFeedContainer onClick={openModalFeed}>
+    <ModalFeedContainer onClick={() => setModalFeed(!modalFeed)}>
       <div>
         <DivPersonalInfo>
           <FigureModal>

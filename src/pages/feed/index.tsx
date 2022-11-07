@@ -68,14 +68,15 @@ export interface iTechs {
 function Feed() {
   const {
     allUsers,
-    openModalFeed,
+    modalFeed,
+    setModalFeed,
     modalComent,
     setModalComent,
     setComentId,
     user,
-    openModalChat,
+    modalChat,
+    setModalChat,
     setChatId,
-    getAllUsers,
     filteredTechs,
     filterDevelopers,
     setFilterDevelopers,
@@ -143,7 +144,7 @@ function Feed() {
                     id={elem.id + ""}
                     onClick={(event) => {
                       setChatId((event.target as HTMLImageElement).id);
-                      openModalChat();
+                      setModalChat(!modalChat);
                     }}
                   />
                 )}
@@ -162,7 +163,7 @@ function Feed() {
                   alt="perfil"
                   id={elem.id + ""}
                   onClick={() => {
-                    openModalFeed();
+                    setModalFeed(!modalFeed);
                     setModalDeveloper(elem);
                     setTechsDeveloper(filteredTechs(elem));
                   }}

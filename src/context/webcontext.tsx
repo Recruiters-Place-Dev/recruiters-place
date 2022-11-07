@@ -61,7 +61,6 @@ export interface iWebContext {
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
-  openModalFeed: () => void;
   modalFeed: boolean;
   modalComent: boolean;
   modalReadComent: boolean;
@@ -77,8 +76,8 @@ export interface iWebContext {
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
   inputPassRef: React.MutableRefObject<undefined>;
   allComents: iComent[];
+  setModalFeed: Dispatch<SetStateAction<boolean>>;
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
-  openModalChat: () => void | undefined;
   setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
   modalChat: boolean;
   chatId: string | undefined;
@@ -283,29 +282,13 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  function openModalFeed(): void {
-    if (modalFeed) {
-      setModalFeed(false);
-    } else {
-      setModalFeed(true);
-    }
-  }
-
-  function openModalChat(): void {
-    if (modalChat) {
-      setModalChat(false);
-    } else {
-      setModalChat(true);
-    }
-  }
-
   function writeModalComent(): void {
-    setModalComent(!modalComent)
+    setModalComent(!modalComent);
     setModalWriteComent(true);
   }
 
   function readModalComent(): void {
-    setModalComent(!modalComent)
+    setModalComent(!modalComent);
     setModalReadComent(true);
   }
 
@@ -403,8 +386,8 @@ export function WebProvider({ children }: iWebProvider) {
         setUser,
         user,
         allUsers,
-        openModalFeed,
         modalFeed,
+        setModalFeed,
         modalComent,
         setModalComent,
         readModalComent,
@@ -420,7 +403,6 @@ export function WebProvider({ children }: iWebProvider) {
         setBoxEdit,
         inputPassRef,
         allComents,
-        openModalChat,
         setModalChat,
         modalChat,
         chatId,
