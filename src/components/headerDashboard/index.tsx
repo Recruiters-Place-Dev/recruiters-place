@@ -6,14 +6,13 @@ import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
 import { LogOffModal } from "../../components/logoff";
 import { iUser, WebContext } from "../../context/webcontext";
-import { iTech } from "../../pages/feed";
-import { ObjectKeys } from "react-hook-form/dist/types/path/common";
 
 function HeaderDashboard() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
   const [logOff, setLogOff] = useState(false);
-  const { setFilterDevelopers, allUsers } = useContext(WebContext);
+  const { setFilterDevelopers, allUsers, filterDevelopers } =
+    useContext(WebContext);
 
   function handleLogout() {
     setLogOff(true);
@@ -28,15 +27,21 @@ function HeaderDashboard() {
     navigate("chat");
   }
   function teste(event: string) {
-    const filter = allUsers?.filter((elem: iUser) => {
-      for (let tech in elem.tech) {
-        if (elem.isRecruiter === false && tech === event) {
-          return elem;
+    const arrayfiltro: iUser[] = [];
+    allUsers?.map((elem) => {
+      const techs = Object.entries<boolean>(
+        elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+      );
+      techs.filter((elemento) => {
+        if (elemento[1]) {
+          if (elem.isRecruiter === false && elemento[0] === event) {
+            arrayfiltro.push(elem);
+          }
         }
-      }
+      });
     });
 
-    setFilterDevelopers(filter);
+    setFilterDevelopers(arrayfiltro);
   }
 
   return (
