@@ -19,7 +19,7 @@ function RoutesMain() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<PrivateRoutes />}>
-        <Route path="/home" element={<Feed />} />
+        <Route path="/:home" element={<Feed />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/chat" element={<Chat />} />
         <Route
