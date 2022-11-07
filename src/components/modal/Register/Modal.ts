@@ -83,7 +83,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
         background-color: #d9d9d9;
       }
 
-      .error{
+      .error {
         background-color: var(--color-error);
       }
     }
@@ -280,7 +280,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
           background-size: contain;
         }
 
-        .tech-javascript {
+        .tech-js {
           background: transparent url(${devTechs[3].dir}) no-repeat center;
           background-size: contain;
         }
@@ -290,13 +290,29 @@ const ModalContainer = styled.div<iModalContainerProps>`
           background-size: contain;
         }
 
-        .tech-sass {
+        .tech-vuejs {
           background: transparent url(${devTechs[5].dir}) no-repeat center;
           background-size: contain;
         }
 
-        .tech-typescript {
+        .tech-ts {
           background: transparent url(${devTechs[6].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-php {
+          background: transparent url(${devTechs[7].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-c {
+          background: transparent url(${devTechs[8].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-sass {
+          background: transparent url(${devTechs[9].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-node {
+          background: transparent url(${devTechs[10].dir}) no-repeat center;
           background-size: contain;
         }
       }
@@ -319,7 +335,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
         padding: 14px 90px 15px;
       }
 
-      .loading svg{
+      .loading svg {
         animation: ${rotate} 2s linear infinite;
       }
     }
