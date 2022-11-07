@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
 <<<<<<< HEAD
   display: flex;
-
   justify-content: space-around;
   align-items: center;
 =======
@@ -69,6 +68,7 @@ export const HeaderContainer = styled.div`
     gap: 20px;
 
     img {
+      cursor: pointer;
       width: 30px;
       aspect-ratio: 1/1;
     }

@@ -56,7 +56,7 @@ export interface iWebContext {
   onLogin: (info: iUserLogin) => void;
   onRegister: (data: iUserRegister) => Promise<void>;
   resolved: boolean | undefined;
-  setResolved: Dispatch<SetStateAction<boolean | undefined>>
+  setResolved: Dispatch<SetStateAction<boolean | undefined>>;
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
@@ -91,6 +91,11 @@ export interface iWebContext {
   filteredTechs(elem: iUser): ({ tech: string; dir: string } | undefined)[];
   onSubmitSendChat: (data: iSend) => void;
   getAllUsers: () => void;
+  getAllChats: () => void;
+  filterDevelopers: iUser[] | undefined;
+  setFilterDevelopers: React.Dispatch<
+    React.SetStateAction<iUser[] | undefined>
+  >;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -109,6 +114,10 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
+  const [filterDevelopers, setFilterDevelopers] = useState<
+    iUser[] | undefined
+  >();
+
   const [resolved, setResolved] = useState<boolean | undefined>();
   const navigate = useNavigate();
   const inputPassRef = useRef();
@@ -220,23 +229,23 @@ export function WebProvider({ children }: iWebProvider) {
 
       try {
         await Api.post("/users", devData);
-        setResolved(true)
+        setResolved(true);
       } catch (error) {
-        setResolved(false)
+        setResolved(false);
       }
     } else {
       const recruiterData = {
         name: data.name,
         email: data.email,
         password: data.password,
-        isRecruiter: data.isRecruiter
-      }
+        isRecruiter: data.isRecruiter,
+      };
 
       try {
-        await Api.post("/users", recruiterData)
-        setResolved(true)
+        await Api.post("/users", recruiterData);
+        setResolved(true);
       } catch (error) {
-        setResolved(false)
+        setResolved(false);
       }
     }
   }
@@ -433,6 +442,9 @@ export function WebProvider({ children }: iWebProvider) {
         filteredTechs,
         onSubmitSendChat,
         getAllUsers,
+        getAllChats,
+        filterDevelopers,
+        setFilterDevelopers,
       }}
     >
       {children}
