@@ -25,22 +25,26 @@ Pensando em solucionar problemas de empresas e recrutadores que estão buscando 
 
 ```
 bash
-#clone the project
-$git clone ...
+#clone o projeto
+$git clone git@github.com:time-6/recruiters-place.git
 ```
 
 ```
 bash
-#Enter directory
-$cd ...
+#Entre no diretório
+$cd recruiters-place
 ```
 
 ```
 bash
-# Install the dependencies
+# Instale as depêndencias
 $npm install
 or
 $yarn
+```
+
+```
+yarn start
 ```
 
 # Getting Started with Create React App
