@@ -15,7 +15,7 @@ function HeaderDashboard() {
   const [logOff, setLogOff] = useState(false);
   const { setFilterDevelopers, allUsers, filterDevelopers } =
     useContext(WebContext);
-  console.log(home);
+  // console.log(home);
   function handleLogout() {
     setLogOff(true);
   }

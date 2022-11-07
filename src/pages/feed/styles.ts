@@ -18,10 +18,44 @@ export const ContainerDeveloper = styled(motion.div)`
   border-radius: 10px;
   display: flex;
   padding: 10px;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const DivDevelopersInfo = styled.div`
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 750px) {
+    display: none;
+  }
+`;
+
+export const Figure = styled.figure`
+  width: 100px;
+  height: 100px;
+`;
+
+export const DivDevelopersName = styled.div`
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.94rem;
+
+  @media (max-width: 750px) {
+    width: 100%;
+    gap: 0.5rem;
+  }
 `;
 
 export const DeveloperName = styled.h1`
-  font-family: "Roboto";
+  font-family: var(--font-family);
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
@@ -31,28 +65,9 @@ export const DeveloperName = styled.h1`
 export const DevelopersCargo = styled.p`
   color: #657786;
   font-size: 22px;
-  font-family: "Roboto";
+  font-family: var(--font-family);
 `;
 
-export const Figure = styled.figure`
-  width: 100px;
-  height: 100px;
-`;
-
-export const DivDevelopersInfo = styled.div`
-  width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-`;
-
-export const DivDevelopersName = styled.div`
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
 export const DivDevelopersLinks = styled.div`
   width: 70%;
   display: flex;
@@ -69,6 +84,13 @@ export const DivDevelopersTech = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media (max-width: 750px) {
+    flex-direction: row;
+
+    margin-top: 1rem;
+    width: 100%;
+  }
 `;
 
 export const Techs = styled.div`
@@ -76,13 +98,70 @@ export const Techs = styled.div`
   height: 30%;
   display: flex;
   gap: 5px;
+
+  @media (max-width: 750px) {
+    max-width: 60%;
+  }
+
   & div {
     width: 11px;
     height: 11px;
+    
+    @media (max-width: 1100px) {
+      width: 10px;
+      height: 10px;
+    }
+
+    @media (max-width: 1050px) {
+      width: 9px;
+      height: 9px;
+    }
+    
+    @media (max-width: 1000px) {
+      width: 8px;
+      height: 8px;
+    }
+
+    @media (max-width: 900px) {
+      width: 7px;
+      height: 7px;
+    }
+
+    @media (max-width: 850px) {
+      width: 6px;
+      height: 6px;
+    }
+
+    @media (max-width: 800px) {
+      width: 5px;
+      height: 5px;
+    }
+
+    @media (max-width: 750px) {
+      width: 10px;
+      height: 10px;
+    }
+
+    @media (max-width: 500px) {
+      width: 8px;
+      height: 8px;
+    }
+    
     & img {
       min-width: 35px;
       min-height: 35px;
       aspect-ratio: 1/1;
+      
+      @media (max-width: 450px) {
+        min-width: 33px;
+        min-height: 33px;
+      }
+
+      @media (max-width: 400px) {
+        min-width: 31px;
+        min-height: 31px;
+      }
+      
     }
   }
   & div:hover {
@@ -93,21 +172,6 @@ export const Techs = styled.div`
     span {
       opacity: 1;
     }
-  }
-`;
-export const Contato = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-
-  & img {
-    cursor: pointer;
-    width: 40px;
-  }
-  svg {
-    cursor: pointer;
-    color: blue;
   }
 `;
 
@@ -125,4 +189,40 @@ export const Tag = styled.span`
   font-family: "Roboto";
   border-radius: 20px;
   transition: 1s ease-in-out;
+`;
+
+export const Contato = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  @media (max-width: 900px) {
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 750px) {
+    max-width: 40%;
+  }
+
+  & img {
+    cursor: pointer;
+    width: 40px;
+
+    @media (max-width: 750px) {
+      width: 20%;
+    }
+
+    @media (max-width: 650px) {
+      width: 23%;
+    }
+
+    @media (max-width: 550px) {
+      width: 25%;
+    }
+  }
+  svg {
+    cursor: pointer;
+    color: blue;
+  }
 `;
