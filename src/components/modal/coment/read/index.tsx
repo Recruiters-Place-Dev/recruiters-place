@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { WebContext } from "../../../../context/webcontext";
 import { ComentContainer, ModalComentReadContainer } from "./style";
 import userPerfil from "../../../../assets/carbon_user-avatar.svg";
 import close from "../../../../assets/close.png";
 import { ModalComentWriteContainerButton } from "../write/style";
+import {v4 as uuid} from "uuid"
 
 function ReadComent() {
-  const { modalReadComent, setModalComent, setModalReadComent, allComents, comentId, user } =
-    useContext(WebContext);
+  const {
+    modalReadComent,
+    setModalComent,
+    setModalReadComent,
+    allComents,
+    comentId,
+    user,
+  } = useContext(WebContext);
 
   return modalReadComent ? (
     <ModalComentReadContainer>
@@ -15,7 +22,7 @@ function ReadComent() {
         <ModalComentWriteContainerButton
           onClick={() => {
             setModalReadComent(!modalReadComent);
-            setModalComent(true)
+            setModalComent(true);
           }}
         >
           <img src={close} alt="" />
@@ -24,7 +31,7 @@ function ReadComent() {
         <ComentContainer>
           {allComents?.map((coment) =>
             coment.idTo === comentId ? (
-              <li>
+              <li key={uuid()}>
                 <div>
                   <img src={userPerfil} alt="" />
                 </div>

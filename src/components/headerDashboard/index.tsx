@@ -6,6 +6,7 @@ import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
 import { LogOffModal } from "../../components/logoff";
 import { iUser, WebContext } from "../../context/webcontext";
+import {v4 as uuid} from "uuid"
 
 function HeaderDashboard() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function HeaderDashboard() {
       allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
     );
   }
+
   function teste(event: string) {
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem) => {
@@ -89,14 +91,14 @@ function HeaderDashboard() {
             <ul>
               <li>Todos</li>
               {ListMock.map((devType) => (
-                <li key={devType}>{devType}</li>
+                <li key={uuid()}>{devType}</li>
               ))}
             </ul>
             <ul>
               <li>Tecnologias</li>
               {techList &&
                 techList.map((devTech) => (
-                  <li key={devTech.tech}>
+                  <li key={uuid()}>
                     <img
                       id={devTech.tech}
                       src={devTech.dir}

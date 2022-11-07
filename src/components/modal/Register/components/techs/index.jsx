@@ -1,11 +1,12 @@
 import devTechs from "../../../../../mockList/devTechs.json";
+import {v4 as uuid} from "uuid"
 
 const ModalTechs = ({register}) => {
   return (
     <>
       {devTechs.map((el) => {
         return (
-          <div key={el.tech}>
+          <div key={uuid()}>
             <label htmlFor={el.tech} className="container">
               <input
                 type="checkbox"

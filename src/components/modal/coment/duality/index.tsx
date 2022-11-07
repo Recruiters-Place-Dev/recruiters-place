@@ -4,11 +4,11 @@ import { ButtonStylized } from "../../../buttons/style";
 import { ModalComentContainer } from "./style";
 
 function ModalComent() {
-  const { modalComent, openModalComent, readModalComent, writeModalComent } =
+  const { modalComent, setModalComent, readModalComent, writeModalComent } =
     useContext(WebContext);
 
   return modalComent ? (
-    <ModalComentContainer onClick={openModalComent}>
+    <ModalComentContainer onClick={() => setModalComent(!modalComent)}>
       <div>
         <ButtonStylized onClick={() => writeModalComent()}>Escrever comentário</ButtonStylized>
         <ButtonStylized onClick={() => readModalComent()}>Ver comentários</ButtonStylized>
