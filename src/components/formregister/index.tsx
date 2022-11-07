@@ -39,14 +39,43 @@ export interface iProgressProps {
 }
 
 export function FormRegister() {
-  const { onRegister } = useContext(WebContext);
-
+  //States
   const [show, setShow] = useState<boolean>(false);
   const [isRecruiter, setIsRecruiter] = useState<boolean>(false);
   const [progress, setProgress] = useState<iProgressProps>({
     phase: 1,
     nextPhase: 2,
   });
+
+  // functions
+  const { onRegister } = useContext(WebContext);
+
+  const registerUser = async () => {
+    const isRecruiter = getValues("isRecruiter");
+
+    if (!isRecruiter) {
+      const valid = await trigger(["name", "email", "password", "checkpass"], {
+        shouldFocus: true,
+      });
+
+      if (valid) {
+        setShow(true);
+        setProgress({ phase: 2, nextPhase: 3 });
+      }
+    } else {
+      setShow(true);
+        setProgress({ phase: 5, nextPhase: null });
+    }
+  };
+
+  const setRecruiterTrue = () => {
+    setIsRecruiter(true)
+  };
+
+  // validations
+  const type = isRecruiter ? "submit" : "button";
+
+  // Hook-Form / yup
   const yupSchema = yup.object().shape({
     name: yup.string().required("Preencha o campo com seu nome."),
     email: yup
@@ -119,11 +148,11 @@ export function FormRegister() {
   });
 
   const {
-    register,
-    trigger,
-    handleSubmit,
     formState: { errors },
     getValues,
+    handleSubmit,
+    register,
+    trigger,
   } = useForm<iUserRegister>({
     resolver: yupResolver(yupSchema),
   });
@@ -171,41 +200,24 @@ export function FormRegister() {
             type="checkbox"
             id="recruiter"
             {...register("isRecruiter")}
-            onClick={() => setIsRecruiter(true)}
+            onClick={setRecruiterTrue}
           />
         </div>
-        <button
-          type={isRecruiter ? "submit" : "button"}
-          onClick={async () => {
-            const isRecruiter = getValues("isRecruiter");
-
-            if (!isRecruiter) {
-              const valid = await trigger(
-                ["name", "email", "password", "checkpass"],
-                { shouldFocus: true }
-              );
-
-              if (valid) {
-                setShow(true);
-                setProgress({ phase: 2, nextPhase: 3 });
-              }
-            }
-          }}
-        >
+        <button type={type} onClick={registerUser}>
           Cadastre-se
         </button>
       </RegisterForm>
-      {show && (
+      {!!show && (
         <ModalRegister
-          setShow={setShow}
-          progress={progress}
-          setProgress={setProgress}
-          register={register}
-          getValues={getValues}
-          trigger={trigger}
-          handleSubmit={handleSubmit}
-          fn={onRegister}
           errors={errors}
+          fn={onRegister}
+          getValues={getValues}
+          handleSubmit={handleSubmit}
+          progress={progress}
+          register={register}
+          setProgress={setProgress}
+          setShow={setShow}
+          trigger={trigger}
         />
       )}
     </>
