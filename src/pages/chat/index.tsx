@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { WebContext } from "../../context/webcontext";
 import {
@@ -11,6 +11,7 @@ import {
 import send from "../../assets/send.png";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import avatarTech from "../../assets/avatarTech.png";
+import {v4 as uuid} from "uuid"
 
 export interface iSend {
   chat: string | undefined;
@@ -67,7 +68,7 @@ function Chat() {
       <ul>
         {user?.isRecruiter
           ? filterUserMsgFromMeNoRepeat.map((chat) => (
-              <li key={chat.idTo}>
+              <li key={uuid()}>
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
                   <img src={FotoPerfil} alt="" />
                   {chat.to}
@@ -77,7 +78,7 @@ function Chat() {
           : filterUsersMsgToMeNoRepeat.map(
               (chat) =>
                 chat.idTo === String(myId) && (
-                  <li key={chat.idFrom}>
+                  <li key={uuid()}>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
                       <img src={avatarTech} alt="" />
                       {chat.from}
@@ -96,11 +97,11 @@ function Chat() {
         <ContainerChatCall>
           {callId ? (
             allChats.map(
-              (elemento, index) =>
+              (elemento) =>
                 ((elemento.idTo === callId && elemento.idFrom === myId) ||
                   (elemento.idFrom === callId && elemento.idTo === myId)) && (
                   <div
-                    key={index}
+                    key={uuid()}
                     className={
                       myId === elemento.idFrom ? "alignRigth" : "alignLeft"
                     }

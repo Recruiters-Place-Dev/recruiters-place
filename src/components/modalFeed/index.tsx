@@ -13,6 +13,7 @@ import {
   Techs,
 } from "./styles";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
+import {v4 as uuid} from "uuid"
 
 interface iModalFeedProps {
   developer: iUser | null;
@@ -55,7 +56,7 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
 
           <Techs>
             {techs?.map((devTech) => (
-              <img key={devTech?.tech} src={devTech?.dir} alt="devTech.tech" />
+              <img key={uuid()} src={devTech?.dir} alt="devTech.tech" />
             ))}
           </Techs>
         </DivInfo>

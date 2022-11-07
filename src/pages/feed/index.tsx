@@ -23,6 +23,7 @@ import ModalComent from "../../components/modal/coment/duality";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
+import {v4 as uuid} from "uuid"
 
 // export interface iUserDeveloper {
 //   email: string;
@@ -68,7 +69,8 @@ function Feed() {
   const {
     allUsers,
     openModalFeed,
-    openModalComent,
+    modalComent,
+    setModalComent,
     setComentId,
     user,
     openModalChat,
@@ -93,13 +95,13 @@ function Feed() {
 
   return (
     <ContainerFeed>
-      {filterDevelopers?.map((elem: iUser, index: number) => {
+      {filterDevelopers?.map((elem: iUser) => {
         return (
           <ContainerDeveloper
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
-            key={index}
+            key={uuid()}
           >
             <DivDevelopersInfo>
               <Figure>
@@ -125,7 +127,7 @@ function Feed() {
               <Techs>
                 {filteredTechs(elem)?.map((value) => {
                   return (
-                    <div key={value?.tech}>
+                    <div key={uuid()}>
                       <img src={value?.dir} alt={value?.tech} />
                       <Tag>{value?.tech}</Tag>
                     </div>
@@ -152,7 +154,7 @@ function Feed() {
                   id={elem.id + ""}
                   onClick={(event) => {
                     setComentId((event.target as HTMLImageElement).id);
-                    openModalComent();
+                    setModalComent(!modalComent);
                   }}
                 />
                 <img

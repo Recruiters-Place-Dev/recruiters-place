@@ -63,7 +63,6 @@ export interface iWebContext {
   allUsers: iUser[] | undefined;
   openModalFeed: () => void;
   modalFeed: boolean;
-  openModalComent: () => void;
   modalComent: boolean;
   modalReadComent: boolean;
   readModalComent: () => void;
@@ -292,14 +291,6 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  function openModalComent(): void {
-    if (modalComent) {
-      setModalComent(false);
-    } else {
-      setModalComent(true);
-    }
-  }
-
   function openModalChat(): void {
     if (modalChat) {
       setModalChat(false);
@@ -308,14 +299,14 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  function readModalComent(): void {
-    openModalComent();
-    setModalReadComent(true);
+  function writeModalComent(): void {
+    setModalComent(!modalComent)
+    setModalWriteComent(true);
   }
 
-  function writeModalComent(): void {
-    openModalComent();
-    setModalWriteComent(true);
+  function readModalComent(): void {
+    setModalComent(!modalComent)
+    setModalReadComent(true);
   }
 
   async function onSubmitComent(data: iComent) {
@@ -414,7 +405,6 @@ export function WebProvider({ children }: iWebProvider) {
         allUsers,
         openModalFeed,
         modalFeed,
-        openModalComent,
         modalComent,
         setModalComent,
         readModalComent,
