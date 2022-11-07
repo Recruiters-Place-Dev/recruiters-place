@@ -55,7 +55,7 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
 
           <Techs>
             {techs?.map((devTech) => (
-              <img src={devTech?.dir} alt="devTech.tech" />
+              <img key={devTech?.tech} src={devTech?.dir} alt="devTech.tech" />
             ))}
           </Techs>
         </DivInfo>

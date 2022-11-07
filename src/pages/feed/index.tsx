@@ -75,6 +75,8 @@ function Feed() {
     setChatId,
     getAllUsers,
     filteredTechs,
+    filterDevelopers,
+    setFilterDevelopers,
   } = useContext<iWebContext>(WebContext);
 
   const [techsDeveloper, setTechsDeveloper] = useState<
@@ -82,17 +84,16 @@ function Feed() {
   >(null);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
-  const developers = allUsers?.filter(
-    (elem: iUser) => elem.isRecruiter === false
-  );
-
+  const filter = allUsers?.filter((elem: iUser) => elem.isRecruiter === false);
   useEffect(() => {
-    getAllUsers();
-  }, []);
+    if (!filterDevelopers) {
+      setFilterDevelopers(filter);
+    }
+  }, [filter]);
 
   return (
     <ContainerFeed>
-      {developers?.map((elem: iUser, index: number) => {
+      {filterDevelopers?.map((elem: iUser, index: number) => {
         return (
           <ContainerDeveloper
             initial={{ opacity: 0 }}
@@ -124,7 +125,7 @@ function Feed() {
               <Techs>
                 {filteredTechs(elem)?.map((value) => {
                   return (
-                    <div>
+                    <div key={value?.tech}>
                       <img src={value?.dir} alt={value?.tech} />
                       <Tag>{value?.tech}</Tag>
                     </div>

@@ -29,7 +29,7 @@ function Chat() {
     callId,
     onSubmitSendChat,
     allUsers,
-    getAllUsers,
+    getAllChats,
   } = useContext(WebContext);
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
@@ -58,9 +58,8 @@ function Chat() {
       )
   );
   const developer = allUsers?.find((element) => String(element.id) === callId);
-
   useEffect(() => {
-    getAllUsers();
+    getAllChats();
   }, []);
 
   return (

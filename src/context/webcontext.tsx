@@ -81,6 +81,11 @@ export interface iWebContext {
   filteredTechs(elem: iUser): ({ tech: string; dir: string } | undefined)[];
   onSubmitSendChat: (data: iSend) => void;
   getAllUsers: () => void;
+  getAllChats: () => void;
+  filterDevelopers: iUser[] | undefined;
+  setFilterDevelopers: React.Dispatch<
+    React.SetStateAction<iUser[] | undefined>
+  >;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -99,6 +104,10 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
+  const [filterDevelopers, setFilterDevelopers] = useState<
+    iUser[] | undefined
+  >();
+
   const navigate = useNavigate();
   const inputPassRef = useRef();
 
@@ -406,6 +415,9 @@ export function WebProvider({ children }: iWebProvider) {
         filteredTechs,
         onSubmitSendChat,
         getAllUsers,
+        getAllChats,
+        filterDevelopers,
+        setFilterDevelopers,
       }}
     >
       {children}
