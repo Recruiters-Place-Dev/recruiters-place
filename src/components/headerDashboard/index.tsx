@@ -1,20 +1,21 @@
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
 import { LogOffModal } from "../../components/logoff";
 import { iUser, WebContext } from "../../context/webcontext";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid";
 
 function HeaderDashboard() {
+  const { home } = useParams();
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
   const [logOff, setLogOff] = useState(false);
   const { setFilterDevelopers, allUsers, filterDevelopers } =
     useContext(WebContext);
-
+  console.log(home);
   function handleLogout() {
     setLogOff(true);
   }
@@ -69,16 +70,18 @@ function HeaderDashboard() {
                 <button onClick={() => goToChat()}>Mensagens</button>
                 <span className="spanBorder"></span>
               </li>
-              <li>
-                <button
-                  onClick={() => {
-                    setFilter(!filter);
-                  }}
-                >
-                  Encontrar Devs
-                  <span className="spanBorder"></span>
-                </button>
-              </li>
+              {home === "home" && (
+                <li>
+                  <button
+                    onClick={() => {
+                      setFilter(!filter);
+                    }}
+                  >
+                    Encontrar Devs
+                    <span className="spanBorder"></span>
+                  </button>
+                </li>
+              )}
               <li>
                 <button onClick={() => handleLogout()}>Sair</button>
                 <span className="spanBorder"></span>
