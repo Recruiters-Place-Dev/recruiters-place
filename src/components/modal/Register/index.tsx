@@ -9,196 +9,242 @@ import {
 import Input from "../../Input";
 import { iProgressProps } from "../../formregister";
 import { iUserRegister } from "../../formregister";
-import { CheckCircle } from "phosphor-react";
+import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
 import ModalTechs from "./components/techs";
+import { useContext } from "react";
+import { WebContext } from "../../../context/webcontext";
+import { LinkStyled } from "../../buttons/style";
 
 interface iModalProps {
-  setShow: (show: boolean) => void;
-  progress: iProgressProps;
-  setProgress: (progress: iProgressProps) => void;
-  register: UseFormRegister<any>;
-  getValues: UseFormGetValues<iUserRegister>;
-  trigger: UseFormTrigger<iUserRegister>;
-  handleSubmit: UseFormHandleSubmit<any>;
-  fn: (data: iUserRegister) => void;
   errors: FieldErrors<iUserRegister>;
+  fn: (data: iUserRegister) => void;
+  getValues: UseFormGetValues<iUserRegister>;
+  handleSubmit: UseFormHandleSubmit<any>;
+  progress: iProgressProps;
+  register: UseFormRegister<any>;
+  setProgress: (progress: iProgressProps) => void;
+  setShow: (show: boolean) => void;
+  trigger: UseFormTrigger<iUserRegister>;
 }
 
 const ModalRegister = ({
-  setShow,
-  progress,
-  setProgress,
-  register,
-  getValues,
-  trigger,
-  handleSubmit,
-  fn,
   errors,
+  fn,
+  getValues,
+  handleSubmit,
+  progress,
+  register,
+  setProgress,
+  setShow,
+  trigger,
 }: iModalProps) => {
+  // context
+  const { resolved, setResolved } = useContext(WebContext);
+
+  // functions
+  const backFn = () => {
+    if (progress.phase === 2) {
+      setShow(false);
+      setProgress({ phase: 1, nextPhase: 2 });
+    }
+
+    if (progress.phase === 3) setProgress({ phase: 2, nextPhase: 3 });
+
+    if (progress.phase === 4) setProgress({ phase: 3, nextPhase: 4 });
+  };
+
+  const advanceToAbout = async () => {
+    const valid = await trigger(["city", "schooling", "vacancy"]);
+    if (valid) setProgress({ phase: 3, nextPhase: 4 });
+  };
+
+  const skipAbout = () => {
+    setProgress({ phase: 3, nextPhase: 4 });
+  };
+
+  const advanceToLinks = async () => {
+    const valid = await trigger(["linkedin", "github", "portfolio"]);
+    if (valid) setProgress({ phase: 4, nextPhase: 5 });
+  };
+
+  const skipLinks = () => {
+    setProgress({ phase: 4, nextPhase: 5 });
+  };
+
+  const reSubmit = () => {
+    setResolved(undefined);
+    handleSubmit(fn)();
+  };
+
+  const onFinishing = (resolved: boolean | undefined) => {
+    if (typeof resolved === "undefined") {
+      return (
+        <>
+          <div className="loading">
+            <CircleNotch size={64} color="#1DA1F2" />
+          </div>
+          <h3>Registrando...</h3>
+        </>
+      );
+    } else if (resolved)
+      return (
+        <>
+          <CheckCircle size={150} color="#4bad31" />
+          <h3>Cadastro realizado com sucesso</h3>
+          <LinkStyled to={"/login"}>Fazer login</LinkStyled>
+        </>
+      );
+    else
+      return (
+        <>
+          <XCircle size={150} color="#e2142d" />
+          <h3>Ops, aconteceu algum problema</h3>
+          <form action="">
+            <button onClick={reSubmit}>Tentar novamente</button>
+          </form>
+        </>
+      );
+  };
+
+  // validations
+  const bar1 =
+    progress.phase === 1
+      ? "onProgress"
+      : resolved === false
+      ? "error"
+      : "completed";
+  const bar2 =
+    progress.phase === 1
+      ? "notCompleted"
+      : progress.phase === 2
+      ? "onProgress"
+      : resolved === false
+      ? "error"
+      : "completed";
+  const bar3 =
+    progress.phase === 1
+      ? "notCompleted"
+      : progress.phase === 2
+      ? "notCompleted"
+      : progress.phase === 3
+      ? "onProgress"
+      : resolved === false
+      ? "error"
+      : "completed";
+
+  const bar4 =
+    progress.phase === 1
+      ? "notCompleted"
+      : progress.phase === 2
+      ? "notCompleted"
+      : progress.phase === 3
+      ? "notCompleted"
+      : progress.phase === 4
+      ? "onProgress"
+      : resolved === false
+      ? "error"
+      : "completed";
   return (
     <ModalContainer progress={progress}>
       <div>
-        <button
-          className="back"
-          onClick={() => {
-            if (progress.phase === 2) {
-              setShow(false);
-              setProgress({ phase: 1, nextPhase: 2 });
-            }
-
-            if (progress.phase === 3) setProgress({ phase: 2, nextPhase: 3 });
-
-            if (progress.phase === 4) setProgress({ phase: 3, nextPhase: 4 });
-          }}
-        >
+        <button className="back" onClick={backFn}>
           Voltar
         </button>
         <div className="progressBarContainer">
-          <div
-            className={progress.phase === 1 ? "onProgress" : "completed"}
-          ></div>
-          <div
-            className={
-              progress.phase === 1
-                ? "notCompleted"
-                : progress.phase === 2
-                ? "onProgress"
-                : "completed"
-            }
-          ></div>
-          <div
-            className={
-              progress.phase === 1
-                ? "notCompleted"
-                : progress.phase === 2
-                ? "notCompleted"
-                : progress.phase === 3
-                ? "onProgress"
-                : "completed"
-            }
-          ></div>
-          <div
-            className={
-              progress.phase === 1
-                ? "notCompleted"
-                : progress.phase === 2
-                ? "notCompleted"
-                : progress.phase === 3
-                ? "notCompleted"
-                : progress.phase === 4
-                ? "onProgress"
-                : "completed"
-            }
-          ></div>
+          <div className={bar1}></div>
+          <div className={bar2}></div>
+          <div className={bar3}></div>
+          <div className={bar4}></div>
         </div>
-        {progress.phase === 2 && (
+        {progress.phase === 2 ? (
           <form className={`progress-${progress.phase}`}>
             <h2>Sobre você</h2>
             <Input
-              type="text"
-              label="Local"
-              id="city"
-              register={register}
-              getValues={getValues}
               errors={errors.city}
+              getValues={getValues}
+              id="city"
+              label="Local"
+              register={register}
+              type="text"
             />
             <Input
-              type="text"
-              label="Escolaridade"
-              id="schooling"
-              register={register}
-              getValues={getValues}
               errors={errors.schooling}
+              getValues={getValues}
+              id="schooling"
+              label="Escolaridade"
+              register={register}
+              type="text"
             />
             <Input
-              type="text"
-              label="Selecione seu cargo"
-              id="vacancy"
-              register={register}
-              getValues={getValues}
               errors={errors.vacancy}
+              getValues={getValues}
+              id="vacancy"
+              label="Selecione seu cargo"
+              register={register}
+              type="text"
             />
             <div className="controls">
               <div className="working">
                 <input type="checkbox" id="isWork" {...register("isWork")} />
                 <label htmlFor="isWork">Esta trabalhando no momento?</label>
               </div>
-              <button
-                type="button"
-                onClick={async () => {
-                  const valid = await trigger(["city", "schooling", "vacancy"]);
-                  if (valid) setProgress({ phase: 3, nextPhase: 4 });
-                }}
-              >
+              <button type="button" onClick={advanceToAbout}>
                 Avançar
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setProgress({ phase: 3, nextPhase: 4 })
-                }}
-              >
+              <button type="button" onClick={skipAbout}>
                 Pular etapa
-                <input type="checkbox" id="skipAbout" {...register("skipAbout")} />
+                <input
+                  type="checkbox"
+                  id="skipAbout"
+                  {...register("skipAbout")}
+                />
               </button>
             </div>
           </form>
-        )}
-        {progress.phase === 3 && (
+        ) : null}
+        {progress.phase === 3 ? (
           <form className={`progress-${progress.phase}`}>
             <h2>Links</h2>
             <Input
-              type="text"
-              label="Linkedin"
-              id="linkedin"
-              register={register}
-              getValues={getValues}
               errors={errors.linkedin}
+              getValues={getValues}
+              id="linkedin"
+              label="Linkedin"
+              register={register}
+              type="text"
             />
             <Input
-              type="text"
-              label="Github"
-              id="github"
-              register={register}
-              getValues={getValues}
               errors={errors.github}
+              getValues={getValues}
+              id="github"
+              label="Github"
+              register={register}
+              type="text"
             />
             <Input
-              type="text"
-              label="Portifolio"
-              id="portfolio"
-              register={register}
-              getValues={getValues}
               errors={errors.portfolio}
+              getValues={getValues}
+              id="portfolio"
+              label="Portifolio"
+              register={register}
+              type="text"
             />
             <div className="controls">
-              <button
-                type="button"
-                onClick={async () => {
-                  console.log(errors)
-                  const valid = await trigger([
-                    "linkedin",
-                    "github",
-                    "portfolio"
-                  ]);
-                  if (valid) setProgress({ phase: 4, nextPhase: 5 });
-                }}
-              >
+              <button type="button" onClick={advanceToLinks}>
                 Avançar
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setProgress({ phase: 4, nextPhase: 5 })
-                }}
-              >
+              <button type="button" onClick={skipLinks}>
                 Pular etapa
-                <input type="checkbox" id="skipLinks" {...register("skipLinks")} />
+                <input
+                  type="checkbox"
+                  id="skipLinks"
+                  {...register("skipLinks")}
+                />
               </button>
             </div>
           </form>
-        )}
-        {progress.phase === 4 && (
+        ) : null}
+        {progress.phase === 4 ? (
           <form
             className={`progress-${progress.phase}`}
             onSubmit={(e) => {
@@ -212,13 +258,10 @@ const ModalRegister = ({
             </div>
             <button type="submit">Finalizar</button>
           </form>
-        )}
-        {progress.phase === 5 && (
-          <div className="RegisterCompleted">
-            <CheckCircle size={150} color="#4bad31" />
-            <h3>Cadastro realizado com sucesso</h3>
-          </div>
-        )}
+        ) : null}
+        {progress.phase === 5 ? (
+          <div className="RegisterCompleted">{onFinishing(resolved)}</div>
+        ) : null}
       </div>
     </ModalContainer>
   );

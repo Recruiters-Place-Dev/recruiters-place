@@ -1,4 +1,12 @@
-import { createContext, ReactNode, useEffect, useRef, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useEffect,
+  useRef,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { Api } from "../services/api";
 import { iUserLogin } from "../pages/login/index";
 import { useNavigate } from "react-router-dom";
@@ -46,7 +54,9 @@ export interface iUser {
 
 export interface iWebContext {
   onLogin: (info: iUserLogin) => void;
-  onRegister: (data: iUserRegister) => void;
+  onRegister: (data: iUserRegister) => Promise<void>;
+  resolved: boolean | undefined;
+  setResolved: Dispatch<SetStateAction<boolean | undefined>>
   editSubmit: (info: iEditRech) => void;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
@@ -99,6 +109,7 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
+  const [resolved, setResolved] = useState<boolean | undefined>();
   const navigate = useNavigate();
   const inputPassRef = useRef();
 
@@ -188,7 +199,7 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  async function onRegister(data: iUserRegister) {
+  async function onRegister(data: iUserRegister): Promise<void> {
     const { isRecruiter } = data;
 
     if (!isRecruiter) {
@@ -196,6 +207,7 @@ export function WebProvider({ children }: iWebProvider) {
         name: data.name,
         email: data.email,
         password: data.password,
+        isRecruiter: data.isRecruiter,
         city: data.city === "" ? null : data.city,
         schooling: data.schooling === "" ? null : data.schooling,
         vacancy: data.vacancy === "" ? null : data.vacancy,
@@ -207,11 +219,24 @@ export function WebProvider({ children }: iWebProvider) {
       };
 
       try {
-        const response = await Api.post("/users", devData);
-
-        console.log(response);
+        await Api.post("/users", devData);
+        setResolved(true)
       } catch (error) {
-        // toastify de erro
+        setResolved(false)
+      }
+    } else {
+      const recruiterData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        isRecruiter: data.isRecruiter
+      }
+
+      try {
+        await Api.post("/users", recruiterData)
+        setResolved(true)
+      } catch (error) {
+        setResolved(false)
       }
     }
   }
@@ -372,6 +397,8 @@ export function WebProvider({ children }: iWebProvider) {
       value={{
         onLogin,
         onRegister,
+        resolved,
+        setResolved,
         editSubmit,
         setUser,
         user,
