@@ -94,6 +94,7 @@ export interface iWebContext {
   setFilterDevelopers: React.Dispatch<
     React.SetStateAction<iUser[] | undefined>
   >;
+  deleteComent: (s: string) => void;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -312,6 +313,22 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  async function deleteComent(event: string) {
+    const token = localStorage.getItem("RPlace:Token");
+    console.log(event);
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.delete(`/coments/${event}`);
+        getAllComents();
+        setAllComents([...allComents]);
+        toast.success("Comentário apagado.");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
   async function onSubmitChat(data: iChat) {
     data.idTo = chatId;
     data.idFrom = String(user?.id);
@@ -417,6 +434,7 @@ export function WebProvider({ children }: iWebProvider) {
         getAllChats,
         filterDevelopers,
         setFilterDevelopers,
+        deleteComent,
       }}
     >
       {children}

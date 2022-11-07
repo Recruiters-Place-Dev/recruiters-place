@@ -35,7 +35,17 @@ export const ComentContainer = styled.ul`
   gap: 15px;
   width: 100%;
   overflow-y: auto;
+  .float {
+    position: absolute;
+    right: 15px;
+    img {
+      cursor: pointer;
+      margin: 0px 5px;
+      width: 30px;
+    }
+  }
   li {
+    position: relative;
     width: 90%;
     margin: 10px auto;
     border: 2px solid #1da1f2;
