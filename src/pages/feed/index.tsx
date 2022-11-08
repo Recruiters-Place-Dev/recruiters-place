@@ -114,9 +114,7 @@ function Feed() {
             </DivDevelopersInfo>
             <DivDevelopersName>
               <DeveloperName>{elem?.name}</DeveloperName>
-
               <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
-
               <DivDevelopersLinks>
                 <a href={elem?.linkedin}>Linkedin</a>
                 <a href={elem?.github}>Github</a>

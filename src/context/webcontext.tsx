@@ -201,7 +201,7 @@ export function WebProvider({ children }: iWebProvider) {
         navigate("/home");
       }
     } catch (error: any) {
-      toast.success("Combinação de email/senha incorreta");
+      toast.error("Combinação de email/senha incorreta");
 
       console.log(error.response.data);
       return false;
