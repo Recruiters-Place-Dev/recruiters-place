@@ -1,13 +1,14 @@
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
 import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { MouseEventHandler, useContext, useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
 import { LogOffModal } from "../../components/logoff";
 import { iUser, WebContext } from "../../context/webcontext";
 import { v4 as uuid } from "uuid";
 import { array } from "yup";
+import { Id } from "react-toastify";
 
 function HeaderDashboard() {
   const { home } = useParams();
@@ -55,6 +56,16 @@ function HeaderDashboard() {
       setFilterDevelopers(arrayfiltro);
     });
   }
+  function handleFilterDev(event: string) {
+    const arrayfiltro: iUser[] = [];
+    allUsers?.map((elem: iUser) => {
+      if (elem.cargo === event) {
+        arrayfiltro.push(elem);
+      }
+    });
+
+    setFilterDevelopers(arrayfiltro);
+  }
 
   return (
     <>
@@ -96,7 +107,16 @@ function HeaderDashboard() {
             <ul>
               <li>Todos</li>
               {ListMock.map((devType) => (
-                <li key={uuid()}>{devType}</li>
+                <li key={uuid()}>
+                  <button
+                    id={devType}
+                    onClick={(event) => {
+                      handleFilterDev((event.target as HTMLButtonElement).id);
+                    }}
+                  >
+                    {devType}
+                  </button>
+                </li>
               ))}
             </ul>
             <ul>
