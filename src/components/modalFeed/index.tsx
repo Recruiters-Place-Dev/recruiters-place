@@ -15,6 +15,7 @@ import {
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import { v4 as uuid } from "uuid";
 import { Tag } from "../../pages/feed/styles";
+import close from "../../assets/close.png";
 
 interface iModalFeedProps {
   developer: iUser | null;
@@ -25,8 +26,9 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
   const { modalFeed, setModalFeed } = useContext<iWebContext>(WebContext);
 
   return modalFeed ? (
-    <ModalFeedContainer onClick={() => setModalFeed(!modalFeed)}>
+    <ModalFeedContainer>
       <div>
+        <img src={close} alt="Close" onClick={() => setModalFeed(!modalFeed)} />
         <DivPersonalInfo>
           <FigureModal>
             <img src={FotoPerfil} alt="Foto de Perfil" />

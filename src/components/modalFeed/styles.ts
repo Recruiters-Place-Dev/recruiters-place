@@ -33,8 +33,9 @@ export const ModalFeedContainer = styled.div`
     height: 125vh;
   }
 
-  > div {
-    position: absolute;
+  
+  & > div {
+    position: relative;
     max-width: 864px;
     width: 90%;
     height: 600px;
@@ -52,6 +53,14 @@ export const ModalFeedContainer = styled.div`
     @media (max-height: 690px) {
       max-width: 768px;
       height: 500px;
+    }
+    
+    & > img{
+      position: absolute;
+      top: 1.3rem;
+      right: 1.3rem;
+
+      cursor: pointer;
     }
   }
 `;
