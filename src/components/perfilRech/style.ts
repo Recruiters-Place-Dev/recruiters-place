@@ -33,17 +33,21 @@ export const Container = styled.div<iSizeProps>`
   background: #f5f8fa;
 
   @media (max-width: 500px) {
-    flex-direction: column-reverse;
     padding: 40px 25px;
-    gap: 1rem;
     height: fit-content;
+
+    flex-direction: column-reverse;
+    gap: 1rem;
+
     > div {
       width: 100%;
       align-items: flex-start;
       margin: 0;
       gap: 0;
+
       > div {
         align-items: flex-start;
+
         p {
           text-align: start;
         }

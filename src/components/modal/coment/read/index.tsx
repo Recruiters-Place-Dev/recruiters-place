@@ -7,7 +7,6 @@ import {
 } from "./style";
 import userPerfil from "../../../../assets/carbon_user-avatar.svg";
 import close from "../../../../assets/close.png";
-import { ModalComentWriteContainerButton } from "../write/style";
 import { v4 as uuid } from "uuid";
 import pen from "../../../../assets/pen.svg";
 import trash from "../../../../assets/trash.svg";
