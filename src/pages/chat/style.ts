@@ -8,6 +8,10 @@ export const ContainerChat = styled.div`
   width: 100%;
   justify-content: space-between;
   height: 84vh;
+
+  @media screen and (max-width: 750px) {
+    margin-top: 5.5rem;
+  }
   ul {
     border-right: 1px solid black;
     width: 25%;
@@ -59,6 +63,7 @@ export const ContainerChatAll = styled.div`
   gap: 10px;
   @media screen and (max-width: 1000px) {
     width: 75%;
+    border-right: none;
   }
 `;
 export const ContainerChatCall = styled.div`

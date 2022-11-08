@@ -59,7 +59,7 @@ function HeaderDashboard() {
   return (
     <>
       <HeaderContainer>
-        {logOff ? <LogOffModal /> : ""}
+        {/* {logOff && <LogOffModal />} */}
         <header>
           <img onClick={() => reset()} src={Logo} alt="Logo" />
           <nav>

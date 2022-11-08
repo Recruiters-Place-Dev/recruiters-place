@@ -21,6 +21,10 @@ export const ButtonStylized = styled.button<iStyledProps>`
 
   transition: 0.4s;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     transition: 0.4s;
 
@@ -32,7 +36,7 @@ export const ButtonStylized = styled.button<iStyledProps>`
     box-shadow: 0 0 0 0, inset 2px 2px 2px 1px #13117c;
     transform: translate(2px, 2px);
   }
-  @media (min-width: 580px){
+  @media (min-width: 580px) {
     width: 300px;
   }
 
@@ -63,7 +67,7 @@ export const ButtonStylized = styled.button<iStyledProps>`
 `;
 
 export const LinkStyled = styled(Link)`
-display: inline-flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   font-family: var(--font-family);
@@ -94,7 +98,7 @@ display: inline-flex;
     transform: translate(2px, 2px);
   }
 
-  @media (min-width: 580px){
+  @media (min-width: 580px) {
     width: 300px;
   }
   /* display: inline-flex;

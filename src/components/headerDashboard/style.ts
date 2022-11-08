@@ -8,6 +8,10 @@ export const HeaderContainer = styled.div`
   align-items: center;
   background: #f5f8fa;
 
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+
   div {
     display: flex;
     flex-direction: column;

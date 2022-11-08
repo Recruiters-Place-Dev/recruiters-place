@@ -28,6 +28,10 @@ export const Container = styled.div<iSizeProps>`
 
   margin-top: 2rem;
 
+  @media screen and (max-width: 750px) {
+    margin-top: 8rem;
+  }
+
   border: 2px solid var(--color-primary);
   border-radius: 1rem;
   background: #f5f8fa;

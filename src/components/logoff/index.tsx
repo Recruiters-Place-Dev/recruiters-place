@@ -14,10 +14,11 @@ export function LogOffModal() {
   }
 
   function cancel() {
+    console.log(logOff);
     setLogOff(false);
   }
 
-  return (
+  return logOff ? (
     <ModalFeedContainer>
       <ModalLogOff>
         <h3>Sair</h3>
@@ -32,5 +33,5 @@ export function LogOffModal() {
         </div>
       </ModalLogOff>
     </ModalFeedContainer>
-  );
+  ) : null;
 }

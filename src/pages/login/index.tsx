@@ -6,8 +6,8 @@ import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
 
 import { ButtonStylized, LinkStyled } from "../../components/buttons/style";
-import HomemLogin from "../../assets/HomemLogin.svg"
-import ImgLogin from "../../assets/ImgLogin.svg"
+import HomemLogin from "../../assets/HomemLogin.svg";
+import ImgLogin from "../../assets/ImgLogin.svg";
 
 import { useContext, useEffect, useState } from "react";
 
@@ -48,12 +48,10 @@ export const Login = () => {
         <img src={HomemLogin} alt="Logo" className="HomemLogin" />
         <span className="line1"></span>
         <span className="line2"></span>
-
       </div>
       <SectionLogin>
         {/* <div className="block"></div> */}
         <div className="containerLogin">
-
           <figure className="boxLogo">
             <img src={Logo} alt="Logo" />
           </figure>
@@ -78,8 +76,6 @@ export const Login = () => {
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
-
-
             <ButtonStylized type="submit">
               {!loading && <>Login</>}
               {loading && (
@@ -101,7 +97,6 @@ export const Login = () => {
       <BoxSlogan>
         <Slogan />
       </BoxSlogan>
-
     </MainLogin>
   );
 };

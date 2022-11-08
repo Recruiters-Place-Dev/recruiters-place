@@ -9,6 +9,10 @@ export const ContainerFeed = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media screen and (max-width: 750px) {
+    margin-top: 7rem;
+  }
 `;
 
 export const ContainerDeveloper = styled(motion.div)`

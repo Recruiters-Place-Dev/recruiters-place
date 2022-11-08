@@ -24,6 +24,7 @@ import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 import { v4 as uuid } from "uuid";
+import { LogOffModal } from "../../components/logoff";
 
 export interface iTech {
   tech: string;
@@ -49,6 +50,7 @@ function Feed() {
     filteredTechs,
     filterDevelopers,
     setFilterDevelopers,
+    logOff,
   } = useContext<iWebContext>(WebContext);
 
   const [techsDeveloper, setTechsDeveloper] = useState<
@@ -149,6 +151,7 @@ function Feed() {
       <ReadComent />
       <WriteComent />
       <ModalChat />
+      <LogOffModal />
     </ContainerFeed>
   );
 }
