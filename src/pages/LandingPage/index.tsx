@@ -1,18 +1,16 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
 
-import PeopleLanding from "../../assets/peoplelanding.png";
+import homemLandinPage from "../../assets/imgAnimated/homemLandinPage.svg";
+import mulherLandingPage from "../../assets/imgAnimated/mulherLandingPage.svg"
+import setas from "../../assets/imgAnimated/setas.svg"
 
 import {
   MainStyled,
   Container,
-  BackgroundStyled,
   TextAuth,
-  TextBackground,
   TitleLogin,
   TitleAuth,
-  TitleBackground,
-  SloganBackground,
   ContainerImg,
   ContainerRedirect,
   Lines,
@@ -22,9 +20,11 @@ import {
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext } from "react";
 import { iWebContext, WebContext } from "../../context/webcontext";
+import Slogan from "../../components/backgroundStyled";
 
 export const LandingPage = () => {
   const { setUser, user } = useContext<iWebContext>(WebContext);
+
   return (
     <AnimatePresence>
       <motion.div
@@ -34,11 +34,41 @@ export const LandingPage = () => {
         transition={{ duration: 0.6 }}
       >
         <MainStyled>
-          <Lines></Lines>
+          {/* <Lines degrau="20" top="40" right="-20"></Lines>
+          
+          <Lines degrau="-50" top="500" right="-120"></Lines> */}
+
+
 
           <Container>
+
             <ContainerImg>
-              <img src={PeopleLanding} alt="People" />
+              <div>
+                <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
+
+                <div className="animatedArea">
+                  <div className="homemAnimation">
+                    <div className="bola"></div>
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                  </div>
+
+                  <img src={setas} alt="setas" className="setas" />
+
+                  <div className="mulherAnimation">
+                    <div className="bola"></div>
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                  </div>
+                </div>
+
+
+
+                <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage" />
+              </div>
+
             </ContainerImg>
 
             <ContainerRedirect>
@@ -73,13 +103,10 @@ export const LandingPage = () => {
                 </>
               )}
             </ContainerRedirect>
+
           </Container>
 
-          <BackgroundStyled>
-            <SloganBackground>Recrutamento em um só lugar</SloganBackground>
-            <TitleBackground>Agilize o trabalho com parceiros</TitleBackground>
-            <TextBackground>Confira os beneficios</TextBackground>
-          </BackgroundStyled>
+          <Slogan/>
         </MainStyled>
       </motion.div>
     </AnimatePresence>

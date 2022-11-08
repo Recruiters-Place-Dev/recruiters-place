@@ -4,11 +4,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
-import { LinkStyled } from "../../components/buttons/style";
+
+import { ButtonStylized, LinkStyled } from "../../components/buttons/style";
+import HomemLogin from "../../assets/HomemLogin.svg"
+import ImgLogin from "../../assets/ImgLogin.svg"
+
 import { useContext, useEffect, useState } from "react";
+
 import { WebContext } from "../../context/webcontext";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../components/ParagraphError";
+import Slogan from "../../components/backgroundStyled";
 
 export interface iUserLogin {
   email: string;
@@ -37,9 +43,17 @@ export const Login = () => {
 
   return (
     <MainLogin>
+      <div className="boxAnimated">
+        <img src={ImgLogin} alt="ImgLogin" className="ImgLogin" />
+        <img src={HomemLogin} alt="Logo" className="HomemLogin" />
+        <span className="line1"></span>
+        <span className="line2"></span>
+
+      </div>
       <SectionLogin>
-        <div className="block"></div>
+        {/* <div className="block"></div> */}
         <div className="containerLogin">
+
           <figure className="boxLogo">
             <img src={Logo} alt="Logo" />
           </figure>
@@ -63,7 +77,10 @@ export const Login = () => {
               getValues={getValues}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
-            <button type="submit">
+
+
+
+            <ButtonStylized type="submit">
               {!loading && <>Login</>}
               {loading && (
                 <div className="lds-ellipsis">
@@ -73,24 +90,18 @@ export const Login = () => {
                   <div></div>
                 </div>
               )}
-            </button>
+            </ButtonStylized>
+
             <span>Não tem uma conta ?</span>
             <LinkStyled to="/register">Register</LinkStyled>
           </FormLogin>
         </div>
       </SectionLogin>
+
       <BoxSlogan>
-        <div className="blockBlue">
-          <h2>Recrutamento em um só lugar!</h2>
-        </div>
-        <div>
-          <h2>Agilize o trabalho com parceiros</h2>
-          <div className="boxLink">
-            <a href="#">Confira os benefícios ➡</a>
-            <span></span>
-          </div>
-        </div>
+        <Slogan />
       </BoxSlogan>
+
     </MainLogin>
   );
 };

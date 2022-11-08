@@ -1,82 +1,175 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface iPropsLine {
+  degrau: string | undefined;
+  top: string | undefined;
+  right: string | undefined;
+}
 
 export const MainStyled = styled.main`
+  /* border: 3px solid gold; */
   max-height: 100vh;
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+
   overflow: hidden;
 `;
-export const Lines = styled.div`
-  border: solid 10px #1da1f2;
+
+export const Lines = styled.div<iPropsLine>`
+  display: none;
+  background-color: var(--color-primary);
   border-left: none;
   border-bottom: none;
-  width: 90vh;
-  height: 95vh;
-  right: -20%;
+  width: 400px;
+  height: 8px;
   position: absolute;
-  transform: rotate(16deg);
 
-  @media (min-width: 465px) {
-    transform: rotate(20deg);
-  }
-  @media (min-width: 550px) {
-    transform: rotate(22deg);
-  }
-  @media (min-width: 667px) {
-    transform: rotate(30deg);
-  }
+  ${({ degrau, top, right }) => {
+    return css`
+      transform: rotate(${degrau}deg);
+      top: ${top}px;
+      right: ${right}px;
+    `;
+  }};
 
-  @media (min-width: 867px) {
-    right: -5%;
-    transform: rotate(20deg);
-  }
-  @media (min-width: 1250px) {
-    right: 14%;
-    transform: rotate(20deg);
+  @media (min-width: 768px) {
+    display: block;
   }
 `;
 
 export const Container = styled.div`
+  /* border: 1px solid red; */
   width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1rem;
   height: 100%;
-  min-width: 100vw;
-  img {
-    max-width: 300px;
-    object-fit: cover;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
 
-  @media (min-width: 988px) {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 4rem;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    /* align-items: center; */
   }
 `;
 
 export const ContainerImg = styled.div`
+  /* mobile */
+
   display: none;
 
-  @media (min-width: 988px) {
-    display: flex;
-    background-color: var(--color-primary);
-    margin:-1rem;
-    padding:100px 50px 40px 150px;
+  background-color: var(--color-primary);
 
-    img {
-      width:740px;
-      min-width: 400px;
+  width: 50%;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .animatedArea {
+    width: 80px;
+    height: 120px;
+    position: relative;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .homemLandinPage,
+  .mulherLandingPage {
+    width: 90px;
+    height: 190px;
+    /* border: 1px solid red; */
+  }
+  .homemAnimation {
+    /* border: 1px solid red; */
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+    width: 90%;
+  }
+  .line1,
+  .line2,
+  .line3 {
+    width: 100%;
+    height: 6px;
+    background-color: var(--grey-5);
+    z-index: 2;
+    border-radius: 50px;
+  }
+  .bola {
+    background-color: var(--grey-5);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  .line1,
+  .line3 {
+    animation: moveLine1 1s infinite;
+  }
+
+  .line2 {
+    animation: moveLine2 1s infinite;
+  }
+  .setas {
+    width: 50px;
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+  }
+
+  .mulherAnimation {
+    position: absolute;
+    bottom: -180px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 8px;
+    width: 90%;
+  }
+
+  @keyframes moveLine1 {
+    from {
+      transform: translateY(0px);
     }
+    50% {
+      transform: translateY(-2px);
+    }
+    to {
+      transform: translateY(3px);
+    }
+  }
+  @keyframes moveLine2 {
+    from {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(-2px);
+    }
+    to {
+      transform: translateX(2px);
+    }
+  }
+  @media (min-width: 1024px) {
+    display: flex;
+    width: 45%;
   }
 `;
 
 export const ContainerWelcome = styled.div`
+  /* border: 2px solid green; */
   display: flex;
 `;
 
@@ -106,72 +199,35 @@ export const ButtonLogout = styled.button`
   }
 `;
 
-export const BackgroundStyled = styled.div`
-  width: 90%;
-  max-width: 800px;
-  min-height: 230px;
-  background: #1da1f2;
-  border-radius: 0px 200px 200px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  padding: 2rem;
-`;
+
 
 export const ContainerRedirect = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
-  height: 100%;
-  max-height: 700px;
+  justify-content: space-around;
+  height: 60%;
+  margin: 0 auto;
+
   img {
-    width: 80%;
+    width: 300px;
     object-fit: cover;
   }
 
-  @media (min-width: 988px) {
-    margin: 0;
+  @media (min-width: 1024px) {
+    width: 70%;
+    margin: 30px auto;
   }
 `;
 
-export const TitleBackground = styled.p`
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 36px;
-  line-height: 100%;
-  color: #14171a;
-`;
 
-export const SloganBackground = styled.p`
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 50px;
-  line-height: 100%;
-  color: #f5f8fa;
-`;
 
-export const TextBackground = styled.p`
+export const TitleLogin = styled.h1`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 100%;
-  color: #f5f8fa;
-`;
-
-export const TitleLogin = styled.h4`
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 42px;
+  font-size: 38px;
   line-height: 100%;
   color: #14171a;
 `;
@@ -182,7 +238,7 @@ export const TitleAuth = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
-  margin-bottom: -1.8rem;
+  /* margin-bottom: -1.8rem; */
   color: #657786;
 `;
 
