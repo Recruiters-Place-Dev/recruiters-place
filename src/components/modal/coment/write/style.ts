@@ -19,7 +19,7 @@ export const ModalComentWriteContainer = styled.div`
     z-index: 11;
     height: 600px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     display: flex;
