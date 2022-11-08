@@ -115,7 +115,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
         padding: 14px 116px 15px;
 
-        font-family: "Roboto";
+        font-family: var(--font-family);
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -133,7 +133,8 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
       button:last-of-type {
         background-color: transparent;
-        font-family: "Roboto";
+        
+        font-family: var(--font-family);
         font-style: normal;
         font-size: 16px;
         line-height: 23px;

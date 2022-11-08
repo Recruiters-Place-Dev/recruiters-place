@@ -94,10 +94,12 @@ export const DivDevelopersTech = styled.div`
 `;
 
 export const Techs = styled.div`
-  width: 100%;
-  height: 30%;
+  position: relative;
   display: flex;
   gap: 5px;
+
+  width: 100%;
+  height: 30%;
 
   @media (max-width: 750px) {
     max-width: 60%;
@@ -106,7 +108,7 @@ export const Techs = styled.div`
   & div {
     width: 11px;
     height: 11px;
-    
+
     @media (max-width: 1100px) {
       width: 10px;
       height: 10px;
@@ -116,7 +118,7 @@ export const Techs = styled.div`
       width: 9px;
       height: 9px;
     }
-    
+
     @media (max-width: 1000px) {
       width: 8px;
       height: 8px;
@@ -146,12 +148,18 @@ export const Techs = styled.div`
       width: 8px;
       height: 8px;
     }
-    
+
+    @media (max-width: 400px) {
+      width: 7px;
+      height: 7px;
+    }
+
     & img {
       min-width: 35px;
       min-height: 35px;
       aspect-ratio: 1/1;
-      
+      transition: 0.3s;
+
       @media (max-width: 450px) {
         min-width: 33px;
         min-height: 33px;
@@ -161,16 +169,21 @@ export const Techs = styled.div`
         min-width: 31px;
         min-height: 31px;
       }
-      
+
+      @media (max-width: 350px) {
+        min-width: 30px;
+        min-height: 30px;
+      }
     }
-  }
-  & div:hover {
-    position: relative;
-    & img {
-      transform: scale(1.1);
-    }
-    span {
-      opacity: 1;
+
+    &:hover {
+      & img {
+        transition: 0.3s;
+        transform: scale(1.1);
+      }
+      span {
+        opacity: 1;
+      }
     }
   }
 `;
@@ -178,17 +191,24 @@ export const Techs = styled.div`
 export const Tag = styled.span`
   width: 60px;
   padding: 5px;
+
   text-align: center;
   display: block;
-  opacity: 0;
+
   position: absolute;
-  top: -30px;
+  top: -32px;
+
+  opacity: 0;
+
   background-color: #14171a;
   color: var(--white);
+
   font-size: 16px;
-  font-family: "Roboto";
+  font-family: var(--font-family);
+
   border-radius: 20px;
-  transition: 1s ease-in-out;
+
+  transition: 0.5s ease-in-out;
 `;
 
 export const Contato = styled.div`
