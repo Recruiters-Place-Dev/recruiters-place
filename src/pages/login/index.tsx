@@ -9,7 +9,7 @@ import { ButtonStylized, LinkStyled } from "../../components/buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg";
 import ImgLogin from "../../assets/ImgLogin.svg";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import { WebContext } from "../../context/webcontext";
 import { useNavigate } from "react-router-dom";
