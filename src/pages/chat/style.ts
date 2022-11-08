@@ -65,7 +65,7 @@ export const ContainerChatCall = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: max-content;
+  height: 100%;
   overflow-y: auto;
   h2 {
     padding: 5px;
@@ -73,20 +73,26 @@ export const ContainerChatCall = styled.div`
   & > .alignRigth {
     width: fit-content;
     align-self: end;
-    background: blue;
+    background: #236e94;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     width: 50%;
+    h2 {
+      color: white;
+    }
   }
   & > .alignLeft {
     width: fit-content;
     align-self: start;
-    background: green;
+    background: #28d480;
     width: 50%;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    h2 {
+      color: black;
+    }
   }
 `;
 

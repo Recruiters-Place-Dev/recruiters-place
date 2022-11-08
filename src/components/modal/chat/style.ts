@@ -18,20 +18,22 @@ export const ModalChatContainer = styled.div`
     width: 100%;
     height: 600px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    align-self: end
+    align-self: center;
     gap: 10px;
   }
 `;
 export const ModalChatContainerButton = styled.div`
   align-self: end;
-  width: fit-content;
+  width: 100%;
+  display: flex;
   height: fit-content;
   cursor: pointer;
+  justify-content: space-between;
 `;
 export const ModalChatContainerMessage = styled.div`
   display: flex;

@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { iUser, WebContext } from "../../../../context/webcontext";
-import { ComentContainer, ModalComentReadContainer } from "./style";
+import {
+  ComentContainer,
+  ModalComentReadContainer,
+  ModalComentReadContainerButton,
+} from "./style";
 import userPerfil from "../../../../assets/carbon_user-avatar.svg";
 import close from "../../../../assets/close.png";
 import { ModalComentWriteContainerButton } from "../write/style";
@@ -25,7 +29,7 @@ function ReadComent() {
   return modalReadComent ? (
     <ModalComentReadContainer>
       <div>
-        <ModalComentWriteContainerButton
+        <ModalComentReadContainerButton
           onClick={() => {
             setModalReadComent(!modalReadComent);
             setModalComent(true);
@@ -33,7 +37,7 @@ function ReadComent() {
         >
           <h1>Comentários</h1>
           <img src={close} alt="" />
-        </ModalComentWriteContainerButton>
+        </ModalComentReadContainerButton>
 
         <ComentContainer>
           {allComents?.map((coment: iComent) =>
