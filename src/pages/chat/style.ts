@@ -65,7 +65,7 @@ export const ContainerChatCall = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: max-content;
+  height: 100%;
   overflow-y: auto;
   h2 {
     padding: 5px;
