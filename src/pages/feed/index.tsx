@@ -23,38 +23,7 @@ import ModalComent from "../../components/modal/coment/duality";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
-import {v4 as uuid} from "uuid"
-
-// export interface iUserDeveloper {
-//   email: string;
-//   name: string;
-//   isRecruiter?: boolean;
-//   city: string | undefined;
-//   schooling?: string | undefined;
-//   cargo?: string | undefined;
-//   empresa: string | undefined;
-//   isWork?: boolean | undefined;
-//   linkedin: string | undefined;
-//   github?: string | undefined;
-//   portfolio?: string | undefined;
-//   fotoDoPerfil: string | undefined;
-//   escolaridade: string | undefined;
-//   bio?: string | undefined;
-//   tech: {
-//     html?: boolean;
-//     css?: boolean;
-//     js?: boolean;
-//     react?: boolean;
-//     ts?: boolean;
-//     angular?: boolean;
-//     vuejs?: boolean;
-//     php?: boolean;
-//     c?: boolean;
-//     sass?: boolean;
-//     node?: boolean;
-//   };
-//   id?: number;
-// }
+import { v4 as uuid } from "uuid";
 
 export interface iTech {
   tech: string;
@@ -88,7 +57,10 @@ function Feed() {
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
 
   const filter = allUsers?.filter((elem: iUser) => elem.isRecruiter === false);
+
   useEffect(() => {
+    if (!localStorage.getItem("RPlace:Token")) {
+    }
     if (!filterDevelopers) {
       setFilterDevelopers(filter);
     }
