@@ -12,8 +12,9 @@ function HeaderDashboard() {
   const { home } = useParams();
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
-  const [logOff, setLogOff] = useState(false);
-  const { setFilterDevelopers, allUsers } = useContext(WebContext);
+
+  const { setFilterDevelopers, allUsers, logOff, setLogOff } =
+    useContext(WebContext);
 
   function handleLogout() {
     setLogOff(true);
@@ -36,20 +37,19 @@ function HeaderDashboard() {
   }
 
   function teste(event: string) {
-    const arrayfiltro: iUser[] = [];
-    allUsers?.map((elem) => {
+    const arrayfiltro: iUser[] | undefined = [] as iUser[] | undefined;
+    allUsers?.map((elem: iUser | undefined) => {
       const techs = Object.entries<boolean>(
-        elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+        elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
       );
-      techs.filter((elemento) => {
+      techs?.filter((elemento) => {
         if (elemento[1]) {
-          if (elem.isRecruiter === false && elemento[0] === event) {
-            arrayfiltro.push(elem);
+          if (elem?.isRecruiter === false && elemento[0] === event) {
+            arrayfiltro?.push(elem);
           }
         }
       });
     });
-
     setFilterDevelopers(arrayfiltro);
   }
 

@@ -11,7 +11,7 @@ import {
 import send from "../../assets/send.png";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import avatarTech from "../../assets/avatarTech.png";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid";
 
 export interface iSend {
   chat: string | undefined;
