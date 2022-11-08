@@ -14,12 +14,15 @@ function ModalChat() {
   return modalChat ? (
     <ModalChatContainer>
       <div>
-        <ModalChatContainerButton
-          onClick={() => {
-            setModalChat(!modalChat);
-          }}
-        >
-          <img src={close} alt="" />
+        <ModalChatContainerButton>
+          <h1>Enviar mensagem</h1>
+          <img
+            src={close}
+            alt=""
+            onClick={() => {
+              setModalChat(!modalChat);
+            }}
+          />
         </ModalChatContainerButton>
 
         <ModalChatContainerMessage>

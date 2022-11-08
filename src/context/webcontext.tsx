@@ -61,9 +61,7 @@ export interface iWebContext {
   setUser: React.Dispatch<React.SetStateAction<any>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
-  openModalFeed: () => void;
   modalFeed: boolean;
-  openModalComent: () => void;
   modalComent: boolean;
   modalReadComent: boolean;
   readModalComent: () => void;
@@ -78,8 +76,8 @@ export interface iWebContext {
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
   inputPassRef: React.MutableRefObject<undefined>;
   allComents: iComent[];
+  setModalFeed: Dispatch<SetStateAction<boolean>>;
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
-  openModalChat: () => void | undefined;
   setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
   modalChat: boolean;
   chatId: string | undefined;
@@ -96,6 +94,11 @@ export interface iWebContext {
   setFilterDevelopers: React.Dispatch<
     React.SetStateAction<iUser[] | undefined>
   >;
+  deleteComent: (s: string) => void;
+  logOff: boolean;
+  setLogOff: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -114,11 +117,11 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
-  const [filterDevelopers, setFilterDevelopers] = useState<
-    iUser[] | undefined
-  >();
+  const [logOff, setLogOff] = useState(false);
+  const [filterDevelopers, setFilterDevelopers] = useState<iUser[]>();
 
   const [resolved, setResolved] = useState<boolean | undefined>();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const inputPassRef = useRef();
 
@@ -191,6 +194,7 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function onLogin(info: iUserLogin) {
     try {
+      setLoading(true);
       const { data } = await Api.post("/login", info);
 
       if (data) {
@@ -198,10 +202,12 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
+        setLoading(false);
         navigate("/home");
       }
     } catch (error: any) {
-      toast.success("Combinação de email/senha incorreta");
+      setLoading(false);
+      toast.error("Combinação de email/senha incorreta");
 
       console.log(error.response.data);
       return false;
@@ -284,38 +290,14 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  function openModalFeed(): void {
-    if (modalFeed) {
-      setModalFeed(false);
-    } else {
-      setModalFeed(true);
-    }
-  }
-
-  function openModalComent(): void {
-    if (modalComent) {
-      setModalComent(false);
-    } else {
-      setModalComent(true);
-    }
-  }
-
-  function openModalChat(): void {
-    if (modalChat) {
-      setModalChat(false);
-    } else {
-      setModalChat(true);
-    }
+  function writeModalComent(): void {
+    setModalComent(!modalComent);
+    setModalWriteComent(true);
   }
 
   function readModalComent(): void {
-    openModalComent();
+    setModalComent(!modalComent);
     setModalReadComent(true);
-  }
-
-  function writeModalComent(): void {
-    openModalComent();
-    setModalWriteComent(true);
   }
 
   async function onSubmitComent(data: iComent) {
@@ -332,6 +314,22 @@ export function WebProvider({ children }: iWebProvider) {
         setAllComents([...allComents, data]);
         setModalWriteComent(false);
         toast.success("Comentário enviado.");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async function deleteComent(event: string) {
+    const token = localStorage.getItem("RPlace:Token");
+    console.log(event);
+    if (token) {
+      try {
+        Api.defaults.headers.authorization = `Bearer ${token}`;
+        await Api.delete(`/coments/${event}`);
+        getAllComents();
+        setAllComents([...allComents]);
+        toast.success("Comentário apagado.");
       } catch (error) {
         console.log(error);
       }
@@ -412,9 +410,8 @@ export function WebProvider({ children }: iWebProvider) {
         setUser,
         user,
         allUsers,
-        openModalFeed,
         modalFeed,
-        openModalComent,
+        setModalFeed,
         modalComent,
         setModalComent,
         readModalComent,
@@ -430,7 +427,6 @@ export function WebProvider({ children }: iWebProvider) {
         setBoxEdit,
         inputPassRef,
         allComents,
-        openModalChat,
         setModalChat,
         modalChat,
         chatId,
@@ -445,6 +441,11 @@ export function WebProvider({ children }: iWebProvider) {
         getAllChats,
         filterDevelopers,
         setFilterDevelopers,
+        deleteComent,
+        logOff,
+        setLogOff,
+        loading,
+        setLoading,
       }}
     >
       {children}

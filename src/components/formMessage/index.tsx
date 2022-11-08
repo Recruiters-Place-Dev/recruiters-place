@@ -10,15 +10,11 @@ export interface iComent {
   idTo: string | undefined;
   idFrom: string | undefined;
   coment: string | undefined;
+  id: number;
 }
 
 function FormMessage() {
-  const {
-    onSubmitComent,
-    user,
-    comentId,
-    allUsers,
-  } = useContext(WebContext);
+  const { onSubmitComent, user, comentId, allUsers } = useContext(WebContext);
   const { register, handleSubmit } = useForm<iComent>({});
 
   return (
@@ -42,7 +38,9 @@ function FormMessage() {
         />
       </div>
       <textarea id="" {...register("coment")}></textarea>
-      <ButtonStylized styled="align-end" type="submit">Enviar</ButtonStylized>
+      <ButtonStylized styled="align-end" type="submit">
+        Enviar
+      </ButtonStylized>
     </FormContainer>
   );
 }

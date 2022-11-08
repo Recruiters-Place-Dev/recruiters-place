@@ -11,7 +11,6 @@ export const ButtonStylized = styled.button<iStyledProps>`
   font-size: 16px;
 
   width: 100%;
-  max-width: 331px;
   height: 48px;
 
   border-radius: 8px;
@@ -21,6 +20,10 @@ export const ButtonStylized = styled.button<iStyledProps>`
   color: white;
 
   transition: 0.4s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     transition: 0.4s;
@@ -32,6 +35,9 @@ export const ButtonStylized = styled.button<iStyledProps>`
   &:active {
     box-shadow: 0 0 0 0, inset 2px 2px 2px 1px #13117c;
     transform: translate(2px, 2px);
+  }
+  @media (min-width: 580px) {
+    width: 300px;
   }
 
   ${({ styled }) => {
@@ -64,6 +70,40 @@ export const LinkStyled = styled(Link)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+
+  width: 100%;
+  max-width: 300px;
+  height: 48px;
+
+  border-radius: 8px;
+  border: none;
+
+  background: var(--color-primary);
+  color: white;
+
+  transition: 0.4s;
+
+  &:hover {
+    transition: 0.4s;
+
+    box-shadow: 2px 2px 3px 1px #13117c;
+    transform: translate(-2px, -2px);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0, inset 2px 2px 2px 1px #13117c;
+    transform: translate(2px, 2px);
+  }
+
+  @media (min-width: 580px) {
+    width: 300px;
+  }
+  /* display: inline-flex;
+  justify-content: center;
+  align-items: center;
 
   width: 100%;
   max-width: 331px;
@@ -76,7 +116,7 @@ export const LinkStyled = styled(Link)`
 
   padding: 14px 116px 15px;
 
-  font-family: "Roboto";
+  font-family: var(--font-family);
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -84,10 +124,11 @@ export const LinkStyled = styled(Link)`
 
   text-decoration: none;
   transition: 0.4s;
-  z-index: 1000;
+  z-index: 1000; */
 
-  &:hover {
+  /* &:hover {
     cursor: pointer;
-    filter: brightness(1.2);
-  }
+    box-shadow: 2px 2px 0 0.5px #13117c; */
+  /* filter: brightness(1.2); */
+  /* } */
 `;

@@ -15,11 +15,12 @@ export const ModalComentWriteContainer = styled.div`
   > div {
     position: absolute;
     max-width: 864px;
-    width: 100%;
+    width: 90%;
+    height:85vh;
+    max-height: 600px;
     z-index: 11;
-    height: 600px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     display: flex;
@@ -27,15 +28,18 @@ export const ModalComentWriteContainer = styled.div`
     align-items: center;
     gap: 30px;
   }
-    & div {
-     
+  & div {
   }
 `;
 export const ModalComentWriteContainerButton = styled.div`
-  align-self: end;
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
   height: fit-content;
-  cursor: pointer;
+  img {
+    cursor: pointer;
+  }
 `;
 export const ModalComentWriteContainerMessage = styled.div`
   display: flex;
