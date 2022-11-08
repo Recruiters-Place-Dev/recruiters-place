@@ -19,6 +19,7 @@ function ModalChat() {
             setModalChat(!modalChat);
           }}
         >
+          <h1>Enviar mensagem</h1>
           <img src={close} alt="" />
         </ModalChatContainerButton>
 

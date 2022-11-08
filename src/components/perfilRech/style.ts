@@ -11,7 +11,7 @@ export const ContainerMain = styled.main`
   justify-content: flex-start;
   flex-direction: column;
 
-  width: 1100px;
+  width: 100%;
   height: fit-content;
 
   @media (max-width: 950px) {
@@ -32,6 +32,23 @@ export const Container = styled.div<iSizeProps>`
   border-radius: 1rem;
   background: #f5f8fa;
 
+  @media (max-width: 500px) {
+    flex-direction: column-reverse;
+    padding: 40px 25px;
+    gap: 1rem;
+    > div {
+      width: 100%;
+      align-items: flex-start;
+      margin: 0;
+      gap: 0;
+      > div {
+        align-items: flex-start;
+        p {
+          text-align: start;
+        }
+      }
+    }
+  }
   ${({ size }) => {
     switch (size) {
       case "big":
@@ -81,6 +98,9 @@ export const ContainerProfile = styled.div`
 
     svg {
       max-height: 100%;
+    }
+    @media screen and (max-width: 500px) {
+      display: none;
     }
   }
 

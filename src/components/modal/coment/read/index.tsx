@@ -1,6 +1,10 @@
 import { useContext } from "react";
-import { WebContext } from "../../../../context/webcontext";
-import { ComentContainer, ModalComentReadContainer } from "./style";
+import { iUser, WebContext } from "../../../../context/webcontext";
+import {
+  ComentContainer,
+  ModalComentReadContainer,
+  ModalComentReadContainerButton,
+} from "./style";
 import userPerfil from "../../../../assets/carbon_user-avatar.svg";
 import close from "../../../../assets/close.png";
 import { ModalComentWriteContainerButton } from "../write/style";
@@ -8,7 +12,7 @@ import { v4 as uuid } from "uuid";
 import pen from "../../../../assets/pen.svg";
 import trash from "../../../../assets/trash.svg";
 import { iComent } from "../../../formMessage";
-import { Api } from "../../../../services/api";
+import avatarTech from "../../../../assets/avatarTech.png";
 
 function ReadComent() {
   const {
@@ -18,27 +22,38 @@ function ReadComent() {
     allComents,
     comentId,
     user,
+    allUsers,
     deleteComent,
   } = useContext(WebContext);
 
   return modalReadComent ? (
     <ModalComentReadContainer>
       <div>
-        <ModalComentWriteContainerButton
+        <ModalComentReadContainerButton
           onClick={() => {
             setModalReadComent(!modalReadComent);
             setModalComent(true);
           }}
         >
+          <h1>Comentários</h1>
           <img src={close} alt="" />
-        </ModalComentWriteContainerButton>
+        </ModalComentReadContainerButton>
 
         <ComentContainer>
           {allComents?.map((coment: iComent) =>
             coment.idTo === comentId ? (
               <li key={uuid()}>
                 <div>
-                  <img src={userPerfil} alt="" />
+                  {allUsers?.map((elem: iUser) => {
+                    if (elem.id === Number(coment.idFrom)) {
+                      console.log(elem.id, coment.idFrom);
+                      return elem.isRecruiter ? (
+                        <img key={uuid()} src={avatarTech} alt="" />
+                      ) : (
+                        <img key={uuid()} src={userPerfil} alt="" />
+                      );
+                    }
+                  })}
                 </div>
                 <div>
                   <h1>{user?.name}</h1>
