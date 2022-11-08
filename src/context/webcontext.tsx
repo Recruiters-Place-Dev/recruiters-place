@@ -23,6 +23,7 @@ export interface iWebProvider {
 }
 
 export interface iUser {
+  id?: number;
   email: string;
   name: string;
   isRecruiter?: boolean;
@@ -35,7 +36,8 @@ export interface iUser {
   github?: string | undefined;
   portfolio?: string | undefined;
   bio?: string | undefined;
-  tech?: {
+  fotoDoPerfil?: string;
+  tech: {
     html?: boolean | undefined;
     css?: boolean | undefined;
     js?: boolean | undefined;
@@ -48,8 +50,6 @@ export interface iUser {
     sass?: boolean | undefined;
     node?: boolean | undefined;
   };
-  id?: number;
-  fotoDoPerfil?: string;
 }
 
 export interface iWebContext {
@@ -271,7 +271,7 @@ export function WebProvider({ children }: iWebProvider) {
 
           await Api.patch(`/users/${id}`, info);
 
-          setUser({ ...user, ...info });
+          setUser({ ...user, ...info, tech: {} });
           setBoxEdit(false);
 
           toast.success("Usuário editado com sucesso");

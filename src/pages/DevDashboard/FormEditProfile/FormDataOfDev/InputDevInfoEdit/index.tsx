@@ -1,15 +1,27 @@
 import { useState } from "react";
-import { Path, UseFormRegister } from "react-hook-form";
-import { ErrorMessage } from "../../../../../../components/ParagraphError";
+import { FieldError, Path, UseFormRegister } from "react-hook-form";
+import { ErrorMessage } from "../../../../../components/ParagraphError";
 import InputGroup from "./inputGroup";
 
+type tId =
+  | "name"
+  | "bio"
+  | "email"
+  | "cargo"
+  | "linkedin"
+  | "portfolio"
+  | "fotoDoPerfil"
+  | "city"
+  | "schooling"
+  | "github";
+
 interface iInputProps {
-  type: string;
+  type: "text" | "email";
   label: string;
-  id: Path<any>;
+  id: tId;
   register: UseFormRegister<any>;
   errorMessage?: string;
-  errors?: any;
+  errors?: FieldError | undefined;
   defaultValue?: string;
 }
 export const InputDevInfoEdit = ({
@@ -21,7 +33,6 @@ export const InputDevInfoEdit = ({
   errorMessage,
   defaultValue,
 }: iInputProps) => {
- 
   const [value, setValue] = useState(defaultValue ? defaultValue : "");
   const { onChange, onBlur, name, ref } = register(id);
   return (
@@ -51,7 +62,7 @@ export const InputDevInfoEdit = ({
         ref={ref}
       />
       <label>{label}</label>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {errors?.message && <ErrorMessage>{errors.message}</ErrorMessage>}
     </InputGroup>
   );
 };

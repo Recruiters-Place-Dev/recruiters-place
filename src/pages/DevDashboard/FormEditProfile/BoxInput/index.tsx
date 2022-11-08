@@ -1,4 +1,5 @@
 import { UseFormRegister } from "react-hook-form";
+import { iFormEditProfile } from "../types";
 import { BoxInput } from "./style";
 
 interface iInputEditProfile {
@@ -25,7 +26,7 @@ interface iInputEditProfile {
     | "GitHub"
     | "Localização"
     | "Escolaridade";
-  register: UseFormRegister<any>;
+  register: UseFormRegister<iFormEditProfile>;
   defaultValue?: string;
 }
 

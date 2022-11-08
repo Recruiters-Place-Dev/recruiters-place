@@ -1,7 +1,9 @@
 import { BoxForm } from "./style";
-import { PersonalDataOfDev } from "./PersonalDataOfDev";
-import { TechOfDev } from "./TechOfDev";
+
+
 import { useState } from "react";
+import { FormTechOfDev } from "./FormTechOfDev";
+import { FormDataOfDev } from "./FormDataOfDev";
 
 export const FormEditProfile = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -9,9 +11,9 @@ export const FormEditProfile = () => {
   return (
     <BoxForm step={step}>
       {step === 1 ? (
-        <PersonalDataOfDev setStep={setStep} />
+        <FormDataOfDev setStep={setStep} />
       ) : (
-        <TechOfDev setStep={setStep} />
+        <FormTechOfDev setStep={setStep} />
       )}
     </BoxForm>
   );

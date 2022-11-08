@@ -56,6 +56,11 @@ export const BoxBtn = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   width: 100%;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 `;
 
 export const AllInputBox = styled.div`
@@ -69,7 +74,13 @@ export const AllInputBox = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0rem;
+    margin-bottom: 0rem;
   }
 `;
 

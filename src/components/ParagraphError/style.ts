@@ -13,5 +13,5 @@ export const ParagraphError = styled.p`
   font-size: 13px;
   font-family: var(--font-family);
 
-  margin: 3px 0 15px 0;
+  
 `;

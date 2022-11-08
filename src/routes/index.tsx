@@ -8,7 +8,7 @@ import { Login } from "../pages/login";
 import Register from "../pages/register";
 import { PrivateRoutes } from "./PrivateRoutes";
 import Perfil from "../pages/perfil";
-import { FormEditProfile } from "../pages/DevDashboard/components/FormEditProfile";
+import { FormEditProfile } from "../pages/DevDashboard/FormEditProfile";
 import ContactUs from "../pages/contact";
 
 function RoutesMain() {

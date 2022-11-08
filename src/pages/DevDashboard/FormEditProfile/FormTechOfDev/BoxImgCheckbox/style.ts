@@ -1,13 +1,6 @@
 import styled, { css } from "styled-components";
 
-import html from "../../../../assets/html.svg";
-import cssLogo from "../../../../assets/css.png";
-import js from "../../../../assets/js.svg";
-import react from "../../../../assets/react.svg";
-import ts from "../../../../assets/ts.svg";
-import node from "../../../../assets/node.png";
-import angular from "../../../../assets/angular.svg";
-import vuejs from "../../../../assets/vue.png";
+import techList from "../../../../../mockList/devTechs.json";
 
 interface iCheckbox {
   id: string;
@@ -35,21 +28,21 @@ export const LabelImg = styled.label`
 export const ImgStyled = styled.img.attrs(({ id }) => {
   switch (id) {
     case "html":
-      return { src: html };
+      return { src: techList[2].dir };
     case "css":
-      return { src: cssLogo };
+      return { src: techList[1].dir };
     case "js":
-      return { src: js };
+      return { src: techList[3].dir };
     case "react":
-      return { src: react };
+      return { src: techList[4].dir };
     case "node":
-      return { src: node };
+      return { src: techList[10].dir };
     case "angular":
-      return { src: angular };
+      return { src: techList[0].dir };
     case "ts":
-      return { src: ts };
+      return { src: techList[6].dir };
     case "vuejs":
-      return { src: vuejs };
+      return { src: techList[5].dir };
   }
 })<iImgStyled>`
   color: red;
