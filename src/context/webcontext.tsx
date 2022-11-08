@@ -97,6 +97,8 @@ export interface iWebContext {
   deleteComent: (s: string) => void;
   logOff: boolean;
   setLogOff: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -119,6 +121,7 @@ export function WebProvider({ children }: iWebProvider) {
   const [filterDevelopers, setFilterDevelopers] = useState<iUser[]>();
 
   const [resolved, setResolved] = useState<boolean | undefined>();
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const inputPassRef = useRef();
 
@@ -191,6 +194,7 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function onLogin(info: iUserLogin) {
     try {
+      setLoading(true);
       const { data } = await Api.post("/login", info);
 
       if (data) {
@@ -198,9 +202,11 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:id", data.user.id);
 
         setUser(data.user);
+        setLoading(false);
         navigate("/home");
       }
     } catch (error: any) {
+      setLoading(false);
       toast.error("Combinação de email/senha incorreta");
 
       console.log(error.response.data);
@@ -438,6 +444,8 @@ export function WebProvider({ children }: iWebProvider) {
         deleteComent,
         logOff,
         setLogOff,
+        loading,
+        setLoading,
       }}
     >
       {children}
