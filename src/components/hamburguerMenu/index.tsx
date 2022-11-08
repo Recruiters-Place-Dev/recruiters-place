@@ -1,4 +1,4 @@
-import MenuContainer from "./hambuguerMenu";
+import MenuContainer from "./hamburguerMenu";
 import Logo from "../../assets/Logo.svg";
 import { useState } from "react";
 
