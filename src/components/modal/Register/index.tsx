@@ -14,6 +14,7 @@ import ModalTechs from "./components/techs";
 import { useContext } from "react";
 import { WebContext } from "../../../context/webcontext";
 import { LinkStyled } from "../../buttons/style";
+import Select from "../../Select";
 
 interface iModalProps {
   errors: FieldErrors<iUserRegister>;
@@ -167,21 +168,19 @@ const ModalRegister = ({
               register={register}
               type="text"
             />
-            <Input
+            <Select
               errors={errors.schooling}
               getValues={getValues}
               id="schooling"
               label="Escolaridade"
               register={register}
-              type="text"
             />
-            <Input
+            <Select
               errors={errors.vacancy}
               getValues={getValues}
               id="vacancy"
               label="Selecione seu cargo"
               register={register}
-              type="text"
             />
             <div className="controls">
               <div className="working">

@@ -11,12 +11,14 @@ export const MainLogin = styled.main`
   background: linear-gradient(
     to right,
     var(--color-secondary) 50%,
-    var(--color-secondary) 50%);
+    var(--color-secondary) 50%
+  );
   @media (min-width: 985px) {
     background: linear-gradient(
-    to right,
-    var(--color-primary) 50%,
-    var(--color-secondary) 50%);
+      to right,
+      var(--color-primary) 50%,
+      var(--color-secondary) 50%
+    );
   }
 `;
 
@@ -34,7 +36,6 @@ export const SectionLogin = styled.section`
   @media (min-width: 985px) {
     align-items: flex-end;
   }
-
 
   .block {
     position: absolute;
@@ -81,6 +82,62 @@ export const SectionLogin = styled.section`
       }
     }
   }
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: white;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
 `;
 
 export const FormLogin = styled.form`
@@ -116,7 +173,9 @@ export const FormLogin = styled.form`
     color: white;
 
     transition: 0.3s;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       transition: 0.3s;
       border: 1px solid black;
@@ -157,7 +216,7 @@ export const BoxSlogan = styled.div`
   .blockBlue {
     width: 55%;
     height: 88%;
-    
+
     background: var(--color-primary);
     border-radius: 0 200px 200px 0;
 
@@ -181,7 +240,7 @@ export const BoxSlogan = styled.div`
       font-size: 16px;
       width: 90%;
       @media (min-width: 985px) {
-        font-size:21px
+        font-size: 21px;
       }
     }
 
@@ -192,13 +251,12 @@ export const BoxSlogan = styled.div`
       font-family: var(--font-family);
       font-size: 12px;
 
-
       .spanBorder {
         display: block;
         width: 0%;
         height: 1px;
         background: var(--color-primary);
-    
+
         transition: 0.4s;
       }
 

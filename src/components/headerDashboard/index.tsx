@@ -39,17 +39,19 @@ function HeaderDashboard() {
 
   function handleFilter(event: string) {
     const arrayfiltro: iUser[] | undefined = [] as iUser[] | undefined;
-    allUsers?.map((elem: iUser | undefined) => {
-      const techs = Object.entries<boolean>(
-        elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
+    allUsers?.map((elem: iUser) => {
+      if (elem.tech) {
+        const techs = Object.entries<boolean>(
+          elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
         );
-      techs?.filter((elemento: [string, boolean]) => {
-        if (elemento[1]) {
-          if (elem?.isRecruiter === false && elemento[0] === event) {
-            arrayfiltro?.push(elem);
+        techs?.filter((elemento: [string, boolean]) => {
+          if (elemento[1]) {
+            if (elem?.isRecruiter === false && elemento[0] === event) {
+              arrayfiltro?.push(elem);
+            }
           }
-        }
-      });
+        });
+      }
       setFilterDevelopers(arrayfiltro);
     });
   }

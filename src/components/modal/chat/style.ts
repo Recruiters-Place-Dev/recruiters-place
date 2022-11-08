@@ -32,7 +32,9 @@ export const ModalChatContainerButton = styled.div`
   width: 100%;
   display: flex;
   height: fit-content;
-  cursor: pointer;
+  img {
+    cursor: pointer;
+  }
   justify-content: space-between;
 `;
 export const ModalChatContainerMessage = styled.div`

@@ -4,3 +4,10 @@ export const ListMock: string[] = [
   "Desenvolvedor Full-stack",
   "Desenvolvedor Mobile",
 ];
+
+export const ListSchooling: string[] = [
+  "Ensino Superior",
+  "Ensino Médio",
+  "Ensino Fundamental",
+  "Ensino Básico",
+];

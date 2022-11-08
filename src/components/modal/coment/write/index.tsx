@@ -15,14 +15,16 @@ function WriteComent() {
   return modalWriteComent ? (
     <ModalComentWriteContainer>
       <div>
-        <ModalComentWriteContainerButton
-          onClick={() => {
-            setModalWriteComent(!modalWriteComent);
-            setModalComent(true);
-          }}
-        >
+        <ModalComentWriteContainerButton>
           <h1>Escrever comentário</h1>
-          <img src={close} alt="" />
+          <img
+            src={close}
+            alt=""
+            onClick={() => {
+              setModalWriteComent(!modalWriteComent);
+              setModalComent(true);
+            }}
+          />
         </ModalComentWriteContainerButton>
 
         <ModalComentWriteContainerMessage>
