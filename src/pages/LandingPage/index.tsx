@@ -8,13 +8,9 @@ import setas from "../../assets/imgAnimated/setas.svg"
 import {
   MainStyled,
   Container,
-  BackgroundStyled,
   TextAuth,
-  TextBackground,
   TitleLogin,
   TitleAuth,
-  TitleBackground,
-  SloganBackground,
   ContainerImg,
   ContainerRedirect,
   Lines,
@@ -24,6 +20,7 @@ import {
 import { LinkStyled } from "../../components/buttons/style";
 import { useContext } from "react";
 import { iWebContext, WebContext } from "../../context/webcontext";
+import Slogan from "../../components/backgroundStyled";
 
 export const LandingPage = () => {
   const { setUser, user } = useContext<iWebContext>(WebContext);
@@ -50,11 +47,23 @@ export const LandingPage = () => {
                 <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
 
                 <div className="animatedArea">
-                  
-                <img src={setas} alt="setas" className="setas" />
+                  <div className="homemAnimation">
+                    <div className="bola"></div>
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                  </div>
 
+                  <img src={setas} alt="setas" className="setas" />
+
+                  <div className="mulherAnimation">
+                    <div className="bola"></div>
+                    <div className="line1"></div>
+                    <div className="line2"></div>
+                    <div className="line3"></div>
+                  </div>
                 </div>
-                
+
 
 
                 <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage" />
@@ -97,12 +106,7 @@ export const LandingPage = () => {
 
           </Container>
 
-
-          <BackgroundStyled>
-            <SloganBackground>Recrutamento em um só lugar</SloganBackground>
-            <TitleBackground>Agilize o trabalho com parceiros</TitleBackground>
-            <TextBackground>Confira os beneficios</TextBackground>
-          </BackgroundStyled>
+          <Slogan/>
         </MainStyled>
       </motion.div>
     </AnimatePresence>
