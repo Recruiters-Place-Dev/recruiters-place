@@ -60,6 +60,7 @@ export const BoxBtn = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    margin-bottom: 3rem;
   }
 `;
 

@@ -59,5 +59,10 @@ const InputGroup = styled.div<iInputGroup>`
     background-color: #fff;
     padding: 0 0.2em;
   }
+
+  p{
+    margin: 0px;
+  }
+
 `;
 export default InputGroup;

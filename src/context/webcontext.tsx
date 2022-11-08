@@ -203,7 +203,12 @@ export function WebProvider({ children }: iWebProvider) {
 
         setUser(data.user);
         setLoading(false);
-        navigate("/home");
+
+        if (data.user.isRecruiter) {
+          navigate("/home");
+        } else {
+          navigate("/perfil");
+        }
       }
     } catch (error: any) {
       setLoading(false);

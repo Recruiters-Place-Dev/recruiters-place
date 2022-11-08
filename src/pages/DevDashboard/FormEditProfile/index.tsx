@@ -1,6 +1,5 @@
 import { BoxForm } from "./style";
 
-
 import { useState } from "react";
 import { FormTechOfDev } from "./FormTechOfDev";
 import { FormDataOfDev } from "./FormDataOfDev";

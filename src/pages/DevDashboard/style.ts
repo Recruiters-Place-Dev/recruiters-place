@@ -4,6 +4,10 @@ export const DivPhoto = styled.div`
   grid-row: 1/2;
   grid-column: 1/2;
 
+  
+    border-radius: 30%;
+  
+
   @media (max-width: 750px) {
     grid-row: 1/2;
     grid-column: 1/3;
@@ -41,6 +45,9 @@ export const SectionProfile = styled.section`
   @media (max-width: 750px) {
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr 1fr 0.6fr auto 0.5fr;
+    margin: 0 0.6rem;
+    margin-top: 10rem;
+    
   }
 `;
 
