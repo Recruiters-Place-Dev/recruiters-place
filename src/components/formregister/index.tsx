@@ -2,89 +2,234 @@ import { RegisterForm } from "./styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Input from "../Input";
+import ModalRegister from "../modal/Register";
+import { useState, useContext } from "react";
+import { WebContext } from "../../context/webcontext";
 
-interface iUserRegister {
-    nome: string;
-    email: string;
-    escolaridade: string;
-    vaga: string;
-    password: string;
-    checkpass: string;
+export interface iUserRegister {
+  name: string;
+  email: string;
+  city?: string;
+  schooling?: string;
+  vacancy?: string;
+  password: string;
+  checkpass: string;
+  isRecruiter: boolean;
+  isWork?: boolean;
+  linkedin?: string;
+  github?: string;
+  portfolio?: string;
+  tech?: {
+    html: boolean;
+    css: boolean;
+    js: boolean;
+    react: boolean;
+    ts: boolean;
+    angular: boolean;
+    vuejs: boolean;
+    php: boolean;
+    c: boolean;
+  };
 }
 
-export function FormRegister(){
+export interface iProgressProps {
+  phase: number;
+  nextPhase: number | null;
+}
 
-    const yupSchema = yup.object().shape({
-        nome: yup.string().required('Preencha o campo com seu nome.'),
-        email: yup.string().required('Preencha o campo com um email válido').email('Email inválido'),
-        password: yup.string().required('Preencha o campo com uma senha').min(6, 'Senha com um mínimo de 6 caracteres.'),
-        checkpass: yup.string().oneOf([yup.ref('password')], "Senha não está igual.")
-    });
+export function FormRegister() {
+  //States
+  const [show, setShow] = useState<boolean>(false);
+  const [isRecruiter, setIsRecruiter] = useState<boolean>(false);
+  const [progress, setProgress] = useState<iProgressProps>({
+    phase: 1,
+    nextPhase: 2,
+  });
 
-    const { register, handleSubmit, formState: { errors } } = useForm<iUserRegister>({
-        resolver: yupResolver(yupSchema),
-    })
+  // functions
+  const { onRegister } = useContext(WebContext);
 
-    function fakeFunction(info: iUserRegister){
-        console.log(info)
-        return info
+  const registerUser = async () => {
+    const isRecruiter = getValues("isRecruiter");
+
+    if (!isRecruiter) {
+      const valid = await trigger(["name", "email", "password", "checkpass"], {
+        shouldFocus: true,
+      });
+
+      if (valid) {
+        setShow(true);
+        setProgress({ phase: 2, nextPhase: 3 });
+      }
+    } else {
+      setShow(true);
+      setProgress({ phase: 5, nextPhase: null });
     }
+  };
 
-    return (
-        <RegisterForm onSubmit={handleSubmit(fakeFunction)}>
-            <fieldset>
-                <legend>Nome</legend>
-                <input type="text" placeholder="Digite seu nome" {...register("nome")}/>
-                <p>{errors.nome?.message}</p>
-            </fieldset>
+  const setRecruiterTrue = () => {
+    setIsRecruiter(true);
+  };
 
-            <fieldset>
-                <legend>E-mail</legend>
-                <input type="text" placeholder="Digite seu e-mail" {...register("email")}/>
-                <p>{errors.email?.message}</p>
-            </fieldset>
+  // validations
+  const type = isRecruiter ? "submit" : "button";
 
-            <fieldset>
-                <legend>Escolaridade</legend>
-                <select {...register("escolaridade")}>
-                    <option value="Ensino Médio">Ensino Médio</option>
-                    <option value="Ensino Técnico">Ensino Técnico</option>
-                    <option value="Ensino Superior">Ensino Superior</option>
-                    <option value="Pós-Graduação">Pós Graduado</option>
-                    <option value="Mestrado">Mestrado</option>
-                    <option value="Doutorado">Doutorado</option>
-                </select>
-                <p>{errors.email?.message}</p>
-            </fieldset>
+  // Hook-Form / yup
+  const yupSchema = yup.object().shape({
+    name: yup.string().required("Preencha o campo com seu nome."),
+    email: yup
+      .string()
+      .required("Preencha o campo com um email válido")
+      .email("Email inválido"),
+    password: yup
+      .string()
+      .required("Preencha o campo com uma senha")
+      .min(6, "Senha com um mínimo de 6 caracteres."),
+    checkpass: yup
+      .string()
+      .oneOf([yup.ref("password")], "Senha não está igual."),
+    isRecruiter: yup.boolean(),
+    skipAbout: yup.boolean(),
+    city: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    schooling: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    vacancy: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipAbout", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    isWork: yup.boolean(),
+    skipLinks: yup.boolean(),
+    linkedin: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipLinks", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    github: yup
+      .string()
+      .when("isRecruiter", {
+        is: false,
+        then: (schema) => schema.required(),
+      })
+      .when("skipLinks", {
+        is: true,
+        then: (schema) => schema.notRequired(),
+      }),
+    portfolio: yup.string(),
+    techs: yup.object(),
+  });
 
-            <fieldset>
-                <legend>Oportunidade de Vaga</legend>
-                <select {...register("vaga")}>
-                    <option value="Full-Stack">Full-Stack</option>
-                    <option value="Front-end">Front-end</option>
-                    <option value="Back-end">Back-end</option>
-                    <option value="Developer Mobile">Developer Mobile</option>
-                    <option value="Analise de Dados">Analise de Dados</option>
-                </select>
-                <p>{errors.email?.message}</p>
-            </fieldset>
+  const {
+    formState: { errors },
+    getValues,
+    handleSubmit,
+    register,
+    trigger,
+  } = useForm<iUserRegister>({
+    resolver: yupResolver(yupSchema),
+  });
 
-            <fieldset>
-                <legend>Senha</legend>
-                <input type="password" placeholder="Digite sua senha" {...register("password")}/>
-                <p>{errors.password?.message}</p>
-            </fieldset>
+  const forceOpenModal = (e: any) => {
+    if (e.key === "Enter") {
+      handleSubmit(onRegister)();
+      registerUser()
+    }
+  };
 
-            <fieldset>
-                <legend>Confirmar Senha</legend>
-                <input type="password" placeholder="Repita a senha definida acima" {...register("checkpass")}/>
-                <p>{errors.checkpass?.message}</p>
-            </fieldset>
-
-            <button type="submit">Cadastrar</button>
-            <p>Já possui uma conta?</p>
-            <button type="button">Login</button>
-
-        </RegisterForm>
-    )
+  return (
+    <>
+      <RegisterForm
+        onKeyDown={(e) => forceOpenModal(e)}
+        onSubmit={handleSubmit(onRegister)}
+      >
+        <div className="InputsContainer">
+          <Input
+            type="text"
+            label="Nome"
+            id="name"
+            register={register}
+            getValues={getValues}
+            errors={errors.name}
+          />
+          <Input
+            type="text"
+            label="Email"
+            id="email"
+            register={register}
+            getValues={getValues}
+            errors={errors.email}
+          />
+          <Input
+            type="password"
+            label="Senha"
+            id="password"
+            register={register}
+            getValues={getValues}
+            errors={errors.password}
+          />
+          <Input
+            type="password"
+            label="Confirmar Senha"
+            id="checkpass"
+            register={register}
+            getValues={getValues}
+            errors={errors.checkpass}
+          />
+        </div>
+        <div className="Recruiter-Opt">
+          <span>Recrutador?</span>
+          <input
+            type="checkbox"
+            id="recruiter"
+            {...register("isRecruiter")}
+            onClick={setRecruiterTrue}
+          />
+        </div>
+        <button type={type} onClick={registerUser}>
+          Cadastre-se
+        </button>
+      </RegisterForm>
+      {!!show && (
+        <ModalRegister
+          errors={errors}
+          fn={onRegister}
+          getValues={getValues}
+          handleSubmit={handleSubmit}
+          progress={progress}
+          register={register}
+          setProgress={setProgress}
+          setShow={setShow}
+          trigger={trigger}
+        />
+      )}
+    </>
+  );
 }

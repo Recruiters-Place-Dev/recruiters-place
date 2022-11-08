@@ -1195,6 +1195,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.0.2.tgz#1bfafe4b7ed0f3e4105837e056e0a89b108ebe36"
   integrity sha512-IkpVW/ehM1hWKln4fCA3NzJU8KwD+kIOvPZA4cqxoJHtE21CCzjyp+Kxbu0i5I4tBNOlXPL9mjwnWlL0VEG4Fg==
 
+"@emailjs/browser@^3.9.1":
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/@emailjs/browser/-/browser-3.9.1.tgz#9d3824ba332e7441725d07a157cb913bc34a9928"
+  integrity sha512-8xhwTUoTDG5Tqjt8uC28zwmrwcjGhApXwUMyUaEmhhUVmCHhefetTlIR7Mlm4Ae8+Nm0+sC3oPe3K+BcR12QWA==
+
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
@@ -5084,10 +5089,10 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
-framer-motion@^7.6.2:
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.2.tgz#7fb93ebfeda27c8c2cff1895ca7a417229e81bf7"
-  integrity sha512-YRr+KaC+1MlLx7iArVyjZRpc0QXI7H0XIOJrdol+dF1+WLQJwS2sP04KGq808BG+byD36UAmAt4YqObE5YFLtw==
+framer-motion@^7.6.4:
+  version "7.6.4"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.4.tgz#e396b36f68a14e14cc95b01210feac8cd5d2824d"
+  integrity sha512-Ac3Bl9M45fS8A0ibOUnYMSCfjaCrFfWT0uh0/MZVm/DGWcr5IsRRinWRiVGABA9RGJgn4THehqcn235JVQkucQ==
   dependencies:
     "@motionone/dom" "10.13.1"
     framesync "6.1.2"
@@ -7868,6 +7873,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
+
+phosphor-react@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/phosphor-react/-/phosphor-react-1.4.1.tgz#97b0e034d9937db9b97fe53b186e9646464fd4e7"
+  integrity sha512-gO5j7U0xZrdglTAYDYPACU4xDOFBTJmptrrB/GeR+tHhCZF3nUMyGmV/0hnloKjuTrOmpSFlbfOY78H39rgjUQ==
 
 picocolors@^0.2.1:
   version "0.2.1"

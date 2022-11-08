@@ -1,0 +1,46 @@
+[
+  {
+    "tech": "angular",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-plain.svg"
+  },
+  {
+    "tech": "css",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+  },
+  {
+    "tech": "html",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+  },
+  {
+    "tech": "js",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+  },
+  {
+    "tech": "react",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+  },
+  {
+    "tech": "vuejs",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"
+  },
+  {
+    "tech": "ts",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+  },
+  {
+    "tech": "php",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+  },
+  {
+    "tech": "c",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-plain.svg"
+  },
+  {
+    "tech": "sass",
+    "dir": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg"
+  },
+  {
+    "tech": "node",
+    "dir": "/techs/node.png"
+  }
+]
