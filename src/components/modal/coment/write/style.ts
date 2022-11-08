@@ -15,9 +15,10 @@ export const ModalComentWriteContainer = styled.div`
   > div {
     position: absolute;
     max-width: 864px;
-    width: 100%;
+    width: 90%;
+    height:85vh;
+    max-height: 600px;
     z-index: 11;
-    height: 600px;
     margin: 0 auto;
     padding: 30px;
     background-color: #fff;

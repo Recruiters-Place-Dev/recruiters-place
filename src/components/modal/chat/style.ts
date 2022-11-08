@@ -15,9 +15,9 @@ export const ModalChatContainer = styled.div`
   > div {
     position: absolute;
     max-width: 864px;
-    width: 100%;
-    height: 600px;
-    margin: 0 auto;
+    width: 90%;
+    height:85vh;
+    max-height: 600px;
     padding: 30px;
     background-color: #fff;
     border-radius: 8px;

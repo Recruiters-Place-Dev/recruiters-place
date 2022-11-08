@@ -15,8 +15,9 @@ export const ModalComentReadContainer = styled.div`
   > div {
     position: absolute;
     max-width: 864px;
-    width: 100%;
-    height: 600px;
+    width: 90%;
+    height:85vh;
+    max-height: 600px;
     margin: 0 auto;
 
     background-color: #fff;
