@@ -13,7 +13,9 @@ function HeaderDashboard() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
   const [logOff, setLogOff] = useState(false);
+
   const { setFilterDevelopers, allUsers } = useContext(WebContext);
+
 
   function handleLogout() {
     setLogOff(true);
