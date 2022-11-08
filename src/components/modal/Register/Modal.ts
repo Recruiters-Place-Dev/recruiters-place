@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import devTechs from "../../../mockList/devTechs.json";
 
 import { iProgressProps } from "../../formregister";
@@ -6,6 +6,16 @@ import { iProgressProps } from "../../formregister";
 interface iModalContainerProps {
   progress: iProgressProps;
 }
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const ModalContainer = styled.div<iModalContainerProps>`
   position: fixed;
@@ -72,6 +82,10 @@ const ModalContainer = styled.div<iModalContainerProps>`
       .notCompleted {
         background-color: #d9d9d9;
       }
+
+      .error {
+        background-color: var(--color-error);
+      }
     }
 
     form {
@@ -101,7 +115,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
         padding: 14px 116px 15px;
 
-        font-family: "Roboto";
+        font-family: var(--font-family);
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -119,7 +133,8 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
       button:last-of-type {
         background-color: transparent;
-        font-family: "Roboto";
+        
+        font-family: var(--font-family);
         font-style: normal;
         font-size: 16px;
         line-height: 23px;
@@ -266,7 +281,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
           background-size: contain;
         }
 
-        .tech-javascript {
+        .tech-js {
           background: transparent url(${devTechs[3].dir}) no-repeat center;
           background-size: contain;
         }
@@ -276,13 +291,29 @@ const ModalContainer = styled.div<iModalContainerProps>`
           background-size: contain;
         }
 
-        .tech-sass {
+        .tech-vuejs {
           background: transparent url(${devTechs[5].dir}) no-repeat center;
           background-size: contain;
         }
 
-        .tech-typescript {
+        .tech-ts {
           background: transparent url(${devTechs[6].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-php {
+          background: transparent url(${devTechs[7].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-c {
+          background: transparent url(${devTechs[8].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-sass {
+          background: transparent url(${devTechs[9].dir}) no-repeat center;
+          background-size: contain;
+        }
+        .tech-node {
+          background: transparent url(${devTechs[10].dir}) no-repeat center;
           background-size: contain;
         }
       }
@@ -299,6 +330,15 @@ const ModalContainer = styled.div<iModalContainerProps>`
       align-items: center;
       justify-content: center;
       gap: 30px;
+
+      form button:last-of-type {
+        background-color: #1da1f2;
+        padding: 14px 90px 15px;
+      }
+
+      .loading svg {
+        animation: ${rotate} 2s linear infinite;
+      }
     }
   }
 `;

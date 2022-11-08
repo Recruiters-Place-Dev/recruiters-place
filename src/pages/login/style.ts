@@ -14,6 +14,7 @@ export const MainLogin = styled.main`
     var(--color-secondary) 50%
   );
 
+
   @media (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
@@ -116,6 +117,7 @@ export const MainLogin = styled.main`
     position: fixed;
     left: 200px;
   }
+
   }
 `;
 
@@ -179,6 +181,62 @@ export const SectionLogin = styled.section`
       }
     }
   }
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: white;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
 `;
 
 export const FormLogin = styled.form`
@@ -219,7 +277,9 @@ export const FormLogin = styled.form`
     color: white;
 
     transition: 0.3s;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       transition: 0.3s; */
       /* border: 1px solid black; */
@@ -247,6 +307,7 @@ export const BoxSlogan = styled.div`
 
   width: 100%;
   min-width: 250px;
+
   max-width: 750px;
   height: 240px;
 
@@ -275,6 +336,7 @@ export const BoxSlogan = styled.div`
       gap: 2rem;
       padding: 2rem;
       margin-top: 0;
+
 
       p {
         /* display: none; */

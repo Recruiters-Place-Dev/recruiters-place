@@ -1,24 +1,19 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
-<<<<<<< HEAD
-  display: flex;
-
-  justify-content: space-around;
-  align-items: center;
-=======
->>>>>>> developer
   border-bottom: 1px solid #1da1f2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #f5f8fa;
+
   div {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
+
   header {
     width: 100%;
     display: flex;
@@ -36,9 +31,8 @@ export const HeaderContainer = styled.div`
       gap: 34px;
     }
 
-    & li{
-
-      button{
+    & li {
+      button {
         font-family: var(--font-family);
         font-size: 18px;
 
@@ -50,7 +44,7 @@ export const HeaderContainer = styled.div`
         width: 0%;
         height: 2px;
         background: var(--color-primary);
-    
+
         transition: 0.4s;
       }
 
@@ -69,6 +63,7 @@ export const HeaderContainer = styled.div`
     gap: 20px;
 
     img {
+      cursor: pointer;
       width: 30px;
       aspect-ratio: 1/1;
     }

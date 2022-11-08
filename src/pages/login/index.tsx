@@ -4,10 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
+
 import { ButtonStylized, LinkStyled } from "../../components/buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg"
 import ImgLogin from "../../assets/ImgLogin.svg"
-import { useContext, useEffect } from "react";
+
+import { useContext, useEffect, useState } from "react";
+
 import { WebContext } from "../../context/webcontext";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../components/ParagraphError";
@@ -19,7 +22,8 @@ export interface iUserLogin {
 }
 
 export const Login = () => {
-  const { onLogin } = useContext(WebContext);
+  const { onLogin, loading } = useContext(WebContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,7 +77,21 @@ export const Login = () => {
               getValues={getValues}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
-            <ButtonStylized type="submit">Login</ButtonStylized>
+
+
+
+            <ButtonStylized type="submit">
+              {!loading && <>Login</>}
+              {loading && (
+                <div className="lds-ellipsis">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+              )}
+            </ButtonStylized>
+
             <span>Não tem uma conta ?</span>
             <LinkStyled to="/register">Register</LinkStyled>
           </FormLogin>

@@ -27,12 +27,13 @@ export interface iEditRech {
 const PerfilRech = () => {
   const { boxEdit, setBoxEdit } = useContext(WebContext);
   const { editSubmit, user } = useContext(WebContext);
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm<iEditRech>({
     resolver: yupResolver(SchemaPerfilRech),
     defaultValues: {
@@ -40,6 +41,7 @@ const PerfilRech = () => {
       email: user?.email,
       city: user?.city,
       linkedin: user?.linkedin,
+      empresa: user?.empresa,
     },
   });
 
@@ -114,8 +116,22 @@ const PerfilRech = () => {
               errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">
-              <ButtonStylized styled="medium" type="submit">Finalizar</ButtonStylized>
-              <ButtonStylized styled="medium" onClick={() => setBoxEdit(false)} type="button">
+              <ButtonStylized
+                onClick={() => {
+                  reset({
+                    password: "",
+                  });
+                }}
+                styled="medium"
+                type="submit"
+              >
+                Finalizar
+              </ButtonStylized>
+              <ButtonStylized
+                styled="medium"
+                onClick={() => setBoxEdit(false)}
+                type="button"
+              >
                 Cancelar
               </ButtonStylized>
             </div>

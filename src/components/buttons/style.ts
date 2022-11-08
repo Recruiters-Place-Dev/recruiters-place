@@ -112,7 +112,7 @@ display: inline-flex;
 
   padding: 14px 116px 15px;
 
-  font-family: "Roboto";
+  font-family: var(--font-family);
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
