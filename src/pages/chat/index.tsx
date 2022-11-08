@@ -11,7 +11,7 @@ import {
 import send from "../../assets/send.png";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import avatarTech from "../../assets/avatarTech.png";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid";
 
 export interface iSend {
   chat: string | undefined;
@@ -71,7 +71,7 @@ function Chat() {
               <li key={uuid()}>
                 <h1 id={chat.idTo} onClick={() => setCallId(chat.idTo)}>
                   <img src={FotoPerfil} alt="" />
-                  {chat.to}
+                  <p>{chat.to}</p>
                 </h1>
               </li>
             ))
@@ -81,19 +81,28 @@ function Chat() {
                   <li key={uuid()}>
                     <h1 id={chat.idFrom} onClick={() => setCallId(chat.idFrom)}>
                       <img src={avatarTech} alt="" />
-                      {chat.from}
+                      <p>{chat.from}</p>
                     </h1>
                   </li>
                 )
             )}
       </ul>
       <ContainerChatAll>
-        <ContainerInputSend onSubmit={handleSubmit(onSubmitSendChat)}>
-          <input type="text" {...register("chat")} />
-          <button type="submit">
-            <img src={send} alt="" />
-          </button>
-        </ContainerInputSend>
+        <section>
+          {callId && (
+            <img
+              src={developer?.isRecruiter ? avatarTech : FotoPerfil}
+              alt=""
+            />
+          )}
+          <div>
+            <h3>{developer?.name}</h3>
+            <p>
+              {developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}
+            </p>
+            {developer?.empresa && <p>{developer.empresa}</p>}
+          </div>
+        </section>
         <ContainerChatCall>
           {callId ? (
             allChats.map(
@@ -114,6 +123,12 @@ function Chat() {
             <div>Nenhuma conversa aberta</div>
           )}
         </ContainerChatCall>
+        <ContainerInputSend onSubmit={handleSubmit(onSubmitSendChat)}>
+          <input type="text" {...register("chat")} />
+          <button type="submit">
+            <img src={send} alt="" />
+          </button>
+        </ContainerInputSend>
       </ContainerChatAll>
 
       <ContainerChatPerfil>

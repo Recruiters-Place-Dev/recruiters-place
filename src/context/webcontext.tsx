@@ -95,6 +95,8 @@ export interface iWebContext {
     React.SetStateAction<iUser[] | undefined>
   >;
   deleteComent: (s: string) => void;
+  logOff: boolean;
+  setLogOff: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -113,9 +115,8 @@ export function WebProvider({ children }: iWebProvider) {
   const [chatId, setChatId] = useState();
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
-  const [filterDevelopers, setFilterDevelopers] = useState<
-    iUser[] | undefined
-  >();
+  const [logOff, setLogOff] = useState(false);
+  const [filterDevelopers, setFilterDevelopers] = useState<iUser[]>();
 
   const [resolved, setResolved] = useState<boolean | undefined>();
   const navigate = useNavigate();
@@ -435,6 +436,8 @@ export function WebProvider({ children }: iWebProvider) {
         filterDevelopers,
         setFilterDevelopers,
         deleteComent,
+        logOff,
+        setLogOff,
       }}
     >
       {children}
