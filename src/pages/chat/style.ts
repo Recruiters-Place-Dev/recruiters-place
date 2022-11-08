@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const ContainerChat = styled.div`
+  font-family: var(--font-family);
+  font-weight: 500;
+
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -13,6 +16,7 @@ export const ContainerChat = styled.div`
     }
   }
   h1 {
+    font-size: 18px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -26,14 +30,36 @@ export const ContainerChat = styled.div`
       width: 50px;
     }
   }
+  @media screen and (max-width: 750px) {
+    ul li p {
+      display: none;
+    }
+    & ul li h1 {
+      justify-content: center;
+    }
+  }
 `;
 export const ContainerChatAll = styled.div`
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 70px;
+
+    @media screen and (min-width: 1000px) {
+      display: none;
+    }
+  }
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: 50%;
   border-right: 1px solid black;
   padding: 5px;
   gap: 10px;
+  @media screen and (max-width: 1000px) {
+    width: 75%;
+  }
 `;
 export const ContainerChatCall = styled.div`
   display: flex;
@@ -71,6 +97,10 @@ export const ContainerChatPerfil = styled.div`
   width: 25%;
   img {
     width: 100px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    display: none;
   }
 `;
 
