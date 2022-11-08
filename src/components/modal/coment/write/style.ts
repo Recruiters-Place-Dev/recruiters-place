@@ -27,15 +27,18 @@ export const ModalComentWriteContainer = styled.div`
     align-items: center;
     gap: 30px;
   }
-    & div {
-     
+  & div {
   }
 `;
 export const ModalComentWriteContainerButton = styled.div`
-  align-self: end;
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
   height: fit-content;
-  cursor: pointer;
+  img {
+    cursor: pointer;
+  }
 `;
 export const ModalComentWriteContainerMessage = styled.div`
   display: flex;
