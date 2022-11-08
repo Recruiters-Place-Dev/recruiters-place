@@ -36,6 +36,7 @@ export const Container = styled.div<iSizeProps>`
     flex-direction: column-reverse;
     padding: 40px 25px;
     gap: 1rem;
+    height: fit-content;
     > div {
       width: 100%;
       align-items: flex-start;

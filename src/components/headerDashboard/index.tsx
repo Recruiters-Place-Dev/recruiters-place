@@ -39,7 +39,7 @@ function HeaderDashboard() {
 
   function handleFilter(event: string) {
     const arrayfiltro: iUser[] | undefined = [] as iUser[] | undefined;
-    allUsers?.map((elem: iUser | undefined) => {
+    allUsers?.map((elem: iUser) => {
       const techs = Object.entries<boolean>(
         elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
       );

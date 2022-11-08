@@ -29,14 +29,16 @@ function ReadComent() {
   return modalReadComent ? (
     <ModalComentReadContainer>
       <div>
-        <ModalComentReadContainerButton
-          onClick={() => {
-            setModalReadComent(!modalReadComent);
-            setModalComent(true);
-          }}
-        >
+        <ModalComentReadContainerButton>
           <h1>Comentários</h1>
-          <img src={close} alt="" />
+          <img
+            src={close}
+            alt=""
+            onClick={() => {
+              setModalReadComent(!modalReadComent);
+              setModalComent(true);
+            }}
+          />
         </ModalComentReadContainerButton>
 
         <ComentContainer>
