@@ -13,7 +13,8 @@ import {
   Techs,
 } from "./styles";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid";
+import { Tag } from "../../pages/feed/styles";
 
 interface iModalFeedProps {
   developer: iUser | null;
@@ -43,8 +44,10 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
           </DivLinks>
         </DivPersonalInfo>
         <DivInfo>
-          <DeveloperName>{developer?.name}</DeveloperName>
-          <DevelopersCargo>{developer?.cargo}</DevelopersCargo>
+          <div>
+            <DeveloperName>{developer?.name}</DeveloperName>
+            <DevelopersCargo>{developer?.cargo}</DevelopersCargo>
+          </div>
 
           <DivBio>
             {developer?.bio ? (
@@ -55,8 +58,11 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
           </DivBio>
 
           <Techs>
-            {techs?.map((devTech) => (
-              <img key={uuid()} src={devTech?.dir} alt="devTech.tech" />
+            {techs?.map((value) => (
+              <div key={uuid()}>
+                <img src={value?.dir} alt={value?.tech} />
+                <Tag>{value?.tech}</Tag>
+              </div>
             ))}
           </Techs>
         </DivInfo>

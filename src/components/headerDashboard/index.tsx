@@ -42,7 +42,7 @@ function HeaderDashboard() {
     allUsers?.map((elem: iUser | undefined) => {
       const techs = Object.entries<boolean>(
         elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
-      );
+        );
       techs?.filter((elemento: [string, boolean]) => {
         if (elemento[1]) {
           if (elem?.isRecruiter === false && elemento[0] === event) {
