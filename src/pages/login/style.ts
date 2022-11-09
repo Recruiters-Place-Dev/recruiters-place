@@ -256,32 +256,6 @@ export const FormLogin = styled.form`
 
     font-family: var(--font-family);
   }
-  /* 
-  button {
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 16px;
-
-    width: 100%;
-    /* max-width: 331px; */
-  /* height: 48px;
-
-    border-radius: 8px;
-    border: none;
-
-    background: var(--color-primary);
-    color: white;
-
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-      transition: 0.3s; */
-  /* border: 1px solid black; */
-  /* }
-  }  */
-
   span {
     font-family: var(--font-family);
     font-style: normal;
@@ -310,7 +284,7 @@ export const BoxSlogan = styled.div`
 
   @media (min-width: 1024px) {
     position: absolute;
-    bottom: 70px;
+    bottom: 0px;
     align-self: center;
     padding: 10px;
     background: var(--color-secondary);

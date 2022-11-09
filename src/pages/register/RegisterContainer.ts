@@ -5,44 +5,57 @@ const RegisterContainer = styled.div`
   font-family: "Roboto", sans-serif;
   width: 100%;
   min-height: 100vh;
-  display: grid;
+  display: flex;
   align-items: center;
-  grid-template-columns: 45% 55%;
-  grid-template-areas: "fc cc";
+  justify-content: center;
+  /* grid-template-columns: 100%; */
+  /* grid-template-areas: "fc"; */
 
-  @media (max-height: 940px) {
-    padding: 5% 0;
+  @media (min-width: 900px) {
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .FormContainer {
+    /* border: 1px solid red; */
+    /* margin: 0 auto; */
+    width: 90%;
     position: relative;
     display: flex;
-    flex-flow: column nowrap;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    grid-area: fc;
-    z-index: 2;
+    img {
+      width: 300px;
+    }
+    @media (min-width: 900px) {
+      width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+      width: 40%;
+    }
   }
 
   .ContentContainer {
-    grid-area: cc;
+    /* grid-area: cc; */
   }
 
   .InputsContainer {
     display: flex;
-    flex-flow: column nowrap;
-    width: 100%;
+    flex-flow: column;
+    /* width: 100%; */
     gap: 39px;
   }
 
   .BackToLogin {
     max-width: 400px;
     width: 100%;
-    margin-top: 37px;
+    margin-top: 20px;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column;
     align-items: center;
-    gap: 54px;
+    gap: 20px;
   }
 
   .square {
@@ -55,32 +68,40 @@ const RegisterContainer = styled.div`
   }
 
   .SquareContent {
-    width: 840px;
-    height: 540px;
+    width: 50%;
+    height: 450px;
     background-color: var(--color-primary);
     position: absolute;
     top: 0;
     right: 3%;
+    display: none;
+
+    @media (min-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
     img {
-      position: absolute;
+      /* position: absolute;
       top: 20px;
-      left: 0;
+      left: 0; */
+
+      width: 500px;
+      height: 250px;
     }
 
     > div {
-      position: absolute;
-      top: 20px;
-      right: 0;
-      max-width: 306px;
+      margin: 20px;
 
       h3 {
-        font-size: 48px;
-        color: #f5f8fa;
+        font-size: 40px;
+        color: var(--grey-1);
       }
 
       a {
-        font-size: 28px;
+        font-size: 20px;
         color: #f5f8fa;
       }
     }
