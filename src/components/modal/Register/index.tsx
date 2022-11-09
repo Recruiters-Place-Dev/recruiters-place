@@ -59,7 +59,7 @@ const ModalRegister = ({
   };
 
   const advanceToAbout = async (e: keyboardKey | null) => {
-    if (e?.key === "Enter" || null) {
+    if (e?.key === "Enter" || e === null) {
       const valid = await trigger(["city", "schooling", "vacancy"]);
       if (valid) setProgress({ phase: 3, nextPhase: 4 });
     }
@@ -70,7 +70,7 @@ const ModalRegister = ({
   };
 
   const advanceToLinks = async (e: keyboardKey | null) => {
-    if (e?.key === "Enter" || null) {
+    if (e?.key === "Enter" || e === null) {
       const valid = await trigger(["linkedin", "github", "portfolio"]);
       if (valid) setProgress({ phase: 4, nextPhase: 5 });
     }
