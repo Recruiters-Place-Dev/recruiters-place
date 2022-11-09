@@ -61,8 +61,13 @@ export const RegisterForm = styled.form`
     z-index: 1000;
 
     &:hover {
-      cursor: pointer;
-      filter: brightness(1.2);
+      transition: 0.4s;
+      box-shadow: 2px 2px 3px 1px #13117c;
+      transform: translate(-2px, -2px);
+    }
+    &:active {
+      box-shadow: 0 0 0 0, inset 2px 2px 2px 1px #13117c;
+      transform: translate(2px, 2px);
     }
   }
 `;

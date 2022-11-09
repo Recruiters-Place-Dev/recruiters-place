@@ -179,7 +179,7 @@ export const ButtonLogout = styled.button`
   align-items: center;
   padding: 14px 116px 15px;
   width: 100%;
-  max-width: 331px;
+  max-width: 300px;
   height: 48px;
   background: #1da1f2;
   border-radius: 8px;
