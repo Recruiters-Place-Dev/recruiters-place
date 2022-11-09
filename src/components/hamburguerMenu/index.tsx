@@ -13,7 +13,7 @@ const HamburguerMenu = () => {
   const { home } = useParams();
   const navigate = useNavigate();
 
-  const Menu = () => {
+  const menu = () => {
     if (className === "Controls") {
       setClassName("Controls active");
       setClassDev("ControlsDev");
@@ -22,6 +22,7 @@ const HamburguerMenu = () => {
       setClassDev("ControlsDev");
     }
   };
+
   const filterDev = () => {
     if (classDev === "ControlsDev") {
       setClassDev("ControlsDev active");
@@ -32,16 +33,16 @@ const HamburguerMenu = () => {
     useContext(WebContext);
 
   function handleLogout() {
-    Menu();
+    menu();
     setLogOff(true);
   }
 
   function goToPerfil() {
-    Menu();
+    menu();
     navigate("perfil");
   }
   function goToChat() {
-    Menu();
+    menu();
     navigate("chat");
   }
 
@@ -52,7 +53,7 @@ const HamburguerMenu = () => {
         allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
       );
     } else {
-      Menu();
+      menu();
       navigate("/home");
       setFilterDevelopers(
         allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
@@ -60,7 +61,7 @@ const HamburguerMenu = () => {
     }
   }
   function handleFilter(event: string) {
-    Menu();
+    menu();
     const arrayfiltro: iUser[] | undefined = [] as iUser[] | undefined;
     allUsers?.map((elem: iUser) => {
       if (elem.tech) {
@@ -79,7 +80,7 @@ const HamburguerMenu = () => {
     });
   }
   function handleFilterDev(event: string) {
-    Menu();
+    menu();
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem: iUser) => {
       if (elem.cargo === event) {
@@ -96,7 +97,7 @@ const HamburguerMenu = () => {
         <div className="NavContainer">
           <div className="MenuContainer">
             <img id="NavBrand" src={Logo} alt="" onClick={() => reset()} />
-            <button id="MenuBtn" onClick={() => Menu()}></button>
+            <button id="MenuBtn" onClick={() => menu()}></button>
           </div>
           <div className="ControlsContainer">
             <div className={className}>
