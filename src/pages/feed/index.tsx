@@ -84,7 +84,10 @@ function Feed() {
         >
           <DivDevelopersInfo>
             <Figure>
-              <img src={FotoPerfil} alt="Foto de Perfil" />
+              <img
+                src={elem.fotoDoPerfil ? elem.fotoDoPerfil : FotoPerfil}
+                alt="Foto de Perfil"
+              />
             </Figure>
             <p>{elem?.email}</p>
             <p>{elem?.city}</p>
@@ -94,9 +97,15 @@ function Feed() {
             <DeveloperName>{elem?.name}</DeveloperName>
             <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
             <DivDevelopersLinks>
-              <a href={elem?.linkedin}>Linkedin</a>
-              <a href={elem?.github}>Github</a>
-              <a href={elem?.portfolio}>Portifolio</a>
+              <a href={elem?.linkedin} target="__blank">
+                Linkedin
+              </a>
+              <a href={elem?.github} target="__blank">
+                Github
+              </a>
+              <a href={elem?.portfolio} target="__blank">
+                Portifolio
+              </a>
             </DivDevelopersLinks>
           </DivDevelopersName>
 

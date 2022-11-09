@@ -6,8 +6,9 @@ import { WebContext } from "../../context/webcontext";
 
 export function LogOffModal() {
   const navigate = useNavigate();
-  const { logOff, setLogOff } = useContext(WebContext);
+  const { logOff, setLogOff, setCallId } = useContext(WebContext);
   function sair() {
+    setCallId("");
     setLogOff(false);
     localStorage.clear();
     navigate("/");

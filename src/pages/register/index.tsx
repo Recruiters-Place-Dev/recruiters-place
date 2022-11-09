@@ -17,7 +17,7 @@ function Register() {
           <LinkStyled to={"/login"}>Login</LinkStyled>
         </div>
       </div>
-      <div className="ContentContainer"></div>
+      {/* <div className="ContentContainer"></div> */}
       <div className="SquareContent">
         <img src={sprite} alt="" />
         <div>
@@ -25,8 +25,8 @@ function Register() {
           <a href="#">Confira os benefícios ➡</a>
         </div>
       </div>
-      <div className="square"></div>
-      <div className="halfSquare"></div>
+      {/* <div className="square"></div> */}
+      {/* <div className="halfSquare"></div> */}
     </RegisterContainer>
   );
 }

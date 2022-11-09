@@ -6,7 +6,8 @@ interface iInputGroup {
 const InputGroup = styled.div<iInputGroup>`
   position: relative;
   width: 100%;
-
+  max-width: 300px;
+  
   input {
     width: 100%;
     border: 1px solid
