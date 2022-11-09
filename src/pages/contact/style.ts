@@ -20,7 +20,10 @@ export const ContainerFormContact = styled.form`
   flex-direction: column;
   gap: 20px;
   width: 30%;
+  align-items: center;
   textarea {
+    max-width: 300px;
     height: 100px;
+    width: 100%;
   }
 `;
