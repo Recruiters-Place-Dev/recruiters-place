@@ -89,7 +89,7 @@ export const LandingPage = () => {
                   <ButtonLogout
                     onClick={() => {
                       window.localStorage.clear();
-                      setUser("");
+                      setUser(undefined);
                     }}
                   >
                     sair
