@@ -39,6 +39,10 @@ export const DivDevelopersInfo = styled.div`
   @media (max-width: 750px) {
     display: none;
   }
+
+  p{
+    word-break: break-word;
+  }
 `;
 
 export const Figure = styled.figure`
