@@ -317,8 +317,7 @@ export function WebProvider({ children }: iWebProvider) {
         setLoading(true);
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.post(`/coments`, data);
-
-        setAllComents([...allComents, data]);
+        getAllComents();
         setModalWriteComent(false);
         setLoading(false);
         toast.success("Comentário enviado.");
@@ -326,6 +325,7 @@ export function WebProvider({ children }: iWebProvider) {
         console.log(error);
       }
     }
+    setAllComents([...allComents]);
   }
 
   async function deleteComent(event: string) {
@@ -336,12 +336,12 @@ export function WebProvider({ children }: iWebProvider) {
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.delete(`/coments/${event}`);
         getAllComents();
-        setAllComents([...allComents]);
         toast.success("Comentário apagado.");
       } catch (error) {
         console.log(error);
       }
     }
+    setAllComents([...allComents]);
   }
 
   async function onSubmitChat(data: iChat) {
