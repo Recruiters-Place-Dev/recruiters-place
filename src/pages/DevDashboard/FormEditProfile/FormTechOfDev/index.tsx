@@ -39,6 +39,7 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
     angular: false,
     node: false,
     vuejs: false,
+    sass: false,
   });
 
   useEffect(() => {
@@ -122,6 +123,24 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
             id="vuejs"
             register={register}
             isActive={isActiveTechs?.vuejs}
+          />
+          <BoxImgCheckbox
+            setIsActiveTechs={setIsActiveTechs}
+            id="sass"
+            register={register}
+            isActive={isActiveTechs?.sass}
+          />
+          <BoxImgCheckbox
+            setIsActiveTechs={setIsActiveTechs}
+            id="php"
+            register={register}
+            isActive={isActiveTechs?.php}
+          />
+          <BoxImgCheckbox
+            setIsActiveTechs={setIsActiveTechs}
+            id="c"
+            register={register}
+            isActive={isActiveTechs?.c}
           />
         </TechsBox>
 

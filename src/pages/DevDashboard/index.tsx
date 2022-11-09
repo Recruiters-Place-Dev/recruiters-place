@@ -40,7 +40,7 @@ type tTypeTech =
 
 export const DevDashboard = () => {
   const { user } = useContext(WebContext);
-
+  console.log(user);
   return (
     <>
       <AnimatePresence>
@@ -95,7 +95,7 @@ export const DevDashboard = () => {
                   if (user.tech[current.tech as tTypeTech]) {
                     return (
                       <li key={uuid()}>
-                        <img src={current.dir} />
+                        <img src={current?.dir} />
                       </li>
                     );
                   }

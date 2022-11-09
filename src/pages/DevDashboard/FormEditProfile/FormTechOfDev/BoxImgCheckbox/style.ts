@@ -43,6 +43,12 @@ export const ImgStyled = styled.img.attrs(({ id }) => {
       return { src: techList[6].dir };
     case "vuejs":
       return { src: techList[5].dir };
+    case "sass":
+      return { src: techList[9].dir };
+    case "c":
+      return { src: techList[8].dir };
+    case "php":
+      return { src: techList[7].dir };
   }
 })<iImgStyled>`
   color: red;

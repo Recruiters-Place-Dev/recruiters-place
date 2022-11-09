@@ -4,9 +4,7 @@ export const DivPhoto = styled.div`
   grid-row: 1/2;
   grid-column: 1/2;
 
-  
-    border-radius: 30%;
-  
+  border-radius: 30%;
 
   @media (max-width: 750px) {
     grid-row: 1/2;
@@ -29,7 +27,7 @@ export const SectionProfile = styled.section`
   background: #f5f8fa;
   border: 2px solid #1da1f2;
   border-radius: 15px;
-  max-width: 750px;
+  max-width: 900px;
   position: relative;
   min-height: 556px;
   height: auto;
@@ -47,7 +45,6 @@ export const SectionProfile = styled.section`
     grid-template-rows: 1fr 1fr 0.6fr auto 0.5fr;
     margin: 0 0.6rem;
     margin-top: 10rem;
-    
   }
 `;
 
@@ -98,15 +95,12 @@ export const NavLink = styled.nav`
   @media (max-width: 750px) {
     grid-row: 2/3;
     grid-column: 2/3;
-    
   }
   @media (max-width: 500px) {
     padding-left: 1rem;
-    
   }
   @media (max-width: 380px) {
     padding-left: 2rem;
-    
   }
 `;
 
