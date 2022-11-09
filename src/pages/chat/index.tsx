@@ -123,7 +123,9 @@ function Chat() {
                 )
             )
           ) : (
-            <div>Nenhuma conversa aberta</div>
+            <div className="nothingMessage">
+              <h1>Nenhuma conversa aberta</h1>
+            </div>
           )}
         </ContainerChatCall>
         <ContainerInputSend onSubmit={handleSubmit(onSubmitSendChat)}>
