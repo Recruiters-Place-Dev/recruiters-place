@@ -1,16 +1,19 @@
 export interface iTechs {
-  html: true;
-  css: true;
-  js: true;
-  react: true;
-  ts: true;
-  angular: true;
-  vuejs: true;
-  php: true;
-  c: true;
+  html?: boolean;
+  css?: boolean;
+  js?: boolean;
+  react?: boolean;
+  ts?: boolean;
+  angular?: boolean;
+  vuejs?: boolean;
+  php?: boolean;
+  c?: boolean;
+  sass?: boolean;
+  node?: boolean;
 }
 
 export interface iFormEditProfile {
+  bio: string;
   name: string;
   email: string;
   password: string;
@@ -23,4 +26,9 @@ export interface iFormEditProfile {
   github: string;
   portfolio: string;
   tech: iTechs;
+  fotoDoPerfil: string;
+}
+
+export interface iApiError {
+  error: string;
 }

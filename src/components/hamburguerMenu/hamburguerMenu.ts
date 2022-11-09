@@ -7,19 +7,17 @@ const MenuContainer = styled.header`
   top: 0;
   z-index: 9;
 
-
   @media screen and (min-width: 750px) {
     display: none;
   }
   nav {
- 
     width: 100%;
     padding: 17px 0;
     background-color: #f5f8fa;
     transition: all 0.5s;
     z-index: 1;
     border-bottom: #1da1f2 1px solid;
-    img{
+    img {
       cursor: pointer;
     }
     @media (max-width: 1200px) {
@@ -67,8 +65,8 @@ const MenuContainer = styled.header`
 
         #MenuBtn {
           display: none;
-          width: 26px;
-          height: 26px;
+          min-width: 26px;
+          min-height: 26px;
           background-image: url(${list});
           background-size: contain;
           background-repeat: no-repeat;
@@ -117,53 +115,49 @@ const MenuContainer = styled.header`
           padding: 30px 0;
         }
       }
-        
+    }
+    .ControlsDev {
+      display: none;
+      flex-flow: row nowrap;
+      gap: 34px;
+      background-color: #f5f8fa;
+      transition: all 0.5s;
+      z-index: -1;
+      margin: -3.5rem 0 -2rem;
+
+      @media (max-width: 1200px) {
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        transform: translateY(-93%);
       }
-      .ControlsDev {
-        display: none;
-        flex-flow: row nowrap;
-        gap: 34px;
-        background-color: #f5f8fa;
-        transition: all 0.5s;
-        z-index: -1;
-        margin: -3.5rem 0 -2rem;
-
-        @media (max-width: 1200px) {
-     
-          flex-direction: column;
-          align-items: center;
-         
-          width: 100%;
-          transform: translateY(-93%);
-        }
-        .devType{
-          gap: 40px
-        }
-        ul{
-          display: flex;
-          gap: 10px;
-          img{
-            width: 30px;
-          }
-          button{
-            color: #000000;
-          }
-        }
-
-        h5 {
-          font-family: var(--font-family);
-          font-weight: 500;
-          color: #000000;
-          text-align: inherit;
-          width: 90%;
-        }
+      .devType {
+        gap: 40px;
       }
-
-      .active {
+      ul {
         display: flex;
-        transform: translateY(0) !important;
-
+        gap: 10px;
+        img {
+          width: 30px;
+        }
+        button {
+          color: #000000;
+        }
       }
+
+      h5 {
+        font-family: var(--font-family);
+        font-weight: 500;
+        color: #000000;
+        text-align: inherit;
+        width: 90%;
+      }
+    }
+
+    .active {
+      display: flex;
+      transform: translateY(0) !important;
     }
   }
 `;

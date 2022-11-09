@@ -6,7 +6,7 @@ interface iInputGroup {
 const InputGroup = styled.div<iInputGroup>`
   position: relative;
   width: 100%;
-  
+  margin-bottom: 1rem;
   input {
     width: 100%;
     border: 1px solid
@@ -59,5 +59,10 @@ const InputGroup = styled.div<iInputGroup>`
     background-color: #fff;
     padding: 0 0.2em;
   }
+
+  p{
+    margin: 0px;
+  }
+
 `;
 export default InputGroup;
