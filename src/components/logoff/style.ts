@@ -40,6 +40,7 @@ export const ModalLogOff = styled.section`
     display: flex;
     flex-flow: row nowrap;
     margin-top: 25px;
+    gap: 15px;
   }
 
   .cancelar {
