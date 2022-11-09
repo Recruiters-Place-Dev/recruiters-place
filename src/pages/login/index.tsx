@@ -5,7 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SchemaLogin } from "../../validations/schemas";
 import Input from "../../components/Input";
 
-import { ButtonStylized, LinkStyled } from "../../components/buttons/style";
+import {
+  ButtonStylized,
+  LinkContact,
+  LinkStyled,
+} from "../../components/buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg";
 import ImgLogin from "../../assets/ImgLogin.svg";
 
@@ -96,6 +100,10 @@ export const Login = () => {
 
       <BoxSlogan>
         <Slogan />
+        <section>
+          <h1>Alguma dúvida ?</h1>
+          <LinkContact to="/contactus">Entre em contato</LinkContact>
+        </section>
       </BoxSlogan>
     </MainLogin>
   );

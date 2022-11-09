@@ -296,8 +296,9 @@ export const FormLogin = styled.form`
 
 export const BoxSlogan = styled.div`
   position: relative;
-
+  font-family: var(--font-family);
   display: flex;
+  gap: 15px;
   align-items: center;
   justify-content: flex-start;
 
@@ -337,6 +338,11 @@ export const BoxSlogan = styled.div`
       p {
         /* display: none; */
       }
+    }
+    section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
   }
 `;

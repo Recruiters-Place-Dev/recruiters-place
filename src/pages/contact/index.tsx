@@ -36,7 +36,6 @@ function ContactUs() {
     <MainContainer>
       <ContainerImg>
         <img src={Logo} alt="" />
-        <h1> vs beta</h1>
       </ContainerImg>
       <ContainerFormContact ref={form} onSubmit={sendEmail}>
         <Input
