@@ -5,10 +5,11 @@ import { ContainerFormContact, ContainerImg, MainContainer } from "./style";
 import Logo from "../../assets/Logo.svg";
 import { ButtonStylized } from "../../components/buttons/style";
 import emailjs from "@emailjs/browser";
+import { useNavigate } from "react-router-dom";
 
 function ContactUs() {
   const { register, handleSubmit, getValues } = useForm({});
-
+  const navigate = useNavigate();
   const form = useRef<HTMLFormElement | null>(null);
 
   const sendEmail = (e: any) => {
@@ -32,10 +33,14 @@ function ContactUs() {
       );
   };
 
+  function handleBack() {
+    navigate("/");
+  }
+
   return (
     <MainContainer>
       <ContainerImg>
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="" onClick={() => handleBack()} />
       </ContainerImg>
       <ContainerFormContact ref={form} onSubmit={sendEmail}>
         <Input

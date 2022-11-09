@@ -330,7 +330,7 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function deleteComent(event: string) {
     const token = localStorage.getItem("RPlace:Token");
-    console.log(event);
+
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;

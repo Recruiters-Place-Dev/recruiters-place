@@ -47,7 +47,6 @@ function ReadComent() {
                 <div className="avatar">
                   {allUsers?.map((elem: iUser) => {
                     if (elem.id === Number(coment.idFrom)) {
-                      console.log(elem.id, coment.idFrom);
                       return elem.isRecruiter ? (
                         <img key={uuid()} src={avatarTech} alt="" />
                       ) : (

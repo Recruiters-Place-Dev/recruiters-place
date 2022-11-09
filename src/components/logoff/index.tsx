@@ -14,7 +14,6 @@ export function LogOffModal() {
   }
 
   function cancel() {
-    console.log(logOff);
     setLogOff(false);
   }
 
