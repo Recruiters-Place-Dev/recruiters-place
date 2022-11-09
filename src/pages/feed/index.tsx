@@ -84,7 +84,10 @@ function Feed() {
         >
           <DivDevelopersInfo>
             <Figure>
-              <img src={FotoPerfil} alt="Foto de Perfil" />
+              <img
+                src={elem.fotoDoPerfil ? elem.fotoDoPerfil : FotoPerfil}
+                alt="Foto de Perfil"
+              />
             </Figure>
             <p>{elem?.email}</p>
             <p>{elem?.city}</p>

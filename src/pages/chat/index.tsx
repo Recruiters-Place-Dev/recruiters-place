@@ -134,7 +134,16 @@ function Chat() {
 
       <ContainerChatPerfil>
         {callId && (
-          <img src={developer?.isRecruiter ? avatarTech : FotoPerfil} alt="" />
+          <img
+            src={
+              developer?.fotoDoPerfil
+                ? developer.fotoDoPerfil
+                : developer?.isRecruiter
+                ? avatarTech
+                : FotoPerfil
+            }
+            alt=""
+          />
         )}
         <h3>{developer?.name}</h3>
         <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}</p>
