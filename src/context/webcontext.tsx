@@ -202,6 +202,7 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:Token", data.accessToken);
         localStorage.setItem("RPlace:id", data.user.id);
 
+        getAllComents()
         setUser(data.user);
         setLoading(false);
 
