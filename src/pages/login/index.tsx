@@ -77,6 +77,7 @@ export const Login = () => {
               id="password"
               login={true}
               getValues={getValues}
+              showPass={true}
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
 

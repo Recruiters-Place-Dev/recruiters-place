@@ -54,18 +54,18 @@ export function FormRegister() {
   const registerUser = async (): Promise<void> => {
     const isRecruiter = getValues("isRecruiter");
 
-    if (!isRecruiter) {
-      const valid = await trigger(["name", "email", "password", "checkpass"], {
-        shouldFocus: true,
-      });
+    const valid = await trigger(["name", "email", "password", "checkpass"], {
+      shouldFocus: true,
+    });
 
-      if (valid) {
-        setShow(true);
-        setProgress({ phase: 2, nextPhase: 3 });
-      }
-    } else {
+    if (!isRecruiter && valid) {
       setShow(true);
-      setProgress({ phase: 5, nextPhase: null });
+      setProgress({ phase: 2, nextPhase: 3 });
+    } else {
+      if (isRecruiter && valid) {
+        setShow(true);
+        setProgress({ phase: 5, nextPhase: null });
+      }
     }
   };
 
