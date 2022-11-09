@@ -15,6 +15,7 @@ import {
   ContainerProfile,
   FormEditRech,
 } from "./style";
+import avatar from "../../assets/avatarTech.png";
 
 export interface iEditRech {
   email: string;
@@ -51,7 +52,7 @@ const PerfilRech = () => {
       <Container size="small">
         <ContainerProfile>
           <figure>
-            <BiUserCircle size={85} color="#1DA1F2" />
+            <img src={avatar} alt="" />
           </figure>
           <div>
             <p>{user?.city}</p>
