@@ -29,8 +29,10 @@ const Input = ({
   // Destructuring the register
   const { onChange, onBlur, name, ref } = register(id);
 
+  const inputValue = getValues(id) ? getValues(id) : ""
+
   // States
-  const [value, setValue] = useState(getValues(id) || "");
+  const [value, setValue] = useState(inputValue);
 
   // Validations
   const className =

@@ -6,6 +6,7 @@ import Input from "../Input";
 import ModalRegister from "../modal/Register";
 import { useState, useContext } from "react";
 import { WebContext } from "../../context/webcontext";
+import { keyboardKey } from "@testing-library/user-event";
 
 export interface iUserRegister {
   name: string;
@@ -50,7 +51,7 @@ export function FormRegister() {
   // functions
   const { onRegister } = useContext(WebContext);
 
-  const registerUser = async () => {
+  const registerUser = async (): Promise<void> => {
     const isRecruiter = getValues("isRecruiter");
 
     if (!isRecruiter) {
@@ -70,6 +71,13 @@ export function FormRegister() {
 
   const setRecruiterTrue = () => {
     setIsRecruiter(true);
+  };
+
+  const forceOpenModal = async (e: keyboardKey): Promise<void> => {
+    if (e.key === "Enter") {
+      const valid = await trigger(["name", "email", "password", "checkpass"]);
+      if (valid) registerUser();
+    }
   };
 
   // validations
@@ -152,22 +160,16 @@ export function FormRegister() {
     getValues,
     handleSubmit,
     register,
+    reset,
     trigger,
   } = useForm<iUserRegister>({
     resolver: yupResolver(yupSchema),
   });
 
-  const forceOpenModal = (e: any) => {
-    if (e.key === "Enter") {
-      handleSubmit(onRegister)();
-      registerUser()
-    }
-  };
-
   return (
     <>
       <RegisterForm
-        onKeyDown={(e) => forceOpenModal(e)}
+        onKeyDown={(e: keyboardKey) => forceOpenModal(e)}
         onSubmit={handleSubmit(onRegister)}
       >
         <div className="InputsContainer">
@@ -225,6 +227,7 @@ export function FormRegister() {
           handleSubmit={handleSubmit}
           progress={progress}
           register={register}
+          reset={reset}
           setProgress={setProgress}
           setShow={setShow}
           trigger={trigger}
