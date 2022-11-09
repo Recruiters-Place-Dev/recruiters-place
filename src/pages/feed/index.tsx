@@ -97,9 +97,15 @@ function Feed() {
             <DeveloperName>{elem?.name}</DeveloperName>
             <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
             <DivDevelopersLinks>
-              <a href={elem?.linkedin}>Linkedin</a>
-              <a href={elem?.github}>Github</a>
-              <a href={elem?.portfolio}>Portifolio</a>
+              <a href={elem?.linkedin} target="__blank">
+                Linkedin
+              </a>
+              <a href={elem?.github} target="__blank">
+                Github
+              </a>
+              <a href={elem?.portfolio} target="__blank">
+                Portifolio
+              </a>
             </DivDevelopersLinks>
           </DivDevelopersName>
 
