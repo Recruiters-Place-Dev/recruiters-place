@@ -27,8 +27,6 @@ export interface iFormEditProfile {
   portfolio: string;
   tech?: iTechs;
   fotoDoPerfil: string;
-
-
 }
 
 export interface iApiError {
