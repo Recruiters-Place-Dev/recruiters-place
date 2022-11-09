@@ -51,27 +51,27 @@ function Feed() {
     filteredTechs,
     filterDevelopers,
     setFilterDevelopers,
+    getAllUsers,
   } = useContext<iWebContext>(WebContext);
 
   const [techsDeveloper, setTechsDeveloper] = useState<
     ({ tech: string; dir: string } | undefined)[] | null
   >(null);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (filterDevelopers) {
-      console.log(filterDevelopers);
-    }
-    setFilterDevelopers(
-      allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
-    );
-    console.log(filterDevelopers);
-
     if (!localStorage.getItem("RPlace:Token")) {
       navigate("/");
     }
-  }, []);
+    if (filterDevelopers === undefined) {
+      getAllUsers();
+      setFilterDevelopers(
+        allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+      );
+    }
+  }, [allUsers, filterDevelopers]);
 
   return (
     <ContainerFeed>
