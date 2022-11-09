@@ -14,7 +14,6 @@ export const MainLogin = styled.main`
     var(--color-secondary) 50%
   );
 
-
   @media (min-width: 1024px) {
     justify-content: flex-start;
     align-items: flex-end;
@@ -26,8 +25,7 @@ export const MainLogin = styled.main`
     );
   }
 
-
-  .boxAnimated{
+  .boxAnimated {
     position: fixed;
     left: 100px;
     top: 50px;
@@ -38,18 +36,18 @@ export const MainLogin = styled.main`
     align-items: center;
   }
 
-  .HomemLogin{
+  .HomemLogin {
     width: 300px;
     height: 300px;
   }
-  .ImgLogin{
+  .ImgLogin {
     position: absolute;
     left: -60px;
     top: 100px;
     width: 200px;
     height: 150px;
   }
-  .line1{
+  .line1 {
     position: absolute;
     left: -50px;
     top: 199px;
@@ -59,7 +57,7 @@ export const MainLogin = styled.main`
     background-color: var(--color-primary);
     animation: animateLine1 2s ease forwards;
   }
-  .line2{
+  .line2 {
     position: absolute;
     left: -50px;
     top: 165px;
@@ -99,25 +97,23 @@ export const MainLogin = styled.main`
     }
   }
 
-
   @media (min-width: 1024px) {
-    .boxAnimated{
-    position: fixed;
-    left: 100px;
-    top: 70px;
-    width: 400px;
-    height: 300px;
+    .boxAnimated {
+      position: fixed;
+      left: 100px;
+      top: 70px;
+      width: 400px;
+      height: 300px;
 
-    display: flex;
-    align-items: center;
-  }
+      display: flex;
+      align-items: center;
+    }
   }
   @media (min-width: 1300px) {
-    .boxAnimated{
-    position: fixed;
-    left: 200px;
-  }
-
+    .boxAnimated {
+      position: fixed;
+      left: 200px;
+    }
   }
 `;
 
@@ -160,7 +156,7 @@ export const SectionLogin = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
 
     min-width: 250px;
     max-width: 90%;
@@ -260,7 +256,7 @@ export const FormLogin = styled.form`
 
     font-family: var(--font-family);
   }
-/* 
+  /* 
   button {
     font-family: var(--font-family);
     font-weight: 500;
@@ -268,7 +264,7 @@ export const FormLogin = styled.form`
 
     width: 100%;
     /* max-width: 331px; */
-    /* height: 48px;
+  /* height: 48px;
 
     border-radius: 8px;
     border: none;
@@ -282,8 +278,8 @@ export const FormLogin = styled.form`
     justify-content: center;
     &:hover {
       transition: 0.3s; */
-      /* border: 1px solid black; */
-    /* }
+  /* border: 1px solid black; */
+  /* }
   }  */
 
   span {
@@ -312,7 +308,8 @@ export const BoxSlogan = styled.div`
   height: 240px;
 
   @media (min-width: 1024px) {
-
+    position: absolute;
+    bottom: 70px;
     align-self: center;
     padding: 10px;
     background: var(--color-secondary);
@@ -336,7 +333,6 @@ export const BoxSlogan = styled.div`
       gap: 2rem;
       padding: 2rem;
       margin-top: 0;
-
 
       p {
         /* display: none; */

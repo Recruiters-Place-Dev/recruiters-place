@@ -105,7 +105,7 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
-  const [allUsers, setAllUsers] = useState();
+  const [allUsers, setAllUsers] = useState<iUser[] | undefined>();
   const [allComents, setAllComents] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
@@ -118,8 +118,9 @@ export function WebProvider({ children }: iWebProvider) {
   const [callId, setCallId] = useState();
   const [boxEdit, setBoxEdit] = useState(false);
   const [logOff, setLogOff] = useState(false);
-  const [filterDevelopers, setFilterDevelopers] = useState<iUser[]>();
-
+  const [filterDevelopers, setFilterDevelopers] = useState<
+    iUser[] | undefined
+  >();
   const [resolved, setResolved] = useState<boolean | undefined>();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -207,7 +208,7 @@ export function WebProvider({ children }: iWebProvider) {
       }
     } catch (error: any) {
       setLoading(false);
-      toast.error("Combinação de email/senha incorreta");
+      toast.error("Ops, algo deu errado.");
 
       console.log(error.response.data);
       return false;

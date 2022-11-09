@@ -99,7 +99,8 @@ export const LinkStyled = styled(Link)`
   }
 
   @media (min-width: 580px) {
-    width: 300px;
+    max-width: 331px;
+    width: 100%;
   }
   /* display: inline-flex;
   justify-content: center;

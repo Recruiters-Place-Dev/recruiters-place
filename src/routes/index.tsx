@@ -10,6 +10,7 @@ import { PrivateRoutes } from "./PrivateRoutes";
 import Perfil from "../pages/perfil";
 import { FormEditProfile } from "../pages/DevDashboard/components/FormEditProfile";
 import ContactUs from "../pages/contact";
+import Error from "../pages/404";
 
 function RoutesMain() {
   const { user } = useContext(WebContext);
@@ -29,8 +30,9 @@ function RoutesMain() {
           }
         />
       </Route>
+      <Route path="/notfound" element={<Error />} />
+
       <Route path="/contactus" element={<ContactUs />} />
-      <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );
 }

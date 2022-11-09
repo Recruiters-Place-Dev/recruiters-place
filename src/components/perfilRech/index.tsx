@@ -7,6 +7,7 @@ import { WebContext } from "../../context/webcontext";
 import { SchemaPerfilRech } from "../../validations/schemas";
 import { ButtonStylized } from "../buttons/style";
 import Input from "../Input";
+import { LogOffModal } from "../logoff";
 import {
   Container,
   ContainerContent,
@@ -138,6 +139,7 @@ const PerfilRech = () => {
           </FormEditRech>
         </Container>
       )}
+      <LogOffModal />
     </ContainerMain>
   );
 };

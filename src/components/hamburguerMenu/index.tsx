@@ -78,6 +78,17 @@ const HamburguerMenu = () => {
       setFilterDevelopers(arrayfiltro);
     });
   }
+  function handleFilterDev(event: string) {
+    Menu();
+    const arrayfiltro: iUser[] = [];
+    allUsers?.map((elem: iUser) => {
+      if (elem.cargo === event) {
+        arrayfiltro.push(elem);
+      }
+    });
+
+    setFilterDevelopers(arrayfiltro);
+  }
 
   return (
     <MenuContainer>
@@ -99,7 +110,16 @@ const HamburguerMenu = () => {
                     <ul className="devType">
                       {ListMock.map((devType) => (
                         <li key={uuid()}>
-                          <button>{devType}</button>
+                          <button
+                            id={devType}
+                            onClick={(event) => {
+                              handleFilterDev(
+                                (event.target as HTMLButtonElement).id
+                              );
+                            }}
+                          >
+                            {devType}
+                          </button>
                         </li>
                       ))}
                     </ul>

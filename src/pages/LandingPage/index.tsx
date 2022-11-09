@@ -2,8 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Logo from "../../assets/RPlace_Clear.svg";
 
 import homemLandinPage from "../../assets/imgAnimated/homemLandinPage.svg";
-import mulherLandingPage from "../../assets/imgAnimated/mulherLandingPage.svg"
-import setas from "../../assets/imgAnimated/setas.svg"
+import mulherLandingPage from "../../assets/imgAnimated/mulherLandingPage.svg";
+import setas from "../../assets/imgAnimated/setas.svg";
 
 import {
   MainStyled,
@@ -38,13 +38,14 @@ export const LandingPage = () => {
           
           <Lines degrau="-50" top="500" right="-120"></Lines> */}
 
-
-
           <Container>
-
             <ContainerImg>
               <div>
-                <img src={homemLandinPage} alt="homemLandinPage" className="homemLandinPage" />
+                <img
+                  src={homemLandinPage}
+                  alt="homemLandinPage"
+                  className="homemLandinPage"
+                />
 
                 <div className="animatedArea">
                   <div className="homemAnimation">
@@ -64,11 +65,12 @@ export const LandingPage = () => {
                   </div>
                 </div>
 
-
-
-                <img src={mulherLandingPage} alt="mulherLandingPage" className="mulherLandingPage" />
+                <img
+                  src={mulherLandingPage}
+                  alt="mulherLandingPage"
+                  className="mulherLandingPage"
+                />
               </div>
-
             </ContainerImg>
 
             <ContainerRedirect>
@@ -103,10 +105,9 @@ export const LandingPage = () => {
                 </>
               )}
             </ContainerRedirect>
-
           </Container>
 
-          <Slogan/>
+          <Slogan />
         </MainStyled>
       </motion.div>
     </AnimatePresence>

@@ -11,5 +11,5 @@ export const PrivateRoutes = () => {
       navigate("/");
     }
   });
-  return true ? <Dashboard /> : <Navigate to="/landingPage" replace />;
+  return true ? <Dashboard /> : <Navigate to="/landingPage" />;
 };

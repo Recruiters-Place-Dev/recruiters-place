@@ -199,14 +199,12 @@ export const ButtonLogout = styled.button`
   }
 `;
 
-
-
 export const ContainerRedirect = styled.div`
   width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  gap: 48px;
   height: 60%;
   margin: 0 auto;
 
@@ -217,11 +215,9 @@ export const ContainerRedirect = styled.div`
 
   @media (min-width: 1024px) {
     width: 70%;
-    margin: 30px auto;
+    margin: 20px auto;
   }
 `;
-
-
 
 export const TitleLogin = styled.h1`
   font-family: "Roboto";
