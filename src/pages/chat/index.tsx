@@ -148,9 +148,11 @@ function Chat() {
         <h3>{developer?.name}</h3>
         <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}</p>
         {developer?.empresa && <p>{developer.empresa}</p>}
-        <a href={developer?.linkedin} target="__blank">
-          LinkedIn
-        </a>
+        {callId && (
+          <a href={developer?.linkedin} target="__blank">
+            LinkedIn
+          </a>
+        )}
       </ContainerChatPerfil>
       <LogOffModal />
     </ContainerChat>
