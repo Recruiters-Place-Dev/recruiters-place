@@ -14,7 +14,8 @@ export interface iChat {
 }
 
 function FormChat() {
-  const { user, chatId, allUsers, onSubmitChat } = useContext(WebContext);
+  const { user, chatId, allUsers, onSubmitChat, loading } =
+    useContext(WebContext);
 
   const { register, handleSubmit } = useForm<iChat>({});
 
@@ -39,7 +40,17 @@ function FormChat() {
         />
       </div>
       <textarea id="" {...register("chat")}></textarea>
-      <ButtonStylized type="submit">Enviar</ButtonStylized>
+      <ButtonStylized type="submit" styled="align-end">
+        {!loading && <>Enviar</>}
+        {loading && (
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
+      </ButtonStylized>
     </FormChatContainer>
   );
 }

@@ -314,11 +314,13 @@ export function WebProvider({ children }: iWebProvider) {
 
     if (token) {
       try {
+        setLoading(true);
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.post(`/coments`, data);
 
         setAllComents([...allComents, data]);
         setModalWriteComent(false);
+        setLoading(false);
         toast.success("Comentário enviado.");
       } catch (error) {
         console.log(error);
@@ -351,11 +353,13 @@ export function WebProvider({ children }: iWebProvider) {
 
     if (token) {
       try {
+        setLoading(true);
         Api.defaults.headers.authorization = `Bearer ${token}`;
         await Api.post(`/chat`, data);
 
         setAllChats([...allChats, data]);
         setModalChat(false);
+        setLoading(false);
         toast.success("Mensagem enviada.");
       } catch (error) {
         console.log(error);

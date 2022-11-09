@@ -14,7 +14,8 @@ export interface iComent {
 }
 
 function FormMessage() {
-  const { onSubmitComent, user, comentId, allUsers } = useContext(WebContext);
+  const { onSubmitComent, user, comentId, allUsers, loading } =
+    useContext(WebContext);
   const { register, handleSubmit } = useForm<iComent>({});
 
   return (
@@ -39,7 +40,15 @@ function FormMessage() {
       </div>
       <textarea id="" {...register("coment")}></textarea>
       <ButtonStylized styled="align-end" type="submit">
-        Enviar
+        {!loading && <>Enviar</>}
+        {loading && (
+          <div className="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </ButtonStylized>
     </FormContainer>
   );

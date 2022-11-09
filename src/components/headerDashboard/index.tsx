@@ -33,6 +33,7 @@ function HeaderDashboard() {
 
   function reset() {
     navigate("/home");
+    setFilter(false);
     setFilterDevelopers(
       allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
     );
