@@ -25,8 +25,10 @@ export interface iFormEditProfile {
   linkedin: string;
   github: string;
   portfolio: string;
-  tech: iTechs;
+  tech?: iTechs;
   fotoDoPerfil: string;
+
+
 }
 
 export interface iApiError {

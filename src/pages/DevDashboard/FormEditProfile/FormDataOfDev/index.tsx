@@ -35,6 +35,9 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
   });
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async (formData) => {
+    
+    delete formData.tech
+    
     try {
       const { data } = await Api.patch<iUser>(`/users/${user?.id}`, formData);
 
