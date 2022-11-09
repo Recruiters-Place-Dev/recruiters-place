@@ -58,7 +58,7 @@ export interface iWebContext {
   resolved: boolean | undefined;
   setResolved: Dispatch<SetStateAction<boolean | undefined>>;
   editSubmit: (info: iEditRech) => void;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
+  setUser: Dispatch<SetStateAction<iUser | undefined>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
   modalFeed: boolean;
@@ -70,7 +70,7 @@ export interface iWebContext {
   writeModalComent: () => void;
   setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
   comentId: string | undefined;
-  setComentId: React.Dispatch<React.SetStateAction<any>>;
+  setComentId: Dispatch<SetStateAction<string | undefined>>;
   onSubmitComent: (data: iComent) => void;
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
@@ -81,11 +81,11 @@ export interface iWebContext {
   setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
   modalChat: boolean;
   chatId: string | undefined;
-  setChatId: React.Dispatch<React.SetStateAction<any>>;
+  setChatId: Dispatch<SetStateAction<string | undefined>>;
   onSubmitChat: (data: iChat) => void;
   allChats: iChat[];
   callId: string | undefined;
-  setCallId: React.Dispatch<React.SetStateAction<any>>;
+  setCallId: Dispatch<SetStateAction<string | undefined>>;
   filteredTechs(elem: iUser): ({ tech: string; dir: string } | undefined)[];
   onSubmitSendChat: (data: iSend) => void;
   getAllUsers: () => void;
@@ -113,9 +113,9 @@ export function WebProvider({ children }: iWebProvider) {
   const [modalChat, setModalChat] = useState(false);
   const [modalReadComent, setModalReadComent] = useState(false);
   const [modalWriteComent, setModalWriteComent] = useState(false);
-  const [comentId, setComentId] = useState();
-  const [chatId, setChatId] = useState();
-  const [callId, setCallId] = useState();
+  const [comentId, setComentId] = useState<string>();
+  const [chatId, setChatId] = useState<string>();
+  const [callId, setCallId] = useState<string>();
   const [boxEdit, setBoxEdit] = useState(false);
   const [logOff, setLogOff] = useState(false);
   const [filterDevelopers, setFilterDevelopers] = useState<
@@ -202,7 +202,7 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:Token", data.accessToken);
         localStorage.setItem("RPlace:id", data.user.id);
 
-        getAllComents()
+        getAllComents();
         setUser(data.user);
         setLoading(false);
 
