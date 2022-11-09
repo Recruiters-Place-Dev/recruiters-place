@@ -115,8 +115,8 @@ const ModalRegister = ({
           <XCircle size={150} color="#e2142d" />
           <h3>Ops, aconteceu algum problema</h3>
           <form>
-            <button onClick={reSubmit}>Tentar novamente</button>
-            <button onClick={cancelSubmit}>Fechar</button>
+            <button type="button" onClick={reSubmit}>Tentar novamente</button>
+            <button type="button" onClick={cancelSubmit}>Fechar</button>
           </form>
         </>
       );
