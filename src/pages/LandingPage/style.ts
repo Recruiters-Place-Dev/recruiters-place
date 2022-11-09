@@ -40,7 +40,7 @@ export const Lines = styled.div<iPropsLine>`
 export const Container = styled.div`
   /* border: 1px solid red; */
   width: 100%;
-  height: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -204,8 +204,8 @@ export const ContainerRedirect = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  height: 60%;
+  gap: 30px;
+  height: 70%;
   margin: 0 auto;
 
   img {

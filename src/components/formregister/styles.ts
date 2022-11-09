@@ -1,18 +1,28 @@
 import styled from "styled-components";
 
 export const RegisterForm = styled.form`
+  /* border: 1px solid red; */
   display: flex;
   flex-flow: column;
-  align-items: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   gap: 15px;
-
-  max-width: 400px;
   width: 100%;
+  max-width: 400px;
+
+  .InputsContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .Recruiter-Opt {
-    margin-bottom: 78px;
+    width: 100%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
 
     span {
@@ -20,7 +30,7 @@ export const RegisterForm = styled.form`
     }
 
     input {
-        cursor: pointer;
+      cursor: pointer;
     }
   }
 
@@ -28,9 +38,9 @@ export const RegisterForm = styled.form`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
+    align-self: center;
     width: 100%;
-    max-width: 331px;
+    max-width: 300px;
     height: 48px;
 
     background: #1da1f2;
@@ -38,13 +48,13 @@ export const RegisterForm = styled.form`
     border-radius: 8px;
     border: none;
 
-    padding: 14px 116px 15px;
-    
+    /* padding: 14px 116px 15px; */
+
     font-family: var(--font-family);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 23px;
+    /* line-height: 23px; */
 
     text-decoration: none;
     transition: 0.4s;
