@@ -106,7 +106,9 @@ function HeaderDashboard() {
         {filter && (
           <div>
             <ul>
-              <li>Todos</li>
+              <li>
+                <button onClick={() => reset()}>Todos</button>
+              </li>
               {ListMock.map((devType) => (
                 <li key={uuid()}>
                   <button

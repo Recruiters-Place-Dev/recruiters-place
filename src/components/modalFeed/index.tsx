@@ -45,9 +45,15 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
           </DivInfoEmail>
 
           <DivLinks>
-            <a href={developer?.linkedin}>Linkedin</a>
-            <a href={developer?.github}>Github</a>
-            <a href={developer?.portfolio}>Portifolio</a>
+            <a href={developer?.linkedin} target="__blank">
+              Linkedin
+            </a>
+            <a href={developer?.github} target="__blank">
+              Github
+            </a>
+            <a href={developer?.portfolio} target="__blank">
+              Portifolio
+            </a>
           </DivLinks>
         </DivPersonalInfo>
         <DivInfo>

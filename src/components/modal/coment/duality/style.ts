@@ -12,11 +12,16 @@ export const ModalComentContainer = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  .closeDiv {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
   > div {
     position: absolute;
     max-width: 864px;
     width: 90%;
-    height:85vh;
+    height: 85vh;
     max-height: 600px;
     margin: 0 auto;
     padding: 30px 15px;
@@ -27,5 +32,8 @@ export const ModalComentContainer = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    img {
+      cursor: pointer;
+    }
   }
 `;
