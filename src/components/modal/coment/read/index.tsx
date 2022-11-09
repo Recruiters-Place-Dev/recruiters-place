@@ -44,7 +44,7 @@ function ReadComent() {
           {allComents?.map((coment: iComent) =>
             coment.idTo === comentId ? (
               <li key={uuid()}>
-                <div>
+                <div className="avatar">
                   {allUsers?.map((elem: iUser) => {
                     if (elem.id === Number(coment.idFrom)) {
                       console.log(elem.id, coment.idFrom);

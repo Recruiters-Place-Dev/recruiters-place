@@ -16,7 +16,7 @@ export const ModalComentReadContainer = styled.div`
     position: absolute;
     max-width: 864px;
     width: 90%;
-    height:85vh;
+    height: 85vh;
     max-height: 600px;
     margin: 0 auto;
 
@@ -69,5 +69,15 @@ export const ComentContainer = styled.ul`
     display: flex;
     padding: 10px;
     gap: 20px;
+    .avatar img {
+      min-width: 80px;
+    }
+    p {
+      display: flex;
+      max-width: 650px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 `;
