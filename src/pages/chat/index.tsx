@@ -89,21 +89,23 @@ function Chat() {
             )}
       </ul>
       <ContainerChatAll>
-        <section>
-          {callId && (
+        {callId && (
+          <section>
             <img
-              src={developer?.isRecruiter ? avatarTech : FotoPerfil}
+              src={
+                developer?.isRecruiter ? avatarTech : developer?.fotoDoPerfil
+              }
               alt=""
             />
-          )}
-          <div>
-            <h3>{developer?.name}</h3>
-            <p>
-              {developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}
-            </p>
-            {developer?.empresa && <p>{developer.empresa}</p>}
-          </div>
-        </section>
+            <div>
+              <h3>{developer?.name}</h3>
+              <p>
+                {developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}
+              </p>
+              {developer?.empresa && <p>{developer.empresa}</p>}
+            </div>
+          </section>
+        )}
         <ContainerChatCall>
           {callId ? (
             allChats.map(
