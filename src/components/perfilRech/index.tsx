@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormReset } from "react-hook-form";
 import { BiUserCircle } from "react-icons/bi";
 import { SlPencil } from "react-icons/sl";
 import { WebContext } from "../../context/webcontext";
@@ -24,6 +24,7 @@ export interface iEditRech {
   city: string;
   name: string;
   password: string | undefined;
+  reset: UseFormReset<iEditRech>;
 }
 
 const PerfilRech = () => {
@@ -73,7 +74,7 @@ const PerfilRech = () => {
       </Container>
       {boxEdit && (
         <Container size="big">
-          <FormEditRech onSubmit={handleSubmit(editSubmit)}>
+          <FormEditRech onSubmit={handleSubmit((values) => editSubmit(values, reset))}>
             <Input
               id="name"
               type="text"
@@ -119,11 +120,6 @@ const PerfilRech = () => {
             />
             <div className="box-btns">
               <ButtonStylized
-                onClick={() => {
-                  reset({
-                    password: "",
-                  });
-                }}
                 styled="medium"
                 type="submit"
               >

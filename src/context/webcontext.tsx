@@ -17,6 +17,7 @@ import { iChat } from "../components/formChat";
 import { iSend } from "../pages/chat";
 import { iUserRegister } from "../components/formregister";
 import techList from "../mockList/devTechs.json";
+import { UseFormReset } from "react-hook-form";
 
 export interface iWebProvider {
   children: ReactNode;
@@ -57,7 +58,7 @@ export interface iWebContext {
   onRegister: (data: iUserRegister) => Promise<void>;
   resolved: boolean | undefined;
   setResolved: Dispatch<SetStateAction<boolean | undefined>>;
-  editSubmit: (info: iEditRech) => void;
+  editSubmit: (info: iEditRech, reset: UseFormReset<iEditRech>) => Promise<void>;
   setUser: Dispatch<SetStateAction<iUser | undefined>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
@@ -263,7 +264,7 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  async function editSubmit(info: iEditRech) {
+  async function editSubmit(info: iEditRech, reset: UseFormReset<iEditRech>) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
 
@@ -275,8 +276,8 @@ export function WebProvider({ children }: iWebProvider) {
       user?.name !== info.name ||
       user?.city !== info.city ||
       user?.email !== info.email ||
-      info.password ||
-      info.empresa !== ""
+      user?.empresa !== info.empresa ||
+      info.password 
     ) {
       if (token) {
         try {
@@ -295,6 +296,14 @@ export function WebProvider({ children }: iWebProvider) {
     } else {
       toast.warning("Nenhum campo foi alterado");
     }
+    reset({
+      name: user?.name,
+      city: user?.city,
+      email: user?.email,
+      password: "",
+      empresa: user?.empresa,
+      linkedin: user?.linkedin
+    })
   }
 
   function writeModalComent(): void {
