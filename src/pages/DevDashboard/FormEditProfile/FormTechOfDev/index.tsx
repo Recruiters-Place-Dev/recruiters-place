@@ -28,7 +28,8 @@ interface iTechOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
 }
 export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
-  const { user, setUser } = useContext(WebContext);
+  const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
+    useContext(WebContext);
 
   const [isActiveTechs, setIsActiveTechs] = useState<iTechs | undefined>({
     html: false,
@@ -55,8 +56,12 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
       const { data } = await Api.patch<iUser>(`/users/${user?.id}`, {
         tech: { ...isActiveTechs },
       });
-
+      getAllUsers();
+      setFilterDevelopers(
+        allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+      );
       setUser(data);
+
       toast.success("Tecnologias atualizadas!");
     } catch (error) {
       const requestError = error as AxiosError<iApiError>;

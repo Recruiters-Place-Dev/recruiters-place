@@ -24,7 +24,8 @@ interface iPersonalDataOfDev {
 }
 
 export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
-  const { user, setUser } = useContext(WebContext);
+  const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
+    useContext(WebContext);
 
   const {
     register,
@@ -35,13 +36,16 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
   });
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async (formData) => {
-    
-    delete formData.tech
-    
+    delete formData.tech;
+
     try {
       const { data } = await Api.patch<iUser>(`/users/${user?.id}`, formData);
 
       setUser(data);
+      getAllUsers();
+      setFilterDevelopers(
+        allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+      );
       toast.success("Informações atualizadas!");
     } catch (error) {
       const requestError = error as AxiosError<iApiError>;
