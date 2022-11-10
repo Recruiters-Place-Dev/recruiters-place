@@ -124,7 +124,7 @@ function Chat() {
             )
           ) : (
             <div className="nothingMessage">
-              <h1>Nenhuma conversa aberta</h1>
+              <h2>Nenhuma conversa aberta</h2>
             </div>
           )}
         </ContainerChatCall>
