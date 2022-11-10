@@ -31,7 +31,12 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
         <img src={close} alt="Close" onClick={() => setModalFeed(!modalFeed)} />
         <DivPersonalInfo>
           <FigureModal>
-            <img src={FotoPerfil} alt="Foto de Perfil" />
+            <img
+              src={
+                developer?.fotoDoPerfil ? developer?.fotoDoPerfil : FotoPerfil
+              }
+              alt="Foto de Perfil"
+            />
           </FigureModal>
           <DivInfoEmail>
             <p>{developer?.city}</p>

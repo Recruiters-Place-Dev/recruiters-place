@@ -39,6 +39,10 @@ export const DivDevelopersInfo = styled.div`
   @media (max-width: 750px) {
     display: none;
   }
+
+  p{
+    word-break: break-word;
+  }
 `;
 
 export const Figure = styled.figure`
@@ -84,7 +88,7 @@ export const DivDevelopersLinks = styled.div`
 `;
 
 export const DivDevelopersTech = styled.div`
-  width: 20%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -154,8 +158,18 @@ export const Techs = styled.div`
     }
 
     @media (max-width: 400px) {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
+    }
+
+    @media (max-width: 350px) {
+      width: 5px;
+      height: 5px;
+    }
+
+    @media (max-width: 330px) {
+      width: 4px;
+      height: 4px;
     }
 
     & img {

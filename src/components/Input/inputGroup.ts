@@ -6,6 +6,7 @@ interface iInputGroup {
 const InputGroup = styled.div<iInputGroup>`
   position: relative;
   width: 100%;
+  max-width: 300px;
   
   input {
     width: 100%;
@@ -58,6 +59,28 @@ const InputGroup = styled.div<iInputGroup>`
     transform: translateY(-50%) scale(0.8);
     background-color: #fff;
     padding: 0 0.2em;
+  }
+
+  .showPass {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    transition: all 0.2s;
+    border-radius: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+
+    :hover {
+      background-color: rgba(101, 119, 134, 0.1);
+      transition: all 0.2s;
+    }
+
+    :active {
+      background-color: rgba(101, 119, 134, 0.3);
+      transition: all 0.2s;
+    }
   }
 `;
 export default InputGroup;

@@ -33,7 +33,6 @@ export const ModalFeedContainer = styled.div`
     height: 125vh;
   }
 
-  
   & > div {
     position: relative;
     max-width: 864px;
@@ -54,8 +53,8 @@ export const ModalFeedContainer = styled.div`
       max-width: 768px;
       height: 500px;
     }
-    
-    & > img{
+
+    & > img {
       position: absolute;
       top: 1.3rem;
       right: 1.3rem;
@@ -250,14 +249,13 @@ export const Techs = styled.div`
 
   div {
     position: relative;
-    
+
     @media (max-width: 700px) {
       width: 11px;
       height: 11px;
     }
 
     &:hover {
-
       img {
         transition: 0.3s;
         transform: scale(1.1);
@@ -270,6 +268,7 @@ export const Techs = styled.div`
     }
 
     img {
+      width: 70px;
       min-width: 70px;
       min-height: 70px;
       aspect-ratio: 1/1;

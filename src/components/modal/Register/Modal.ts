@@ -113,7 +113,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
         border-radius: 8px;
         border: none;
 
-        padding: 14px 116px 15px;
+        padding: 14px 100px 15px;
 
         font-family: var(--font-family);
         font-style: normal;
@@ -133,7 +133,7 @@ const ModalContainer = styled.div<iModalContainerProps>`
 
       button:last-of-type {
         background-color: transparent;
-        
+
         font-family: var(--font-family);
         font-style: normal;
         font-size: 16px;
@@ -331,9 +331,35 @@ const ModalContainer = styled.div<iModalContainerProps>`
       justify-content: center;
       gap: 30px;
 
-      form button:last-of-type {
-        background-color: #1da1f2;
-        padding: 14px 90px 15px;
+      form {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        gap: 20px;
+
+        button:last-of-type {
+          background-color: #1da1f2;
+          padding: 14px 90px 15px;
+          align-items: center;
+          width: 100%;
+          max-width: 331px;
+          height: 48px;
+          background: #1da1f2;
+          color: #fefefe;
+          border-radius: 8px;
+          border: none;
+          padding: 14px 116px 15px;
+          font-family: var(--font-family);
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 23px;
+          -webkit-text-decoration: none;
+          text-decoration: none;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+          z-index: 1000;
+        }
       }
 
       .loading svg {

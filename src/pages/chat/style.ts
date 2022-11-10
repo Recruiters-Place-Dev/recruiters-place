@@ -45,6 +45,9 @@ export const ContainerChat = styled.div`
 `;
 export const ContainerChatAll = styled.div`
   section {
+    padding: 2px 0;
+    border: 3px solid var(--color-primary);
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
