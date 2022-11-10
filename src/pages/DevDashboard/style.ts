@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 export const DivPhoto = styled.div`
+
+  img{
+    min-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    max-width: 100px;
+  }
   grid-row: 1/2;
   grid-column: 1/2;
 
