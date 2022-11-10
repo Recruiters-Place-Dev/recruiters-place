@@ -16,7 +16,7 @@ export const ModalComentWriteContainer = styled.div`
     position: absolute;
     max-width: 864px;
     width: 90%;
-    height:85vh;
+    height: 85vh;
     max-height: 600px;
     z-index: 11;
     margin: 0 auto;
@@ -35,7 +35,7 @@ export const ModalComentWriteContainerButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
   height: fit-content;
   img {
     cursor: pointer;
