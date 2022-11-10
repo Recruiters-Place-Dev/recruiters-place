@@ -40,7 +40,6 @@ type tTypeTech =
 
 export const DevDashboard = () => {
   const { user } = useContext(WebContext);
-  console.log(user);
   return (
     <>
       <AnimatePresence>
