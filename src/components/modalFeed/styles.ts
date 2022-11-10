@@ -55,6 +55,7 @@ export const ModalFeedContainer = styled.div`
     }
 
     & > img {
+      width: 40px;
       position: absolute;
       top: 1.3rem;
       right: 1.3rem;
@@ -88,6 +89,9 @@ export const DivPersonalInfo = styled.div`
 export const FigureModal = styled.figure`
   width: 100px;
   height: 100px;
+  img {
+    width: 110px;
+  }
 
   @media (max-width: 700px) {
     grid-column-start: 1;
