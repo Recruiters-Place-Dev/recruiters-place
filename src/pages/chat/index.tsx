@@ -100,7 +100,7 @@ function Chat() {
             <div>
               <h3>{developer?.name}</h3>
               <p>
-                {developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}
+                {developer?.isRecruiter ? "Tech Recruiter" : developer?.vacancy}
               </p>
               {developer?.empresa && <p>{developer.empresa}</p>}
             </div>
@@ -150,7 +150,7 @@ function Chat() {
           />
         )}
         <h3>{developer?.name}</h3>
-        <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}</p>
+        <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.vacancy}</p>
         {developer?.empresa && <p>{developer.empresa}</p>}
         {callId && (
           <a href={developer?.linkedin} target="__blank">

@@ -75,7 +75,7 @@ export const DevDashboard = () => {
             <NameAndWordBox>
               <TitleName>{user?.name}</TitleName>
 
-              <TextWork>{user?.cargo}</TextWork>
+              <TextWork>{user?.vacancy}</TextWork>
             </NameAndWordBox>
 
             <BioBox>

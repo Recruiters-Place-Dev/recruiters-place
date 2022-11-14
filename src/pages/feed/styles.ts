@@ -40,7 +40,7 @@ export const DivDevelopersInfo = styled.div`
     display: none;
   }
 
-  p{
+  p {
     word-break: break-word;
   }
 `;
@@ -70,7 +70,7 @@ export const DeveloperName = styled.h1`
   line-height: 100%;
   color: #14171a;
 `;
-export const DevelopersCargo = styled.p`
+export const Developersvacancy = styled.p`
   color: #657786;
   font-size: 22px;
   font-family: var(--font-family);

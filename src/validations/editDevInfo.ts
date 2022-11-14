@@ -5,7 +5,7 @@ export default yup.object({
   email: yup.string().required("Email é obrigatório"),
   city: yup.string(),
   escolaridade: yup.string(),
-  cargo: yup.string(),
+  vacancy: yup.string(),
   linkedin: yup.string(),
   github: yup.string(),
   portifolio: yup.string(),
@@ -21,5 +21,3 @@ export default yup.object({
     c: yup.boolean(),
   }),
 });
-
-

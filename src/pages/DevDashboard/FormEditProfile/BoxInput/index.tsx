@@ -8,7 +8,7 @@ interface iInputEditProfile {
     | "name"
     | "email"
     | "city"
-    | "cargo"
+    | "vacancy"
     | "linkedin"
     | "github"
     | "portfolio"
@@ -17,7 +17,7 @@ interface iInputEditProfile {
     | "escolaridade";
   label:
     | "Nome"
-    | "Cargo"
+    | "vacancy"
     | "Email"
     | "Cidade"
     | "LinkedIn"

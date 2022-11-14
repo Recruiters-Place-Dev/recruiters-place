@@ -83,10 +83,10 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
 
             <InputDevInfoEdit
               type="text"
-              id="cargo"
+              id="vacancy"
               register={register}
-              label="Cargo"
-              defaultValue={user?.cargo}
+              label="vacancy"
+              defaultValue={user?.vacancy}
             />
 
             <InputDevInfoEdit

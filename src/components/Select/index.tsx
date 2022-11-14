@@ -2,6 +2,7 @@ import CustomSelect from "./CustomSelect";
 import { ListSchooling, ListMock } from "../../mockList/devType";
 import { iInputProps } from "../Input";
 import { v4 as uuid } from "uuid";
+import { useState } from "react";
 
 type SelectProps = Omit<
   iInputProps,
@@ -9,21 +10,36 @@ type SelectProps = Omit<
 >;
 
 const Select = ({ errors, getValues, id, label, register }: SelectProps) => {
+  const { onChange, onBlur, name, ref } = register(id);
+
+  const selectValue = getValues(id) ? getValues(id) : "";
+  const [value, setValue] = useState(selectValue);
+
   //functions
   const selectOptions = () => {
     if (id === "schooling") {
       return (
         <>
+          <option value=""></option>
           {ListSchooling.map((el) => {
-            return <option key={uuid()} value={el}>{el}</option>;
+            return (
+              <option key={uuid()} value={el}>
+                {el}
+              </option>
+            );
           })}
         </>
       );
     } else if (id === "vacancy") {
       return (
         <>
+          <option value=""></option>
           {ListMock.map((el) => {
-            return <option key={uuid()} value={el}>{el}</option>;
+            return (
+              <option key={uuid()} value={el}>
+                {el}
+              </option>
+            );
           })}
         </>
       );
@@ -32,7 +48,17 @@ const Select = ({ errors, getValues, id, label, register }: SelectProps) => {
 
   return (
     <CustomSelect>
-      <select id={id} {...register(id)}>
+      <select
+        id={id}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e);
+        }}
+        onBlur={onBlur}
+        name={name}
+        ref={ref}
+      >
         {selectOptions()}
       </select>
     </CustomSelect>

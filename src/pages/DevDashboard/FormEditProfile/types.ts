@@ -20,7 +20,7 @@ export interface iFormEditProfile {
   isRecruiter: true;
   city: string;
   escolaridade: string;
-  cargo: string;
+  vacancy: string;
   isWork: boolean;
   linkedin: string;
   github: string;

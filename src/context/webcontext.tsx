@@ -30,7 +30,7 @@ export interface iUser {
   isRecruiter?: boolean;
   city: string | undefined;
   schooling?: string | undefined;
-  cargo?: string | undefined;
+  vacancy?: string | undefined;
   empresa: string | undefined;
   isWork?: boolean | undefined;
   linkedin: string | undefined;
@@ -58,7 +58,10 @@ export interface iWebContext {
   onRegister: (data: iUserRegister) => Promise<void>;
   resolved: boolean | undefined;
   setResolved: Dispatch<SetStateAction<boolean | undefined>>;
-  editSubmit: (info: iEditRech, reset: UseFormReset<iEditRech>) => Promise<void>;
+  editSubmit: (
+    info: iEditRech,
+    reset: UseFormReset<iEditRech>
+  ) => Promise<void>;
   setUser: Dispatch<SetStateAction<iUser | undefined>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
@@ -224,7 +227,6 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function onRegister(data: iUserRegister): Promise<void> {
     const { isRecruiter } = data;
-
     if (!isRecruiter) {
       const devData = {
         name: data.name,
@@ -277,7 +279,7 @@ export function WebProvider({ children }: iWebProvider) {
       user?.city !== info.city ||
       user?.email !== info.email ||
       user?.empresa !== info.empresa ||
-      info.password 
+      info.password
     ) {
       if (token) {
         try {
@@ -302,8 +304,8 @@ export function WebProvider({ children }: iWebProvider) {
       email: user?.email,
       password: "",
       empresa: user?.empresa,
-      linkedin: user?.linkedin
-    })
+      linkedin: user?.linkedin,
+    });
   }
 
   function writeModalComent(): void {

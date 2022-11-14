@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   DeveloperName,
-  DevelopersCargo,
+  Developersvacancy,
   DivBio,
   DivInfo,
   DivInfoEmail,
@@ -59,7 +59,7 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
         <DivInfo>
           <div>
             <DeveloperName>{developer?.name}</DeveloperName>
-            <DevelopersCargo>{developer?.cargo}</DevelopersCargo>
+            <Developersvacancy>{developer?.vacancy}</Developersvacancy>
           </div>
 
           <DivBio>

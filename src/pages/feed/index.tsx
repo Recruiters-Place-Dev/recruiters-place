@@ -9,7 +9,7 @@ import {
   ContainerFeed,
   Contato,
   DeveloperName,
-  DevelopersCargo,
+  Developersvacancy,
   DivDevelopersInfo,
   DivDevelopersLinks,
   DivDevelopersName,
@@ -95,7 +95,7 @@ function Feed() {
           </DivDevelopersInfo>
           <DivDevelopersName>
             <DeveloperName>{elem?.name}</DeveloperName>
-            <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
+            <Developersvacancy>{elem?.vacancy}</Developersvacancy>
             <DivDevelopersLinks>
               <a href={elem?.linkedin} target="__blank">
                 Linkedin

@@ -1,22 +1,19 @@
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
 import { useNavigate, useParams } from "react-router-dom";
-import { MouseEventHandler, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
-import { LogOffModal } from "../../components/logoff";
+
 import { iUser, WebContext } from "../../context/webcontext";
 import { v4 as uuid } from "uuid";
-import { array } from "yup";
-import { Id } from "react-toastify";
 
 function HeaderDashboard() {
   const { home } = useParams();
   const navigate = useNavigate();
   const [filter, setFilter] = useState(false);
 
-  const { setFilterDevelopers, allUsers, logOff, setLogOff } =
-    useContext(WebContext);
+  const { setFilterDevelopers, allUsers, setLogOff } = useContext(WebContext);
 
   function handleLogout() {
     setLogOff(true);
@@ -60,7 +57,7 @@ function HeaderDashboard() {
   function handleFilterDev(event: string) {
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem: iUser) => {
-      if (elem.cargo === event) {
+      if (elem.vacancy === event) {
         arrayfiltro.push(elem);
       }
     });
