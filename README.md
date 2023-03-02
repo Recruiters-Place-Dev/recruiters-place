@@ -47,6 +47,40 @@ $yarn
 yarn start
 ```
 
+# Rodar API Localmente / Run API Locally
+
+-> <a href="https://github.com/time-6/api-recruiters-place" target="blank_">Repositório da API</a> <-
+
+```
+bash
+#clone o repositório
+$git clone git@github.com:time-6/api-recruiters-place.git
+```
+
+```
+bash
+# Instale as depêndencias
+$npm install
+or
+$yarn
+```
+
+<h2>Funcionando / Working</h2>
+
+```
+$ npm run server
+
+> server
+> node server.js
+
+Server is running on port: 3001
+
+# ou
+
+$ node server.js
+Server is running on port: 3001
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
