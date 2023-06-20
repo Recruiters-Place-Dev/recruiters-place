@@ -60,8 +60,9 @@ function Chat() {
       )
   );
   const developer = allUsers?.find((element) => String(element.id) === callId);
+
   useEffect(() => {
-    getAllChats();
+    // getAllChats();
   }, []);
 
   return (

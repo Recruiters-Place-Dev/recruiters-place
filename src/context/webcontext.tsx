@@ -58,7 +58,10 @@ export interface iWebContext {
   onRegister: (data: iUserRegister) => Promise<void>;
   resolved: boolean | undefined;
   setResolved: Dispatch<SetStateAction<boolean | undefined>>;
-  editSubmit: (info: iEditRech, reset: UseFormReset<iEditRech>) => Promise<void>;
+  editSubmit: (
+    info: iEditRech,
+    reset: UseFormReset<iEditRech>
+  ) => Promise<void>;
   setUser: Dispatch<SetStateAction<iUser | undefined>>;
   user: iUser | undefined;
   allUsers: iUser[] | undefined;
@@ -76,7 +79,7 @@ export interface iWebContext {
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
   inputPassRef: React.MutableRefObject<undefined>;
-  allComents: iComent[];
+  allComments: iComent[];
   setModalFeed: Dispatch<SetStateAction<boolean>>;
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
   setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
@@ -107,7 +110,7 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState<iUser[] | undefined>();
-  const [allComents, setAllComents] = useState<iComent[]>([]);
+  const [allComments, setAllComments] = useState<iComent[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
@@ -130,8 +133,8 @@ export function WebProvider({ children }: iWebProvider) {
   useEffect(() => {
     loadUser();
     getAllUsers();
-    getAllComents();
-    getAllChats();
+    getAllComments();
+    // getAllChats();
   }, []);
 
   async function loadUser() {
@@ -141,7 +144,7 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const { data } = await Api.get(`/users/${id}`);
+        const { data } = await Api.get(`/user/${id}`);
 
         setUser(data);
       } catch (error) {
@@ -150,6 +153,7 @@ export function WebProvider({ children }: iWebProvider) {
       }
     }
   }
+
   async function getAllUsers() {
     const token = localStorage.getItem("RPlace:Token");
 
@@ -157,7 +161,7 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
 
-        const { data } = await Api.get(`/users/`);
+        const { data } = await Api.get(`/user/`);
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -165,20 +169,21 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  async function getAllComents() {
+  async function getAllComments() {
     const token = localStorage.getItem("RPlace:Token");
 
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        const { data } = await Api.get(`/coments`);
+        const { data } = await Api.get(`/comments`);
 
-        setAllComents(data);
+        setAllComments(data);
       } catch (error) {
         console.log(error);
       }
     }
   }
+
   async function getAllChats() {
     const token = localStorage.getItem("RPlace:Token");
 
@@ -203,21 +208,17 @@ export function WebProvider({ children }: iWebProvider) {
         localStorage.setItem("RPlace:Token", data.accessToken);
         localStorage.setItem("RPlace:id", data.user.id);
 
-        getAllComents();
+        getAllComments();
         setUser(data.user);
         setLoading(false);
 
-        if (data.user.isRecruiter) {
-          navigate("/home");
-        } else {
-          navigate("/perfil");
-        }
+        data.user.isRecruiter ? navigate("/home") : navigate("/perfil");
       }
     } catch (error: any) {
+      console.log(error);
       setLoading(false);
       toast.error("Ops, algo deu errado.");
 
-      console.log(error.response.data);
       return false;
     }
   }
@@ -242,9 +243,10 @@ export function WebProvider({ children }: iWebProvider) {
       };
 
       try {
-        await Api.post("/users", devData);
+        await Api.post("/user", devData);
         setResolved(true);
       } catch (error) {
+        console.log(error);
         setResolved(false);
       }
     } else {
@@ -256,9 +258,10 @@ export function WebProvider({ children }: iWebProvider) {
       };
 
       try {
-        await Api.post("/users", recruiterData);
+        await Api.post("/user", recruiterData);
         setResolved(true);
       } catch (error) {
+        console.log(error);
         setResolved(false);
       }
     }
@@ -277,13 +280,13 @@ export function WebProvider({ children }: iWebProvider) {
       user?.city !== info.city ||
       user?.email !== info.email ||
       user?.empresa !== info.empresa ||
-      info.password 
+      info.password
     ) {
       if (token) {
         try {
           Api.defaults.headers.authorization = `Bearer ${token}`;
 
-          await Api.patch(`/users/${id}`, info);
+          await Api.patch(`/user/${id}`, info);
 
           setUser({ ...user, ...info, tech: {} });
           setBoxEdit(false);
@@ -302,8 +305,8 @@ export function WebProvider({ children }: iWebProvider) {
       email: user?.email,
       password: "",
       empresa: user?.empresa,
-      linkedin: user?.linkedin
-    })
+      linkedin: user?.linkedin,
+    });
   }
 
   function writeModalComent(): void {
@@ -326,8 +329,9 @@ export function WebProvider({ children }: iWebProvider) {
       try {
         setLoading(true);
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        await Api.post(`/coments`, data);
-        getAllComents();
+        await Api.post(`/comments`, data);
+
+        getAllComments();
         setModalWriteComent(false);
         setLoading(false);
         toast.success("Comentário enviado.");
@@ -335,7 +339,7 @@ export function WebProvider({ children }: iWebProvider) {
         console.log(error);
       }
     }
-    setAllComents([...allComents]);
+    setAllComments([...allComments]);
   }
 
   async function deleteComent(event: string) {
@@ -344,14 +348,14 @@ export function WebProvider({ children }: iWebProvider) {
     if (token) {
       try {
         Api.defaults.headers.authorization = `Bearer ${token}`;
-        await Api.delete(`/coments/${event}`);
-        getAllComents();
+        await Api.delete(`/comments/${event}`);
+        getAllComments();
         toast.success("Comentário apagado.");
       } catch (error) {
         console.log(error);
       }
     }
-    setAllComents([...allComents]);
+    setAllComments([...allComments]);
   }
 
   async function onSubmitChat(data: iChat) {
@@ -378,12 +382,6 @@ export function WebProvider({ children }: iWebProvider) {
   }
 
   function filteredTechs(elem: iUser) {
-    // getAllUsers()
-
-    // const developers = allUsers?.filter(
-    //   (elem: iUser) => elem.isRecruiter === false
-    // );
-    // const retorno = developers?.map((elem: iUserDeveloper) => {
     const separateTechs = Object.entries<boolean>(
       elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
     );
@@ -395,7 +393,6 @@ export function WebProvider({ children }: iWebProvider) {
       return techList.find((E) => elem[0] === E.tech);
     });
     return arrFilteredTechs;
-    // })
   }
 
   async function onSubmitSendChat(data: iSend) {
@@ -405,6 +402,7 @@ export function WebProvider({ children }: iWebProvider) {
     data.from = user?.name;
     data.to = findTo?.to;
     data.isRead = false;
+
     const token = localStorage.getItem("RPlace:Token");
 
     if (token) {
@@ -446,7 +444,7 @@ export function WebProvider({ children }: iWebProvider) {
         boxEdit,
         setBoxEdit,
         inputPassRef,
-        allComents,
+        allComments,
         setModalChat,
         modalChat,
         chatId,

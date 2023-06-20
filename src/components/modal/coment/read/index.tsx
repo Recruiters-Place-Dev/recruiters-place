@@ -18,7 +18,7 @@ function ReadComent() {
     modalReadComent,
     setModalComent,
     setModalReadComent,
-    allComents,
+    allComments,
     comentId,
     user,
     allUsers,
@@ -41,7 +41,7 @@ function ReadComent() {
         </ModalComentReadContainerButton>
 
         <ComentContainer>
-          {allComents?.map((coment: iComent) =>
+          {allComments?.map((coment: iComent) =>
             coment.idTo === comentId ? (
               <li key={uuid()}>
                 <div className="avatar">

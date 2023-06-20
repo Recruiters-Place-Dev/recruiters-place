@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { iUser, WebContext } from "../../context/webcontext";
 import { ButtonStylized } from "../buttons/style";

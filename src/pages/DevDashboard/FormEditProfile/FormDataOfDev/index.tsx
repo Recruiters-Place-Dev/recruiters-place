@@ -39,7 +39,7 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
     delete formData.tech;
 
     try {
-      const { data } = await Api.patch<iUser>(`/users/${user?.id}`, formData);
+      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, formData);
 
       setUser(data);
       getAllUsers();

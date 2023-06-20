@@ -36,8 +36,8 @@ const Input = ({
 
   // States
   const [value, setValue] = useState(inputValue);
-  const [show, setShow] = useState(false)
-  const [passType, setPassType] = useState("password")
+  const [show, setShow] = useState(false);
+  const [passType, setPassType] = useState("password");
 
   // Validations
   const className =
@@ -49,23 +49,32 @@ const Input = ({
       ? "sucess"
       : "";
 
-  const inputType = showPass ? passType : type
+  const inputType = showPass ? passType : type;
 
   // functions
-  const showPassword = (showPass: boolean): ReactNode =>{
+  const showPassword = (showPass: boolean): ReactNode => {
     if (value !== "" && showPass) {
-    const whichEye = show === false ? <EyeSlash size={22} color="#030303" /> : <Eye size={22} color="#030303" />
-    const passType = show === false ? "text" : "password"
+      const whichEye =
+        show === false ? (
+          <EyeSlash size={22} color="#030303" />
+        ) : (
+          <Eye size={22} color="#030303" />
+        );
+      const passType = show === false ? "text" : "password";
       return (
-        <div className="showPass" onClick={() => {
-          setShow(!show)
-          setPassType(passType)
-          }} role="button">
-            {whichEye}
+        <div
+          className="showPass"
+          onClick={() => {
+            setShow(!show);
+            setPassType(passType);
+          }}
+          role="button"
+        >
+          {whichEye}
         </div>
-      )
+      );
     }
-  } 
+  };
 
   return (
     <InputGroup className={className} inputValue={value}>

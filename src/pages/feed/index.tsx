@@ -110,14 +110,14 @@ function Feed() {
           </DivDevelopersName>
 
           <DivDevelopersTech>
-            <Techs>
+            {/* <Techs>
               {filteredTechs(elem)?.map((value) => (
                 <div key={uuid()}>
                   <img src={value?.dir} alt={value?.tech} />
                   <Tag>{value?.tech}</Tag>
                 </div>
               ))}
-            </Techs>
+            </Techs> */}
 
             <Contato>
               {user?.isRecruiter && (
@@ -134,7 +134,7 @@ function Feed() {
 
               <img
                 src={Vermais}
-                alt="coments"
+                alt="comments"
                 id={elem.id + ""}
                 onClick={(event) => {
                   setComentId((event.target as HTMLImageElement).id);

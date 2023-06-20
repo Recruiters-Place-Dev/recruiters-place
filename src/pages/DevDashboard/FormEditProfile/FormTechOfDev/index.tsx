@@ -53,7 +53,7 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async () => {
     try {
-      const { data } = await Api.patch<iUser>(`/users/${user?.id}`, {
+      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, {
         tech: { ...isActiveTechs },
       });
       getAllUsers();
