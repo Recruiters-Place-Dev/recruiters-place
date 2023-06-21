@@ -15,7 +15,7 @@ export const BackgroundStyled = styled.div`
   align-items: flex-start;
   gap: 2rem;
   padding: 2rem;
-  margin-top:50px;
+  margin-top: 50px;
 `;
 
 export const SloganBackground = styled.p`
@@ -44,8 +44,6 @@ export const TitleBackground = styled.p`
     display: block;
   }
 `;
-
-
 
 export const TextBackground = styled.p`
   font-family: "Roboto";

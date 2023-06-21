@@ -1,4 +1,4 @@
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "./customSelect";
 import { ListSchooling, ListMock } from "../../mockList/devType";
 import { v4 as uuid } from "uuid";
 import { iInputProps } from "../../interface";

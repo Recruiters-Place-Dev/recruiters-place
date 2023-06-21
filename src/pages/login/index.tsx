@@ -53,23 +53,22 @@ export const Login = () => {
             <Input
               label="Email"
               type="text"
+              errorMessage={errors.email?.message}
               register={register}
               id="email"
               getValues={getValues}
               login={true}
             />
-            <ErrorMessage>{errors.email?.message}</ErrorMessage>
             <Input
               label="Senha"
               type="password"
+              errorMessage={errors.password?.message}
               register={register}
               id="password"
               login={true}
               getValues={getValues}
               showPass={true}
             />
-            <ErrorMessage>{errors.password?.message}</ErrorMessage>
-
             <ButtonStylized type="submit">
               {!loading && <>Login</>}
               {loading && (

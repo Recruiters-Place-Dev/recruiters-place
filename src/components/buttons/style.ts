@@ -6,25 +6,22 @@ interface iStyledProps {
 }
 
 export const ButtonStylized = styled.button<iStyledProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
 
-  width: 100%;
-  height: 48px;
-
   border-radius: 8px;
   border: none;
-
   background: var(--color-primary);
   color: white;
 
   transition: 0.4s;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   &:hover {
     transition: 0.4s;
 
@@ -36,6 +33,7 @@ export const ButtonStylized = styled.button<iStyledProps>`
     box-shadow: 0 0 0 0, inset 2px 2px 2px 1px #13117c;
     transform: translate(2px, 2px);
   }
+
   @media (min-width: 580px) {
     width: 300px;
   }
@@ -67,25 +65,23 @@ export const ButtonStylized = styled.button<iStyledProps>`
 `;
 
 export const LinkStyled = styled(Link)`
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-
   width: 100%;
   max-width: 300px;
   min-height: 48px;
 
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+
   border-radius: 8px;
   border: none;
-
   background: var(--color-primary);
   color: white;
 
   transition: 0.4s;
-
   &:hover {
     transition: 0.4s;
 

@@ -1,4 +1,4 @@
-import ModalContainer from "./Modal";
+import ModalContainer from "./modal";
 import {
   UseFormGetValues,
   UseFormHandleSubmit,
@@ -9,7 +9,7 @@ import {
 } from "react-hook-form";
 import Input from "../../Input";
 import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
-import ModalTechs from "./components/techs";
+import ModalTechs from "./modalTechs";
 import { LinkStyled } from "../../Buttons/style";
 import Select from "../../Select";
 import { keyboardKey } from "@testing-library/user-event";

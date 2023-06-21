@@ -18,11 +18,11 @@ import {
   Tag,
   Techs,
 } from "./styles";
-import ModalFeed from "../../components/ModalFeed";
-import ModalComent from "../../components/modal/coment/duality";
-import ReadComent from "../../components/modal/coment/read";
-import WriteComent from "../../components/modal/coment/write";
-import ModalChat from "../../components/modal/chat";
+import ModalFeed from "../../components/Modal/Feed";
+import ModalComent from "../../components/Modal/Comment/duality";
+import ReadComent from "../../components/Modal/Comment/read";
+import WriteComent from "../../components/Modal/Comment/write";
+import ModalChat from "../../components/Modal/Chat";
 import { v4 as uuid } from "uuid";
 import { LogOffModal } from "../../components/Logoff";
 import { iUser } from "../../interface";

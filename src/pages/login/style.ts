@@ -145,14 +145,14 @@ export const SectionLogin = styled.section`
 
     min-width: 250px;
     max-width: 90%;
-    height: 500px;
+    height: 400px;
 
     .boxLogo {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 300px;
+      width: 200px;
 
       margin: 0;
 
@@ -225,17 +225,26 @@ export const FormLogin = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
+  gap: 12px;
   width: 100%;
-
   z-index: 1;
 
-  h3 {
-    margin: 0 0 15px 0;
+  input {
+    height: 48px;
+  }
 
+  button {
+    height: 45px;
+  }
+
+  a {
+    min-height: 45px;
+  }
+
+  h3 {
     font-style: normal;
     font-weight: 400;
-    font-size: 38px;
+    font-size: 32px;
     line-height: 100%;
     color: #14171a;
 
@@ -248,8 +257,7 @@ export const FormLogin = styled.form`
     font-size: 14px;
     line-height: 100%;
     color: #657786;
-
-    margin: 18px 0;
+    margin: 2px 0;
   }
 `;
 
@@ -276,12 +284,13 @@ export const BoxSlogan = styled.div`
 
     border: 1px solid var(--grey-3);
     border-radius: 0.5rem;
+    height: 200px;
 
     div {
       position: unset;
       bottom: 0;
       left: 0;
-      height: 200px;
+      height: 175px;
       width: 70%;
       max-width: 668px;
       background: #1da1f2;

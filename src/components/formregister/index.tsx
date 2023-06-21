@@ -2,7 +2,7 @@ import { RegisterForm } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
-import ModalRegister from "../modal/Register";
+import ModalRegister from "../Modal/Register";
 import { useState } from "react";
 import { keyboardKey } from "@testing-library/user-event";
 import { iProgressProps, iUserRegister } from "../../interface";
