@@ -61,7 +61,6 @@ export const MainLogin = styled.main`
     position: absolute;
     left: -50px;
     top: 165px;
-    /* width: 100px; */
     height: 3px;
     z-index: 100;
     background-color: var(--color-primary);
@@ -71,12 +70,6 @@ export const MainLogin = styled.main`
     from {
       width: 0px;
     }
-    /* 50% {
-      width: 80px;
-    }
-    90%{
-      width: 150px;
-    } */
     to {
       width: 100px;
     }
@@ -86,12 +79,6 @@ export const MainLogin = styled.main`
     from {
       width: 0px;
     }
-    /* 50% {
-      width: 80px;
-    }
-    90%{
-      width: 150px;
-    } */
     to {
       width: 150px;
     }
@@ -118,7 +105,6 @@ export const MainLogin = styled.main`
 `;
 
 export const SectionLogin = styled.section`
-  /* border: 1px solid red; */
   position: relative;
 
   display: flex;
@@ -127,7 +113,6 @@ export const SectionLogin = styled.section`
   justify-content: center;
   margin: 0 auto;
   width: 60%;
-  /* height: 100vh; */
 
   @media (min-width: 1024px) {
     margin: 0;
@@ -308,10 +293,6 @@ export const BoxSlogan = styled.div`
       gap: 2rem;
       padding: 2rem;
       margin-top: 0;
-
-      p {
-        /* display: none; */
-      }
     }
     section {
       display: flex;

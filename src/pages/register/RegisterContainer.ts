@@ -8,8 +8,6 @@ const RegisterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* grid-template-columns: 100%; */
-  /* grid-template-areas: "fc"; */
 
   @media (min-width: 900px) {
     align-items: center;
@@ -17,8 +15,6 @@ const RegisterContainer = styled.div`
   }
 
   .FormContainer {
-    /* border: 1px solid red; */
-    /* margin: 0 auto; */
     width: 90%;
     position: relative;
     display: flex;
@@ -37,14 +33,9 @@ const RegisterContainer = styled.div`
     }
   }
 
-  .ContentContainer {
-    /* grid-area: cc; */
-  }
-
   .InputsContainer {
     display: flex;
     flex-flow: column;
-    /* width: 100%; */
     gap: 39px;
   }
 
@@ -84,10 +75,6 @@ const RegisterContainer = styled.div`
     }
 
     img {
-      /* position: absolute;
-      top: 20px;
-      left: 0; */
-
       width: 500px;
       height: 250px;
     }

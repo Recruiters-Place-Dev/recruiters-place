@@ -15,14 +15,16 @@ import {
   DivDevelopersName,
   DivDevelopersTech,
   Figure,
+  Tag,
+  Techs,
 } from "./styles";
-import ModalFeed from "../../components/modalFeed";
+import ModalFeed from "../../components/ModalFeed";
 import ModalComent from "../../components/modal/coment/duality";
 import ReadComent from "../../components/modal/coment/read";
 import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 import { v4 as uuid } from "uuid";
-import { LogOffModal } from "../../components/logoff";
+import { LogOffModal } from "../../components/Logoff";
 import { iUser } from "../../interface";
 
 function Feed() {
@@ -98,14 +100,14 @@ function Feed() {
           </DivDevelopersName>
 
           <DivDevelopersTech>
-            {/* <Techs>
+            <Techs>
               {filteredTechs(elem)?.map((value) => (
                 <div key={uuid()}>
                   <img src={value?.dir} alt={value?.tech} />
                   <Tag>{value?.tech}</Tag>
                 </div>
               ))}
-            </Techs> */}
+            </Techs>
 
             <Contato>
               {user?.isRecruiter && (

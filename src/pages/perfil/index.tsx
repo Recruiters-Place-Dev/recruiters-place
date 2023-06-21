@@ -1,4 +1,4 @@
-import PerfilRech from "../../components/perfilRech";
+import PerfilRech from "../../components/PerfilRech";
 import { useAuth } from "../../context/webcontext";
 import { DevDashboard } from "../DevDashboard";
 

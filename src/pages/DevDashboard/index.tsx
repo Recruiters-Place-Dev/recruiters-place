@@ -21,7 +21,7 @@ import pen from "../../assets/pen.svg";
 import { useAuth } from "../../context/webcontext";
 
 import techList from "../../mockList/devTechs.json";
-import { LogOffModal } from "../../components/logoff";
+import { LogOffModal } from "../../components/Logoff";
 import { v4 as uuid } from "uuid";
 
 type tTypeTech =

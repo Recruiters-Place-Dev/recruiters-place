@@ -16,9 +16,9 @@ import {
   ButtonLogout,
   ContainerWelcome,
 } from "./style";
-import { LinkStyled } from "../../components/buttons/style";
+import { LinkStyled } from "../../components/Buttons/style";
 import { useAuth } from "../../context/webcontext";
-import Slogan from "../../components/backgroundStyled";
+import Slogan from "../../components/BackgroundStyled";
 
 export const LandingPage = () => {
   const { setUser, user } = useAuth();
@@ -32,10 +32,6 @@ export const LandingPage = () => {
         transition={{ duration: 0.6 }}
       >
         <MainStyled>
-          {/* <Lines degrau="20" top="40" right="-20"></Lines>
-          
-          <Lines degrau="-50" top="500" right="-120"></Lines> */}
-
           <Container>
             <ContainerImg>
               <div>

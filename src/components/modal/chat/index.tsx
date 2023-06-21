@@ -4,7 +4,7 @@ import {
   ModalChatContainerMessage,
 } from "./style";
 import close from "../../../assets/close.png";
-import FormChat from "../../formChat";
+import FormChat from "../../FormChat";
 import { useAuth } from "../../../context/webcontext";
 
 function ModalChat() {

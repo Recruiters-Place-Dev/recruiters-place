@@ -8,13 +8,13 @@ import {
   ButtonStylized,
   LinkContact,
   LinkStyled,
-} from "../../components/buttons/style";
+} from "../../components/Buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg";
 import ImgLogin from "../../assets/ImgLogin.svg";
 import { useEffect } from "react";
 import { useAuth } from "../../context/webcontext";
 import { ErrorMessage } from "../../components/ParagraphError";
-import Slogan from "../../components/backgroundStyled";
+import Slogan from "../../components/BackgroundStyled";
 import { iUserLogin } from "../../interface";
 
 export const Login = () => {
@@ -44,7 +44,6 @@ export const Login = () => {
         <span className="line2"></span>
       </div>
       <SectionLogin>
-        {/* <div className="block"></div> */}
         <div className="containerLogin">
           <figure className="boxLogo">
             <img src={Logo} alt="Logo" />
