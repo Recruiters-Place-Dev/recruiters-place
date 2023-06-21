@@ -12,23 +12,14 @@ import {
 } from "../../components/buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg";
 import ImgLogin from "../../assets/ImgLogin.svg";
-
-import { useContext, useEffect } from "react";
-
-import { WebContext } from "../../context/webcontext";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useAuth } from "../../context/webcontext";
 import { ErrorMessage } from "../../components/ParagraphError";
 import Slogan from "../../components/backgroundStyled";
-
-export interface iUserLogin {
-  email: string;
-  password: string;
-}
+import { iUserLogin } from "../../interface";
 
 export const Login = () => {
-  const { onLogin, loading } = useContext(WebContext);
-
-  const navigate = useNavigate();
+  const { navigate, onLogin, loading } = useAuth();
 
   useEffect(() => {
     if (localStorage.getItem("RPlace:Token")) {

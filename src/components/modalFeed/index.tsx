@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { iUser, iWebContext, WebContext } from "../../context/webcontext";
 import {
   DeveloperName,
   DevelopersCargo,
@@ -16,6 +15,8 @@ import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import { v4 as uuid } from "uuid";
 import { Tag } from "../../pages/feed/styles";
 import close from "../../assets/close.png";
+import { iUser } from "../../interface";
+import { useAuth } from "../../context/webcontext";
 
 interface iModalFeedProps {
   developer: iUser | null;
@@ -23,7 +24,7 @@ interface iModalFeedProps {
 }
 
 function ModalFeed({ developer, techs }: iModalFeedProps) {
-  const { modalFeed, setModalFeed } = useContext<iWebContext>(WebContext);
+  const { modalFeed, setModalFeed } = useAuth();
 
   return modalFeed ? (
     <ModalFeedContainer>

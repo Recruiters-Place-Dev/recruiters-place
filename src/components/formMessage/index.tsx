@@ -1,22 +1,14 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { iUser, WebContext } from "../../context/webcontext";
 import { ButtonStylized } from "../buttons/style";
 import { FormContainer } from "./style";
-
-export interface iComent {
-  from: string | undefined;
-  to: string | undefined;
-  idTo: string | undefined;
-  idFrom: string | undefined;
-  coment: string | undefined;
-  id: number;
-}
+import { iComment, iUser } from "../../interface";
+import { useAuth } from "../../context/webcontext";
 
 function FormMessage() {
-  const { onSubmitComent, user, comentId, allUsers, loading } =
-    useContext(WebContext);
-  const { register, handleSubmit } = useForm<iComent>({});
+  const { onSubmitComent, user, comentId, allUsers, loading } = useAuth();
+
+  const { register, handleSubmit } = useForm<iComment>({});
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmitComent)}>

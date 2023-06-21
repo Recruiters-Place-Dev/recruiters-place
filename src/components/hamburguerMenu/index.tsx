@@ -1,17 +1,18 @@
 import MenuContainer from "./hamburguerMenu";
 import Logo from "../../assets/Logo.svg";
-import { useContext, useState } from "react";
-import { iUser, WebContext } from "../../context/webcontext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../context/webcontext";
+import { useParams } from "react-router-dom";
 import { ListMock } from "../../mockList/devType";
 import { v4 as uuid } from "uuid";
 import techList from "../../mockList/devTechs.json";
+import { iUser } from "../../interface";
 
 const HamburguerMenu = () => {
+  const { navigate, setFilterDevelopers, allUsers, setLogOff } = useAuth();
   const [className, setClassName] = useState("Controls");
   const [classDev, setClassDev] = useState("ControlsDev");
   const { home } = useParams();
-  const navigate = useNavigate();
 
   const menu = () => {
     if (className === "Controls") {
@@ -28,9 +29,6 @@ const HamburguerMenu = () => {
       setClassDev("ControlsDev active");
     } else setClassDev("ControlsDev");
   };
-
-  const { setFilterDevelopers, allUsers, setLogOff } =
-    useContext(WebContext);
 
   function handleLogout() {
     menu();

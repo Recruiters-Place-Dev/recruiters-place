@@ -1,6 +1,6 @@
 import { UseFormRegister } from "react-hook-form";
-import { iFormEditProfile } from "../types";
 import { BoxInput } from "./style";
+import { iFormEditProfile } from "../../../../interface";
 
 interface iInputEditProfile {
   type: "text" | "email" | "url";

@@ -1,7 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { useForm, UseFormReset } from "react-hook-form";
-import { BiUserCircle } from "react-icons/bi";
+import { useForm } from "react-hook-form";
 import { SlPencil } from "react-icons/sl";
 import { WebContext } from "../../context/webcontext";
 import { SchemaPerfilRech } from "../../validations/schemas";
@@ -16,16 +15,7 @@ import {
   FormEditRech,
 } from "./style";
 import avatar from "../../assets/avatarTech.png";
-
-export interface iEditRech {
-  email: string;
-  empresa: string;
-  linkedin: string;
-  city: string;
-  name: string;
-  password: string | undefined;
-  reset: UseFormReset<iEditRech>;
-}
+import { iEditRech } from "../../interface";
 
 const PerfilRech = () => {
   const { boxEdit, setBoxEdit } = useContext(WebContext);
@@ -74,7 +64,9 @@ const PerfilRech = () => {
       </Container>
       {boxEdit && (
         <Container size="big">
-          <FormEditRech onSubmit={handleSubmit((values) => editSubmit(values, reset))}>
+          <FormEditRech
+            onSubmit={handleSubmit((values) => editSubmit(values, reset))}
+          >
             <Input
               id="name"
               type="text"
@@ -119,10 +111,7 @@ const PerfilRech = () => {
               errorMessage={errors.linkedin?.message}
             />
             <div className="box-btns">
-              <ButtonStylized
-                styled="medium"
-                type="submit"
-              >
+              <ButtonStylized styled="medium" type="submit">
                 Finalizar
               </ButtonStylized>
               <ButtonStylized

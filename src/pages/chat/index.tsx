@@ -13,15 +13,7 @@ import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import avatarTech from "../../assets/avatarTech.png";
 import { v4 as uuid } from "uuid";
 import { LogOffModal } from "../../components/logoff";
-
-export interface iSend {
-  chat: string | undefined;
-  from: string | undefined;
-  idFrom: string | undefined;
-  isRead: boolean | undefined;
-  idTo: string | undefined;
-  to: string | undefined;
-}
+import { iSend } from "../../interface";
 
 function Chat() {
   const {

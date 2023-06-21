@@ -1,22 +1,8 @@
 import { Eye, EyeSlash } from "phosphor-react";
 import { ReactNode, useState } from "react";
-import { Path, UseFormGetValues, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "../ParagraphError";
 import InputGroup from "./inputGroup";
-
-export interface iInputProps {
-  default?: string;
-  errorMessage?: string;
-  errors?: any;
-  getValues: UseFormGetValues<any>;
-  id: Path<any>;
-  label: string;
-  login?: boolean;
-  name?: string;
-  register: UseFormRegister<any>;
-  type: string;
-  showPass?: boolean;
-}
+import { iInputProps } from "../../interface";
 
 const Input = ({
   errorMessage,

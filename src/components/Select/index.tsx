@@ -1,7 +1,7 @@
 import CustomSelect from "./CustomSelect";
 import { ListSchooling, ListMock } from "../../mockList/devType";
-import { iInputProps } from "../Input";
 import { v4 as uuid } from "uuid";
+import { iInputProps } from "../../interface";
 
 type SelectProps = Omit<
   iInputProps,
@@ -15,7 +15,11 @@ const Select = ({ errors, getValues, id, label, register }: SelectProps) => {
       return (
         <>
           {ListSchooling.map((el) => {
-            return <option key={uuid()} value={el}>{el}</option>;
+            return (
+              <option key={uuid()} value={el}>
+                {el}
+              </option>
+            );
           })}
         </>
       );
@@ -23,7 +27,11 @@ const Select = ({ errors, getValues, id, label, register }: SelectProps) => {
       return (
         <>
           {ListMock.map((el) => {
-            return <option key={uuid()} value={el}>{el}</option>;
+            return (
+              <option key={uuid()} value={el}>
+                {el}
+              </option>
+            );
           })}
         </>
       );

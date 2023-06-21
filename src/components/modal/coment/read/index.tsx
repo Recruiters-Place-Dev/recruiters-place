@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { iUser, WebContext } from "../../../../context/webcontext";
 import {
   ComentContainer,
   ModalComentReadContainer,
@@ -10,8 +9,9 @@ import close from "../../../../assets/close.png";
 import { v4 as uuid } from "uuid";
 import pen from "../../../../assets/pen.svg";
 import trash from "../../../../assets/trash.svg";
-import { iComent } from "../../../formMessage";
+import { iComment, iUser } from "../../../../interface";
 import avatarTech from "../../../../assets/avatarTech.png";
+import { useAuth } from "../../../../context/webcontext";
 
 function ReadComent() {
   const {
@@ -23,7 +23,7 @@ function ReadComent() {
     user,
     allUsers,
     deleteComent,
-  } = useContext(WebContext);
+  } = useAuth();
 
   return modalReadComent ? (
     <ModalComentReadContainer>
@@ -41,7 +41,7 @@ function ReadComent() {
         </ModalComentReadContainerButton>
 
         <ComentContainer>
-          {allComments?.map((coment: iComent) =>
+          {allComments?.map((coment: iComment) =>
             coment.idTo === comentId ? (
               <li key={uuid()}>
                 <div className="avatar">

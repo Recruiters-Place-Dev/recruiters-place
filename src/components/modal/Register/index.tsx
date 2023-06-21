@@ -8,8 +8,6 @@ import {
   UseFormReset,
 } from "react-hook-form";
 import Input from "../../Input";
-import { iProgressProps } from "../../formregister";
-import { iUserRegister } from "../../formregister";
 import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
 import ModalTechs from "./components/techs";
 import { useContext } from "react";
@@ -17,6 +15,7 @@ import { WebContext } from "../../../context/webcontext";
 import { LinkStyled } from "../../buttons/style";
 import Select from "../../Select";
 import { keyboardKey } from "@testing-library/user-event";
+import { iProgressProps, iUserRegister } from "../../../interface";
 
 interface iModalProps {
   errors: FieldErrors<iUserRegister>;
@@ -115,8 +114,12 @@ const ModalRegister = ({
           <XCircle size={150} color="#e2142d" />
           <h3>Ops, aconteceu algum problema</h3>
           <form>
-            <button type="button" onClick={reSubmit}>Tentar novamente</button>
-            <button type="button" onClick={cancelSubmit}>Fechar</button>
+            <button type="button" onClick={reSubmit}>
+              Tentar novamente
+            </button>
+            <button type="button" onClick={cancelSubmit}>
+              Fechar
+            </button>
           </form>
         </>
       );
@@ -173,7 +176,11 @@ const ModalRegister = ({
           <div className={bar4}></div>
         </div>
         {progress.phase === 2 ? (
-          <form onKeyDown={(e) => advanceToAbout(e)} onSubmit={e => e.preventDefault()} className={`progress-${progress.phase}`}>
+          <form
+            onKeyDown={(e) => advanceToAbout(e)}
+            onSubmit={(e) => e.preventDefault()}
+            className={`progress-${progress.phase}`}
+          >
             <h2>Sobre você</h2>
             <Input
               errors={errors.city}
@@ -217,7 +224,11 @@ const ModalRegister = ({
           </form>
         ) : null}
         {progress.phase === 3 ? (
-          <form onKeyDown={(e) => advanceToLinks(e)} onSubmit={e => e.preventDefault()} className={`progress-${progress.phase}`}>
+          <form
+            onKeyDown={(e) => advanceToLinks(e)}
+            onSubmit={(e) => e.preventDefault()}
+            className={`progress-${progress.phase}`}
+          >
             <h2>Links</h2>
             <Input
               errors={errors.linkedin}

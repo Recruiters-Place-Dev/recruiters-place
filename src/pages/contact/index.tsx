@@ -1,15 +1,17 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../../components/Input";
 import { ContainerFormContact, ContainerImg, MainContainer } from "./style";
 import Logo from "../../assets/Logo.svg";
 import { ButtonStylized } from "../../components/buttons/style";
 import emailjs from "@emailjs/browser";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/webcontext";
 
 function ContactUs() {
-  const { register, handleSubmit, getValues } = useForm({});
-  const navigate = useNavigate();
+  const { navigate } = useAuth();
+
+  const { register, getValues } = useForm({});
+
   const form = useRef<HTMLFormElement | null>(null);
 
   const sendEmail = (e: any) => {
@@ -33,14 +35,10 @@ function ContactUs() {
       );
   };
 
-  function handleBack() {
-    navigate("/");
-  }
-
   return (
     <MainContainer>
       <ContainerImg>
-        <img src={Logo} alt="" onClick={() => handleBack()} />
+        <img src={Logo} alt="" onClick={() => navigate("/")} />
       </ContainerImg>
       <ContainerFormContact ref={form} onSubmit={sendEmail}>
         <Input

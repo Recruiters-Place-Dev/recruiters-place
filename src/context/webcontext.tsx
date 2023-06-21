@@ -6,51 +6,25 @@ import {
   useState,
   Dispatch,
   SetStateAction,
+  useContext,
 } from "react";
 import { Api } from "../services/api";
-import { iUserLogin } from "../pages/login/index";
-import { useNavigate } from "react-router-dom";
-import { iEditRech } from "../components/perfilRech";
-import { iComent } from "../components/formMessage";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import {
+  iComment,
+  iEditRech,
+  iChat,
+  iUserRegister,
+  iUser,
+  iSend,
+  iUserLogin,
+} from "../interface";
 import { toast } from "react-toastify";
-import { iChat } from "../components/formChat";
-import { iSend } from "../pages/chat";
-import { iUserRegister } from "../components/formregister";
 import techList from "../mockList/devTechs.json";
 import { UseFormReset } from "react-hook-form";
 
 export interface iWebProvider {
   children: ReactNode;
-}
-
-export interface iUser {
-  id?: number;
-  email: string;
-  name: string;
-  isRecruiter?: boolean;
-  city: string | undefined;
-  schooling?: string | undefined;
-  cargo?: string | undefined;
-  empresa: string | undefined;
-  isWork?: boolean | undefined;
-  linkedin: string | undefined;
-  github?: string | undefined;
-  portfolio?: string | undefined;
-  bio?: string | undefined;
-  fotoDoPerfil?: string;
-  tech: {
-    html?: boolean | undefined;
-    css?: boolean | undefined;
-    js?: boolean | undefined;
-    react?: boolean | undefined;
-    ts?: boolean | undefined;
-    angular?: boolean | undefined;
-    vuejs?: boolean | undefined;
-    php?: boolean | undefined;
-    c?: boolean | undefined;
-    sass?: boolean | undefined;
-    node?: boolean | undefined;
-  };
 }
 
 export interface iWebContext {
@@ -75,11 +49,11 @@ export interface iWebContext {
   setModalWriteComent: React.Dispatch<React.SetStateAction<boolean>>;
   comentId: string | undefined;
   setComentId: Dispatch<SetStateAction<string | undefined>>;
-  onSubmitComent: (data: iComent) => void;
+  onSubmitComent: (data: iComment) => void;
   boxEdit: boolean;
   setBoxEdit: React.Dispatch<React.SetStateAction<boolean>>;
   inputPassRef: React.MutableRefObject<undefined>;
-  allComments: iComent[];
+  allComments: iComment[];
   setModalFeed: Dispatch<SetStateAction<boolean>>;
   setModalComent: React.Dispatch<React.SetStateAction<boolean>>;
   setModalChat: React.Dispatch<React.SetStateAction<boolean>>;
@@ -103,6 +77,7 @@ export interface iWebContext {
   setLogOff: React.Dispatch<React.SetStateAction<boolean>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  navigate: NavigateFunction;
 }
 
 export const WebContext = createContext<iWebContext>({} as iWebContext);
@@ -110,7 +85,7 @@ export const WebContext = createContext<iWebContext>({} as iWebContext);
 export function WebProvider({ children }: iWebProvider) {
   const [user, setUser] = useState<iUser>();
   const [allUsers, setAllUsers] = useState<iUser[] | undefined>();
-  const [allComments, setAllComments] = useState<iComent[]>([]);
+  const [allComments, setAllComments] = useState<iComment[]>([]);
   const [allChats, setAllChats] = useState<iChat[]>([]);
   const [modalFeed, setModalFeed] = useState(false);
   const [modalComent, setModalComent] = useState(false);
@@ -319,7 +294,7 @@ export function WebProvider({ children }: iWebProvider) {
     setModalReadComent(true);
   }
 
-  async function onSubmitComent(data: iComent) {
+  async function onSubmitComent(data: iComment) {
     data.idTo = comentId;
     data.idFrom = String(user?.id);
 
@@ -464,9 +439,12 @@ export function WebProvider({ children }: iWebProvider) {
         setLogOff,
         loading,
         setLoading,
+        navigate,
       }}
     >
       {children}
     </WebContext.Provider>
   );
 }
+
+export const useAuth = () => useContext(WebContext);
