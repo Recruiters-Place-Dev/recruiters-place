@@ -1,16 +1,16 @@
 import { RegisterForm } from "./styles";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../Input";
 import ModalRegister from "../modal/Register";
-import { useState, useContext } from "react";
-import { WebContext } from "../../context/webcontext";
+import { useState } from "react";
 import { keyboardKey } from "@testing-library/user-event";
 import { iProgressProps, iUserRegister } from "../../interface";
+import { useAuth } from "../../context/webcontext";
+import { schemaFormRegister } from "../../schemas";
 
 export function FormRegister() {
-  const { onRegister } = useContext(WebContext);
+  const { onRegister } = useAuth();
 
   //States
   const [show, setShow] = useState<boolean>(false);
@@ -53,78 +53,6 @@ export function FormRegister() {
   // validations
   const type = isRecruiter ? "submit" : "button";
 
-  // Hook-Form / yup
-  const yupSchema = yup.object().shape({
-    name: yup.string().required("Preencha o campo com seu nome."),
-    email: yup
-      .string()
-      .required("Preencha o campo com um email válido")
-      .email("Email inválido"),
-    password: yup
-      .string()
-      .required("Preencha o campo com uma senha")
-      .min(6, "Senha com um mínimo de 6 caracteres."),
-    checkpass: yup
-      .string()
-      .oneOf([yup.ref("password")], "Senha não está igual."),
-    isRecruiter: yup.boolean(),
-    skipAbout: yup.boolean(),
-    city: yup
-      .string()
-      .when("isRecruiter", {
-        is: false,
-        then: (schema) => schema.required(),
-      })
-      .when("skipAbout", {
-        is: true,
-        then: (schema) => schema.notRequired(),
-      }),
-    schooling: yup
-      .string()
-      .when("isRecruiter", {
-        is: false,
-        then: (schema) => schema.required(),
-      })
-      .when("skipAbout", {
-        is: true,
-        then: (schema) => schema.notRequired(),
-      }),
-    vacancy: yup
-      .string()
-      .when("isRecruiter", {
-        is: false,
-        then: (schema) => schema.required(),
-      })
-      .when("skipAbout", {
-        is: true,
-        then: (schema) => schema.notRequired(),
-      }),
-    isWork: yup.boolean(),
-    skipLinks: yup.boolean(),
-    linkedin: yup
-      .string()
-      .when("isRecruiter", {
-        is: false,
-        then: (schema) => schema.required(),
-      })
-      .when("skipLinks", {
-        is: true,
-        then: (schema) => schema.notRequired(),
-      }),
-    github: yup
-      .string()
-      .when("isRecruiter", {
-        is: false,
-        then: (schema) => schema.required(),
-      })
-      .when("skipLinks", {
-        is: true,
-        then: (schema) => schema.notRequired(),
-      }),
-    portfolio: yup.string(),
-    techs: yup.object(),
-  });
-
   const {
     formState: { errors },
     getValues,
@@ -133,7 +61,7 @@ export function FormRegister() {
     reset,
     trigger,
   } = useForm<iUserRegister>({
-    resolver: yupResolver(yupSchema),
+    resolver: yupResolver(schemaFormRegister),
   });
 
   return (

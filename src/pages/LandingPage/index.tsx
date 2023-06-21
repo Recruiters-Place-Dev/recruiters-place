@@ -13,17 +13,15 @@ import {
   TitleAuth,
   ContainerImg,
   ContainerRedirect,
-  Lines,
   ButtonLogout,
   ContainerWelcome,
 } from "./style";
 import { LinkStyled } from "../../components/buttons/style";
-import { useContext } from "react";
-import { iWebContext, WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 import Slogan from "../../components/backgroundStyled";
 
 export const LandingPage = () => {
-  const { setUser, user } = useContext<iWebContext>(WebContext);
+  const { setUser, user } = useAuth();
 
   return (
     <AnimatePresence>

@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { WebContext } from "../context/webcontext";
+import { useAuth } from "../context/webcontext";
 import Chat from "../pages/chat";
 import Feed from "../pages/feed";
 import { LandingPage } from "../pages/LandingPage";
@@ -13,7 +12,7 @@ import ContactUs from "../pages/contact";
 import Error from "../pages/404";
 
 function RoutesMain() {
-  const { user } = useContext(WebContext);
+  const { user } = useAuth();
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

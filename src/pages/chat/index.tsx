@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 import {
   ContainerChat,
   ContainerChatAll,
@@ -16,15 +16,8 @@ import { LogOffModal } from "../../components/logoff";
 import { iSend } from "../../interface";
 
 function Chat() {
-  const {
-    allChats,
-    user,
-    setCallId,
-    callId,
-    onSubmitSendChat,
-    allUsers,
-    getAllChats,
-  } = useContext(WebContext);
+  const { allChats, user, setCallId, callId, onSubmitSendChat, allUsers } =
+    useAuth();
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
 

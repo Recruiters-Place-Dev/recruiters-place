@@ -18,10 +18,9 @@ import avatar from "../../assets/avatar.svg";
 
 import pen from "../../assets/pen.svg";
 
-import { WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 
 import techList from "../../mockList/devTechs.json";
-import { useContext } from "react";
 import { LogOffModal } from "../../components/logoff";
 import { v4 as uuid } from "uuid";
 
@@ -39,7 +38,7 @@ type tTypeTech =
   | "c";
 
 export const DevDashboard = () => {
-  const { user } = useContext(WebContext);
+  const { user } = useAuth();
   return (
     <>
       <AnimatePresence>

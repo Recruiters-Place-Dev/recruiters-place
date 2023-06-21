@@ -2,9 +2,8 @@ import Logo from "../../assets/Logo.svg";
 import { BoxSlogan, FormLogin, MainLogin, SectionLogin } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SchemaLogin } from "../../validations/schemas";
+import { schemaLogin } from "../../schemas";
 import Input from "../../components/Input";
-
 import {
   ButtonStylized,
   LinkContact,
@@ -33,7 +32,7 @@ export const Login = () => {
     getValues,
     formState: { errors },
   } = useForm<iUserLogin>({
-    resolver: yupResolver(SchemaLogin),
+    resolver: yupResolver(schemaLogin),
   });
 
   return (
