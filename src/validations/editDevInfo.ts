@@ -4,7 +4,7 @@ export default yup.object({
   name: yup.string().required("Nome é obrigatório"),
   email: yup.string().required("Email é obrigatório"),
   city: yup.string(),
-  escolaridade: yup.string(),
+  schooling: yup.string(),
   vacancy: yup.string(),
   linkedin: yup.string(),
   github: yup.string(),

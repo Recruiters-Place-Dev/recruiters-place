@@ -24,6 +24,7 @@ interface iInputProps {
   errors?: FieldError | undefined;
   defaultValue?: string;
 }
+
 export const InputDevInfoEdit = ({
   type,
   label,

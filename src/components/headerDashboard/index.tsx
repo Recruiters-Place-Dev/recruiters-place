@@ -1,28 +1,23 @@
 import { HeaderContainer } from "./style";
 import Logo from "../../assets/RPlace_Clear.svg";
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 import { ListMock } from "../../mockList/devType";
 import techList from "../../mockList/devTechs.json";
-
-import { iUser, WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 import { v4 as uuid } from "uuid";
+import { iUser } from "../../interface";
 
 function HeaderDashboard() {
   const { home } = useParams();
-  const navigate = useNavigate();
+  const { navigate, setFilterDevelopers, allUsers, setLogOff } = useAuth();
   const [filter, setFilter] = useState(false);
-
-  const { setFilterDevelopers, allUsers, setLogOff } = useContext(WebContext);
-
-  function handleLogout() {
-    setLogOff(true);
-  }
 
   function goToPerfil() {
     setFilter(false);
     navigate("perfil");
   }
+
   function goToChat() {
     setFilter(false);
     navigate("chat");
@@ -43,6 +38,7 @@ function HeaderDashboard() {
         const techs = Object.entries<boolean>(
           elem?.tech as { [s: string]: boolean } | ArrayLike<boolean>
         );
+
         techs?.filter((elemento: [string, boolean]) => {
           if (elemento[1]) {
             if (elem?.isRecruiter === false && elemento[0] === event) {
@@ -54,6 +50,7 @@ function HeaderDashboard() {
       setFilterDevelopers(arrayfiltro);
     });
   }
+
   function handleFilterDev(event: string) {
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem: iUser) => {
@@ -68,7 +65,6 @@ function HeaderDashboard() {
   return (
     <>
       <HeaderContainer>
-        {/* {logOff && <LogOffModal />} */}
         <header>
           <img onClick={() => reset()} src={Logo} alt="Logo" />
           <nav>
@@ -94,7 +90,7 @@ function HeaderDashboard() {
                 </li>
               )}
               <li>
-                <button onClick={() => handleLogout()}>Sair</button>
+                <button onClick={() => setLogOff(true)}>Sair</button>
                 <span className="spanBorder"></span>
               </li>
             </ul>

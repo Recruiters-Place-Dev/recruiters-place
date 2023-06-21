@@ -8,8 +8,6 @@ import {
   UseFormReset,
 } from "react-hook-form";
 import Input from "../../Input";
-import { iProgressProps } from "../../formregister";
-import { iUserRegister } from "../../formregister";
 import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
 import ModalTechs from "./components/techs";
 import { useContext } from "react";
@@ -17,6 +15,7 @@ import { WebContext } from "../../../context/webcontext";
 import { LinkStyled } from "../../buttons/style";
 import Select from "../../Select";
 import { keyboardKey } from "@testing-library/user-event";
+import { iProgressProps, iUserRegister } from "../../../interface";
 
 interface iModalProps {
   errors: FieldErrors<iUserRegister>;

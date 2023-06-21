@@ -1,7 +1,7 @@
 import CustomSelect from "./CustomSelect";
 import { ListSchooling, ListMock } from "../../mockList/devType";
-import { iInputProps } from "../Input";
 import { v4 as uuid } from "uuid";
+import { iInputProps } from "../../interface";
 import { useState } from "react";
 
 type SelectProps = Omit<

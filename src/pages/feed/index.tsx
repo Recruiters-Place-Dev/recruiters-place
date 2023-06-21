@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import ChatImg from "../../assets/ant-design_file-search-outlined.svg";
 import Vermais from "../../assets/bi_chat-dots-fill.svg";
 import duoChat from "../../assets/chat.png";
-import { iUser, iWebContext, WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 import {
   ContainerDeveloper,
   ContainerFeed,
@@ -15,8 +15,6 @@ import {
   DivDevelopersName,
   DivDevelopersTech,
   Figure,
-  Tag,
-  Techs,
 } from "./styles";
 import ModalFeed from "../../components/modalFeed";
 import ModalComent from "../../components/modal/coment/duality";
@@ -25,19 +23,11 @@ import WriteComent from "../../components/modal/coment/write";
 import ModalChat from "../../components/modal/chat";
 import { v4 as uuid } from "uuid";
 import { LogOffModal } from "../../components/logoff";
-import { Navigate, useNavigate } from "react-router-dom";
-
-export interface iTech {
-  tech: string;
-  dir: string;
-}
-
-export interface iTechs {
-  techs: iTech;
-}
+import { iUser } from "../../interface";
 
 function Feed() {
   const {
+    navigate,
     allUsers,
     modalFeed,
     setModalFeed,
@@ -52,14 +42,12 @@ function Feed() {
     filterDevelopers,
     setFilterDevelopers,
     getAllUsers,
-  } = useContext<iWebContext>(WebContext);
+  } = useAuth();
 
   const [techsDeveloper, setTechsDeveloper] = useState<
     ({ tech: string; dir: string } | undefined)[] | null
   >(null);
   const [modalDeveloper, setModalDeveloper] = useState<iUser | null>(null);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!localStorage.getItem("RPlace:Token")) {
@@ -110,14 +98,14 @@ function Feed() {
           </DivDevelopersName>
 
           <DivDevelopersTech>
-            <Techs>
+            {/* <Techs>
               {filteredTechs(elem)?.map((value) => (
                 <div key={uuid()}>
                   <img src={value?.dir} alt={value?.tech} />
                   <Tag>{value?.tech}</Tag>
                 </div>
               ))}
-            </Techs>
+            </Techs> */}
 
             <Contato>
               {user?.isRecruiter && (
@@ -134,7 +122,7 @@ function Feed() {
 
               <img
                 src={Vermais}
-                alt="coments"
+                alt="comments"
                 id={elem.id + ""}
                 onClick={(event) => {
                   setComentId((event.target as HTMLImageElement).id);

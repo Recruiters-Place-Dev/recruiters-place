@@ -102,29 +102,29 @@ export const LinkStyled = styled(Link)`
     max-width: 300px;
     width: 100%;
   }
-
 `;
 
 export const LinkContact = styled(Link)`
-font-family: var(--font-family);
-font-size: 18px;
+  font-family: var(--font-family);
+  font-size: 18px;
 
-color: var(--color-primary);
+  color: var(--color-primary);
 
+  .spanBorder {
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: var(--color-primary);
 
-.spanBorder {
-display: block;
-width: 0%;
-height: 2px;
-background: var(--color-primary);
+    transition: 0.4s;
+  }
 
-transition: 0.4s;
-}
+  &:hover {
+    filter: brightness(0.8);
+  }
 
-&:hover {
-filter: brightness(0.8);
-}
-
-&:hover .spanBorder {
-width: 100%;
-transition: 0.4s;`;
+  &:hover .spanBorder {
+    width: 100%;
+    transition: 0.4s;
+  }
+`;

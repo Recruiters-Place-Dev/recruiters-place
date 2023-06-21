@@ -19,7 +19,7 @@ export interface iFormEditProfile {
   password: string;
   isRecruiter: true;
   city: string;
-  escolaridade: string;
+  schooling: string;
   vacancy: string;
   isWork: boolean;
   linkedin: string;

@@ -7,7 +7,6 @@ interface iPropsLine {
 }
 
 export const MainStyled = styled.main`
-  /* border: 3px solid gold; */
   max-height: 100vh;
   height: 100vh;
   display: flex;
@@ -38,7 +37,6 @@ export const Lines = styled.div<iPropsLine>`
 `;
 
 export const Container = styled.div`
-  /* border: 1px solid red; */
   width: 100%;
   height: 60%;
   display: flex;
@@ -48,17 +46,13 @@ export const Container = styled.div`
 
   @media (min-width: 1024px) {
     flex-direction: row;
-    /* align-items: center; */
   }
 `;
 
 export const ContainerImg = styled.div`
   /* mobile */
-
   display: none;
-
   background-color: var(--color-primary);
-
   width: 50%;
   height: 400px;
   align-items: center;
@@ -75,7 +69,6 @@ export const ContainerImg = styled.div`
     width: 80px;
     height: 120px;
     position: relative;
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -84,10 +77,8 @@ export const ContainerImg = styled.div`
   .mulherLandingPage {
     width: 90px;
     height: 190px;
-    /* border: 1px solid red; */
   }
   .homemAnimation {
-    /* border: 1px solid red; */
     position: absolute;
     top: -30px;
     left: -30px;
@@ -169,7 +160,6 @@ export const ContainerImg = styled.div`
 `;
 
 export const ContainerWelcome = styled.div`
-  /* border: 2px solid green; */
   display: flex;
 `;
 
@@ -234,7 +224,6 @@ export const TitleAuth = styled.p`
   font-weight: 500;
   font-size: 16px;
   line-height: 100%;
-  /* margin-bottom: -1.8rem; */
   color: #657786;
 `;
 

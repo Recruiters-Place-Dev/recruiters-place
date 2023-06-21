@@ -7,39 +7,11 @@ import ModalRegister from "../modal/Register";
 import { useState, useContext } from "react";
 import { WebContext } from "../../context/webcontext";
 import { keyboardKey } from "@testing-library/user-event";
-
-export interface iUserRegister {
-  name: string;
-  email: string;
-  city?: string;
-  schooling?: string;
-  vacancy?: string;
-  password: string;
-  checkpass: string;
-  isRecruiter: boolean;
-  isWork?: boolean;
-  linkedin?: string;
-  github?: string;
-  portfolio?: string;
-  tech?: {
-    html: boolean;
-    css: boolean;
-    js: boolean;
-    react: boolean;
-    ts: boolean;
-    angular: boolean;
-    vuejs: boolean;
-    php: boolean;
-    c: boolean;
-  };
-}
-
-export interface iProgressProps {
-  phase: number;
-  nextPhase: number | null;
-}
+import { iProgressProps, iUserRegister } from "../../interface";
 
 export function FormRegister() {
+  const { onRegister } = useContext(WebContext);
+
   //States
   const [show, setShow] = useState<boolean>(false);
   const [isRecruiter, setIsRecruiter] = useState<boolean>(false);
@@ -49,8 +21,6 @@ export function FormRegister() {
   });
 
   // functions
-  const { onRegister } = useContext(WebContext);
-
   const registerUser = async (): Promise<void> => {
     const isRecruiter = getValues("isRecruiter");
 

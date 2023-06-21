@@ -1,21 +1,11 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { iUser, WebContext } from "../../context/webcontext";
 import { ButtonStylized } from "../buttons/style";
 import { FormChatContainer } from "./style";
-
-export interface iChat {
-  from: string | undefined;
-  to: string | undefined;
-  idTo: string | undefined;
-  idFrom: string | undefined;
-  chat: string | undefined;
-  isRead: boolean | undefined;
-}
+import { iChat, iUser } from "../../interface";
+import { useAuth } from "../../context/webcontext";
 
 function FormChat() {
-  const { user, chatId, allUsers, onSubmitChat, loading } =
-    useContext(WebContext);
+  const { user, chatId, allUsers, onSubmitChat, loading } = useAuth();
 
   const { register, handleSubmit } = useForm<iChat>({});
 

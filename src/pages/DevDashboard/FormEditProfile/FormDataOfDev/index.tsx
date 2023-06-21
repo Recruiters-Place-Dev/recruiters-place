@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { iUser, WebContext } from "../../../../context/webcontext";
 import { motion } from "framer-motion";
 import {
   ButtonStyled,
@@ -12,12 +11,13 @@ import {
 } from "./style";
 import { InputDevInfoEdit } from "./InputDevInfoEdit";
 import { Api } from "../../../../services/api";
-import { iApiError, iFormEditProfile } from "../types";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import schema from "../../../../validations/editDevInfo";
+import { useAuth } from "../../../../context/webcontext";
+import { iApiError, iFormEditProfile, iUser } from "../../../../interface";
 
 interface iPersonalDataOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
@@ -25,7 +25,7 @@ interface iPersonalDataOfDev {
 
 export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
   const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
-    useContext(WebContext);
+    useAuth();
 
   const {
     register,
@@ -39,7 +39,7 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
     delete formData.tech;
 
     try {
-      const { data } = await Api.patch<iUser>(`/users/${user?.id}`, formData);
+      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, formData);
 
       setUser(data);
       getAllUsers();

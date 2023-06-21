@@ -1,21 +1,15 @@
 import { ModalLogOff } from "./style";
 import { ModalFeedContainer } from "../modalFeed/styles";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 
 export function LogOffModal() {
-  const navigate = useNavigate();
-  const { logOff, setLogOff, setCallId } = useContext(WebContext);
+  const { navigate, logOff, setLogOff, setCallId } = useAuth();
+
   function sair() {
     setCallId("");
     setLogOff(false);
     localStorage.clear();
     navigate("/");
-  }
-
-  function cancel() {
-    setLogOff(false);
   }
 
   return logOff ? (
@@ -24,7 +18,11 @@ export function LogOffModal() {
         <h3>Sair</h3>
         <p>Tem certeza que você deseja sair?</p>
         <div>
-          <button type="button" onClick={() => cancel()} className="cancelar">
+          <button
+            type="button"
+            onClick={() => setLogOff(false)}
+            className="cancelar"
+          >
             Cancelar
           </button>
           <button type="button" onClick={() => sair()} className="sair">

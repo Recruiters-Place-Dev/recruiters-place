@@ -1,35 +1,32 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { BoxImgCheckbox } from "./BoxImgCheckbox";
 import schema from "../../../../validations/editDevTech";
 
-import { iUser, WebContext } from "../../../../context/webcontext";
-
 import { BoxBtns, TechsBox, FormStyled } from "./style";
 
 import { Api } from "../../../../services/api";
-import { iApiError, iFormEditProfile } from "../types";
 import { ButtonStyled } from "../FormDataOfDev/style";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-
-import { iTechs } from "../types";
+import {
+  iApiError,
+  iFormEditProfile,
+  iTechs,
+  iUser,
+} from "../../../../interface";
+import { useAuth } from "../../../../context/webcontext";
 
 interface iTechOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
 }
+
 export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
   const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
-    useContext(WebContext);
+    useAuth();
 
   const [isActiveTechs, setIsActiveTechs] = useState<iTechs | undefined>({
     html: false,
@@ -53,7 +50,7 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async () => {
     try {
-      const { data } = await Api.patch<iUser>(`/users/${user?.id}`, {
+      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, {
         tech: { ...isActiveTechs },
       });
       getAllUsers();

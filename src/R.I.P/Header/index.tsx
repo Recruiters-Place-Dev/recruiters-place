@@ -1,9 +1,9 @@
 import { HeaderStyled, Container, ButtonLogout } from "./style";
 import Logo from "../../../../assets/RPlace_Clear.svg";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/webcontext";
 
 export const Header = () => {
-  // const navigate = useNavigate();
+  // const { navigate } = useAuth();
   // const logout = () => {
   //   navigate("/");
   //   window.localStorage.clear();

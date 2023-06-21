@@ -1,6 +1,6 @@
 import { UseFormRegister } from "react-hook-form";
-import { iFormEditProfile } from "../types";
 import { BoxInput } from "./style";
+import { iFormEditProfile } from "../../../../interface";
 
 interface iInputEditProfile {
   type: "text" | "email" | "url";
@@ -14,7 +14,7 @@ interface iInputEditProfile {
     | "portfolio"
     | "fotoDoPerfil"
     | "city"
-    | "escolaridade";
+    | "schooling";
   label:
     | "Nome"
     | "vacancy"
@@ -25,7 +25,7 @@ interface iInputEditProfile {
     | "Foto do Perfil"
     | "GitHub"
     | "Localização"
-    | "Escolaridade";
+    | "Schooling";
   register: UseFormRegister<iFormEditProfile>;
   defaultValue?: string;
 }

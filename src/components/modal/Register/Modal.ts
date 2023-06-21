@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import devTechs from "../../../mockList/devTechs.json";
-
-import { iProgressProps } from "../../formregister";
+import { iProgressProps } from "../../../interface";
 
 interface iModalContainerProps {
   progress: iProgressProps;
