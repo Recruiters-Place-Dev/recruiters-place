@@ -13,6 +13,7 @@ import Error from "../pages/404";
 
 function RoutesMain() {
   const { user } = useAuth();
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
