@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Logo from "../../assets/Logo.svg";
-import sprite from "../../assets/sprite.svg"
-import { LinkStyled } from "../../components/buttons/style";
-import { FormRegister } from "../../components/formregister";
-import RegisterContainer from "./RegisterContainer";
+import sprite from "../../assets/sprite.svg";
+import { LinkStyled } from "../../components/Buttons/style";
+import { FormRegister } from "../../components/Formregister";
+import RegisterContainer from "./registerContainer";
 
 function Register() {
   return (
@@ -17,7 +16,6 @@ function Register() {
           <LinkStyled to={"/login"}>Login</LinkStyled>
         </div>
       </div>
-      {/* <div className="ContentContainer"></div> */}
       <div className="SquareContent">
         <img src={sprite} alt="" />
         <div>
@@ -25,8 +23,6 @@ function Register() {
           <a href="#">Confira os benefícios ➡</a>
         </div>
       </div>
-      {/* <div className="square"></div> */}
-      {/* <div className="halfSquare"></div> */}
     </RegisterContainer>
   );
 }

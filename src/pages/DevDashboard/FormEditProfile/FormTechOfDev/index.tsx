@@ -2,12 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { BoxImgCheckbox } from "./BoxImgCheckbox";
-import schema from "../../../../validations/editDevTech";
-
 import { BoxBtns, TechsBox, FormStyled } from "./style";
-
 import { Api } from "../../../../services/api";
 import { ButtonStyled } from "../FormDataOfDev/style";
 import { AxiosError } from "axios";
@@ -19,6 +15,7 @@ import {
   iUser,
 } from "../../../../interface";
 import { useAuth } from "../../../../context/webcontext";
+import { schemaEditDevTech } from "../../../../schemas";
 
 interface iTechOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
@@ -45,7 +42,7 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
   }, []);
 
   const { register, handleSubmit } = useForm<iFormEditProfile>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaEditDevTech),
   });
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async () => {

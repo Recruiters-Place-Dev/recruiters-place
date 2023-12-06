@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useContext } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import {
@@ -15,9 +15,9 @@ import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import schema from "../../../../validations/editDevInfo";
 import { useAuth } from "../../../../context/webcontext";
 import { iApiError, iFormEditProfile, iUser } from "../../../../interface";
+import { schemaEditDevInfo } from "../../../../schemas";
 
 interface iPersonalDataOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
@@ -32,7 +32,7 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
     handleSubmit,
     formState: { errors },
   } = useForm<iFormEditProfile>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaEditDevInfo),
   });
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async (formData) => {
@@ -83,10 +83,10 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
 
             <InputDevInfoEdit
               type="text"
-              id="cargo"
+              id="vacancy"
               register={register}
-              label="Cargo"
-              defaultValue={user?.cargo}
+              label="vacancy"
+              defaultValue={user?.vacancy}
             />
 
             <InputDevInfoEdit
@@ -158,4 +158,3 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
     </motion.div>
   );
 };
-// {

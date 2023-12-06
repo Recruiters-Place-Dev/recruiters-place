@@ -9,20 +9,22 @@ import {
   ContainerFeed,
   Contato,
   DeveloperName,
-  DevelopersCargo,
+  Developersvacancy,
   DivDevelopersInfo,
   DivDevelopersLinks,
   DivDevelopersName,
   DivDevelopersTech,
   Figure,
+  Tag,
+  Techs,
 } from "./styles";
-import ModalFeed from "../../components/modalFeed";
-import ModalComent from "../../components/modal/coment/duality";
-import ReadComent from "../../components/modal/coment/read";
-import WriteComent from "../../components/modal/coment/write";
-import ModalChat from "../../components/modal/chat";
+import ModalFeed from "../../components/Modal/Feed";
+import ModalComent from "../../components/Modal/Comment/duality";
+import ReadComent from "../../components/Modal/Comment/read";
+import WriteComent from "../../components/Modal/Comment/write";
+import ModalChat from "../../components/Modal/Chat";
 import { v4 as uuid } from "uuid";
-import { LogOffModal } from "../../components/logoff";
+import { LogOffModal } from "../../components/Logoff";
 import { iUser } from "../../interface";
 
 function Feed() {
@@ -83,7 +85,7 @@ function Feed() {
           </DivDevelopersInfo>
           <DivDevelopersName>
             <DeveloperName>{elem?.name}</DeveloperName>
-            <DevelopersCargo>{elem?.cargo}</DevelopersCargo>
+            <Developersvacancy>{elem?.vacancy}</Developersvacancy>
             <DivDevelopersLinks>
               <a href={elem?.linkedin} target="__blank">
                 Linkedin
@@ -98,14 +100,14 @@ function Feed() {
           </DivDevelopersName>
 
           <DivDevelopersTech>
-            {/* <Techs>
+            <Techs>
               {filteredTechs(elem)?.map((value) => (
                 <div key={uuid()}>
                   <img src={value?.dir} alt={value?.tech} />
                   <Tag>{value?.tech}</Tag>
                 </div>
               ))}
-            </Techs> */}
+            </Techs>
 
             <Contato>
               {user?.isRecruiter && (

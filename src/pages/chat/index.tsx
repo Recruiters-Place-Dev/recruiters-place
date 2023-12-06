@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { WebContext } from "../../context/webcontext";
+import { useAuth } from "../../context/webcontext";
 import {
   ContainerChat,
   ContainerChatAll,
@@ -12,19 +12,12 @@ import send from "../../assets/send.png";
 import FotoPerfil from "../../assets/carbon_user-avatar.svg";
 import avatarTech from "../../assets/avatarTech.png";
 import { v4 as uuid } from "uuid";
-import { LogOffModal } from "../../components/logoff";
+import { LogOffModal } from "../../components/Logoff";
 import { iSend } from "../../interface";
 
 function Chat() {
-  const {
-    allChats,
-    user,
-    setCallId,
-    callId,
-    onSubmitSendChat,
-    allUsers,
-    getAllChats,
-  } = useContext(WebContext);
+  const { allChats, user, setCallId, callId, onSubmitSendChat, allUsers } =
+    useAuth();
   const myId = localStorage.getItem("RPlace:id");
   const { register, handleSubmit } = useForm<iSend>({});
 
@@ -93,7 +86,7 @@ function Chat() {
             <div>
               <h3>{developer?.name}</h3>
               <p>
-                {developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}
+                {developer?.isRecruiter ? "Tech Recruiter" : developer?.vacancy}
               </p>
               {developer?.empresa && <p>{developer.empresa}</p>}
             </div>
@@ -116,7 +109,9 @@ function Chat() {
                 )
             )
           ) : (
-            <div>Nenhuma conversa aberta</div>
+            <div className="nothingMessage">
+              <h2>Nenhuma conversa aberta</h2>
+            </div>
           )}
         </ContainerChatCall>
         <ContainerInputSend onSubmit={handleSubmit(onSubmitSendChat)}>
@@ -141,7 +136,7 @@ function Chat() {
           />
         )}
         <h3>{developer?.name}</h3>
-        <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.cargo}</p>
+        <p>{developer?.isRecruiter ? "Tech Recruiter" : developer?.vacancy}</p>
         {developer?.empresa && <p>{developer.empresa}</p>}
         {callId && (
           <a href={developer?.linkedin} target="__blank">

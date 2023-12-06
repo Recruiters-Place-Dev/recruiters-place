@@ -1,4 +1,4 @@
-import ModalContainer from "./Modal";
+import ModalContainer from "./modal";
 import {
   UseFormGetValues,
   UseFormHandleSubmit,
@@ -9,13 +9,12 @@ import {
 } from "react-hook-form";
 import Input from "../../Input";
 import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
-import ModalTechs from "./components/techs";
-import { useContext } from "react";
-import { WebContext } from "../../../context/webcontext";
-import { LinkStyled } from "../../buttons/style";
+import ModalTechs from "./modalTechs";
+import { LinkStyled } from "../../Buttons/style";
 import Select from "../../Select";
 import { keyboardKey } from "@testing-library/user-event";
 import { iProgressProps, iUserRegister } from "../../../interface";
+import { useAuth } from "../../../context/webcontext";
 
 interface iModalProps {
   errors: FieldErrors<iUserRegister>;
@@ -43,7 +42,7 @@ const ModalRegister = ({
   trigger,
 }: iModalProps) => {
   // context
-  const { resolved, setResolved } = useContext(WebContext);
+  const { resolved, setResolved } = useAuth();
 
   // functions
   const backFn = () => {
@@ -201,7 +200,7 @@ const ModalRegister = ({
               errors={errors.vacancy}
               getValues={getValues}
               id="vacancy"
-              label="Selecione seu cargo"
+              label="Selecione seu vacancy"
               register={register}
             />
             <div className="controls">

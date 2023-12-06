@@ -1,7 +1,12 @@
-import devTechs from "../../../../../mockList/devTechs.json";
-import {v4 as uuid} from "uuid"
+import devTechs from "../../../mockList/devTechs.json";
+import { UseFormRegister } from "react-hook-form";
+import { v4 as uuid } from "uuid";
 
-const ModalTechs = ({register}) => {
+interface iModalTechsProps {
+  register: UseFormRegister<any>;
+}
+
+const ModalTechs = ({ register }: iModalTechsProps) => {
   return (
     <>
       {devTechs.map((el) => {

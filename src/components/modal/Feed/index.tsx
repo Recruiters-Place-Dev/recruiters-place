@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import {
   DeveloperName,
-  DevelopersCargo,
+  Developersvacancy,
   DivBio,
   DivInfo,
   DivInfoEmail,
@@ -11,12 +10,12 @@ import {
   ModalFeedContainer,
   Techs,
 } from "./styles";
-import FotoPerfil from "../../assets/carbon_user-avatar.svg";
+import FotoPerfil from "../../../assets/carbon_user-avatar.svg";
 import { v4 as uuid } from "uuid";
-import { Tag } from "../../pages/feed/styles";
-import close from "../../assets/close.png";
-import { iUser } from "../../interface";
-import { useAuth } from "../../context/webcontext";
+import { Tag } from "../../../pages/Feed/styles";
+import close from "../../../assets/close.png";
+import { iUser } from "../../../interface";
+import { useAuth } from "../../../context/webcontext";
 
 interface iModalFeedProps {
   developer: iUser | null;
@@ -60,7 +59,7 @@ function ModalFeed({ developer, techs }: iModalFeedProps) {
         <DivInfo>
           <div>
             <DeveloperName>{developer?.name}</DeveloperName>
-            <DevelopersCargo>{developer?.cargo}</DevelopersCargo>
+            <Developersvacancy>{developer?.vacancy}</Developersvacancy>
           </div>
 
           <DivBio>

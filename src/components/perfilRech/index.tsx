@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { SlPencil } from "react-icons/sl";
-import { WebContext } from "../../context/webcontext";
-import { SchemaPerfilRech } from "../../validations/schemas";
-import { ButtonStylized } from "../buttons/style";
+import { useAuth } from "../../context/webcontext";
+import { schemaPerfilRech } from "../../schemas";
+import { ButtonStylized } from "../Buttons/style";
 import Input from "../Input";
-import { LogOffModal } from "../logoff";
+import { LogOffModal } from "../Logoff";
 import {
   Container,
   ContainerContent,
@@ -18,8 +17,7 @@ import avatar from "../../assets/avatarTech.png";
 import { iEditRech } from "../../interface";
 
 const PerfilRech = () => {
-  const { boxEdit, setBoxEdit } = useContext(WebContext);
-  const { editSubmit, user } = useContext(WebContext);
+  const { boxEdit, setBoxEdit, editSubmit, user } = useAuth();
 
   const {
     register,
@@ -28,7 +26,7 @@ const PerfilRech = () => {
     getValues,
     reset,
   } = useForm<iEditRech>({
-    resolver: yupResolver(SchemaPerfilRech),
+    resolver: yupResolver(schemaPerfilRech),
     defaultValues: {
       name: user?.name,
       email: user?.email,

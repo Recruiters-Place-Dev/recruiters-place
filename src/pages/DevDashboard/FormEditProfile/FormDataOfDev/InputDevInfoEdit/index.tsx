@@ -7,7 +7,7 @@ type tId =
   | "name"
   | "bio"
   | "email"
-  | "cargo"
+  | "vacancy"
   | "linkedin"
   | "portfolio"
   | "fotoDoPerfil"

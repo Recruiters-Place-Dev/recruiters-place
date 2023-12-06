@@ -204,7 +204,7 @@ export const DeveloperName = styled.h1`
   }
 `;
 
-export const DevelopersCargo = styled.h2`
+export const Developersvacancy = styled.h2`
   color: #657786;
   font-size: 20px;
   font-weight: 500;

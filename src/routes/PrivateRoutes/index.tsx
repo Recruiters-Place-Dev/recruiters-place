@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-import Dashboard from "../../pages/dashboard";
+import Dashboard from "../../pages/Dashboard";
 import { useAuth } from "../../context/webcontext";
 
 export const PrivateRoutes = () => {

@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
-import { WebContext } from "../../../../context/webcontext";
 import {
   ModalComentWriteContainer,
   ModalComentWriteContainerButton,
   ModalComentWriteContainerMessage,
 } from "./style";
 import close from "../../../../assets/close.png";
-import FormMessage from "../../../formMessage";
+import FormMessage from "../../../FormMessage";
+import { useAuth } from "../../../../context/webcontext";
 
 function WriteComent() {
-  const { modalWriteComent, setModalComent, setModalWriteComent } =
-    useContext(WebContext);
+  const { modalWriteComent, setModalComent, setModalWriteComent } = useAuth();
 
   return modalWriteComent ? (
     <ModalComentWriteContainer>

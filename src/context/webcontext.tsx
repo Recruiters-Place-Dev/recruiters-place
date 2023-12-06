@@ -200,7 +200,6 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function onRegister(data: iUserRegister): Promise<void> {
     const { isRecruiter } = data;
-
     if (!isRecruiter) {
       const devData = {
         name: data.name,

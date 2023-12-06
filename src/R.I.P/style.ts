@@ -1,6 +1,4 @@
-import  styled  from 'styled-components';
-
-
+import styled from "styled-components";
 
 export const MainStyled = styled.main`
   background: #f5f8fa;
@@ -8,5 +6,4 @@ export const MainStyled = styled.main`
   height: auto;
   padding-top: 4rem;
   padding-bottom: 5rem;
-
 `;

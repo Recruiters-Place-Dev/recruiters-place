@@ -8,16 +8,16 @@ interface iInputEditProfile {
     | "name"
     | "email"
     | "city"
-    | "cargo"
+    | "vacancy"
     | "linkedin"
     | "github"
     | "portfolio"
     | "fotoDoPerfil"
     | "city"
-    | "escolaridade";
+    | "schooling";
   label:
     | "Nome"
-    | "Cargo"
+    | "vacancy"
     | "Email"
     | "Cidade"
     | "LinkedIn"
@@ -25,7 +25,7 @@ interface iInputEditProfile {
     | "Foto do Perfil"
     | "GitHub"
     | "Localização"
-    | "Escolaridade";
+    | "Schooling";
   register: UseFormRegister<iFormEditProfile>;
   defaultValue?: string;
 }

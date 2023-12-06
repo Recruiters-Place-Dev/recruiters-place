@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { ButtonStylized } from "../buttons/style";
+import { ButtonStylized } from "../Buttons/style";
 import { FormContainer } from "./style";
 import { iComment, iUser } from "../../interface";
 import { useAuth } from "../../context/webcontext";

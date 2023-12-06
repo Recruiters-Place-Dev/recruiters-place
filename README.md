@@ -11,7 +11,7 @@ Pensando em solucionar problemas de empresas e recrutadores que estão buscando 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Axios](https://axios-http.com/docs/intro)
 - [uuid](https://www.npmjs.com/package/uuid)
-- [react-router-dom](https://api-tibia.vercel.app/)
+- [react-router-dom](https://reactrouter.com/en/main)
 - [react-hook-form](https://react-hook-form.com/)
 - [yup](https://www.npmjs.com/package/yup)
 - [styled-components](https://styled-components.com/)
@@ -45,6 +45,40 @@ $yarn
 
 ```
 yarn start
+```
+
+# Rodar API Localmente / Run API Locally
+
+-> <a href="https://github.com/time-6/api-recruiters-place" target="blank_">Repositório da API</a> <-
+
+```
+bash
+#clone o repositório
+$git clone git@github.com:time-6/api-recruiters-place.git
+```
+
+```
+bash
+# Instale as depêndencias
+$npm install
+or
+$yarn
+```
+
+<h2>Funcionando / Working</h2>
+
+```
+$ npm run server
+
+> server
+> node server.js
+
+Server is running on port: 3001
+
+# ou
+
+$ node server.js
+Server is running on port: 3001
 ```
 
 # Getting Started with Create React App

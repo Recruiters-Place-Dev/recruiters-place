@@ -81,7 +81,7 @@ const HamburguerMenu = () => {
     menu();
     const arrayfiltro: iUser[] = [];
     allUsers?.forEach((elem: iUser) => {
-      if (elem.cargo === event) {
+      if (elem.vacancy === event) {
         arrayfiltro.push(elem);
       }
     });

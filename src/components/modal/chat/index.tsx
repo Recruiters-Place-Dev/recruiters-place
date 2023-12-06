@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
 import {
   ModalChatContainer,
   ModalChatContainerButton,
   ModalChatContainerMessage,
 } from "./style";
 import close from "../../../assets/close.png";
-import { WebContext } from "../../../context/webcontext";
-import FormChat from "../../formChat";
+import FormChat from "../../FormChat";
+import { useAuth } from "../../../context/webcontext";
 
 function ModalChat() {
-  const { setModalChat, modalChat } = useContext(WebContext);
+  const { setModalChat, modalChat } = useAuth();
 
   return modalChat ? (
     <ModalChatContainer>

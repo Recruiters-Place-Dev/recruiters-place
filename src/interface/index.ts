@@ -94,7 +94,7 @@ export interface iUser {
   isRecruiter?: boolean;
   city: string | undefined;
   schooling?: string | undefined;
-  cargo?: string | undefined;
+  vacancy?: string | undefined;
   empresa: string | undefined;
   isWork?: boolean | undefined;
   linkedin: string | undefined;
@@ -148,8 +148,8 @@ export interface iFormEditProfile {
   password: string;
   isRecruiter: true;
   city: string;
-  escolaridade: string;
-  cargo: string;
+  schooling: string;
+  vacancy: string;
   isWork: boolean;
   linkedin: string;
   github: string;

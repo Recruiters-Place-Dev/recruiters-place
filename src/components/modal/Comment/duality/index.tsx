@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { WebContext } from "../../../../context/webcontext";
-import { ButtonStylized } from "../../../buttons/style";
+import { ButtonStylized } from "../../../Buttons/style";
 import { ModalComentContainer } from "./style";
 import close from "../../../../assets/close.png";
+import { useAuth } from "../../../../context/webcontext";
 
 function ModalComent() {
   const { modalComent, setModalComent, readModalComent, writeModalComent } =
-    useContext(WebContext);
+    useAuth();
 
   return modalComent ? (
     <ModalComentContainer>

@@ -1,19 +1,19 @@
-import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { WebContext } from "../context/webcontext";
-import Chat from "../pages/chat";
-import Feed from "../pages/feed";
+import { useAuth } from "../context/webcontext";
+import Chat from "../pages/Chat";
+import Feed from "../pages/Feed";
 import { LandingPage } from "../pages/LandingPage";
-import { Login } from "../pages/login";
-import Register from "../pages/register";
+import { Login } from "../pages/Login";
+import Register from "../pages/Register";
 import { PrivateRoutes } from "./PrivateRoutes";
-import Perfil from "../pages/perfil";
+import Perfil from "../pages/Perfil";
 import { FormEditProfile } from "../pages/DevDashboard/FormEditProfile";
-import ContactUs from "../pages/contact";
+import ContactUs from "../pages/Contact";
 import Error from "../pages/404";
 
 function RoutesMain() {
-  const { user } = useContext(WebContext);
+  const { user } = useAuth();
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const RegisterForm = styled.form`
-  /* border: 1px solid red; */
   display: flex;
   flex-flow: column;
-  /* align-items: center; */
-  /* justify-content: center; */
   gap: 15px;
   width: 100%;
   max-width: 400px;
@@ -48,13 +45,10 @@ export const RegisterForm = styled.form`
     border-radius: 8px;
     border: none;
 
-    /* padding: 14px 116px 15px; */
-
     font-family: var(--font-family);
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    /* line-height: 23px; */
 
     text-decoration: none;
     transition: 0.4s;

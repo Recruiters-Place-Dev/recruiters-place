@@ -54,7 +54,7 @@ function HeaderDashboard() {
   function handleFilterDev(event: string) {
     const arrayfiltro: iUser[] = [];
     allUsers?.map((elem: iUser) => {
-      if (elem.cargo === event) {
+      if (elem.vacancy === event) {
         arrayfiltro.push(elem);
       }
     });
